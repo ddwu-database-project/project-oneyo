@@ -5,15 +5,8 @@ public class Mealkit {
 	private String mkName;
 	private int defaultCal;
 	private int defaultPrice;
-	private int categoryId;
+	private Category Category;
 	
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	public Mealkit() {}
 	
@@ -48,5 +41,10 @@ public class Mealkit {
 	public void setDefaultPrice(int defaultPrice) {
 		this.defaultPrice = defaultPrice;
 	}
-	
+	public Category getCategory() {
+		return Category;
+	}
+	public void setCategory(Category category) {
+		Category = category;
+	}
 }

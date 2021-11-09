@@ -3,25 +3,20 @@ package model.dto;
 public class Ingredient {
 	private int ingId;
 	private String ingName;
-	private int price;
-	private int caloryId;
-	private int calory;
+	private int ingPrice;
+	private int ingCalorie;
+	private int ingQuantity;
+	private Category Category;
 	
-	public int getCalory() {
-		return calory;
-	}
-
-	public void setCalory(int calory) {
-		this.calory = calory;
-	}
-
 	public Ingredient() {}
 	
-	public Ingredient(int ingId, String ingName, int price, int calory) {
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, Category Category) {
 		this.ingId = ingId;
 		this.ingName = ingName;
-		this.price = price;
-		this.calory = calory;
+		this.ingPrice = ingPrice;
+		this.ingCalorie = ingCalorie;
+		this.ingQuantity = ingQuantity;
+		this.Category = Category;
 	}
 	
 	public int getIngId() {
@@ -36,18 +31,31 @@ public class Ingredient {
 	public void setIngName(String ingName) {
 		this.ingName = ingName;
 	}
-	public int getPrice() {
-		return price;
+	public int getIngPrice() {
+		return ingPrice;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setIngPrice(int ingPrice) {
+		this.ingPrice = ingPrice;
 	}
-	public int getCaloryId() {
-		return caloryId;
+	public int getIngCalorie() {
+		return ingCalorie;
 	}
-	public void setCaloryId(int caloryId) {
-		this.caloryId = caloryId;
+	public void setIngCalorie(int ingCalorie) {
+		this.ingCalorie = ingCalorie;
 	}
+	public int getIngQuantity() {
+		return ingQuantity;
+	}
+	public void setIngQuantity(int ingQuantity) {
+		this.ingQuantity = ingQuantity;
+	}
+	public Category getCategory() {
+		return Category;
+	}
+	public void setCategory(Category category) {
+		Category = category;
+	}
+	
 	
 
 }
