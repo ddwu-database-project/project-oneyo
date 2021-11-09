@@ -4,8 +4,17 @@ public class Ingredient {
 	private int ingId;
 	private String ingName;
 	private int price;
+	private int caloryId;
 	private int calory;
 	
+	public int getCalory() {
+		return calory;
+	}
+
+	public void setCalory(int calory) {
+		this.calory = calory;
+	}
+
 	public Ingredient() {}
 	
 	public Ingredient(int ingId, String ingName, int price, int calory) {
@@ -33,11 +42,11 @@ public class Ingredient {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getCalory() {
-		return calory;
+	public int getCaloryId() {
+		return caloryId;
 	}
-	public void setCalory(int calory) {
-		this.calory = calory;
+	public void setCaloryId(int caloryId) {
+		this.caloryId = caloryId;
 	}
 	
 
