@@ -6,7 +6,7 @@ public class Order {
 	private int customerId;
 	private int status;
 	private String orderDate;
-	 
+	private ShippingDetail shippingDetail;
 
 	public Order() {}
 
@@ -17,6 +17,28 @@ public class Order {
 		this.customerId = customerId;
 		this.status = status;
 		this.orderDate = orderDate;
+	}
+
+	
+
+	public Order(int orderId, int customerId, int status, String orderDate, ShippingDetail shippingDetail) {
+		super();
+		this.orderId = orderId;
+		this.customerId = customerId;
+		this.status = status;
+		this.orderDate = orderDate;
+		this.shippingDetail = shippingDetail;
+	}
+
+	
+	
+	public ShippingDetail getShippingDetail() {
+		return shippingDetail;
+	}
+
+
+	public void setShippingDetail(ShippingDetail shippingDetail) {
+		this.shippingDetail = shippingDetail;
 	}
 
 
