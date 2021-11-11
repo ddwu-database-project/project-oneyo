@@ -11,7 +11,7 @@ public class Cart {
 	public Cart() {
 		customMealkits = new ArrayList<>();
 	}
-	
+
 	public int getCartId() {
 		return cartId;
 	}
