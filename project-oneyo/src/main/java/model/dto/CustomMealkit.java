@@ -1,10 +1,8 @@
 package model.dto;
 
-import java.util.List;
-
 public class CustomMealkit {
 	private Mealkit originalMealkit;
-	private int cusotmMealkitId;
+	private int customMealkitId;
 	private int customerId;
 	private int quantity;			
 	private int price;			
@@ -16,11 +14,11 @@ public class CustomMealkit {
 	public void setOriginalMealkit(Mealkit originalMealkit) {
 		this.originalMealkit = originalMealkit;
 	}
-	public int getCusotmMealkitId() {
-		return cusotmMealkitId;
+	public int getCustomMealkitId() {
+		return customMealkitId;
 	}
-	public void setCusotmMealkitId(int cusotmMealkitId) {
-		this.cusotmMealkitId = cusotmMealkitId;
+	public void setCustomMealkitId(int cusotmMealkitId) {
+		this.customMealkitId = cusotmMealkitId;
 	}
 	public int getCustomerId() {
 		return customerId;

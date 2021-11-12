@@ -1,5 +1,6 @@
 package model.dto;
-//주문 관리를 위해 필요한 도메인 클래스(VO) + a = DTO. MealkitOrder 테이블과 대응됨.
+
+import java.util.List;
 
 public class Order {
 	private int orderId;
@@ -7,31 +8,24 @@ public class Order {
 	private int status;
 	private String orderDate;
 	private ShippingDetail shippingDetail;
+	private List<CustomMealkit> orderCustomMk;
 
 	public Order() {}
 
-
-	public Order(int orderId, int customerId, int status, String orderDate) {
-		super();
-		this.orderId = orderId;
-		this.customerId = customerId;
-		this.status = status;
-		this.orderDate = orderDate;
+	
+	
+	public List<CustomMealkit> getOrderCustomMk() {
+		return orderCustomMk;
 	}
 
-	
 
-	public Order(int orderId, int customerId, int status, String orderDate, ShippingDetail shippingDetail) {
-		super();
-		this.orderId = orderId;
-		this.customerId = customerId;
-		this.status = status;
-		this.orderDate = orderDate;
-		this.shippingDetail = shippingDetail;
+
+	public void setOrderCustomMk(List<CustomMealkit> orderCustomMk) {
+		this.orderCustomMk = orderCustomMk;
 	}
 
-	
-	
+
+
 	public ShippingDetail getShippingDetail() {
 		return shippingDetail;
 	}
@@ -81,4 +75,18 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 	
+	public int calcCalorie(List<CustomMealkit> l) {
+		int result = 0;
+		for(CustomMealkit item : l) {
+			result += item.getTotalCalorie();
+		}
+		return result;
+	}
+	public int calcTotalPrice(List<CustomMealkit> l) {
+		int result = 0;
+		for(CustomMealkit item : l) {
+			result += item.getPrice();
+		}
+		return result;
+	}
 }

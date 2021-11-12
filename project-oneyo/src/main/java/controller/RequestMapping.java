@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.user.*;
 import controller.comm.*;
+import controller.order.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -41,6 +42,11 @@ public class RequestMapping {
         mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
+        
+        //주문 관련 request URI
+        mappings.put("/order/list", new OrderListController());
+        mappings.put("/order/add", new AddOrderController());
+        mappings.put("/order/delete", new DeleteOrderController());
         
         logger.info("Initialized Request Mapping!");
     }

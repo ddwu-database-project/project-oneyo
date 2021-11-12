@@ -66,7 +66,7 @@ public class JDBCUtil {
 	}
 
 	// 현재의 PreparedStatement를 반환
-	private PreparedStatement getPreparedStatement() throws SQLException {
+	PreparedStatement getPreparedStatement() throws SQLException {
 		if (conn == null) {
 			conn = connMan.getConnection();
 			conn.setAutoCommit(false);
