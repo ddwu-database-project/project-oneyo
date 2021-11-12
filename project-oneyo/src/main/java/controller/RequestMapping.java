@@ -48,6 +48,7 @@ public class RequestMapping {
         
         // mealkit관련 request URI 추가
         mappings.put("/mealkit/list", new MealkitListController());
+        mappings.put("/mealkit/detail", new ViewMealkitController());
         logger.info("Initialized Request Mapping!");
     }
 

@@ -20,16 +20,16 @@ public class MealkitDAO {
 		jdbcUtil.setSql(sql);
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();						
-			List<Mealkit> mealkitList = new ArrayList<Mealkit>();	
+			List<Mealkit> mealkits = new ArrayList<Mealkit>();	
 			while (rs.next()) {
 				Mealkit mealkit = new Mealkit(			
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"));
-				mealkitList.add(mealkit);				
+				mealkits.add(mealkit);				
 			}		
-			return mealkitList;					
+			return mealkits;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -37,5 +37,30 @@ public class MealkitDAO {
 			jdbcUtil.close();	
 		}
 		return null;
+	}
+	
+	public Mealkit findMealkit(int mkId) throws SQLException{
+		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
+				+"FROM mealkit "
+				+"WHERE mkId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
+		Mealkit mealkit = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			if (rs.next()) {
+				mealkit = new Mealkit(
+					mkId,
+					rs.getString("mkname"),
+					rs.getInt("defaultcal"),
+					rs.getInt("defaultprice")
+					);
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource ¹ÝÈ¯
+		}
+		return mealkit;
+		
 	}
 }
