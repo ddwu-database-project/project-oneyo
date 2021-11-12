@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.user.*;
 import controller.comm.*;
+import controller.mealkit.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -44,6 +45,9 @@ public class RequestMapping {
         
         // 장바구니 관련 request URI 추가
         mappings.put("/cart/list", null);
+        
+        // mealkit관련 request URI 추가
+        mappings.put("/mealkit/list", new MealkitListController());
         logger.info("Initialized Request Mapping!");
     }
 
