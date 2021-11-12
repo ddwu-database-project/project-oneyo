@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="mk" items="${mealkitList}">  			  	
+<c:forEach var="mk" items="${mealkits}">  			  	
 	<p>mealkit id : ${mk.mkId}</p>  
 	<p>mealkit name : ${mk.mkName}</p>
 	<p>mealkit default calorie : ${mk.defaultCal}</p> 

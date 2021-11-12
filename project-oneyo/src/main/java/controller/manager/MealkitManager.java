@@ -20,6 +20,11 @@ public class MealkitManager {
 		return mealkitDAO.findMealkitList();
 	}
 	
+	public Mealkit findMealkit(int mkId) throws Exception {
+		System.out.println("findmealkitid = "+ mkId);
+		return mealkitDAO.findMealkit(mkId);
+	}
+	
 	public static MealkitManager getInstance() {
 		return mkMan;
 	}
