@@ -18,6 +18,7 @@ public class RequestMapping {
     public void initMapping() {
     	// ê° uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ìƒì„± ë° ì €ì¥
         mappings.put("/", new ForwardController("index.jsp"));
+<<<<<<< Updated upstream
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
@@ -34,6 +35,18 @@ public class RequestMapping {
 //      mappings.put("/user/update", new UpdateUserController());        
         mappings.put("/customer/update", new UpdateCustomerController());
         
+=======
+        mappings.put("/home", new ForwardController("/home/main.jsp"));
+        
+        mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
+        mappings.put("/customer/login", new LoginController());
+        mappings.put("/customer/logout", new LogoutController());
+        mappings.put("/customer/mypage", new ViewCustomerController());
+       
+        // °í°´ È¸¿ø°¡ÀÔ, Á¤º¸ ¼öÁ¤, »èÁ¦      
+        mappings.put("/customer/register", new RegisterCustomerController());
+        mappings.put("/customer/update", new UpdateCustomerController());
+>>>>>>> Stashed changes
         mappings.put("/customer/delete", new DeleteCustomerController());
         
         // ê³ ê° ê´€ë ¨ request URI

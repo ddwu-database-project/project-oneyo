@@ -35,10 +35,10 @@ public class CustomerDAO {
 	// 고객의 정보 수정
 	public int update(Customer customer) throws SQLException {
 		String sql = "UPDATE CUSTOMER "
-					+ "SET customerName=?, email=?, password=?, phone=?, address=? "
-					+ "WHERE customerId=?";
-		Object[] param = new Object[] {customer.getCustomerName(), customer.getEmail(), 
-				customer.getPassword(), customer.getPhone(), customer.getAddress(), customer.getCustomerId()};				
+					+ "SET customerName=?, password=?, phone=?, address=? "
+					+ "WHERE email=?";
+		Object[] param = new Object[] {customer.getCustomerName(), customer.getPassword(), customer.getPhone(), 
+				customer.getAddress(), customer.getEmail()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
 		try {				
