@@ -18,7 +18,7 @@ public class ViewCustomerController implements Controller {
             return "redirect:/customer/login/form";		// login form 요청으로 redirect
         }
 
-		String email = request.getParameter("email");
+    	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
 		Customer customer = null;
     	try {
     		customer = customerDAO.findCustomer(email);
