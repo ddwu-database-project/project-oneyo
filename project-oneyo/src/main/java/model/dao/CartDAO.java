@@ -91,7 +91,7 @@ public class CartDAO {
 		return 0;
 	}
 	
-	// 커스텀 리스트 별 재료 리스트 반환
+	// 커스?? 리스?�� �? ?���? 리스?�� 반환
 	private Boolean findIngList(List<CustomMealkit> cmList)
 	{
 		Connection conn = connManager.getConnection();
@@ -190,7 +190,7 @@ public class CartDAO {
 //		for (CustomMealkit cm : cmList) {
 //			System.out.println(cm.getOriginalMealkit().getMkName() + " " + cm.getPrice());
 //		}
-		Mealkit testmk = new Mealkit(6, "토마토카레");
+		Mealkit testmk = new Mealkit(6, "?��마토카레");
 		CustomMealkit cmk = new CustomMealkit(testmk, 60, 1, 9000, 1, 400);
 //		cmk.setQuantity(5);
 		c.remove(cmk);
