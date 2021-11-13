@@ -22,7 +22,7 @@ buildNumber.properties
 .classpath
 
 ### Eclipse ###
-../.meatadata
+../.meatadata/
 .metadata
 bin/
 tmp/
