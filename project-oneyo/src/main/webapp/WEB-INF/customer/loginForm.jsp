@@ -67,7 +67,7 @@ function customerCreate(targetUri) {
 			<td align=left>
 			<input type="button" value="로그인" onClick="login()"> &nbsp;
 			<input type="button" value="회원가입" onClick="customerCreate(
-								'<c:url value='/customer/register/form'/>')">
+								'<c:url value='/customer/register'/>')">
 			</td>						
 		  </tr>
 	    </table>
