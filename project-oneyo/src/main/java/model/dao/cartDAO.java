@@ -11,12 +11,12 @@ import model.dto.CustomMealkit;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
 
-public class cartDAO {
+public class CartDAO {
 	
 	private ConnectionManager connManager;
 	private JDBCUtil jdbcUtil;
 	
-	public cartDAO() {
+	public CartDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connManager = new ConnectionManager();
@@ -162,6 +162,7 @@ public class cartDAO {
 				int quantity = rs.getInt("QUANTITY");
 				cmList.add(new CustomMealkit(customMkId, new Mealkit(mkId, mkName), price, quantity));
 			}
+			findIngList(cmList);
 			
 			
 		} catch (SQLException e) {
@@ -181,7 +182,7 @@ public class cartDAO {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		cartDAO c = new cartDAO();
+		CartDAO c = new CartDAO();
 //		Cart result = c.findCartItem(5);
 //		List<CustomMealkit> cmList = result.getCustomMealkits();
 //		c.findIngList(cmList);

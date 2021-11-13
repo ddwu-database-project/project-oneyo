@@ -1,5 +1,7 @@
 package model.dto;
 
+import java.util.List;
+
 public class CustomMealkit {
 
 	private Mealkit mealkitInfo;
@@ -62,5 +64,16 @@ public class CustomMealkit {
 	}
 	public void setTotalCalorie(int totalCalorie) {
 		this.totalCalorie = totalCalorie;
-	}	
+	}
+	
+	public String printIng() {
+		List<Ingredient> ingList = mealkitInfo.getIngredients();
+		String result = "";
+		for (Ingredient ing : ingList) {
+			if (ing != ingList.get(0))
+				result += ", ";
+			result += ing.getIngName() + "(" + ing.getIngQuantity() + "°³)";
+		}
+		return result;
+	}
 }

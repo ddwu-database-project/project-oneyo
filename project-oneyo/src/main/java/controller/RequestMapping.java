@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import controller.order.*;
 import controller.customer.*;
 import controller.mealkit.*;
+import controller.cart.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -15,6 +16,7 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
+
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/home", new ForwardController("/home/main.jsp"));
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
@@ -25,15 +27,16 @@ public class RequestMapping {
         mappings.put("/customer/register", new RegisterCustomerController());
         mappings.put("/customer/update", new UpdateCustomerController());
         mappings.put("/customer/delete", new DeleteCustomerController());
-        
+
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
 
-        mappings.put("/cart/list", null);
-        
+        mappings.put("/cart/list", new CartListController());
+
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
+        
         logger.info("Initialized Request Mapping!");
     }
 
