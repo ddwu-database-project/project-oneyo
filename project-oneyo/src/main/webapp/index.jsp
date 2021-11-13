@@ -7,3 +7,4 @@
 <a href="<c:url value='/customer/login/form' />">login</a>
 </body>
 </html>
+<% response.sendRedirect(request.getContextPath() + "/home"); %>
