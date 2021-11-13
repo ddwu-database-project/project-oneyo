@@ -1,18 +1,38 @@
 package model.dto;
 
 public class CustomMealkit {
-	private Mealkit originalMealkit;
+
+	private Mealkit mealkitInfo;
 	private int customMealkitId;
 	private int customerId;
 	private int quantity;			
 	private int price;			
 	private int totalCalorie;
 	
+
+	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int customerId, int price, int quantity, int totalCalorie)
+	{
+		this.mealkitInfo = mealkitInfo;
+		this.customMealkitId = customMkId;
+		this.customerId = customerId;
+		this.quantity = quantity;
+		this.price = price;
+		this.totalCalorie = totalCalorie;
+	}
+	
+	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity)
+	{
+		this.customMealkitId = customMkId;
+		this.mealkitInfo = mealkitInfo;
+		this.quantity = quantity;
+		this.price = price;
+	}
+	
 	public Mealkit getOriginalMealkit() {
-		return originalMealkit;
+		return mealkitInfo;
 	}
 	public void setOriginalMealkit(Mealkit originalMealkit) {
-		this.originalMealkit = originalMealkit;
+		this.mealkitInfo = originalMealkit;
 	}
 	public int getCustomMealkitId() {
 		return customMealkitId;
@@ -43,6 +63,5 @@ public class CustomMealkit {
 	}
 	public void setTotalCalorie(int totalCalorie) {
 		this.totalCalorie = totalCalorie;
-	}
-	
+	}	
 }

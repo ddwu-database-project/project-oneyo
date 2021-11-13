@@ -10,6 +10,13 @@ public class Ingredient {
 	
 	public Ingredient() {}
 	
+	public Ingredient(String ingName, int ingPrice, int ingCalorie, int ingQuantity) {
+		this.ingName = ingName;
+		this.ingPrice = ingPrice;
+		this.ingCalorie = ingCalorie;
+		this.ingQuantity = ingQuantity;
+	}
+	
 	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, Category Category) {
 		this.ingId = ingId;
 		this.ingName = ingName;

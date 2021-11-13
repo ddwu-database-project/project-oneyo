@@ -1,12 +1,17 @@
 package model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-	private int cartId;			
-	private int customerId;			
+	private int cartId;
+	private int customerId;
 	private List<CustomMealkit> customMealkits;
 	
+	public Cart() {
+		customMealkits = new ArrayList<>();
+	}
+
 	public int getCartId() {
 		return cartId;
 	}
