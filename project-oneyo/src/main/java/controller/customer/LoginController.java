@@ -28,16 +28,15 @@ public class LoginController implements Controller {
 				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. ");
 			}
 			
+			// 세션에 고객 정보 저장 (고객 이메일)
 			HttpSession session = request.getSession();
             session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
-            
-            request.setAttribute("customer", customer);
             
 		} catch (Exception e) {	
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
 	        return "/customer/loginForm.jsp";
 		}	
-		return "/customer/test.jsp";				
+		return "redirect:/";				
     }
 }

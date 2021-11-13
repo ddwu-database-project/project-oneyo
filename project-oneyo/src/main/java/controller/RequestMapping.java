@@ -12,49 +12,46 @@ import controller.mealkit.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // ê° ìš”ì²­ uriì— ëŒ€í•œ controller ê°ì²´ë¥¼ ì €ì¥í•  HashMap ìƒì„±
+ // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ı¼º
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// ê° uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ìƒì„± ë° ì €ì¥
+    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ı¼º ¹× ÀúÀå
         mappings.put("/", new ForwardController("index.jsp"));
+        mappings.put("/home", new ForwardController("/home/main.jsp"));
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
-//        mappings.put("/user/list", new ListUserController());
-//        mappings.put("/user/view", new ViewUserController());
+        mappings.put("/customer/mypage", new ViewCustomerController());
         
-        // íšŒì› ê°€ì… í¼ ìš”ì²­ê³¼ ê°€ì… ìš”ì²­ ì²˜ë¦¬ ë³‘í•© (í¼ì— ì»¤ë®¤ë‹ˆí‹° ì„ íƒ ë©”ë‰´ ì¶”ê°€ë¥¼ ìœ„í•¨)
+     // È¸¿ø °¡ÀÔ Æû ¿äÃ»°ú °¡ÀÔ ¿äÃ» Ã³¸® º´ÇÕ (Æû¿¡ Ä¿¹Â´ÏÆ¼ ¼±ÅÃ ¸Ş´º Ãß°¡¸¦ À§ÇÔ)
         mappings.put("/customer/register/form", new ForwardController("/customer/registerForm.jsp"));
         mappings.put("/customer/register", new RegisterCustomerController());
 //        mappings.put("/user/register", new RegisterUserController());
 
-        // ì‚¬ìš©ì ì •ë³´ ìˆ˜ì • í¼ ìš”ì²­ê³¼ ìˆ˜ì • ìš”ì²­ ì²˜ë¦¬ ë³‘í•©
+     // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤ Æû ¿äÃ»°ú ¼öÁ¤ ¿äÃ» Ã³¸® º´ÇÕ
 //      mappings.put("/user/update/form", new UpdateUserFormController());
 //      mappings.put("/user/update", new UpdateUserController());        
         mappings.put("/customer/update", new UpdateCustomerController());
-        
+      
         mappings.put("/customer/delete", new DeleteCustomerController());
         
-        // ê³ ê° ê´€ë ¨ request URI
-        mappings.put("/customer/mypage", new ViewCustomerController());
-        
-        //ì£¼ë¬¸ ê´€ë ¨ request URI
+        //ÁÖ¹® °ü·Ã URI
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
 
-        // ì¥ë°”êµ¬ë‹ˆ ê´€ë ¨ request URI ì¶”ê°€
+        // Àå¹Ù±¸´Ï °ü·Ã URI
         mappings.put("/cart/list", null);
         
-        // mealkitê´€ë ¨ request URI ì¶”ê°€
+        // mealkit °ü·Ã URI
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
-    	// ì£¼ì–´ì§„ uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ì°¾ì•„ ë°˜í™˜
+    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹İÈ¯
         return mappings.get(uri);
     }
 }
