@@ -12,9 +12,9 @@ import model.dto.CustomMealkit;
 public class OrderListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception{
 		
-    	int customerId = Integer.parseInt(request.getParameter("customerId"));
+    	//int customerId = Integer.parseInt(request.getParameter("customerId"));
     	OrderDAO orderDAO = new OrderDAO();
-    	List<CustomMealkit> orderedItems = orderDAO.findOrderList(customerId);
+    	List<CustomMealkit> orderedItems = orderDAO.findOrderList(1);
     	
     	request.setAttribute("orderedItems", orderedItems);
     	//forwarding
