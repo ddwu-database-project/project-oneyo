@@ -11,39 +11,39 @@ import controller.mealkit.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
-    // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ı¼º
+
+ // ê° ìš”ì²­ uriì— ëŒ€í•œ controller ê°ì²´ë¥¼ ì €ì¥í•  HashMap ìƒì„±
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ı¼º ¹× ÀúÀå
+    	// ê° uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ìƒì„± ë° ì €ì¥
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/home", new ForwardController("/home/main.jsp"));
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
         mappings.put("/customer/mypage", new ViewCustomerController());
-        
 
         mappings.put("/user/register", new RegisterCustomerController());
         mappings.put("/customer/update", new UpdateCustomerController());
         mappings.put("/customer/delete", new DeleteCustomerController());
         
-        //ÁÖ¹® °ü·Ã URI
+        //ì£¼ë¬¸ ê´€ë ¨ URI
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
 
-        // Àå¹Ù±¸´Ï °ü·Ã URI
+        // ì¥ë°”êµ¬ë‹ˆ ê´€ë ¨ URI
         mappings.put("/cart/list", null);
         
-        // mealkit °ü·Ã URI
+        // mealkit ê´€ë ¨ URI
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
-    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹İÈ¯
+    	// ì£¼ì–´ì§„ uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ì°¾ì•„ ë°˜í™˜
         return mappings.get(uri);
     }
 }

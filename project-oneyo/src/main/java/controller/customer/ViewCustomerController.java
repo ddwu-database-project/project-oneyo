@@ -2,6 +2,7 @@ package controller.customer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.dao.CustomerDAO;
@@ -13,22 +14,26 @@ public class ViewCustomerController implements Controller {
 	
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
+    	// ë¡œê·¸ì¸ ì—¬ë¶€ í™•ì¸
     	if (!CustomerSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/customer/login/form";		// login form ¿äÃ»À¸·Î redirect
+            return "redirect:/customer/login/form";		// login form ìš”ì²­ìœ¼ë¡œ redirect
         }
 
     	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
+    	
+		  //HttpSession session = request.getSession();
+        //session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
+       
 		Customer customer = null;
     	try {
     		customer = customerDAO.findCustomer(email);
 			if (customer == null) {
-				throw new CustomerNotFoundException(email + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+				throw new CustomerNotFoundException(email + "ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 			}
 		} catch (Exception e) {				
 	        return "redirect:/";
 		}	
-    	request.setAttribute("customer", customer);		// »ç¿ëÀÚ Á¤º¸ ÀúÀå			
-		return "/customer/mypage.jsp";				// ¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿
+    	request.setAttribute("customer", customer);		// ì‚¬ìš©ì ì •ë³´ ì €ì¥			
+		return "/customer/mypage.jsp";				// ë§ˆì´í˜ì´ì§€ë¡œ ì´ë™
     }
 }
