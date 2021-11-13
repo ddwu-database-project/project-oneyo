@@ -35,7 +35,7 @@ public class RequestMapping {
 //      mappings.put("/user/update/form", new UpdateUserFormController());
 //      mappings.put("/user/update", new UpdateUserController());        
         mappings.put("/customer/mypage", new ViewCustomerController());
-        mappings.put("/uustomer/register", new RegisterCustomerController());
+        mappings.put("/customer/register", new RegisterCustomerController());
         mappings.put("/customer/update", new UpdateCustomerController());
         mappings.put("/customer/delete", new DeleteCustomerController());
         
