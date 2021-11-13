@@ -14,9 +14,9 @@ public class ViewCustomerController implements Controller {
 	
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	// ë¡œê·¸ì¸ ì—¬ë¶€ í™•ì¸
+		// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
     	if (!CustomerSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/customer/login/form";		// login form ìš”ì²­ìœ¼ë¡œ redirect
+            return "redirect:/customer/login/form";		// login form ¿äÃ»À¸·Î redirect
         }
 
     	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
@@ -28,12 +28,12 @@ public class ViewCustomerController implements Controller {
     	try {
     		customer = customerDAO.findCustomer(email);
 			if (customer == null) {
-				throw new CustomerNotFoundException(email + "ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
+				throw new CustomerNotFoundException(email + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
 			}
 		} catch (Exception e) {				
 	        return "redirect:/";
 		}	
-    	request.setAttribute("customer", customer);		// ì‚¬ìš©ì ì •ë³´ ì €ì¥			
-		return "/customer/mypage.jsp";				// ë§ˆì´í˜ì´ì§€ë¡œ ì´ë™
+    	request.setAttribute("customer", customer);		// »ç¿ëÀÚ Á¤º¸ ÀúÀå			
+		return "/customer/mypage.jsp";				// ¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿
     }
 }

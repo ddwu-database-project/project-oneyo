@@ -13,16 +13,24 @@ import controller.cart.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
 
+<<<<<<< HEAD
  // 媛� ��泥� uri�� ���� controller 媛�泥대�� ���ν�� HashMap ����
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
     	// 揶�占� uri占쎈� 占쏙옙占쎌�놂옙由븝옙�� controller 揶��밴���占� 占쎄문占쎄쉐 獄�占� 占쏙옙占쎌��
+=======
+    private Map<String, Controller> mappings = new HashMap<String, Controller>();
+
+    public void initMapping() {
+
+>>>>>>> 7f277e1a19091ab2292507fc9e99602e4aafb7d5
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/home", new ForwardController("/home/main.jsp"));
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
+<<<<<<< HEAD
 //        mappings.put("/user/list", new ListUserController());
 //        mappings.put("/user/view", new ViewUserController());
         
@@ -44,10 +52,19 @@ public class RequestMapping {
         
         //雅��겆� �울옙占쎌�� request URI
         //二쇰Ц 愿��� URI
+=======
+        mappings.put("/customer/mypage", new ViewCustomerController());
+
+        mappings.put("/customer/register", new RegisterCustomerController());
+        mappings.put("/customer/update", new UpdateCustomerController());
+        mappings.put("/customer/delete", new DeleteCustomerController());
+
+>>>>>>> 7f277e1a19091ab2292507fc9e99602e4aafb7d5
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
 
+<<<<<<< HEAD
 
         // 占쎌�ｈ�遺쎈��占쎈�� �울옙占쎌�� request URI �곕떽占�
         mappings.put("/cart/list", new CartListController());
@@ -57,13 +74,21 @@ public class RequestMapping {
         mappings.put("/cart/list", null);
         
         // mealkit 愿��� URI
+=======
+        mappings.put("/cart/list", new CartListController());
+
+>>>>>>> 7f277e1a19091ab2292507fc9e99602e4aafb7d5
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
+        
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
+<<<<<<< HEAD
     	// 雅��깅선筌�占� uri占쎈� 占쏙옙占쎌�놂옙由븝옙�� controller 揶��밴���占� 筌≪��釉� 獄�����
+=======
+>>>>>>> 7f277e1a19091ab2292507fc9e99602e4aafb7d5
         return mappings.get(uri);
     }
 }
