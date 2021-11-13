@@ -2,6 +2,7 @@ package controller.customer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.dao.CustomerDAO;
@@ -18,7 +19,12 @@ public class ViewCustomerController implements Controller {
             return "redirect:/customer/login/form";		// login form 요청으로 redirect
         }
 
-		String email = request.getParameter("email");
+    	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
+    	System.out.println(email);
+    	
+		HttpSession session = request.getSession();
+        session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
+        
 		Customer customer = null;
     	try {
     		customer = customerDAO.findCustomer(email);
