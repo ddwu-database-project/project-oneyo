@@ -1,6 +1,7 @@
 package model.dto;
 
 public class CustomMealkit {
+
 	private Mealkit mealkitInfo;
 	private int customMealkitId;
 	private int customerId;
