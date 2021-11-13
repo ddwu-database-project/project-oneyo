@@ -16,6 +16,14 @@ public class RegisterCustomerController implements Controller {
     
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	if (request.getMethod().equals("GET")) {	
+    		// GET request: 회원정보 등록 form 요청	
+    		log.debug("RegisterForm Request");
+		
+			return "/customer/registerForm.jsp";    	
+	    }	
+    	
+    	// POST request (회원정보가 parameter로 전송됨)
     	Customer customer = new Customer(
     		request.getParameter("name"),
 			request.getParameter("password"),
