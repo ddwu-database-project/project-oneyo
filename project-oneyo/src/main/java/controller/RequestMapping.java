@@ -36,7 +36,8 @@ public class RequestMapping {
 
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
-        
+        mappings.put("/mealkit/custom", new CustomMealkitIngController());
+
         logger.info("Initialized Request Mapping!");
     }
 

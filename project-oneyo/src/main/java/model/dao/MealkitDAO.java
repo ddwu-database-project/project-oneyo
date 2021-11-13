@@ -4,13 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.dto.Mealkit;
+import model.dto.Ingredient;
 import java.util.List;
 
 public class MealkitDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public MealkitDAO() {			
-		jdbcUtil = new JDBCUtil();	
+		jdbcUtil = new JDBCUtil();
 	}
 	
 	public List<Mealkit> findMealkitList() throws SQLException{
@@ -43,6 +44,7 @@ public class MealkitDAO {
 		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
 				+"FROM mealkit "
 				+"WHERE mkId = ?";
+		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
 		Mealkit mealkit = null;
 		try {
@@ -62,5 +64,35 @@ public class MealkitDAO {
 		}
 		return mealkit;
 		
+	}
+	
+	public List<Ingredient> findMealkitIng(int mkId) throws Exception{
+		String sql = "SELECT m.mkname, m.defaultcal, m.defaultprice, s.ingid, s.ingname, s.ingquantity, s.calorie, s.price, s.ingcategoryid "
+				+"FROM mealkit m JOIN (SELECT i.ingname, i.ingid, b.mkid, b.ingquantity, i.calorie, i.price, i.ingcategoryid "
+					+"FROM ingredient i JOIN baseingredient b "
+					+"ON i.ingid = b.ingid) s "
+				+"ON m.mkid = s.mkid "
+				+"WHERE m.mkid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Ingredient> mealkitIng = new ArrayList<Ingredient>();	
+			while (rs.next()) {
+				Ingredient ingredient = new Ingredient(			
+					rs.getInt("ingid"),
+					rs.getString("ingname"),
+					rs.getInt("price"),
+					rs.getInt("calorie"),
+					rs.getInt("ingquantity"));
+				mealkitIng.add(ingredient);	
+			}		
+			return mealkitIng;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
 	}
 }
