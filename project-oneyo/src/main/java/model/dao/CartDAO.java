@@ -91,7 +91,6 @@ public class CartDAO {
 		return 0;
 	}
 	
-	// ì»¤ì?¤í?? ë¦¬ì?¤í?? ë³? ?¬ë? ë¦¬ì?¤í?? ë°???
 	private Boolean findIngList(List<CustomMealkit> cmList)
 	{
 		Connection conn = connManager.getConnection();
@@ -190,7 +189,8 @@ public class CartDAO {
 //		for (CustomMealkit cm : cmList) {
 //			System.out.println(cm.getOriginalMealkit().getMkName() + " " + cm.getPrice());
 //		}
-		Mealkit testmk = new Mealkit(6, "??ë§???ì¹´ë??");
+		Mealkit testmk = new Mealkit(6, "?† ë§ˆí† ì¹´ë ˆ");
+
 		CustomMealkit cmk = new CustomMealkit(testmk, 60, 1, 9000, 1, 400);
 //		cmk.setQuantity(5);
 		c.remove(cmk);
