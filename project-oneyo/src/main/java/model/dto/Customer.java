@@ -8,6 +8,15 @@ public class Customer {
 	private String address;
 	private String email;
 //	private List<Ingredient> allergy;
+	
+	public Customer(String customerName, String password, String phone, String address, String email) {
+		this.customerName = customerName;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
+	
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -43,6 +52,13 @@ public class Customer {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.password.equals(password);
 	}
  
 }
