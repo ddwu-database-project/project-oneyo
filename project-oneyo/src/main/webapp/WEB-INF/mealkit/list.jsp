@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="mk" items="${mealkits}">  			  	
-	<p>mealkit id : ${mk.mkId}</p>  
-	<p>mealkit name : ${mk.mkName}</p>
+<c:forEach var="mk" items="${mealkits}">  
+	<a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">	
+	<p>mealkit name : ${mk.mkName}</p></a>
 	<p>mealkit default calorie : ${mk.defaultCal}</p> 
 	<p>mealkit default price : ${mk.defaultPrice}</p>
 	<br>
