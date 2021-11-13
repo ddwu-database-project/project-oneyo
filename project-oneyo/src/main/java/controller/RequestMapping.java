@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import controller.order.*;
 import controller.customer.*;
 import controller.mealkit.*;
+import controller.cart.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -16,23 +17,42 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// 각 uri에 대응되는 controller 객체를 생성 및 저장
+    	// 媛� uri�뿉 ���쓳�릺�뒗 controller 媛앹껜瑜� �깮�꽦 諛� ���옣
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/home", new ForwardController("/home/main.jsp"));
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
-        mappings.put("/customer/mypage", new ViewCustomerController());
+//        mappings.put("/user/list", new ListUserController());
+//        mappings.put("/user/view", new ViewUserController());
+        
+        // �쉶�썝 媛��엯 �뤌 �슂泥�怨� 媛��엯 �슂泥� 泥섎━ 蹂묓빀 (�뤌�뿉 而ㅻ�ㅻ땲�떚 �꽑�깮 硫붾돱 異붽�瑜� �쐞�븿)
+        mappings.put("/customer/register/form", new ForwardController("/customer/registerForm.jsp"));
+        mappings.put("/customer/register", new RegisterCustomerController());
+//        mappings.put("/user/register", new RegisterUserController());
 
+        // �궗�슜�옄 �젙蹂� �닔�젙 �뤌 �슂泥�怨� �닔�젙 �슂泥� 泥섎━ 蹂묓빀
+//      mappings.put("/user/update/form", new UpdateUserFormController());
+//      mappings.put("/user/update", new UpdateUserController());        
+        mappings.put("/customer/mypage", new ViewCustomerController());
         mappings.put("/user/register", new RegisterCustomerController());
         mappings.put("/customer/update", new UpdateCustomerController());
         mappings.put("/customer/delete", new DeleteCustomerController());
         
+        // 怨좉컼 愿��젴 request URI
+        mappings.put("/customer/mypage", new ViewCustomerController());
+        
+        //二쇰Ц 愿��젴 request URI
         //주문 관련 URI
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
 
+
+        // �옣諛붽뎄�땲 愿��젴 request URI 異붽�
+        mappings.put("/cart/list", new CartListController());
+        
+        // mealkit愿��젴 request URI 異붽�
         // 장바구니 관련 URI
         mappings.put("/cart/list", null);
         
@@ -43,7 +63,7 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {	
-    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
+    	// 二쇱뼱吏� uri�뿉 ���쓳�릺�뒗 controller 媛앹껜瑜� 李얠븘 諛섑솚
         return mappings.get(uri);
     }
 }
