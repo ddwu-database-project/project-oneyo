@@ -47,6 +47,7 @@ public class RequestMapping {
 
         // �옣諛붽뎄�땲 愿��젴 request URI 異붽�
         mappings.put("/cart/list", new CartListController());
+        mappings.put("/cart/update", new UpdateCartController());
         
         // mealkit愿��젴 request URI 異붽�
         mappings.put("/mealkit/list", new MealkitListController());
