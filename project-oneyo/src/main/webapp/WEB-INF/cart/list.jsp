@@ -14,6 +14,7 @@ function updateQuantity() {
 	}
 	form.submit();
 }
+ 
 </script>
 </head>
 <body>
@@ -66,5 +67,8 @@ function updateQuantity() {
 <tr height = 80 align="center">
 	<td>총 금액 : ${totalPrice}</td>
 </tr>
+ <a href="<c:url value='/order/order'>
+	     		   <c:param name='customerId' value='session.getAttribute("customerId")'/>
+			 	 </c:url>">주문하기</a> &nbsp;
 </body>
 </html>

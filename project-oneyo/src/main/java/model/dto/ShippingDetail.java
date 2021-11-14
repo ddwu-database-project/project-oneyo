@@ -23,6 +23,12 @@ public class ShippingDetail {
 	public void setTrackingNum(int trackingNum) {
 		this.trackingNum = trackingNum;
 	}
+	public ShippingDetail(String dateShipped, String company, int trackingNum) {
+		super();
+		this.dateShipped = dateShipped;
+		this.company = company;
+		this.trackingNum = trackingNum;
+	}
 	
 	
 	

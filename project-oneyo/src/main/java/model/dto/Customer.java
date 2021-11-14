@@ -26,6 +26,15 @@ public class Customer {
 		this.email = email;
 	}
 	
+	
+	public Customer(String customerName, String phone, String address, String email) {
+		super();
+		this.customerName = customerName;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
+
 	public int getCustomerId() {
 		return customerId;
 	}

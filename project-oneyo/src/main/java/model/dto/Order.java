@@ -89,4 +89,15 @@ public class Order {
 		}
 		return result;
 	}
+
+
+
+	public Order(int orderId, ShippingDetail shippingDetail, List<CustomMealkit> orderCustomMk) {
+		super();
+		this.orderId = orderId;
+		this.shippingDetail = shippingDetail;
+		this.orderCustomMk = orderCustomMk;
+	}
+	
+	
 }

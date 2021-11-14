@@ -6,17 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.dao.OrderDAO;
-import model.dto.CustomMealkit;
+import model.dao.*;
+import model.dto.*;
 
 public class OrderListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception{
 		
     	//int customerId = Integer.parseInt(request.getParameter("customerId"));
     	OrderDAO orderDAO = new OrderDAO();
-    	List<CustomMealkit> orderedItems = orderDAO.findOrderList(1);
+    	List<Order> orderList = orderDAO.viewOrderList(5); //5´ë½Å customerId
     	
-    	request.setAttribute("orderedItems", orderedItems);
+    	request.setAttribute("orderList", orderList);
     	//forwarding
     	return "/order/list.jsp";
 	}
