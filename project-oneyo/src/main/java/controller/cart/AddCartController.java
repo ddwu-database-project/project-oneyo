@@ -8,12 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
-import controller.manager.MealkitManager;
 import model.dto.CustomMealkit;
 import model.dto.Customer;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
 import model.dao.CustomerDAO;
+import model.dao.MealkitDAO;
 
 public class AddCartController implements Controller{
 
@@ -21,12 +21,12 @@ public class AddCartController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// get mealkit info
-		MealkitManager manager = MealkitManager.getInstance();
+		MealkitDAO mealkitDAO = new MealkitDAO();
     	int mkId = Integer.parseInt(request.getParameter("mkId"));
-		Mealkit mealkit = manager.findMealkit(mkId);
+		Mealkit mealkit = mealkitDAO.findMealkit(mkId);
 		
 		// get custom mealkit info
-		List<Ingredient> mkIngs = manager.findMealkitIng(mkId);
+		List<Ingredient> mkIngs = mealkitDAO.findMealkitIng(mkId);
 		String[] ingIds = request.getParameterValues("mkIngIds");
 		int totalIngCalorie = 0;
 		int totalIngPrice = 0;
