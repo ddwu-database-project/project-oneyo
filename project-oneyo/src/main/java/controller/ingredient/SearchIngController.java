@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dao.IngredientDAO;
+import model.dto.Ingredient;
 
 public class SearchIngController implements Controller {
 	private IngredientDAO ingredientDAO = new IngredientDAO();
@@ -18,7 +19,7 @@ public class SearchIngController implements Controller {
 
     	try {
     		if (ingName != null) {
-    	    	List<String> ings = ingredientDAO.findIngList(ingName);
+    	    	List<Ingredient> ings = ingredientDAO.findIngList(ingName);
             	request.setAttribute("ings", ings);							
     		}
 		} catch (Exception e) {				

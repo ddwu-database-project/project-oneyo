@@ -1,5 +1,7 @@
 package model.dto;
 
+//import java.util.List;
+
 public class Customer {
 	private int customerId;
 	private String customerName;

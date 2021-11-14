@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <script>
-function sendChildValue(name){
-	opener.setChildValue(name);
+function sendChildValue(name, id){
+	opener.setChildValue(name, id);
 }
 </script>
 <body>
@@ -22,7 +22,7 @@ function sendChildValue(name){
 	<c:forEach var="ing" items="${ings}">
 		<tr>
 			<td>
-				<input type="button" value="${ing}" onClick="sendChildValue('${ing}')">
+				<input type="button" value="${ing.ingName}" onClick="sendChildValue('${ing.ingName}', '${ing.ingId}')">
 			</td>
 		</tr>
 	</c:forEach>

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.dto.Ingredient;
+
 public class IngredientDAO {
 	private JDBCUtil jdbcUtil = null;
 	
@@ -12,18 +14,22 @@ public class IngredientDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	public List<String> findIngList(String ingName) throws SQLException {
-        String sql = "SELECT INGNAME " 
+	public List<Ingredient> findIngList(String ingName) throws SQLException {
+        String sql = "SELECT INGID, INGNAME, PRICE, CALORIE " 
         		   + "FROM INGREDIENT "
         		   + "WHERE INGNAME LIKE '%' || ? || '%'";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingName});		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<String> ingList = new ArrayList<String>();	// 재료들의 리스트 생성
+			List<Ingredient> ingList = new ArrayList<Ingredient>();	// 재료들의 리스트 생성
 			while (rs.next()) {
-				String ing = rs.getString("INGNAME");
-				ingList.add(ing);				// List에 재료 이름 저장
+				Ingredient ing = new Ingredient(
+						rs.getInt("INGID"),
+						rs.getString("INGNAME"),
+						rs.getInt("PRICE"),
+						rs.getInt("CALORIE"));	
+				ingList.add(ing);				// List에 재료 저장
 			}		
 			return ingList;					
 		} catch (Exception ex) {

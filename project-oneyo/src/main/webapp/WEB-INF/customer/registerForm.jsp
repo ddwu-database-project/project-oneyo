@@ -7,6 +7,7 @@
 <link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
 function customerCreate() {
+	// 형식 검토 과정
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email.value)==false) {
 		alert("이메일 형식이 올바르지 않습니다.");
@@ -39,6 +40,7 @@ function customerCreate() {
 		form.address.focus();
 		return false;
 	}
+
 	form.submit();
 }
 
@@ -46,11 +48,19 @@ function searchIng() {
 	window.open("/project-oneyo/ingredient/search", "검색", "width=400px, height=500px");
 }
 
-function setChildValue(name){
+function setChildValue(name, id){
 	var search = document.getElementById("search");
 	var allergy = document.createElement("span");
+	
+	var hiddenInput = document.createElement("input");
+	hiddenInput.style.display = "none";
+	hiddenInput.name = "allergy";
+	hiddenInput.value = id;
+	
 	var td = search.parentNode;
 	td.insertBefore(allergy, search)
+	td.insertBefore(hiddenInput, search)
+	
     allergy.innerText = name + " ";
 }
 
