@@ -16,10 +16,11 @@ public class CustomMkDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	private void createIng(int customMkId, List<Ingredient> ingList) {
+	private void createIng(int customMkId, List<Ingredient> ingList) throws Exception{
 		String sql = "INSERT INTO custommealkiting VALUES (" + customMkId + ", ?, ? )";
 		
 		jdbcUtil.setSql(sql);
+		
 		try {
 			for (Ingredient ing : ingList) {
 				Object[] param = new Object[] {ing.getIngId(), ing.getIngQuantity()};
@@ -27,13 +28,9 @@ public class CustomMkDAO {
 				int result = jdbcUtil.executeUpdate();
 			}
 		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();
-		}
-		
+			throw ex;
+		} 
+			
 	}
 	
 	public int create(CustomMealkit customMk) throws SQLException {
@@ -46,14 +43,15 @@ public class CustomMkDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 		int result = 0;
 		ResultSet rs = null;
-		int customMkId = 0;
+		
 		try {
 			result = jdbcUtil.executeUpdate();
 			jdbcUtil.setSqlAndParameters(sql2, new Object[] { customMk.getCustomerId() });
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
-				customMkId = rs.getInt("custommkid");
+				customMk.setCustomMealkitId(rs.getInt("custommkid"));
 			}
+			createIng(customMk.getCustomMealkitId(), customMk.getIngredients());
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -64,8 +62,6 @@ public class CustomMkDAO {
 				rs.close();
 			}
 		}
-		
-		createIng(customMkId, customMk.getIngredients());
 		
 		return result;
 	}

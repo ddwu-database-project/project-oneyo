@@ -9,7 +9,7 @@ public class CustomMealkit {
 	private int customMealkitId;
 	private int customerId;
 	private int quantity;			
-	private int price;			
+	private int price;		
 	private int totalCalorie;
 	private List<Ingredient> ingredients;
 	

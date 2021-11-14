@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
+import model.dao.CartDAO;
 import model.dao.CustomMkDAO;
 import model.dao.CustomerDAO;
 import model.dao.MealkitDAO;
@@ -38,8 +39,8 @@ public class AddCartController implements Controller{
 		List<Ingredient> mkIngs = mealkitDAO.findMealkitIng(mkId);
 		String[] ingIds = request.getParameterValues("mkIngIds");
 		
-		int totalIngCalorie = 0;
-		int totalIngPrice = 0;
+		int totalIngCalorie = mkIngs.size() == 0 ? mealkit.getDefaultCal() : 0;
+		int totalIngPrice = mkIngs.size() == 0 ? mealkit.getDefaultPrice() : 0;
 		// set custom mealkit info
 		for (int i = 0; ingIds != null && i < ingIds.length; i++) {
 			int ingQuantity = Integer.parseInt(request.getParameter("IngQuantity"+ingIds[i]));
@@ -61,10 +62,15 @@ public class AddCartController implements Controller{
 		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
 		customMkDAO.create(customMealkit);
+		
+		System.out.println(customMealkit.getPrice());
+		
+		CartDAO cartDAO = new CartDAO();
+		cartDAO.create(customMealkit);
 //		request.setAttribute("customerMealkit", customMealkit);
 		
-	
-		return "/cart/list.jsp";
+		
+		return "redirect:/cart/list";
 	}
 
 }
