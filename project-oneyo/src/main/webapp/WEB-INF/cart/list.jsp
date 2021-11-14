@@ -6,6 +6,15 @@
 <head>
 <meta charset="EUC-KR">
 <title>장바구니</title>
+<script>
+function updateQuantity() {
+	if (parseInt(form.quantity.value, 10) < 1) {
+		alert("수량은 1개 이상이어야 합니다.");
+		return false;
+	}
+	form.submit();
+}
+</script>
 </head>
 <body>
 
@@ -29,10 +38,11 @@
 					<td rowspan="4" width = "200">상품 이미지</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
 					<td rowspan="4">
-						<form id="capacity" <c:url value="/cart/update" />>
+						<form id="quantity" method="POST" action="<c:url value="/cart/update" />">
 							수량
-							<input type="number" id="capacity" name="capacity" width="20" value="${item.getQuantity()}">
-							<input type="submit" value="변경" >
+							<input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
+							<input type="number" id="quantity" name="quantity" width="20" value="${item.getQuantity()}">
+							<input type="submit" value="변경" onClick="updateQuantity()">
 						</form>
 					</td>
 				</tr>
@@ -54,7 +64,7 @@
 </table>
 </c:forEach>
 <tr height = 80 align="center">
-	<td>총 금액</td>
+	<td>총 금액 : ${totalPrice}</td>
 </tr>
 </body>
 </html>

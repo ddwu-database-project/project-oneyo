@@ -71,6 +71,11 @@ public class Ingredient {
 		Category = category;
 	}
 	
+	public String toString() {
+		return "재료명: " + this.getIngName() + ", 개수: " + this.getIngQuantity() + ", 가격: " + this.getIngPrice() +
+				", 칼로리: " + this.getIngCalorie();
+	}
+	
 	
 
 }

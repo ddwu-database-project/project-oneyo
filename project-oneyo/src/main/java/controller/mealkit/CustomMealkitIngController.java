@@ -6,20 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.dao.MealkitDAO;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
-import controller.manager.MealkitManager;
 
 public class CustomMealkitIngController implements Controller{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		MealkitManager manager = MealkitManager.getInstance();
+
+		MealkitDAO mealkitDAO = new MealkitDAO();
     	int mkId = Integer.parseInt(request.getParameter("mkId"));
     	
-		Mealkit mealkit = manager.findMealkit(mkId);
-		List<Ingredient> mealkitIng = manager.findMealkitIng(mkId);
+		Mealkit mealkit = mealkitDAO.findMealkit(mkId);
+		List<Ingredient> mealkitIng = mealkitDAO.findMealkitIng(mkId);
+
 		mealkit.setIngredients(mealkitIng);
 		
 		request.setAttribute("mealkit", mealkit);

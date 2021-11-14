@@ -30,7 +30,7 @@ public class RegisterCustomerController implements Controller {
 			request.getParameter("phone"),
 			request.getParameter("address"),
 			request.getParameter("email"));
-		
+    	
         log.debug("Create Customer : {}", customer);
         int result;
 		try {

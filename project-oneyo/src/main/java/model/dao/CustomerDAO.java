@@ -76,7 +76,7 @@ public class CustomerDAO {
 	
 	// 주어진 고객 id에 해당하는 정보를 데이터베이스에서 찾아 Customer DTO에 저장하여 반환
 	public Customer findCustomer(String email) throws SQLException {
-        String sql = "SELECT customerName, password, phone, address "
+        String sql = "SELECT customerId, customerName, password, phone, address "
         			+ "FROM CUSTOMER "
         			+ "WHERE email=?";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtil에 query문과 매개 변수 설정
@@ -85,6 +85,7 @@ public class CustomerDAO {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {		
 				Customer customer = new Customer(		// Customer 객체를 생성하여 고객 정보를 저장
+					rs.getInt("customerId"),
 					rs.getString("customerName"),
 					rs.getString("password"),
 					rs.getString("phone"),
