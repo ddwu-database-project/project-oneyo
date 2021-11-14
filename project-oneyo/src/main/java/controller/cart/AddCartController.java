@@ -8,16 +8,27 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
+import model.dao.CartDAO;
+import model.dao.CustomMkDAO;
+import model.dao.CustomerDAO;
+import model.dao.MealkitDAO;
 import model.dto.CustomMealkit;
 import model.dto.Customer;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
-import model.dao.CustomerDAO;
-import model.dao.MealkitDAO;
 public class AddCartController implements Controller{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		// get login customer
+		HttpSession session = request.getSession();
+		String email = CustomerSessionUtils.getLoginCustomerId(session);
+				
+		// get login customer Id
+		CustomerDAO customerDAO = new CustomerDAO();
+		Customer customer = customerDAO.findCustomer(email);
+		int customerId = customer.getCustomerId();
 		
 		// get mealkit info
 		MealkitDAO mealkitDAO = new MealkitDAO();
@@ -27,10 +38,11 @@ public class AddCartController implements Controller{
 		// get custom mealkit info
 		List<Ingredient> mkIngs = mealkitDAO.findMealkitIng(mkId);
 		String[] ingIds = request.getParameterValues("mkIngIds");
-		int totalIngCalorie = 0;
-		int totalIngPrice = 0;
+		
+		int totalIngCalorie = mkIngs.size() == 0 ? mealkit.getDefaultCal() : 0;
+		int totalIngPrice = mkIngs.size() == 0 ? mealkit.getDefaultPrice() : 0;
 		// set custom mealkit info
-		for (int i = 0; i < ingIds.length; i++) {
+		for (int i = 0; ingIds != null && i < ingIds.length; i++) {
 			int ingQuantity = Integer.parseInt(request.getParameter("IngQuantity"+ingIds[i]));
 			mkIngs.get(i).setIngQuantity(ingQuantity);
 			
@@ -43,23 +55,22 @@ public class AddCartController implements Controller{
 			int ingCalorie = Integer.parseInt(request.getParameter("mkIngCalorie"+ingIds[i]));
 			mkIngs.get(i).setIngCalorie(ingCalorie*ingQuantity);
 			totalIngCalorie += ingCalorie*ingQuantity;
-			
 		}
-		
-		// get login customer
-		HttpSession session = request.getSession();
-		String email = CustomerSessionUtils.getLoginCustomerId(session);
-		
-		// get login customer Id
-		CustomerDAO customerDAO = new CustomerDAO();
-		Customer customer = customerDAO.findCustomer(email);
-		int customerId = customer.getCustomerId();
-		
+
 		// create CustomerMealkit
 		CustomMealkit customMealkit = new CustomMealkit(mealkit, customerId, totalIngPrice, 1, totalIngCalorie, mkIngs);
-
-		request.setAttribute("customerMealkit", customMealkit);
-		return "/cart/list.jsp";
+		CustomMkDAO customMkDAO = new CustomMkDAO();
+		
+		customMkDAO.create(customMealkit);
+		
+		System.out.println(customMealkit.getPrice());
+		
+		CartDAO cartDAO = new CartDAO();
+		cartDAO.create(customMealkit);
+//		request.setAttribute("customerMealkit", customMealkit);
+		
+		
+		return "redirect:/cart/list";
 	}
 
 }

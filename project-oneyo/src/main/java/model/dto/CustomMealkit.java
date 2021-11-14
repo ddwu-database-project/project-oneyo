@@ -1,5 +1,6 @@
 package model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomMealkit {
@@ -8,9 +9,15 @@ public class CustomMealkit {
 	private int customMealkitId;
 	private int customerId;
 	private int quantity;			
-	private int price;			
+	private int price;		
 	private int totalCalorie;
-	private List<Ingredient> ingredients;	
+	private List<Ingredient> ingredients;
+	
+	public CustomMealkit(Mealkit mealkitInfo, int customerId) {
+		this.mealkitInfo = mealkitInfo;
+		this.customerId = customerId;
+		this.ingredients = new ArrayList<>();
+	}
 	
 	public CustomMealkit(Mealkit mealkitInfo, int customerId, int price, int quantity, int totalCalorie, List<Ingredient> ingredient)
 	{
