@@ -9,6 +9,7 @@ import controller.order.*;
 import controller.customer.*;
 import controller.mealkit.*;
 import controller.cart.*;
+import controller.ingredient.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -27,6 +28,8 @@ public class RequestMapping {
         mappings.put("/customer/register", new RegisterCustomerController());
         mappings.put("/customer/update", new UpdateCustomerController());
         mappings.put("/customer/delete", new DeleteCustomerController());
+        
+        mappings.put("/ingredient/search", new SearchIngController());
 
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());

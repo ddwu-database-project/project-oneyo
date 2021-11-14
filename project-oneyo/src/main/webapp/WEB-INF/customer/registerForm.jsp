@@ -4,6 +4,7 @@
 <head>
 <title>회원가입</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
 function customerCreate() {
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -41,6 +42,25 @@ function customerCreate() {
 	form.submit();
 }
 
+function searchIng() {
+	window.open("/project-oneyo/ingredient/search", "검색", "width=400px, height=500px");
+}
+
+function setChildValue(name){
+	var search = document.getElementById("search");
+	var allergy = document.createElement("span");
+	var td = search.parentNode;
+	td.insertBefore(allergy, search)
+    allergy.innerText = name + " ";
+}
+
+function resetData(){
+    var spans = document.getElementsByTagName("span");
+    var len = spans.length;
+    for (var i = 0; i < len; i++) {
+      spans[0].remove();
+    }
+}
 </script>
 </head>
 <body>	
@@ -100,6 +120,13 @@ function customerCreate() {
 				<input type="text" style="width: 240" name="address">
 			</td>
 		  </tr>  
+		  <tr height="40">
+	        <td width="150" align="center" bgcolor="E6ECDE">알러지</td>
+	        <td width="250" bgcolor="ffffff" style="padding-left: 10" id="allergyTd">	    	  
+				<input id ="search" type="button" value="+" onClick="searchIng()">
+				<input type="button" value="reset" onClick="resetData()">
+	        </td>
+          </tr> 
 	    </table>
 	    <br>
 	    <table style="width: 100%">
@@ -113,5 +140,7 @@ function customerCreate() {
     </tr>
   </table>  
 </form>
+
+<script src="<c:url value='/js/modal.js'/>" type="text/javascript"></script>
 </body>
 </html>
