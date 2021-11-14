@@ -13,7 +13,7 @@ public class MealkitListController implements Controller {
 		
     	MealkitDAO mealkitDAO = new MealkitDAO();
 		List<Mealkit> mealkits = mealkitDAO.findMealkitList();
-		
+
 		request.setAttribute("mealkits", mealkits);				
 		return "/mealkit/list.jsp";        
     }

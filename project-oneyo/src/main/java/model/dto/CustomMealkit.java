@@ -86,7 +86,6 @@ public class CustomMealkit {
 	
 	public String printIng() {
 		List<Ingredient> ingList = mealkitInfo.getIngredients();
-		System.out.println("list = " + ingList);
 		String result = "";
 		for (Ingredient ing : ingList) {
 			if (ing != ingList.get(0))

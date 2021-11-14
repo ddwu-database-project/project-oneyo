@@ -50,12 +50,12 @@ public class CartDAO {
 	}
 
 	
-	public int update(CustomMealkit customMk) throws SQLException {
+	public int update(String customMkId, String newQuantity) throws SQLException {
 		
 		String sql = "UPDATE cartitem "
 					+ "SET quantity=? "
 					+ "WHERE custommkid=?";
-		Object[] param = new Object[] {customMk.getQuantity(), customMk.getCustomMealkitId()};				
+		Object[] param = new Object[] {newQuantity, customMkId};				
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				
@@ -112,7 +112,7 @@ public class CartDAO {
 					int ingPrice = rs.getInt("PRICE");
 					int ingCalorie = rs.getInt("CALORIE");
 					int ingQuantity = rs.getInt("INGQUANTITY");
-					System.out.println(ingName + " " + ingPrice + " " + ingCalorie + " " + ingQuantity);
+
 					ingList.add(new Ingredient(ingName, ingPrice, ingCalorie, ingQuantity));
 				}
 			}
@@ -178,23 +178,6 @@ public class CartDAO {
 			}
 		}
 		return cartitem;
-	}
-	
-	public static void main(String[] args) throws SQLException {
-		CartDAO c = new CartDAO();
-//		Cart result = c.findCartItem(5);
-//		List<CustomMealkit> cmList = result.getCustomMealkits();
-//		c.findIngList(cmList);
-//		
-//		for (CustomMealkit cm : cmList) {
-//			System.out.println(cm.getOriginalMealkit().getMkName() + " " + cm.getPrice());
-//		}
-		Mealkit testmk = new Mealkit(6, "?��마토카레");
-
-		CustomMealkit cmk = new CustomMealkit(testmk, 60, 1, 9000, 1, 400);
-//		cmk.setQuantity(5);
-		c.remove(cmk);
-	}
-	
+	}	
 	
 }

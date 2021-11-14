@@ -15,11 +15,13 @@ public class CustomMealkitIngController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+
 		MealkitDAO mealkitDAO = new MealkitDAO();
     	int mkId = Integer.parseInt(request.getParameter("mkId"));
     	
 		Mealkit mealkit = mealkitDAO.findMealkit(mkId);
 		List<Ingredient> mealkitIng = mealkitDAO.findMealkitIng(mkId);
+
 		mealkit.setIngredients(mealkitIng);
 		
 		request.setAttribute("mealkit", mealkit);

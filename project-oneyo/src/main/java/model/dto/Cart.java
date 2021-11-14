@@ -31,4 +31,11 @@ public class Cart {
 		this.customMealkits = customMealkits;
 	}
 
+	public int getTotalPrice() {
+		int totalPrice = 0;
+		for (CustomMealkit cm : customMealkits) {
+			totalPrice += cm.getPrice();
+		}
+		return totalPrice;
+	}
 }

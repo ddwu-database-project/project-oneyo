@@ -6,6 +6,7 @@ import controller.Controller;
 import model.dto.Mealkit;
 import model.dao.MealkitDAO;
 import model.dto.Ingredient;
+
 import java.util.List;
 
 public class ViewMealkitController implements Controller{
@@ -17,6 +18,7 @@ public class ViewMealkitController implements Controller{
     	
 		Mealkit mealkit =mealkitDAO.findMealkit(mkId);
 		List<Ingredient> mealkitIng = mealkitDAO.findMealkitIng(mkId);
+
 		mealkit.setIngredients(mealkitIng);
 		
 		request.setAttribute("mealkit", mealkit);	

@@ -5,20 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dao.CartDAO;
-import model.dto.Cart;
 
-public class CartListController implements Controller {
-	private CartDAO cartDAO = new CartDAO();
-	
+public class UpdateCartController implements Controller {
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+
+		CartDAO cartDAO = new CartDAO();
+		cartDAO.update(request.getParameter("customMkId"), request.getParameter("quantity"));
 		
-		Cart cart = cartDAO.findCartItem(5);
-		
-		request.setAttribute("totalPrice", cart.getTotalPrice());
-		request.setAttribute("cartitems", cart.getCustomMealkits());
-		
-		return "/cart/list.jsp";
+		return "redirect:/cart/list";
 	}
+
 }
