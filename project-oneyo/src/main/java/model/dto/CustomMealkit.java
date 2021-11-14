@@ -10,7 +10,18 @@ public class CustomMealkit {
 	private int quantity;			
 	private int price;			
 	private int totalCalorie;
+	private List<Ingredient> ingredients;	
 	
+	public CustomMealkit(Mealkit mealkitInfo, int customerId, int price, int quantity, int totalCalorie, List<Ingredient> ingredient)
+	{
+		this.mealkitInfo = mealkitInfo;
+		this.customerId = customerId;
+		this.quantity = quantity;
+		this.price = price;
+		this.totalCalorie = totalCalorie;
+		this.ingredients = ingredient;
+	}
+
 	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int customerId, int price, int quantity, int totalCalorie)
 	{
 		this.mealkitInfo = mealkitInfo;
@@ -64,6 +75,13 @@ public class CustomMealkit {
 	}
 	public void setTotalCalorie(int totalCalorie) {
 		this.totalCalorie = totalCalorie;
+	}
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 	
 	public String printIng() {
