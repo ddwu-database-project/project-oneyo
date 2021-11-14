@@ -12,9 +12,9 @@ public class MealkitListController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
     	MealkitManager manager = MealkitManager.getInstance();
-		List<Mealkit> mealkitList = manager.findMealkitList();
+		List<Mealkit> mealkits = manager.findMealkitList();
 		
-		request.setAttribute("mealkitList", mealkitList);				
+		request.setAttribute("mealkits", mealkits);				
 		return "/mealkit/list.jsp";        
     }
 }

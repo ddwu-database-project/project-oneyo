@@ -11,5 +11,6 @@
 여기가 쇼핑몰 메인페이지임
 <a href="<c:url value='/customer/login/form' />">login</a>
 <a href="<c:url value='/customer/mypage'/>">my page</a>
+<a href="<c:url value='/mealkit/list'/>">mealkit list</a>
 </body>
 </html>

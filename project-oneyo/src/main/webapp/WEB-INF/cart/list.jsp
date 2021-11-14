@@ -31,6 +31,7 @@
 					<td rowspan="4">
 						<form id="capacity" <c:url value="/cart/update" />>
 							수량
+							<input type="hidden" id="customMkId" name="mealkitId" value="${item.getCustomMealkitId()}">
 							<input type="number" id="capacity" name="capacity" width="20" value="${item.getQuantity()}">
 							<input type="submit" value="변경" >
 						</form>

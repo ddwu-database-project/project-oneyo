@@ -2,6 +2,7 @@ package controller.manager;
 
 import model.dao.MealkitDAO;
 import model.dto.Mealkit;
+import model.dto.Ingredient;
 import java.util.List;
 
 public class MealkitManager {
@@ -23,6 +24,10 @@ public class MealkitManager {
 	public Mealkit findMealkit(int mkId) throws Exception {
 		System.out.println("findmealkitid = "+ mkId);
 		return mealkitDAO.findMealkit(mkId);
+	}
+	
+	public List<Ingredient> findMealkitIng(int mkId) throws Exception{
+		return mealkitDAO.findMealkitIng(mkId);
 	}
 	
 	public static MealkitManager getInstance() {

@@ -16,7 +16,6 @@ public class Mealkit {
 		this.mkName = mkName;
 		ingredients = new ArrayList<>();
 	}
-	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice) {
 		this.mkId = mkId;
 		this.mkName = mkName;

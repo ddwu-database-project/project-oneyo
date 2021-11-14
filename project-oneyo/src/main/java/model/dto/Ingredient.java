@@ -17,6 +17,14 @@ public class Ingredient {
 		this.ingQuantity = ingQuantity;
 	}
 	
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity) {
+		this.ingId = ingId;
+		this.ingName = ingName;
+		this.ingPrice = ingPrice;
+		this.ingCalorie = ingCalorie;
+		this.ingQuantity = ingQuantity;
+	}
+	
 	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, Category Category) {
 		this.ingId = ingId;
 		this.ingName = ingName;
@@ -61,6 +69,11 @@ public class Ingredient {
 	}
 	public void setCategory(Category category) {
 		Category = category;
+	}
+	
+	public String toString() {
+		return "재료명: " + this.getIngName() + ", 개수: " + this.getIngQuantity() + ", 가격: " + this.getIngPrice() +
+				", 칼로리: " + this.getIngCalorie();
 	}
 	
 	
