@@ -17,6 +17,13 @@ public class Ingredient {
 		this.ingQuantity = ingQuantity;
 	}
 	
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie) {
+		this.ingId = ingId;
+		this.ingName = ingName;
+		this.ingPrice = ingPrice;
+		this.ingCalorie = ingCalorie;
+	}
+	
 	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity) {
 		this.ingId = ingId;
 		this.ingName = ingName;

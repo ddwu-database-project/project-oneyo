@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
+import model.dao.AllergyDAO;
 import model.dao.CustomerDAO;
 import model.dto.Customer;
 import model.service.ExistingCustomerException;
@@ -13,6 +14,7 @@ import model.service.ExistingCustomerException;
 public class RegisterCustomerController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(RegisterCustomerController.class);
     private CustomerDAO customerDAO = new CustomerDAO();
+    private AllergyDAO alleryDAO = new AllergyDAO();
     
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,12 +26,15 @@ public class RegisterCustomerController implements Controller {
 	    }	
     	
     	// POST request (회원정보가 parameter로 전송됨)
+    	String email = request.getParameter("email");
     	Customer customer = new Customer(
     		request.getParameter("name"),
 			request.getParameter("password"),
 			request.getParameter("phone"),
 			request.getParameter("address"),
-			request.getParameter("email"));
+			email);
+    	
+    	String[] aIds = request.getParameterValues("allergy");
     	
         log.debug("Create Customer : {}", customer);
         int result;
@@ -38,6 +43,11 @@ public class RegisterCustomerController implements Controller {
 			if (result == 0) {
 				throw new ExistingCustomerException("이미 존재하는 아이디입니다.");
 			}
+			int cId = customerDAO.findCustomer(email).getCustomerId();
+			for (int i = 0; i < aIds.length; i++) {
+				alleryDAO.create(cId, Integer.parseInt(aIds[i]));
+			}
+
 		} catch (Exception e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);

@@ -4,8 +4,10 @@
 <head>
 <title>회원가입</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
 function customerCreate() {
+	// 형식 검토 과정
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email.value)==false) {
 		alert("이메일 형식이 올바르지 않습니다.");
@@ -38,9 +40,37 @@ function customerCreate() {
 		form.address.focus();
 		return false;
 	}
+
 	form.submit();
 }
 
+function searchIng() {
+	window.open("/project-oneyo/ingredient/search", "검색", "width=400px, height=500px");
+}
+
+function setChildValue(name, id){
+	var search = document.getElementById("search");
+	var allergy = document.createElement("span");
+	
+	var hiddenInput = document.createElement("input");
+	hiddenInput.style.display = "none";
+	hiddenInput.name = "allergy";
+	hiddenInput.value = id;
+	
+	var td = search.parentNode;
+	td.insertBefore(allergy, search)
+	td.insertBefore(hiddenInput, search)
+	
+    allergy.innerText = name + " ";
+}
+
+function resetData(){
+    var spans = document.getElementsByTagName("span");
+    var len = spans.length;
+    for (var i = 0; i < len; i++) {
+      spans[0].remove();
+    }
+}
 </script>
 </head>
 <body>	
@@ -100,6 +130,13 @@ function customerCreate() {
 				<input type="text" style="width: 240" name="address">
 			</td>
 		  </tr>  
+		  <tr height="40">
+	        <td width="150" align="center" bgcolor="E6ECDE">알러지</td>
+	        <td width="250" bgcolor="ffffff" style="padding-left: 10" id="allergyTd">	    	  
+				<input id ="search" type="button" value="+" onClick="searchIng()">
+				<input type="button" value="reset" onClick="resetData()">
+	        </td>
+          </tr> 
 	    </table>
 	    <br>
 	    <table style="width: 100%">
@@ -113,5 +150,7 @@ function customerCreate() {
     </tr>
   </table>  
 </form>
+
+<script src="<c:url value='/js/modal.js'/>" type="text/javascript"></script>
 </body>
 </html>
