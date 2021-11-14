@@ -46,7 +46,6 @@ public class AddCartController implements Controller{
 			totalIngCalorie += ingCalorie*ingQuantity;
 			
 		}
-		System.out.println(mkIngs.toString());
 		
 		// get login customer
 		HttpSession session = request.getSession();

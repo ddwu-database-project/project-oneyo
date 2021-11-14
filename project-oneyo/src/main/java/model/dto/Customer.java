@@ -9,6 +9,14 @@ public class Customer {
 	private String email;
 //	private List<Ingredient> allergy;
 	
+	public Customer(String customerName, String password, String phone, String address, String email) {
+		this.customerName = customerName;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
+	
 	public Customer(int customerId, String customerName, String password, String phone, String address, String email) {
 		this.customerId = customerId;
 		this.customerName = customerName;
