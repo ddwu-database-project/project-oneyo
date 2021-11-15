@@ -27,9 +27,8 @@ public class CartDAO {
 	}
 	
 	public int create(CustomMealkit customMk) throws SQLException {
-		String sql = "INSERT INTO cartitem VALUES (cart_seq.nextval, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {customMk.getQuantity(), customMk.getCustomerId(), 
-				customMk.getCustomMealkitId(), customMk.getPrice()};
+		String sql = "INSERT INTO cartitem VALUES (cart_seq.nextval, ?, ?)";		
+		Object[] param = new Object[] {customMk.getCustomerId(), customMk.getCustomMealkitId()};
 		
 //		System.out.println(customMk.getQuantity() + " " + customMk.getCustomerId() + " " +
 //				customMk.getCustomMealkitId() + " " + customMk.getPrice()); 
@@ -52,7 +51,7 @@ public class CartDAO {
 	
 	public int update(String customMkId, String newQuantity) throws SQLException {
 		
-		String sql = "UPDATE cartitem "
+		String sql = "UPDATE custommealk "
 					+ "SET quantity=? "
 					+ "WHERE custommkid=?";
 		Object[] param = new Object[] {newQuantity, customMkId};				
@@ -73,9 +72,9 @@ public class CartDAO {
 	}
 
 	
-	public int remove(CustomMealkit customMk) throws SQLException {
+	public int remove(int customMkId) throws SQLException {
 		String sql = "DELETE FROM cartitem WHERE custommkid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {customMk.getCustomMealkitId()});	// JDBCUtil�� delete���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {customMkId});	// JDBCUtil�� delete���� �Ű� ���� ����
 
 		try {				
 			int result = jdbcUtil.executeUpdate();	// delete �� ����
@@ -143,7 +142,7 @@ public class CartDAO {
 		List<Ingredient> cmIng;
 		
 		try {
-			String query = "SELECT cm.customMkId, m.mkid, m.mkname, c.totalprice, c.quantity "
+			String query = "SELECT cm.customMkId, m.mkid, m.mkname, cm.price, cm.quantity "
 					+ "FROM cartitem c, mealkit m, custommealkit cm "
 					+ "WHERE c.customerId = ? AND c.customMkId = cm.customMkId AND cm.mkId = m.mkId";
 			
@@ -157,7 +156,7 @@ public class CartDAO {
 				int customMkId = rs.getInt("CUSTOMMKID");
 				int mkId = rs.getInt("MKID");
 				String mkName = rs.getString("MKNAME");
-				int price = rs.getInt("TOTALPRICE");
+				int price = rs.getInt("PRICE");
 				int quantity = rs.getInt("QUANTITY");
 				cmList.add(new CustomMealkit(customMkId, new Mealkit(mkId, mkName), price, quantity));
 			}

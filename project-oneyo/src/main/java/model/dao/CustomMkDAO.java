@@ -25,7 +25,7 @@ public class CustomMkDAO {
 			for (Ingredient ing : ingList) {
 				Object[] param = new Object[] {ing.getIngId(), ing.getIngQuantity()};
 				jdbcUtil.setParameters(param);
-				int result = jdbcUtil.executeUpdate();
+				jdbcUtil.executeUpdate();
 			}
 		} catch (Exception ex) {
 			throw ex;
@@ -34,11 +34,12 @@ public class CustomMkDAO {
 	}
 	
 	public int create(CustomMealkit customMk) throws SQLException {
-		String sql = "INSERT INTO custommealkit VALUES ( ?, ?, custom_mk_seq.nextval, ?)";
+		String sql = "INSERT INTO custommealkit VALUES ( ?, ?, custom_mk_seq.nextval, 0, ?, ?, ?)";
 		String sql2 = "SELECT max(custommkid) as custommkid FROM custommealkit WHERE customerid=?";
 //		System.out.println(customMk.getOriginalMealkit().getMkId() + " " + customMk.getCustomerId());
 		
-		Object[] param = new Object[] {customMk.getCustomerId(), customMk.getOriginalMealkit().getMkId(), 0};
+		Object[] param = new Object[] {customMk.getCustomerId(), customMk.getOriginalMealkit().getMkId(), 0,
+				customMk.getQuantity(), customMk.getPrice()};
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		int result = 0;
@@ -64,5 +65,27 @@ public class CustomMkDAO {
 		}
 		
 		return result;
+	}
+	
+	public int remove(int customMkId) throws SQLException {
+		String sql1 = "DELETE FROM custommealkiting WHERE custommkid=?";
+		String sql2 = "DELETE FROM custommealkit WHERE custommkid=?";
+		Object[] param = new Object[] { customMkId };
+		
+		jdbcUtil.setSqlAndParameters(sql1, param);
+		
+		try {
+			int result = jdbcUtil.executeUpdate();
+			jdbcUtil.setSql(sql2);
+			result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return 0;
 	}
 }

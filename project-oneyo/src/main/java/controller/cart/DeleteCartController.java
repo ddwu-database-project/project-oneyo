@@ -5,19 +5,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dao.CartDAO;
+import model.dao.CustomMkDAO;
 
-public class UpdateCartController implements Controller {
+public class DeleteCartController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-
 		CartDAO cartDAO = new CartDAO();
-		String id = request.getParameter("id");
+		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
-		cartDAO.update(id, request.getParameter("quantity" + id));
-		System.out.println(request.getParameter("quantity" + id));
-	
+		String[] list = request.getParameterValues("select");
+		
+		if (list == null)
+			return "redirect:/cart/list";
+		for (String s : list) {
+			System.out.println(Integer.parseInt(s));
+			cartDAO.remove(Integer.parseInt(s));
+			customMkDAO.remove(Integer.parseInt(s));
+		}
 		return "redirect:/cart/list";
 	}
 

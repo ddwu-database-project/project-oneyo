@@ -20,7 +20,8 @@ function ingModify() {
 }
 </script>
 </head>
-<body> 
+<body>
+
   <form name="form" method="POST" action="<c:url value='/cart/add' />">
 	<input type="hidden" name="mealkit" value="${mealkit}"/>
 	<input type="hidden" name="mkId" value="${mealkit.getMkId()}"/>
