@@ -8,7 +8,6 @@
 <head>
 <title>마이페이지</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function customerRemove() {
 	return confirm("정말 탈퇴하시겠습니까?");		
@@ -50,6 +49,14 @@ function customerRemove() {
 			<td width="120" align="center" bgcolor="E6ECDE" height="22">주소</td>
 			<td width="470" bgcolor="ffffff" style="padding-left: 10">
 				${customer.address} 
+			</td>
+		  </tr>	
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">알레르기</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<c:forEach var="allergy" items="${allergyList}">  	
+					${allergy.ingName} 
+				</c:forEach> 
 			</td>
 		  </tr>	
 	 	</table>

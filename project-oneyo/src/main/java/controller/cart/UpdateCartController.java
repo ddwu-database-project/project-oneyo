@@ -13,8 +13,11 @@ public class UpdateCartController implements Controller {
 		// TODO Auto-generated method stub
 
 		CartDAO cartDAO = new CartDAO();
-		cartDAO.update(request.getParameter("customMkId"), request.getParameter("quantity"));
+		String id = request.getParameter("id");
 		
+		cartDAO.update(id, request.getParameter("quantity" + id));
+		System.out.println(request.getParameter("quantity" + id));
+	
 		return "redirect:/cart/list";
 	}
 

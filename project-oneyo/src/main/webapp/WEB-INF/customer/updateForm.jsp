@@ -40,6 +40,40 @@ function customerModify() {
 	}
 	form.submit();
 }
+
+function searchIng() {
+	window.open("/project-oneyo/ingredient/search", "검색", "width=400px, height=500px");
+}
+
+function setChildValue(name, id){
+	var search = document.getElementById("search");
+	var allergy = document.createElement("span");
+	
+	var hiddenInput = document.createElement("input");
+	hiddenInput.style.display = "none";
+	hiddenInput.name = "allergy";
+	hiddenInput.value = id;
+	hiddenInput.className = "allergy"
+	
+	var td = search.parentNode;
+	td.insertBefore(allergy, search)
+	td.insertBefore(hiddenInput, search)
+	
+    allergy.innerText = name + " ";
+}
+
+function resetData(){
+    var spans = document.getElementsByTagName("span");
+    var len = spans.length;
+    for (var i = 0; i < len; i++) {
+      spans[0].remove();
+    }
+    var input = document.getElementsByClassName("allergy");
+    var len = input.length;
+    for (var i = 0; i < len; i++) {
+    	input[0].remove();
+    }
+}
 </script>
 </head>
 <body>
@@ -94,6 +128,17 @@ function customerModify() {
 				<input type="text" style="width: 240" name="address"  value="${customer.address}">
 			</td>
 		  </tr>  
+		  <tr height="40">
+	        <td width="150" align="center" bgcolor="E6ECDE">알러지</td>
+	        <td width="250" bgcolor="ffffff" style="padding-left: 10" id="allergyTd">
+	        	<c:forEach var="allergy" items="${allergyList}">  	
+					<span>${allergy.ingName}</span>
+					<input class="allergy" style="display: none;" name="allergy" value="${allergy.ingId}">
+				</c:forEach> 	    	  
+				<input id ="search" type="button" value="+" onClick="searchIng()">
+				<input type="button" value="reset" onClick="resetData()">
+	        </td>
+          </tr> 
 	    </table>
 	    <br>	  
 	    <table style="width: 100%">
