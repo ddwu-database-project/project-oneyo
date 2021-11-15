@@ -70,7 +70,7 @@ $("#buy").click(function buy(){
 						수량
 						<input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
 						<input type="number" id="quantity" name="quantity${item.getCustomMealkitId()}" width="20" value="${item.getQuantity()}">
-						<a href="<c:url value="/cart/update?id=${item.getCustomMealkitId()}"/>">변경</a>
+						<input type="submit" value="변경" formaction="<c:url value="/cart/update" />">
 					</td>
 				</tr>
 				<tr>
@@ -80,7 +80,7 @@ $("#buy").click(function buy(){
 					<td>가격 : ${item.getPrice()}</td>
 				</tr>
 				<tr>
-					<td>영양 정보 : </td>
+					<td>영양 정보 : ${item.getTotalCalorie()}</td>
 				</tr>
 			</table>
 		</td>
