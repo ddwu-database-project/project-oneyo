@@ -34,7 +34,8 @@ public class RequestMapping {
         mappings.put("/order/list", new OrderListController());
         mappings.put("/order/add", new AddOrderController());
         mappings.put("/order/delete", new DeleteOrderController());
-        mappings.put("/order/order", new OrderController());
+        mappings.put("/order/cart", new CartOrderController());
+        mappings.put("/order/form", new FormOrderController());
 
         mappings.put("/cart/list", new CartListController());
         mappings.put("/cart/add", new AddCartController());

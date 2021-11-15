@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.List" %>
+    <%@ page import="java.util.ArrayList" %>
+    <%@ page import="model.dto.*" %>
+    <%@ page import="model.dao.*" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -74,6 +78,9 @@ function ingModify() {
 	  <tr>
 		<td align="left">
 		<input type="submit" value="수정"> onClick="ingModify()">
+		</td>
+		<td align="right">
+		<input type="submit" value="주문하기" formaction="<c:url value='/order/form' />" />
 		</td>
 	  </tr>
 	</table> 
