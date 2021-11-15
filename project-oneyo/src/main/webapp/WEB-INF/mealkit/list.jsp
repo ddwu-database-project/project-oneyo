@@ -16,17 +16,17 @@
       console.log("mealkitname = "+mealkitName);
       let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
       
-      let ingarr = []
+      let ingarr = ""
       console.log("비어있는 ingarr = " + ingarr);	
       
       for (let k = 0; k < ingList.length; k++){
-    	  ingarr.push(ingList.item(k).innerText.toLowerCase());
+    	  ingarr += ingList.item(k).innerText.toLowerCase();
     	  
       }
       console.log("재료 넣은 후 ingarr = " + ingarr);
       
       if (mealkitName.toLowerCase().indexOf(search) != -1 ||
-   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.indexOf(search) != -1
+   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.includes(search)
    		  ) {
     	  mkList[i].style.display = "inherit"
     	  console.log(ingarr.includes(search) + "if문 들어갔음");
