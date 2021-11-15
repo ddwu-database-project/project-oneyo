@@ -4,6 +4,8 @@
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="model.dto.*" %>
     <%@ page import="model.dao.*" %>
+    <%@ page import="controller.customer.*" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,10 +126,6 @@
 		color: #fff;
 	}
 	.default:hover{
-	
-	
-	
-	
 		background: #ddd;
 	}
 	.backBtn{
@@ -144,19 +142,32 @@
 		clear:both;
 	}
 	</style>
+	<script>
+	
+	</script>
 </head>
 <body>
 <%
-	//orderedItems 가져옴
+	//orderedItems 받아옴
 	@SuppressWarnings("unchecked")
 	List<CustomMealkit> customMealkitList = (List<CustomMealkit>)request.getAttribute("customMealkitList");
-	OrderDAO orderDAO = new OrderDAO();
-	Customer c = orderDAO.getCustomerInfo(customMealkitList.get(0).getCustomerId());
-	%>
 
+	HttpSession session1 = request.getSession();
+	String email = CustomerSessionUtils.getLoginCustomerId(session1);
+	// get login customer Id
+	CustomerDAO customerDAO = new CustomerDAO();
+	Customer c = customerDAO.findCustomer(email);
+	int customerId = c.getCustomerId();
+		
+	//세션에 주문한 커스텀밀키트 리스트 저장
+	if(customMealkitList != null){
+		session1.setAttribute("orderedcmkList", customMealkitList);
+	}
+%>
+<form name ="form" method="post" action="<c:url value='/order/add' />">
+<input type="hidden" name="orderedcmkList" value="${customMealkitList}"/>
 <div id="backbody">
 	<div id="frame">
-		<form>
 			<div id="frame2">
 				<span style="font-size: 16pt; font-weight:bold;">커스텀밀키트</span>
 				<span class="mypage"> 주문/결제 </span>
@@ -200,13 +211,13 @@
 								</td>
 								<td><span style="padding-left: 10px;"><%= customMealkitList.get(i).getPrice() %></span>원</td><!-- 가격 -->
 								<td style="width: 80px;">
-									<span><%= customMealkitList.get(i).getPrice() %></span>원
+									<span><%= customMealkitList.get(i).getQuantity() %></span><!-- 수량 -->
 								</td>
 								
 								<td>-</td>
 								<td>기본배송</td>
 								<td>고정</td>
-								<td><span><%= customMealkitList.get(i).getQuantity() %></span></td>
+								<td><span><%= customMealkitList.get(i).getPrice() %></span></td><!-- 합계 -->
 							</tr>
 						<%} %>
 					</tbody>
@@ -216,7 +227,7 @@
 								<span>[기본배송]</span>
 							</td>
 							<td colspan="5" style="border-right: none; text-align:right; padding-right: 10px;">
-								상품금액<span>0</span> + <span>배송비 0 = 합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;"><%= totalPrice %>원</span>
+								상품금액<span><%= totalPrice %></span> + <span>배송비 0 = 합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;"><%= totalPrice %>원</span>
 							</td>
 						</tr>
 					</tfoot>
@@ -229,9 +240,6 @@
 				</div>
 				
 				<div style="margin: 10px 0; padding-botton:solid 1px grey;">
-					<span style="margin: 0 10px;" class="btnfloat">선택상품을</span>
-					<button type="button" class="btn default btnfloat" style="background-color:grey; color:#fff;">삭제하기</button> <!-- 아직기능구현안함 -->
-					
 					<button type="button" class="btn default btnfloat2" onclick="javascript:history.back()">이전페이지 ></button>
 					<span class="clearboth"></span>
 				</div>
@@ -243,7 +251,7 @@
 					<thead>
 						<tr>
 							<td class="deliveryId" >받으시는 분&nbsp;<span style="color:red">*</span></td> <!-- 해당 값 받아와서 새로운 정보로 배송하는 기능은 구현 안하는건가..? -->
-							<td><input type="text" value= <% c.getCustomerName(); %>/></td>
+							<td><input type="text" value= <%= c.getCustomerName() %> /></td>
 						</tr>
 						
 						<tr>
@@ -258,7 +266,7 @@
 							</td>
 							--> <!-- DAUM post로 우편번호 찾기기능 -->
 							<td>
-							<input type="text" value= <% c.getAddress(); %> />
+							<input type="text" value= <%= c.getAddress() %> />
 							</td>
 						</tr>
 						
@@ -266,7 +274,7 @@
 						<td class="deliverytd">휴대전화&nbsp;<span style="color:red;">*</span></td>
 						<td>
 						<!--<input type="text" size="5" />-<input type="text" size="5" />-<input type="text" size="5" /> -->
-						<input type="text" value= <% c.getPhone(); %> />
+						<input type="text" value= <%= c.getPhone() %> />
 						</td>
 					</tr>
 					<tr>
@@ -282,7 +290,7 @@
 							<option>dongduk.ac.kr</option>
 						</select>
 						-->
-						<td><input type ="text" value=<% c.getEmail(); %> />
+						<td><input type ="text" value=<%= c.getEmail() %> />
  						<span style="font-size: 10pt; color:grey;">
 							<p>이메일을 통해 주문처리과정을 보내드립니다.<br/>이메일 주소란에는 반드시 유효한 이메일 주소를 입력해 주세요.</p>
 						</span>
@@ -331,8 +339,10 @@
 				</div>
 			<div class="total">
 				<span style="display:inline-block; padding: 20px 10px;">카드결제 최종결제 금액</span><br/>
-				<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;">0원</span><br/><br/>
-				<button type="button" class="btn default" style="width:90%; height:60px; margin-right:10px; font-size:10pt;"></button><!--  -->
+				<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;"><%= totalPrice %>원</span><br/><br/>
+				
+				<input type="submit" class="btn default" value="결제하기" style="width:90%; height:60px; margin-right:10px; font-size:10pt;">
+			
 			</div>
 		</div>
 		<br/><br/>
@@ -371,10 +381,9 @@
 				<li class="lifont">현금영수증이나 세금계산서 중 하나만 발행 가능 합니다.</li>
 			</ol><br/>
 		</div>
-	</form>	
 	</div>
 </div>
-
+</form>
 
 </body>
 </html>

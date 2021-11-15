@@ -16,19 +16,21 @@ public class OrderDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	//커스텀된 List<Ingredient>가져오기
-	public List<Ingredient> getCustomIngList(Mealkit m){
+	public List<Ingredient> getCustomIngList(CustomMealkit m){
 		List<Ingredient> customIng = m.getIngredients();
-		return customIng;
-	}
-	//주문자 정보 가녀오기
-	public Customer getCustomerInfo(int customerId) {
-		String sql = "SELECT customername, email, phone, address FROM customer where customerId = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
-		Customer c = null;
+		String sql = "SELECT i.ingname, i.price, i.calorie, c.ingquantity, "
+				+ "FROM ingredient i, custommealkiting c "
+				+ "WHERE i.ingid = c.ingid AND custommkid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {m.getCustomMealkitId()});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			while(rs.next()) { 
-				c = new Customer(rs.getString("customerName"), rs.getString("email"), rs.getString("phone"), rs.getString("address"));
+				String ingName = rs.getString("ingname");
+				int ingPrice = rs.getInt("price");
+				int ingCalorie = rs.getInt("calorie");
+				int ingQuantity = rs.getInt("ingquantity");
+
+				customIng.add(new Ingredient(ingName, ingPrice, ingCalorie, ingQuantity));
 			}
 		}catch(Exception ex) {
 			jdbcUtil.rollback();
@@ -37,18 +39,40 @@ public class OrderDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();	// resource 반환
 		}
-		return c;
+		return customIng;
+	}
+	//cartController용 주문페이지 채우기
+	public List<CustomMealkit> cartOrderList(List<Integer> id, int customerId){
+		List<CustomMealkit> orderedItems = new ArrayList<>();
+		String sql = "SELECT m.mkname, m.mkId, m.defaultCal, m.defaultPrice, c.price, c.quantity from custommealkit c, mealkit m WHERE c.mkId = m.mkId AND c.customerId = ? AND c.custommkId = ?";
+		for(int i : id) {
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId, i});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				while(rs.next()) { 
+					Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
+							rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
+					
+					CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
+					orderedItems.add(tmp2);
+				}
+			}catch(Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			}
+		}
+		jdbcUtil.commit();
+		jdbcUtil.close();	// resource 반환
+		
+		return orderedItems;
 	}
 	
 	//주문 상세 조회
-	//주문 내역 페이지 보여주기 //해당 고객이 여태까지 주문한 모든 밀키트리스트 보여주는 것
+	//주문 내역 페이지 보여주기 //해당 고객이 여태까지 주문한 모든 밀키트리스트 보여주는 것//CustomMealkit 테이블의 orderStatus=주문함(1)인 것 모두 가져와서 보여주자
 	public List<CustomMealkit> findOrderList(int customerId) {
 	    List<CustomMealkit> orderedItems = new ArrayList<>();
-	    String sql = "SELECT c.custommkId, i.quantity, m.mkname, m.mkId, m.defaultCal, m.defaultPrice, " //수정요망
-	    		+ "i.price, i.calorie "
-				+ "FROM custommealkit c, mealkit m, custom_mk_view i "
-				+ "WHERE c.mkId = m.mkId AND c.custommkId = i.custommkId "
-				+ "AND customerId = ?";
+	    String sql = "SELECT m.mkname, m.mkId, m.defaultCal, m.defaultPrice, c.price, c.quantity, c.custommkId from custommealkit c, mealkit m WHERE c.mkId = m.mkId AND c.customerId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
 		
 		try {
@@ -57,7 +81,7 @@ public class OrderDAO {
 				Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
 						rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
 				
-				CustomMealkit tmp2 = new CustomMealkit(tmp1, rs.getInt("custommkId"), customerId, rs.getInt("price"), rs.getInt("quantity"), rs.getInt("calorie"));
+				CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
 				orderedItems.add(tmp2);
 			}
 		}catch(Exception ex) {
@@ -73,7 +97,7 @@ public class OrderDAO {
 	//주문리스트 보여주기
 	public List<Order> viewOrderList(int customerId){
 		List<CustomMealkit> orderedItems = findOrderList(customerId);
-		String sql = "SELECT s.orderId, s.orderdate, s.company, s.trackingnum FROM shippingdetail s, custom_mk_view v WHERE s.orderId=v.orderId AND v.customMkId = ?";
+		String sql = "SELECT s.orderId, s.orderdate, s.company, s.trackingnum FROM shippingdetail s, orderinfo o WHERE s.orderId=o.orderId AND o.customMkId = ?";
 		List<Order> orderList = new ArrayList<>();
 		
 		int orderId = 0;
@@ -132,7 +156,7 @@ public class OrderDAO {
 		}
 		orderingItems = findOrderList(customerId);
 		
-		String sql2 = "INSERT INTO ORDEREDMEALKIT VALUES(?, ?, order_mk_seq.NEXTVAL, ?)";//ORDEREDMEALKIT에 추가
+		String sql2 = "INSERT INTO ORDERINFO VALUES(?, ?, order_mk_seq.NEXTVAL, ?)";//ORDERINFO에 추가
 		
 		for(CustomMealkit item : l) {
 			int customMkId = item.getCustomMealkitId();
@@ -154,7 +178,7 @@ public class OrderDAO {
 		String sql3 = "INSERT INTO CUSTOMMEALKITING VALUES(?, ?, ?)"; //CUSTOMMEALKITING에 추가
 		for(CustomMealkit item : l) {
 			int custommealkitId = item.getCustomMealkitId();
-			List<Ingredient> customIng = getCustomIngList(item.getOriginalMealkit());
+			List<Ingredient> customIng = getCustomIngList(item);
 			for(Ingredient ing : customIng) {
 				param = new Object[] {custommealkitId, ing.getIngId(), ing.getIngQuantity()};
 				jdbcUtil.setSqlAndParameters(sql3, param);
@@ -177,7 +201,7 @@ public class OrderDAO {
 	}
 	
 	//주문취소
-	public int deleteOrder(int orderId) { //void?
+	public int deleteOrder(int orderId, int cmkId) { //void?
 		String sql = "UPDATE MEALKITORDER "
 				+ "SET status = 3 "
 				+"WHERE orderId = ?";
@@ -190,10 +214,19 @@ public class OrderDAO {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
-		finally {
+		
+		String sql1 = "UPDATE CUSTOMMEALKIT SET orderstatus = 0 WHERE custommkId = ?";
+		jdbcUtil.setSqlAndParameters(sql1, new Object[] {cmkId});
+		try {				
+			int result = jdbcUtil.executeUpdate();	// update 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();	// resource 반환
-		}		
+		}
 		return 0;
 	}
 	
