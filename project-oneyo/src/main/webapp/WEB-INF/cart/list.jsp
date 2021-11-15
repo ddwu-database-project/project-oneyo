@@ -59,11 +59,8 @@ $("#buy").click(function buy(){
 		<td>
 			<table height = "200" width = 100%>
 				<tr>
-<<<<<<< HEAD
 					<td rowspan="4"><input type="checkbox" name="item[]"></td>
-=======
 					<td rowspan="4"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></td>
->>>>>>> branch 'master' of https://github.com/gynhyunkim/project-oneyo.git
 					<td rowspan="4" width = "200">상품 이미지</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
 					<td rowspan="4">
