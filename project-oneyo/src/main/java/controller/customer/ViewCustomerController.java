@@ -20,9 +20,6 @@ public class ViewCustomerController implements Controller {
         }
 
     	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
-    	
-		  //HttpSession session = request.getSession();
-        //session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
        
 		Customer customer = null;
     	try {

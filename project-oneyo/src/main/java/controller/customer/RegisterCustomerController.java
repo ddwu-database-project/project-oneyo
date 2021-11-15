@@ -43,18 +43,20 @@ public class RegisterCustomerController implements Controller {
 			if (result == 0) {
 				throw new ExistingCustomerException("이미 존재하는 아이디입니다.");
 			}
-			int cId = customerDAO.findCustomer(email).getCustomerId();
-			for (int i = 0; i < aIds.length; i++) {
-				alleryDAO.create(cId, Integer.parseInt(aIds[i]));
+			if (aIds != null) {
+				int cId = customerDAO.findCustomer(email).getCustomerId();
+				for (int i = 0; i < aIds.length; i++) {
+					alleryDAO.create(cId, Integer.parseInt(aIds[i]));
+				}
 			}
-
 		} catch (Exception e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("customer", customer);
+			System.out.println("error");
 			return "/customer/registerForm.jsp";
 		}
-		return "redirect:/";
+		return "/customer/registerSuccess.jsp";
     }
 }
 
