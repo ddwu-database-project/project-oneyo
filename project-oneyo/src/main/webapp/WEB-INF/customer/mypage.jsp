@@ -52,6 +52,12 @@ function customerRemove() {
 				${customer.address} 
 			</td>
 		  </tr>	
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">알레르기</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				${allergy} 
+			</td>
+		  </tr>	
 	 	</table>
 	 	<br>
 	 	<a href="<c:url value='/customer/update'>
