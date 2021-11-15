@@ -14,7 +14,24 @@ function updateQuantity() {
 	}
 	form.submit();
 }
- 
+
+//주문버튼 클릭시, checkbox클릭된 customMkId 값들을 /order/cart로 넘겨준다
+$("#buy").click(function buy(){
+	var obj = document.getElementsByName("item[]");
+	List<Integer> customMkList = new ArrayList<>();
+    for (i=0;i<obj.length;i++) {
+        if (obj[i].checked) {
+            no = obj[i].value;
+            customMkId = document.getElementById("customMkId"+ no).value;
+            customMkList.add(customMkId);
+        }
+    }
+    //세션에 저장
+    HttpSession session2 = request.getSession();
+    session.setAttribute("cmkIdList", customMkList);
+    
+    location.href="<c:url value='/order/cart' />";
+}); 
 </script>
 </head>
 <body>
@@ -35,7 +52,7 @@ function updateQuantity() {
 		<td>
 			<table height = "200" width = 100%>
 				<tr>
-					<td rowspan="4"><input type="checkbox"></td>
+					<td rowspan="4"><input type="checkbox" name="item[]"></td>
 					<td rowspan="4" width = "200">상품 이미지</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
 					<td rowspan="4">
@@ -67,8 +84,6 @@ function updateQuantity() {
 <tr height = 80 align="center">
 	<td>총 금액 : ${totalPrice}</td>
 </tr>
- <a href="<c:url value='/order/order'>
-	     		   <c:param name='customerId' value='session.getAttribute("customerId")'/>
-			 	 </c:url>">주문하기</a> &nbsp;
+<button type="button" id="buy">주문하기</button>
 </body>
 </html>
