@@ -11,28 +11,25 @@
     let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
     let mkList = document.getElementsByClassName("mkList");
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < mkList.length; i++) {
       mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
       console.log("mealkitname = "+mealkitName);
       let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
-      console.log("ingList = " + ingList);
+      
       let ingarr = []
+      console.log("비어있는 ingarr = " + ingarr);	
       
       for (let k = 0; k < ingList.length; k++){
-    	  console.log("asdfasd"+ingList.item(k).innerText);
-    	  ingarr.push(ingList.item(k).innerText);
+    	  ingarr.push(ingList.item(k).innerText.toLowerCase());
     	  
-    	  if (arr.includes(search)) {
-   	    	  mkList[i].style.display = "inherit"
-   	      } else {
-   	    	  mkList[i].style.display = "none"
-   	      }
       }
+      console.log("재료 넣은 후 ingarr = " + ingarr);
       
       if (mealkitName.toLowerCase().indexOf(search) != -1 ||
-   		  mealkitName.toLowerCase().indexOf(search) != -1 
+   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.indexOf(search) != -1
    		  ) {
     	  mkList[i].style.display = "inherit"
+    	  console.log(ingarr.includes(search) + "if문 들어갔음");
       } else {
     	  mkList[i].style.display = "none"
       }
