@@ -72,7 +72,7 @@ function ingModify() {
 	<table style="width: 100%">
 	  <tr>
 		<td align="left">
-		<input type="submit" value="수정"> onClick="ingModify()">
+		<input type="submit" value="장바구니 담기" onClick="ingModify()">
 		</td>
 	  </tr>
 	</table> 
