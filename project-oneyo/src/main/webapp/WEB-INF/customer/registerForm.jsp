@@ -4,7 +4,6 @@
 <head>
 <title>회원가입</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
 function customerCreate() {
 	// 형식 검토 과정
@@ -56,6 +55,7 @@ function setChildValue(name, id){
 	hiddenInput.style.display = "none";
 	hiddenInput.name = "allergy";
 	hiddenInput.value = id;
+	hiddenInput.className = "allergy"
 	
 	var td = search.parentNode;
 	td.insertBefore(allergy, search)
@@ -69,6 +69,11 @@ function resetData(){
     var len = spans.length;
     for (var i = 0; i < len; i++) {
       spans[0].remove();
+    }
+    var input = document.getElementsByClassName("allergy");
+    var len = input.length;
+    for (var i = 0; i < len; i++) {
+    	input[0].remove();
     }
 }
 </script>
@@ -150,7 +155,5 @@ function resetData(){
     </tr>
   </table>  
 </form>
-
-<script src="<c:url value='/js/modal.js'/>" type="text/javascript"></script>
 </body>
 </html>

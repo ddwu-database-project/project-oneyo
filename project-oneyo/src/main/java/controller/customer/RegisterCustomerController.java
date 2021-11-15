@@ -14,7 +14,7 @@ import model.service.ExistingCustomerException;
 public class RegisterCustomerController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(RegisterCustomerController.class);
     private CustomerDAO customerDAO = new CustomerDAO();
-    private AllergyDAO alleryDAO = new AllergyDAO();
+    private AllergyDAO allergyDAO = new AllergyDAO();
     
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -46,7 +46,7 @@ public class RegisterCustomerController implements Controller {
 			if (aIds != null) {
 				int cId = customerDAO.findCustomer(email).getCustomerId();
 				for (int i = 0; i < aIds.length; i++) {
-					alleryDAO.create(cId, Integer.parseInt(aIds[i]));
+					allergyDAO.create(cId, Integer.parseInt(aIds[i]));
 				}
 			}
 		} catch (Exception e) {		// 예외 발생 시 회원가입 form으로 forwarding
