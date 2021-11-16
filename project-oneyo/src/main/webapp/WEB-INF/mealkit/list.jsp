@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>O!NEYO</title>
+    <title>O!NEYO О©╫Ц┘╩О©╫О©╫О©╫О©╫ О©╫К▀©О©╫ О©╫О©╫Г■╠я┼О©╫О©╫: О╖█О©╫Г∙╟Ц┘╫О©╫О©╫ Х╚⌡О©╫О©╫Ц┘╫О©╫О©╫ О©╫О©╫О╖█О©╫ О©╫О©╫И█╝О©╫О©╫О©╫</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -62,26 +62,6 @@ https://templatemo.com/tm-559-zay-shop
 </head>
 
 <body>
-  <!-- Start Top Nav -->
-    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
-        <div class="container text-light">
-            <div class="w-100">
-                <div class="sign">
-                	<% 
-	                	String name = (String)request.getSession().getAttribute("name");
-	                	if (name != null) { 
-	                		out.print(name + "╢т ╬хЁГго╪╪©Д! &ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">╥н╠в╬ф©Т</a> <%
-	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">х╦©Ь╟║ют &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">╥н╠вюн</a> <% 
-	                	} %>          
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Close Top Nav -->
-
      <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
@@ -206,7 +186,7 @@ https://templatemo.com/tm-559-zay-shop
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
                             </li>
-                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="╟к╩Ж╬Н╦╕ ют╥бго╪╪©Д."/></li>
+                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="Е╞┐О©╫О©╫О©╫О©╫К▄─О©╫О©╫ О©╫О©╫О©╫н╫О©╫О©╫О©╫К╙└О©╫О©╫."/></li>
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
@@ -237,8 +217,8 @@ https://templatemo.com/tm-559-zay-shop
                             <div class="card-body">
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
                                 <p id="mkname">${mk.mkName}</p></a>
-                                <p>д╝╥н╦╝ : ${mk.defaultCal}</p>
-                                <p>╟║╟щ : ${mk.defaultPrice}</p>
+                                <p>Г╖╩Л┤╟О©╫Г■╠О©╫ : ${mk.defaultCal}</p>
+                                <p>Е╙⌡О©╫Е╞┐О©╫ : ${mk.defaultPrice}</p>
                             </div>
                         </div>
                         <div style="display:none;" id="ingList">

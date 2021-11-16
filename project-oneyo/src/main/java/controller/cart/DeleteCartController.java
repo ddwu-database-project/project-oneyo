@@ -16,6 +16,7 @@ public class DeleteCartController implements Controller {
 		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
 		String[] list = request.getParameterValues("select");
+		System.out.println(list);
 		
 		if (list == null)
 			return "redirect:/cart/list";

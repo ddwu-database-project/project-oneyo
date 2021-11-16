@@ -22,8 +22,8 @@
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 
+    <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 </head>
 
 <body>
@@ -35,11 +35,13 @@
                 	<% 
 	                	String name = (String)request.getSession().getAttribute("name");
 	                	if (name != null) { 
+
 	                		out.print(name + "님 안녕하세요! &ensp;"); %>
 	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
 	                	} else { %>
 	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
                     		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+
 	                	} %>          
                 </div>
             </div>
@@ -319,7 +321,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
+                            �곗�댄�곕��댁�� ��濡�洹몃��諛� - 源�寃쏀��, ���④꼍, �댄��以�, ����誘�
                         </p>
                     </div>
                 </div>

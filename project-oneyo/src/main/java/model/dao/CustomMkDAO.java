@@ -181,4 +181,41 @@ public class CustomMkDAO {
 		}
 		return 0;
 	}
+	
+	public CustomMealkit findByCustomMkId(int customMkId, int customerId) {
+		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie, c.quantity "
+				+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE custommkid=?";
+		Object[] param = new Object[] { customMkId };
+		jdbcUtil.setSqlAndParameters(sql, param);		
+		
+		ResultSet rs = null;
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				CustomMealkit cm = new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
+						rs.getInt("custommkid"), customerId, rs.getInt("price"), rs.getInt("quantity"), rs.getInt("calorie"));
+				List<CustomMealkit> cmList = new ArrayList<>();
+				cmList.add(cm);
+				findIngList(cmList);
+				return cm;
+			}
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+			}
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		
+		return null;
+	}
+
+	private void cm() {
+		// TODO Auto-generated method stub
+		
+	}
 }

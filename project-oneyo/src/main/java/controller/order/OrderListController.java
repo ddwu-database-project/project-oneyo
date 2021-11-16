@@ -16,18 +16,23 @@ public class OrderListController implements Controller {
 		
 		// get login customer
 		HttpSession session = request.getSession();
+		if (!CustomerSessionUtils.hasLogined(session)) {
+			return "redirect:/customer/login/form";
+		}
 		String email = CustomerSessionUtils.getLoginCustomerId(session);
-								
+		
 		// get login customer Id
 		CustomerDAO customerDAO = new CustomerDAO();
 		Customer customer = customerDAO.findCustomer(email);
 		int customerId = customer.getCustomerId();
 		
     	OrderDAO orderDAO = new OrderDAO();
-    	List<Order> orderList = orderDAO.viewOrderList(customerId); //5´ë½Å customerId
+    	List<Order> orderList = orderDAO.findOrderByCustomerId(customerId);//5ï¿½ï¿½ï¿½ customerId
+    	
+    	
     	
     	request.setAttribute("orderList", orderList);
     	//forwarding
-    	return "/order/list.jsp";
+    	return "/order/list2.jsp";
 	}
 }

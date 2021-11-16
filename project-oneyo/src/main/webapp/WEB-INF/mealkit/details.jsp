@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -273,7 +274,9 @@ https://templatemo.com/tm-559-zay-shop
                                         <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
                                     </div>
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                        <a href="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/>
+                                        <button class="btn btn-success btn-lg" name="submit" value="addtocard"></c:url>"> 재료 수정</button>
+                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -291,12 +294,12 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container">
             <div class="row text-left p-2 pb-3">
                 <h4>Related Products</h4>
+                
             </div>
 
             <!--Start Carousel Wrapper-->
             <div id="carousel-related-product">
 <c:forEach var="mkIngs" items="${mealkit.getIngredients()}">
-ㅁㄴㅇㄹㄴㅁㅇㄹ
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
@@ -310,9 +313,9 @@ https://templatemo.com/tm-559-zay-shop
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">Red Clothing</a>
+                            <a href="shop-single.html" class="h3 text-decoration-none">${mkIngs.getIngName()}</a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
+                                <li>${mkIngs.getIngCalorie()}kcal</li>
                                 <li class="pt-2">
                                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -321,16 +324,8 @@ https://templatemo.com/tm-559-zay-shop
                                     <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                 </li>
                             </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="text-center mb-0">$20.00</p>
+                            <p class="text-center mb-0">${mkIngs.getIngPrice()}원</p>
+                 			<p class="text-center mb-0">${mkIngs.getIngQuantity()}개</p>
                         </div>
                     </div>
                 </div>

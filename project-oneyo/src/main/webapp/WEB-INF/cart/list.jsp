@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>장바구니</title>
 <script>
-function updateQty() {
-	alert('hey');
+function updateQty(a) {
+	alert(a);
 }
 
 function deleteItem() {
@@ -16,22 +16,26 @@ function deleteItem() {
 }
 
 //주문버튼 클릭시, checkbox클릭된 customMkId 값들을 /order/cart로 넘겨준다
-$("#buy").click(function buy(){
-	var obj = document.getElementsByName("item[]");
-	List<Integer> customMkList = new ArrayList<>();
-    for (i=0;i<obj.length;i++) {
-        if (obj[i].checked) {
-            no = obj[i].value;
-            customMkId = document.getElementById("customMkId"+ no).value;
-            customMkList.add(customMkId);
+function buy(){
+	var obj_len = document.getElementsByName("select").length;
+	var cnt = 0;
+	
+    for (i = 0; i < obj_len; i++) {
+        if (document.getElementsByName("select")[i].checked == true) {
+            cnt++;
         }
     }
-    //세션에 저장
-    HttpSession session2 = request.getSession();
-    session.setAttribute("cmkIdList", customMkList);
     
-    location.href="<c:url value='/order/cart' />";
-}); 
+    alert(cnt);
+    
+    if (parseInt(cnt) < 1) {
+    	alert("선택된 상품이 없습니다!");
+    	return false;
+    }
+	return true;
+    
+  
+} 
 </script>
 </head>
 <body>
@@ -46,7 +50,8 @@ $("#buy").click(function buy(){
 	<p> 장바구니에 담긴 아이템이 없습니다 </p>
 </c:if>
 
-<form id="hey" method="POST" action="<c:url value="/cart/delete" />">
+<form id="f1" method="POST" action="<c:url value="/cart/delete" />">
+<input type="hidden" value="cart" name="which">
 <input type="submit" value="삭제" onClick="deleteItem()">
 <c:forEach var="item" items="${cartitems}">
 <table width = 100% border = 1px>
@@ -54,7 +59,6 @@ $("#buy").click(function buy(){
 		<td>
 			<table height = "200" width = 100%>
 				<tr>
-					<td rowspan="4"><input type="checkbox" name="item[]" ></td>
 					<td rowspan="4"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></td>
 					<td rowspan="4" width = "200">상품 이미지</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
@@ -80,12 +84,14 @@ $("#buy").click(function buy(){
 	</tr>
 </table>
 </c:forEach>
-</form>
+
 
 
 <tr height = 80 align="center">
 	<td>총 금액 : ${totalPrice}</td>
 </tr>
-<button type="button" id="buy">주문하기</button>
+<button type="submit" id="buy" onClick="buy()" formaction="<c:url value="/order/form" />">주문하기</button>
+</form>
+
 </body>
 </html>
