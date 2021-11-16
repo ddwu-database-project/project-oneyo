@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/templatemo.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../assets/css/templatemo.css"> 
     <link rel="stylesheet" href="../assets/css/custom.css">
 
     <link rel="stylesheet" href="../assets/css/style.css">

@@ -13,7 +13,7 @@
 <title>주문 페이지</title>
 <style type="text/css">
 	div#backbody {
-	background-color: #f5f5f0;
+	background-color: #f9f9f9;
 	font-size: 13pt;
 	min-width: 1480px;
 	width: 100%;	
