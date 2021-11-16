@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>O!NEYO ¿À´ÃÀº ³»°¡ ¿ä¸®»ç: ¸ÂÃãÇü ¹ÐÅ°Æ® ÆÇ¸Å ¼­ºñ½º</title>
+    <title>O!NEYO ì˜¤ëŠ˜ì€ ë‚´ê°€ ìš”ë¦¬ì‚¬: ë§žì¶¤í˜• ë°€í‚¤íŠ¸ íŒë§¤ ì„œë¹„ìŠ¤</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,11 +41,11 @@ https://templatemo.com/tm-559-zay-shop
                 	<% 
 	                	String name = (String)request.getSession().getAttribute("name");
 	                	if (name != null) { 
-	                		out.print(name + "´Ô ¾È³çÇÏ¼¼¿ä! &ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout' />">·Î±×¾Æ¿ô</a> <%
+	                		out.print(name + "ë‹˜ ì•ˆë…•í•˜ì„¸ìš”! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout' />">ë¡œê·¸ì•„ì›ƒ</a> <%
 	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register' />">È¸¿ø°¡ÀÔ &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form' />">·Î±×ÀÎ</a> <% 
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register' />">íšŒì›ê°€ìž… &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form' />">ë¡œê·¸ì¸</a> <% 
 	                	} %>          
                 </div>
             </div>
@@ -58,7 +58,7 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
             <img class="logo_img" src="./assets/img/oneyo_logo.PNG" width="50px">
-            <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="<c:url value='/home' />">
+            <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="<c:url value='/home'/>">
                 O!NEYO
             </a>
 
@@ -70,7 +70,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/home' />">Home</a>
+                            <a class="nav-link" href="<c:url value='/home'/>">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
@@ -325,7 +325,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            µ¥ÀÌÅÍº£ÀÌ½º ÇÁ·Î±×·¡¹Ö - ±è°æÇö, ½ÅÈ¿°æ, ÀÌÇýÁØ, Àü¼ö¹Î
+                            ë°ì´í„°ë² ì´ìŠ¤ í”„ë¡œê·¸ëž˜ë° - ê¹€ê²½í˜„, ì‹ íš¨ê²½, ì´í˜œì¤€, ì „ìˆ˜ë¯¼
                         </p>
                     </div>
                 </div>
