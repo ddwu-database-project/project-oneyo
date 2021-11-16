@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
@@ -26,9 +26,7 @@
 <!--
     
 TemplateMo 559 Zay Shop
-
 https://templatemo.com/tm-559-zay-shop
-
 -->
 </head>
 
@@ -325,7 +323,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            �곗�댄�곕��댁�� ��濡�洹몃��諛� - 源�寃쏀��, ���④꼍, �댄��以�, ����誘�
+                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
                         </p>
                     </div>
                 </div>
