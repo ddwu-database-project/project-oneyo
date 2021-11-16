@@ -23,51 +23,66 @@ public class FormOrderController implements Controller{
 		// get login customer
 		HttpSession session = request.getSession();
 		String email = CustomerSessionUtils.getLoginCustomerId(session);
-						
+
 		// get login customer Id
 		CustomerDAO customerDAO = new CustomerDAO();
 		Customer customer = customerDAO.findCustomer(email);
 		int customerId = customer.getCustomerId();
-		
-		// get mealkit info
-		MealkitDAO mealkitDAO = new MealkitDAO();
-		int mkId = Integer.parseInt(request.getParameter("mkId"));
-		Mealkit mealkit = mealkitDAO.findMealkit(mkId);
-				
-		// get custom mealkit info
-		List<Ingredient> mkIngs = mealkitDAO.findMealkitIng(mkId);
-		String[] ingIds = request.getParameterValues("mkIngIds");
-				
-		int totalIngCalorie = mkIngs.size() == 0 ? mealkit.getDefaultCal() : 0;
-		int totalIngPrice = mkIngs.size() == 0 ? mealkit.getDefaultPrice() : 0;
-		// set custom mealkit info
-		for (int i = 0; ingIds != null && i < ingIds.length; i++) {
-			int ingQuantity = Integer.parseInt(request.getParameter("IngQuantity"+ingIds[i]));
-			mkIngs.get(i).setIngQuantity(ingQuantity);
-					
-			//calculate total ingredients price
-			int ingPrice = Integer.parseInt(request.getParameter("mkIngPrice"+ingIds[i]));
-			mkIngs.get(i).setIngPrice(ingPrice*ingQuantity);
-			totalIngPrice += ingPrice*ingQuantity;
-			
-			//calculate total ingredients calorie
-			int ingCalorie = Integer.parseInt(request.getParameter("mkIngCalorie"+ingIds[i]));
-			mkIngs.get(i).setIngCalorie(ingCalorie*ingQuantity);
-			totalIngCalorie += ingCalorie*ingQuantity;
-		}
-
-		// create CustomerMealkit
-		CustomMealkit customMealkit = new CustomMealkit(mealkit, customerId, totalIngPrice, 1, totalIngCalorie, mkIngs);
-		CustomMkDAO customMkDAO = new CustomMkDAO();
-				
-		customMkDAO.create(customMealkit);
-		
-		//Ä¿½ºÅÒ¹ÐÅ°Æ®¸®½ºÆ® ÀúÀå
+		String which = request.getParameter("which");
 		List<CustomMealkit> customMealkitList = new ArrayList<CustomMealkit>();
-		customMealkitList.add(customMealkit);
-		request.setAttribute("customMealkitList", customMealkitList); //Ä¿½ºÅÒ ¹ÐÅ°Æ® ¸®½ºÆ® + ¿É¼Ç ÀúÀåÇØµÎ±â  
 		
-    	//redirection
-    	return "/order/order.jsp"; //ÀÌ°÷¿¡¼­ »ç¿ë
+		if (which != null && which.equals("cart")) {
+			String[] customMkIds = request.getParameterValues("select");
+			CustomMkDAO customMkDAO = new CustomMkDAO();
+			
+			for (String id : customMkIds) {
+				customMealkitList.add(customMkDAO.findByCustomMkId(Integer.parseInt(id), customerId));
+			}
+			for (CustomMealkit cm : customMealkitList) {
+				System.out.println(cm.getCustomMealkitId());
+			}
+			
+		}
+		else {
+			// get mealkit info
+			MealkitDAO mealkitDAO = new MealkitDAO();
+			int mkId = Integer.parseInt(request.getParameter("mkId"));
+			Mealkit mealkit = mealkitDAO.findMealkit(mkId);
+					
+			// get custom mealkit info
+			List<Ingredient> mkIngs = mealkitDAO.findMealkitIng(mkId);
+			String[] ingIds = request.getParameterValues("mkIngIds");
+					
+			int totalIngCalorie = mkIngs.size() == 0 ? mealkit.getDefaultCal() : 0;
+			int totalIngPrice = mkIngs.size() == 0 ? mealkit.getDefaultPrice() : 0;
+			// set custom mealkit info
+			for (int i = 0; ingIds != null && i < ingIds.length; i++) {
+				int ingQuantity = Integer.parseInt(request.getParameter("IngQuantity"+ingIds[i]));
+				mkIngs.get(i).setIngQuantity(ingQuantity);
+						
+				//calculate total ingredients price
+				int ingPrice = Integer.parseInt(request.getParameter("mkIngPrice"+ingIds[i]));
+				mkIngs.get(i).setIngPrice(ingPrice*ingQuantity);
+				totalIngPrice += ingPrice*ingQuantity;
+				
+				//calculate total ingredients calorie
+				int ingCalorie = Integer.parseInt(request.getParameter("mkIngCalorie"+ingIds[i]));
+				mkIngs.get(i).setIngCalorie(ingCalorie*ingQuantity);
+				totalIngCalorie += ingCalorie*ingQuantity;
+			}
+
+			// create CustomerMealkit
+			CustomMealkit customMealkit = new CustomMealkit(mealkit, customerId, totalIngPrice, 1, totalIngCalorie, mkIngs);
+			CustomMkDAO customMkDAO = new CustomMkDAO();
+					
+			customMkDAO.create(customMealkit);
+			
+			//Ä¿ï¿½ï¿½ï¿½Ò¹ï¿½Å°Æ®ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+			customMealkitList.add(customMealkit);
+	    	 //ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		}
+		request.setAttribute("customMealkitList", customMealkitList); //Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°Æ® ï¿½ï¿½ï¿½ï¿½Æ® + ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ±ï¿½  
+		request.setAttribute("c", customer);
+		return "/order/order2.jsp";
 	}
 }

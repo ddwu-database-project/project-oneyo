@@ -1,10 +1,12 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
+    <title>O!NEYO �ㅻ���� �닿� ��由ъ��: 留�異ㅽ�� 諛��ㅽ�� ��留� ��鍮���</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -209,7 +211,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">${mealkit.getMkName()}</h1>
-                            <p class="h3 py-2">${mealkit.getDefaultPrice()}원</p>
+                            <p class="h3 py-2">${mealkit.getDefaultPrice()}��</p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -295,7 +297,7 @@ https://templatemo.com/tm-559-zay-shop
             <!--Start Carousel Wrapper-->
             <div id="carousel-related-product">
 <c:forEach var="mkIngs" items="${mealkit.getIngredients()}">
-ㅁㄴㅇㄹㄴㅁㅇㄹ
+���담���밤�담������
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">

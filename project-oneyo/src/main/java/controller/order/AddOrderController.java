@@ -1,5 +1,6 @@
 package controller.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
-import model.dto.*;
-import model.dao.*;
+import model.dao.CustomMkDAO;
+import model.dao.CustomerDAO;
+import model.dao.OrderDAO;
+import model.dto.CustomMealkit;
+import model.dto.Customer;
+import model.dto.Order;
 
 public class AddOrderController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,8 +28,18 @@ public class AddOrderController implements Controller {
 		int customerId = customer.getCustomerId();
 		
 		//주문페이지에서 세션에 저장한 주문한 커스텀 밀키트 리스트 가져오기
-		@SuppressWarnings("unchecked")
-		List<CustomMealkit> customMealkitList = (List<CustomMealkit>) session.getAttribute("orderedcmkList");
+//		@SuppressWarnings("unchecked")
+//		List<CustomMealkit> cmList = (List<CustomMealkit>) session.getAttribute("orderedcmkList");
+//		System.out.println(cmList);
+		
+		String[] orderMkIds = request.getParameterValues("orderMkId");
+		
+		CustomMkDAO customMkDAO = new CustomMkDAO();
+		List<CustomMealkit> customMealkitList = new ArrayList<CustomMealkit>();
+		
+		for (String id : orderMkIds) {
+			customMealkitList.add(customMkDAO.findByCustomMkId(Integer.parseInt(id), customer.getCustomerId()));
+		}
 		
 		OrderDAO orderDAO = new OrderDAO();
 		orderDAO.addOrder(customMealkitList); //추가하기
@@ -32,6 +47,7 @@ public class AddOrderController implements Controller {
 		request.setAttribute("orderList", orderList);
 		
 		//forwarding
-    	return "/order/list.jsp"; //이곳에서 사용
+//    	return "/order/list.jsp"; //이곳에서 사용
+		return "redirect:/order/list";
 	}
 }

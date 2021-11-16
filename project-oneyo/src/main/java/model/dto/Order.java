@@ -6,11 +6,30 @@ public class Order {
 	private int orderId;
 	private int customerId;
 	private int status;
+	private int totalPrice;
 	private String orderDate;
 	private ShippingDetail shippingDetail;
 	private List<CustomMealkit> orderCustomMk;
+	
 
-	public Order() {}
+	public Order(int orderId, int customerId, int status, int totalPrice, String orderDate, ShippingDetail shippingDetail, List<CustomMealkit> orderCustomMk) {
+		this.orderId = orderId;
+		this.customerId = customerId;
+		this.status = status;
+		this.orderDate = orderDate;
+		this.totalPrice = totalPrice;
+		this.shippingDetail = shippingDetail;
+		this.orderCustomMk = orderCustomMk;
+	}
+	
+	public Order(int orderId, int customerId, int status, int totalPrice, String orderDate) {
+		this(orderId, customerId, status, totalPrice, orderDate, null, null);
+	}
+	
+	
+	public Order() {
+		this(0, 0, 0, 0, "", null, null);
+	}
 
 	
 	
@@ -97,6 +116,14 @@ public class Order {
 		this.orderId = orderId;
 		this.shippingDetail = shippingDetail;
 		this.orderCustomMk = orderCustomMk;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	
 	
