@@ -13,3 +13,11 @@
 .nav-bg-color {
   background-color: #60B5BC;
 }
+
+.sign {
+	text-align: right;
+}
+
+.sign-up, .sign-in {
+	text-decoration: none;
+}

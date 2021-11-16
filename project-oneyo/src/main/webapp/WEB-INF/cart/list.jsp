@@ -54,7 +54,11 @@ $("#buy").click(function buy(){
 		<td>
 			<table height = "200" width = 100%>
 				<tr>
+<<<<<<< HEAD
+					<td rowspan="4"><input type="checkbox" name="item[]"></td>
+=======
 					<td rowspan="4"><input type="checkbox" name="item[]" ></td>
+>>>>>>> 3b37172bc126165f4d4475a1b76f3173fb101bc8
 					<td rowspan="4"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></td>
 					<td rowspan="4" width = "200">상품 이미지</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
