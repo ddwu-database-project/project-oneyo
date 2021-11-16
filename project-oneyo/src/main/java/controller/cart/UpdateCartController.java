@@ -11,8 +11,9 @@ public class UpdateCartController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-
 		CartDAO cartDAO = new CartDAO();
+				
+		
 		String id = request.getParameter("id");
 		
 		cartDAO.update(id, request.getParameter("quantity" + id));
