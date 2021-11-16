@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
+    <title>O!NEYO �ㅻ���� �닿� ��由ъ��: 留�異ㅽ�� 諛��ㅽ�� ��留� ��鍮���</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -187,7 +186,7 @@ https://templatemo.com/tm-559-zay-shop
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
                             </li>
-                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="검색어를 입력하세요."/></li>
+                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="寃����대�� ���ν���몄��."/></li>
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
@@ -218,8 +217,8 @@ https://templatemo.com/tm-559-zay-shop
                             <div class="card-body">
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
                                 <p id="mkname">${mk.mkName}</p></a>
-                                <p>칼로리 : ${mk.defaultCal}</p>
-                                <p>가격 : ${mk.defaultPrice}</p>
+                                <p>移쇰�由� : ${mk.defaultCal}</p>
+                                <p>媛�寃� : ${mk.defaultPrice}</p>
                             </div>
                         </div>
                         <div style="display:none;" id="ingList">
