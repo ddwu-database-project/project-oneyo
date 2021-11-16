@@ -62,6 +62,26 @@ https://templatemo.com/tm-559-zay-shop
 </head>
 
 <body>
+  <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+	                	} %>          
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
      <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
