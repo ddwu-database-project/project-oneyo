@@ -33,3 +33,7 @@
 .ag:hover {
   color: #60B5BC;
 }
+
+.search {
+	margin-left: 10px !important;
+}
