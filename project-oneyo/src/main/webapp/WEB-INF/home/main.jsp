@@ -51,7 +51,7 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
             <img class="logo_img" src="./assets/img/oneyo_logo.PNG" width="50px">
-            <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="<c:url value='/home'/>">
                 O!NEYO
             </a>
 
@@ -63,7 +63,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/home' />">Home</a>
+                            <a class="nav-link" href="<c:url value='/home'/>">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
