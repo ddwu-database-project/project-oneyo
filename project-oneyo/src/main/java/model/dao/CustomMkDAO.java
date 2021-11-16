@@ -114,18 +114,19 @@ public class CustomMkDAO {
 					ingList.add(new Ingredient(ingName, ingPrice, ingCalorie, ingQuantity));
 				}
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
+			jdbcUtil.rollback();
 			e.printStackTrace();
-			return false;
 		} finally {
 			if (rs != null) {
 				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
 			}
+			jdbcUtil.commit();
 		}
 		return true;
 	}
 	
-	public List<CustomMealkit> findNotSharedLIst(int customerId) throws SQLException {
+	public List<CustomMealkit> findNotSharedLIst(int customerId) throws Exception {
 		ArrayList<CustomMealkit> cmList = new ArrayList<>();
 		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
 				+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE orderstatus=1 AND sharestatus=0 AND customerid=?";
@@ -140,17 +141,36 @@ public class CustomMkDAO {
 				cmList.add(new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
 						rs.getInt("custommkid"), rs.getInt("price"), rs.getInt("calorie")));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
 			}
+			jdbcUtil.commit();
+			jdbcUtil.close();
 		}
 		
 		findIngList(cmList);
 		
 		return (cmList);
+	}
+	
+	public int updateShare(int customMkId) {
+		String sql = "UPDATE custommealkit SET sharestatus=1 WHERE custommkid=?";
+		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { customMkId });
+		try {
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return 0;
 	}
 }

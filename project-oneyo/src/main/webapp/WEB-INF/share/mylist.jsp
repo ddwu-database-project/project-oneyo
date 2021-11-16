@@ -16,7 +16,7 @@
 		<c:forEach var="item" items="${customMk}">
 			<form name="f${item.getCustomMealkitId()}" method="POST"
 				action="<c:url value="/share/add" />">
-				<input type="hidden" value="${item.getCustomMealkitId()}">
+				<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
 				<tr>
 					<td rowspan="4">상품 이미지</td>
 					<td width="50%">${item.getOriginalMealkit().getMkName()}</td>
