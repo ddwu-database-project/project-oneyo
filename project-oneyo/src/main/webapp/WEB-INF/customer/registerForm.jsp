@@ -209,11 +209,11 @@
                 </div>
                 <div class="mb-3">
                   <label for="inputsubject">Password</label>
-                  <input type=""password"" class="form-control mt-1" id="subject" name="password" placeholder="Password">
+                  <input type="password" class="form-control mt-1" id="subject" name="password" placeholder="Password">
                 </div>
                 <div class="mb-3">
                   <label for="inputsubject">Confirm Password</label>
-                  <input type=""password"" class="form-control mt-1" id="subject" name="password2" placeholder="Confirm Password">
+                  <input type="password" class="form-control mt-1" id="subject" name="password2" placeholder="Confirm Password">
                 </div>
                 <div class="mb-3">
                   <label for="inputsubject">Name</label>
