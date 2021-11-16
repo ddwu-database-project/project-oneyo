@@ -23,6 +23,9 @@ public class AddCartController implements Controller{
 		
 		// get login customer
 		HttpSession session = request.getSession();
+		if (!CustomerSessionUtils.hasLogined(session)) {
+			return "redirect:/customer/login/form";
+		}
 		String email = CustomerSessionUtils.getLoginCustomerId(session);
 		
 		Mealkit mk = (Mealkit) request.getAttribute("mktest");

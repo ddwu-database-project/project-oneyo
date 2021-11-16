@@ -10,42 +10,47 @@ public class CustomMealkit {
 	private int customerId;
 	private int quantity;			
 	private int price;		
-	private int totalCalorie;
+	private int calorie;
 	private List<Ingredient> ingredients;
+
+	public CustomMealkit(Mealkit mealkitInfo, int customMealkitId, int customerId, int quantity, int price, int calorie, List<Ingredient> ingredients) {
+		this.mealkitInfo = mealkitInfo;
+		this.customMealkitId = customMealkitId;
+		this.customerId = customerId;
+		this.quantity = quantity;
+		this.price = price;
+		this.calorie = calorie;
+		this.ingredients = ingredients;
+	}
 	
 	public CustomMealkit(Mealkit mealkitInfo, int customerId) {
-		this.mealkitInfo = mealkitInfo;
-		this.customerId = customerId;
-		this.ingredients = new ArrayList<>();
+		this(mealkitInfo, 0, customerId, 0, 0, 0, new ArrayList<Ingredient>());
 	}
 	
 	public CustomMealkit(Mealkit mealkitInfo, int customerId, int price, int quantity, int totalCalorie, List<Ingredient> ingredient)
 	{
-		this.mealkitInfo = mealkitInfo;
-		this.customerId = customerId;
-		this.quantity = quantity;
-		this.price = price;
-		this.totalCalorie = totalCalorie;
-		this.ingredients = ingredient;
+		this(mealkitInfo, 0, customerId, quantity, price, totalCalorie, ingredient);
 	}
 
 	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int customerId, int price, int quantity, int totalCalorie)
 	{
-		this.mealkitInfo = mealkitInfo;
-		this.customMealkitId = customMkId;
-		this.customerId = customerId;
-		this.quantity = quantity;
-		this.price = price;
-		this.totalCalorie = totalCalorie;
+		this(mealkitInfo, customMkId, customerId, quantity, price, totalCalorie, new ArrayList<Ingredient>());
+	}
+	
+	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int calorie)
+	{
+		this(mealkitInfo, customMkId, 0, quantity, price, calorie, new ArrayList<Ingredient>());
 	}
 	
 	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity)
 	{
-		this.customMealkitId = customMkId;
-		this.mealkitInfo = mealkitInfo;
-		this.quantity = quantity;
-		this.price = price;
+		this(mealkitInfo, customMkId, 0, quantity, price, 0, new ArrayList<Ingredient>());
 	}
+	
+	public CustomMealkit(Mealkit mealkitInfo, int customerId, int customMkId, int price, int calorie) {
+		this(mealkitInfo, customMkId, customerId, 0, price, calorie, new ArrayList<Ingredient>());
+	}
+
 	
 	public Mealkit getOriginalMealkit() {
 		return mealkitInfo;
@@ -78,10 +83,10 @@ public class CustomMealkit {
 		this.price = price;
 	}
 	public int getTotalCalorie() {
-		return totalCalorie;
+		return calorie;
 	}
 	public void setTotalCalorie(int totalCalorie) {
-		this.totalCalorie = totalCalorie;
+		this.calorie = totalCalorie;
 	}
 	public List<Ingredient> getIngredients() {
 		return ingredients;
@@ -96,6 +101,16 @@ public class CustomMealkit {
 		String result = "";
 		for (Ingredient ing : ingList) {
 			if (ing != ingList.get(0))
+				result += ", ";
+			result += ing.getIngName() + "(" + ing.getIngQuantity() + "°³)";
+		}
+		return result;
+	}
+	
+	public String printCustomIng() {
+		String result = "";
+		for (Ingredient ing : ingredients) {
+			if (ing != ingredients.get(0))
 				result += ", ";
 			result += ing.getIngName() + "(" + ing.getIngQuantity() + "°³)";
 		}

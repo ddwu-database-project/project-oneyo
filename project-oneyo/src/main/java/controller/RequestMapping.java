@@ -2,14 +2,33 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.order.*;
-import controller.customer.*;
-import controller.mealkit.*;
-import controller.cart.*;
-import controller.ingredient.*;
+import controller.cart.AddCartController;
+import controller.cart.CartListController;
+import controller.cart.DeleteCartController;
+import controller.cart.UpdateCartController;
+import controller.customer.DeleteCustomerController;
+import controller.customer.LoginController;
+import controller.customer.LogoutController;
+import controller.customer.RegisterCustomerController;
+import controller.customer.UpdateCustomerController;
+import controller.customer.ViewCustomerController;
+import controller.ingredient.SearchIngController;
+import controller.mealkit.CustomMealkitIngController;
+import controller.mealkit.MealkitListController;
+import controller.mealkit.ViewMealkitController;
+import controller.order.AddOrderController;
+import controller.order.CartOrderController;
+import controller.order.DeleteOrderController;
+import controller.order.FormOrderController;
+import controller.order.OrderListController;
+import controller.share.AddShareController;
+import controller.share.DeleteShareController;
+import controller.share.ShareListController;
+import controller.share.ShareMyListController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -46,6 +65,10 @@ public class RequestMapping {
         mappings.put("/mealkit/detail", new ViewMealkitController());
         mappings.put("/mealkit/custom", new CustomMealkitIngController());
 
+        mappings.put("/share/list/my", new ShareMyListController());
+        mappings.put("/share/list/all", new ShareListController());
+        mappings.put("/share/add", new AddShareController());
+        mappings.put("/share/delete", new DeleteShareController());
         logger.info("Initialized Request Mapping!");
     }
 
