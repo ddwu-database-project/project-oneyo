@@ -47,8 +47,8 @@ public class CustomMealkit {
 		this(mealkitInfo, customMkId, 0, quantity, price, 0, new ArrayList<Ingredient>());
 	}
 	
-	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int price, int calorie) {
-		this(mealkitInfo, customMkId, 0, 0, price, calorie, new ArrayList<Ingredient>());
+	public CustomMealkit(Mealkit mealkitInfo, int customerId, int customMkId, int price, int calorie) {
+		this(mealkitInfo, customMkId, customerId, 0, price, calorie, new ArrayList<Ingredient>());
 	}
 
 	

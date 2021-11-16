@@ -26,6 +26,8 @@ import controller.order.DeleteOrderController;
 import controller.order.FormOrderController;
 import controller.order.OrderListController;
 import controller.share.AddShareController;
+import controller.share.DeleteShareController;
+import controller.share.ShareListController;
 import controller.share.ShareMyListController;
 
 public class RequestMapping {
@@ -63,8 +65,10 @@ public class RequestMapping {
         mappings.put("/mealkit/detail", new ViewMealkitController());
         mappings.put("/mealkit/custom", new CustomMealkitIngController());
 
-        mappings.put("/share/mylist", new ShareMyListController());
+        mappings.put("/share/list/my", new ShareMyListController());
+        mappings.put("/share/list/all", new ShareListController());
         mappings.put("/share/add", new AddShareController());
+        mappings.put("/share/delete", new DeleteShareController());
         logger.info("Initialized Request Mapping!");
     }
 

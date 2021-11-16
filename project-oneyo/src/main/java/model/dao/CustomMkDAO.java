@@ -126,20 +126,27 @@ public class CustomMkDAO {
 		return true;
 	}
 	
-	public List<CustomMealkit> findNotSharedLIst(int customerId) throws Exception {
+	public List<CustomMealkit> findCustomMkList(int customerId) throws Exception {
 		ArrayList<CustomMealkit> cmList = new ArrayList<>();
-		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
-				+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE orderstatus=1 AND sharestatus=0 AND customerid=?";
-		Object[] param = new Object[] { customerId };
+		String sql;
+		if (customerId == -1) {
+			sql = "SELECT c.customerid, m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
+					+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE sharestatus=1";
+			jdbcUtil.setSql(sql);
+		} else {
+			sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
+					+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE orderstatus=1 AND sharestatus=0 AND customerid=?";
+			Object[] param = new Object[] { customerId };
+			jdbcUtil.setSqlAndParameters(sql, param);
+		}		
 		
-		jdbcUtil.setSqlAndParameters(sql, param);
 		ResultSet rs = null;
 		
 		try {
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
 				cmList.add(new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
-						rs.getInt("custommkid"), rs.getInt("price"), rs.getInt("calorie")));
+						customerId == -1 ? rs.getInt("customerid"):customerId, rs.getInt("custommkid"), rs.getInt("price"), rs.getInt("calorie")));
 			}
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -156,11 +163,12 @@ public class CustomMkDAO {
 		
 		return (cmList);
 	}
-	
-	public int updateShare(int customMkId) {
-		String sql = "UPDATE custommealkit SET sharestatus=1 WHERE custommkid=?";
 		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { customMkId });
+	public int updateShare(int customMkId, int value) {
+		
+		String sql = "UPDATE custommealkit SET sharestatus=? WHERE custommkid=?";
+		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { value, customMkId });
 		try {
 			int result = jdbcUtil.executeUpdate();
 			return result;

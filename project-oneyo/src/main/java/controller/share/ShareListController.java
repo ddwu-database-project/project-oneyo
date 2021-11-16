@@ -13,27 +13,28 @@ import model.dao.CustomerDAO;
 import model.dto.CustomMealkit;
 import model.dto.Customer;
 
-public class ShareMyListController implements Controller {
+public class ShareListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// get login customer
+		CustomMkDAO customMkDAO = new CustomMkDAO();
 		HttpSession session = request.getSession();
 		// login confirm
-		if (!CustomerSessionUtils.hasLogined(session)) {
-			return "redirect:/customer/login/form";
+		Customer customer = null;
+		if (CustomerSessionUtils.hasLogined(session)) {
+			String email = CustomerSessionUtils.getLoginCustomerId(session);
+			CustomerDAO customerDAO = new CustomerDAO();
+			customer = customerDAO.findCustomer(email);
 		}
-		String email = CustomerSessionUtils.getLoginCustomerId(session);
-		CustomerDAO customerDAO = new CustomerDAO();
-		Customer customer = customerDAO.findCustomer(email);
 		
-		CustomMkDAO customMkDAO = new CustomMkDAO();
-		List<CustomMealkit> cmList = customMkDAO.findCustomMkList(customer.getCustomerId());
 		
+		
+		List<CustomMealkit> cmList = customMkDAO.findCustomMkList(-1);
+		
+		request.setAttribute("customer", customer);
 		request.setAttribute("customMk", cmList);
-				
-		return "/share/mylist.jsp";
+		return "/share/list.jsp";
 	}
 
 }
