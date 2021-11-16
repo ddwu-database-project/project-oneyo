@@ -41,11 +41,11 @@ https://templatemo.com/tm-559-zay-shop
                 	<% 
 	                	String name = (String)request.getSession().getAttribute("name");
 	                	if (name != null) { 
-	                		out.print(name + "�� �������몄��! &ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout' />">濡�洹몄����</a> <%
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
 	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register' />">����媛��� &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form' />">濡�洹몄��</a> <% 
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
 	                	} %>          
                 </div>
             </div>
