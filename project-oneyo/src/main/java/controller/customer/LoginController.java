@@ -31,6 +31,8 @@ public class LoginController implements Controller {
 			// 세션에 고객 정보 저장 (고객 이메일)
 			HttpSession session = request.getSession();
             session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
+           
+            session.setAttribute("name", customer.getCustomerName()); 
             
 		} catch (Exception e) {	
             request.setAttribute("loginFailed", true);

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>O!NEYO ¿À´ÃÀº ³»°¡ ¿ä¸®»ç: ¸ÂÃãÇü ¹ÐÅ°Æ® ÆÇ¸Å ¼­ºñ½º</title>
+    <title>O!NEYO ì˜¤ëŠ˜ì€ ë‚´ê°€ ìš”ë¦¬ì‚¬: ë§žì¶¤í˜• ë°€í‚¤íŠ¸ íŒë§¤ ì„œë¹„ìŠ¤</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,10 +36,17 @@ https://templatemo.com/tm-559-zay-shop
   <!-- Start Top Nav -->
     <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                <div>
-                    <a class="text-light" href="<c:url value='/customer/register' />">È¸¿ø°¡ÀÔ</a>
-                    <a class="text-light" href="<c:url value='/customer/login/form' />">·Î±×ÀÎ</a>
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+	                		out.print(name + "ë‹˜ ì•ˆë…•í•˜ì„¸ìš”! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout' />">ë¡œê·¸ì•„ì›ƒ</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register' />">íšŒì›ê°€ìž… &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form' />">ë¡œê·¸ì¸</a> <% 
+	                	} %>          
                 </div>
             </div>
         </div>
@@ -318,7 +325,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            µ¥ÀÌÅÍº£ÀÌ½º ÇÁ·Î±×·¡¹Ö - ±è°æÇö, ½ÅÈ¿°æ, ÀÌÇýÁØ, Àü¼ö¹Î
+                            ë°ì´í„°ë² ì´ìŠ¤ í”„ë¡œê·¸ëž˜ë° - ê¹€ê²½í˜„, ì‹ íš¨ê²½, ì´í˜œì¤€, ì „ìˆ˜ë¯¼
                         </p>
                     </div>
                 </div>
