@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.dto.CustomMealkit;
@@ -15,7 +16,7 @@ public class OrderDAO {
 	public OrderDAO() {
 		jdbcUtil = new JDBCUtil();
 	}
-	//Ä¿½ºÅÒµÈ List<Ingredient>°¡Á®¿À±â
+	//Ä¿ï¿½ï¿½ï¿½Òµï¿½ List<Ingredient>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<Ingredient> getCustomIngList(CustomMealkit m){
 		List<Ingredient> customIng = m.getIngredients();
 		String sql = "SELECT i.ingname, i.price, i.calorie, c.ingquantity, "
@@ -37,11 +38,11 @@ public class OrderDAO {
 			ex.printStackTrace();
 		}finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}
 		return customIng;
 	}
-	//cartController¿ë ÁÖ¹®ÆäÀÌÁö Ã¤¿ì±â
+	//cartControllerï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 	public List<CustomMealkit> cartOrderList(List<Integer> id, int customerId){
 		List<CustomMealkit> orderedItems = new ArrayList<>();
 		String sql = "SELECT m.mkname, m.mkId, m.defaultCal, m.defaultPrice, c.price, c.quantity from custommealkit c, mealkit m WHERE c.mkId = m.mkId AND c.customerId = ? AND c.custommkId = ?";
@@ -63,13 +64,13 @@ public class OrderDAO {
 			}
 		}
 		jdbcUtil.commit();
-		jdbcUtil.close();	// resource ¹ÝÈ¯
+		jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		
 		return orderedItems;
 	}
 	
-	//ÁÖ¹® »ó¼¼ Á¶È¸
-	//ÁÖ¹® ³»¿ª ÆäÀÌÁö º¸¿©ÁÖ±â //ÇØ´ç °í°´ÀÌ ¿©ÅÂ±îÁö ÁÖ¹®ÇÑ ¸ðµç ¹ÐÅ°Æ®¸®½ºÆ® º¸¿©ÁÖ´Â °Í//CustomMealkit Å×ÀÌºíÀÇ orderStatus=ÁÖ¹®ÇÔ(1)ÀÎ °Í ¸ðµÎ °¡Á®¿Í¼­ º¸¿©ÁÖÀÚ
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å°Æ®ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½//CustomMealkit ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ orderStatus=ï¿½Ö¹ï¿½ï¿½ï¿½(1)ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<CustomMealkit> findOrderList(int customerId) {
 	    List<CustomMealkit> orderedItems = new ArrayList<>();
 	    String sql = "SELECT m.mkname, m.mkId, m.defaultCal, m.defaultPrice, c.price, c.quantity, c.custommkId from custommealkit c, mealkit m WHERE c.mkId = m.mkId AND c.customerId = ?";
@@ -89,12 +90,12 @@ public class OrderDAO {
 			ex.printStackTrace();
 		}finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}
 		
 		return orderedItems;
 	}
-	//ÁÖ¹®¸®½ºÆ® º¸¿©ÁÖ±â
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	public List<Order> viewOrderList(int customerId){
 		List<CustomMealkit> orderedItems = findOrderList(customerId);
 		String sql = "SELECT s.orderId, s.orderdate, s.company, s.trackingnum FROM shippingdetail s, orderinfo o WHERE s.orderId=o.orderId AND o.customMkId = ?";
@@ -122,112 +123,136 @@ public class OrderDAO {
 			}
 		}
 		jdbcUtil.commit();
-		jdbcUtil.close();	// resource ¹ÝÈ¯
+		jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		
 		return orderList;
 	}
 	
-	//ÁÖ¹®ÇÏ±â
-	//¸®½ºÆ® ¹Þ¾Æ¿Â °Í(Ä¿½ºÅÒ¹ÐÅ°Æ®µé)À» ÇÏ³ª¾¿ ÂÉ°³¼­ ÀÎ¼­Æ®
+	//ï¿½Ö¹ï¿½ï¿½Ï±ï¿½
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½(Ä¿ï¿½ï¿½ï¿½Ò¹ï¿½Å°Æ®ï¿½ï¿½)ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½É°ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½Æ®
 	
-	//¸Å°³º¯¼öÀÎ l¿¡¼­ orderId, ingredient °¡Á®¿À´Â °Í ºÒ°¡´É//generatedKeys()»ç¿ëÇØ¼­ orderId°¡Á®¿À±â
+	//ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ lï¿½ï¿½ï¿½ï¿½ orderId, ingredient ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½//generatedKeys()ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ orderIdï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<CustomMealkit> addOrder(List<CustomMealkit> l){
-		List<CustomMealkit> orderingItems = null; //ÇØ´ç °í°´ÀÇ ¸ðµç customMealkit
+		List<CustomMealkit> orderingItems = null; // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ customMealkit
 		Order order = new Order();
 		int totalPrice = order.calcTotalPrice(l);
 		int customerId = l.get(0).getCustomerId();
 		int orderId = 0;
 		
-		String sql1 = "INSERT INTO MEALKITORDER VALUES(order_seq.NEXTVAL, 0, to_date(sysdate), ?, ?)"; //MEALKITORDER¿¡ Ãß°¡
+		System.out.println(customerId);
+		String sql1 = "INSERT INTO MEALKITORDER VALUES(order_seq.NEXTVAL, 0, to_date(sysdate), ?, ?)"; // MEALKITORDERï¿½ï¿½
+																										// ï¿½ß°ï¿½
 
-		Object[] param = new Object[] {customerId, totalPrice};
+		Object[] param = new Object[] { customerId, totalPrice };
 		jdbcUtil.setSqlAndParameters(sql1, param);
-		
-		String key[] = {"orderId"}; //MEALKITORDERÀÇ PKÄÃ·³¸í
+
+		String key[] = { "orderId" }; // MEALKITORDERï¿½ï¿½ PKï¿½Ã·ï¿½ï¿½ï¿½
 		try {
-			jdbcUtil.executeUpdate(key); //insert¹® ½ÇÇà
+			jdbcUtil.executeUpdate(key); // insertï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			ResultSet rs = jdbcUtil.getGeneratedKeys();
-			if(rs.next()) {
-				orderId = rs.getInt(1); //»ý¼ºµÈ PK °ª
+			if (rs.next()) {
+				orderId = rs.getInt(1); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PK ï¿½ï¿½
 			}
-		}catch(Exception ex) {
+
+			orderingItems = findOrderList(customerId);
+
+			String sql2 = "INSERT INTO ORDERINFO VALUES(?, ?, order_mk_seq.NEXTVAL, ?)";// ORDERINFOï¿½ï¿½ ï¿½ß°ï¿½
+
+			for (CustomMealkit item : l) {
+				int customMkId = item.getCustomMealkitId();
+				int quantity = item.getQuantity();
+				param = new Object[] { customMkId, orderId, quantity };
+				jdbcUtil.setSqlAndParameters(sql2, param);
+
+				int result = jdbcUtil.executeUpdate(); // Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+				if (result != 1) {
+					jdbcUtil.rollback();
+				}
+			}
+
+//			String sql3 = "INSERT INTO CUSTOMMEALKITING VALUES(?, ?, ?)"; // CUSTOMMEALKITINGï¿½ï¿½ ï¿½ß°ï¿½
+//			for (CustomMealkit item : l) {
+//				int custommealkitId = item.getCustomMealkitId();
+//				List<Ingredient> customIng = getCustomIngList(item);
+//				for (Ingredient ing : customIng) {
+//					param = new Object[] { custommealkitId, ing.getIngId(), ing.getIngQuantity() };
+//					jdbcUtil.setSqlAndParameters(sql3, param);
+//
+//					int result = jdbcUtil.executeUpdate(); // Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+//					if (result != 1) {
+//						jdbcUtil.rollback();
+//					}
+//
+//				}
+//			}
+		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
-		orderingItems = findOrderList(customerId);
-		
-		String sql2 = "INSERT INTO ORDERINFO VALUES(?, ?, order_mk_seq.NEXTVAL, ?)";//ORDERINFO¿¡ Ãß°¡
-		
-		for(CustomMealkit item : l) {
-			int customMkId = item.getCustomMealkitId();
-			int quantity = item.getQuantity();
-			param = new Object[] {customMkId, orderId, quantity};
-			jdbcUtil.setSqlAndParameters(sql2, param);
-			
-			try {
-				int result = jdbcUtil.executeUpdate(); //Ã³¸®µÈ ·¹ÄÚµå °³¼ö
-				if(result != 1) {
-					jdbcUtil.rollback();
-				}
-			}catch(Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			}
-		}
-		
-		String sql3 = "INSERT INTO CUSTOMMEALKITING VALUES(?, ?, ?)"; //CUSTOMMEALKITING¿¡ Ãß°¡
-		for(CustomMealkit item : l) {
-			int custommealkitId = item.getCustomMealkitId();
-			List<Ingredient> customIng = getCustomIngList(item);
-			for(Ingredient ing : customIng) {
-				param = new Object[] {custommealkitId, ing.getIngId(), ing.getIngQuantity()};
-				jdbcUtil.setSqlAndParameters(sql3, param);
-				
-				try {
-					int result = jdbcUtil.executeUpdate(); //Ã³¸®µÈ ·¹ÄÚµå °³¼ö
-					if(result != 1) {
-						jdbcUtil.rollback();
-					}
-				}catch(Exception ex) {
-					jdbcUtil.rollback();
-					ex.printStackTrace();
-				}
-			}
-		}
-		
 		jdbcUtil.commit();
 		jdbcUtil.close();
 		return orderingItems;
 	}
 	
-	//ÁÖ¹®Ãë¼Ò
-	public int deleteOrder(int orderId, int cmkId) { //void?
-		String sql = "UPDATE MEALKITORDER "
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+	public int deleteOrder(int orderId) { //void?
+		String sql = "UPDATE mealkitorder "
 				+ "SET status = 3 "
 				+"WHERE orderId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {orderId});
 		
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}
 		
-		String sql1 = "UPDATE CUSTOMMEALKIT SET orderstatus = 0 WHERE custommkId = ?";
-		jdbcUtil.setSqlAndParameters(sql1, new Object[] {cmkId});
-		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
-			return result;
+//		String sql1 = "UPDATE CUSTOMMEALKIT SET orderstatus = 0 WHERE custommkId = ?";
+//		jdbcUtil.setSqlAndParameters(sql1, new Object[] {cmkId});
+//		try {				
+//			int result = jdbcUtil.executeUpdate();	// update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//			return result;
+//		} catch (Exception ex) {
+//			jdbcUtil.rollback();
+//			ex.printStackTrace();
+//		}
+		return 0;
+	}
+	
+	public List<Order> findOrderByCustomerId(int customerId) {
+		List<Order> orderList = new ArrayList<>();
+		String sql = "SELECT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=?";
+		// ï¿½Ö¹ï¿½ï¿½ï¿½È£, ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å°Æ®ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ä®ï¿½Î¸ï¿½
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			// update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			while (rs.next()) {
+				orderList.add(new Order(rs.getInt("orderid"), customerId, rs.getInt("status"),
+						rs.getInt("totalprice"), rs.getString("orderdate")));
+				
+			}
+			return orderList;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}finally {
+			if (rs != null) { try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}
-		return 0;
+		
+		return null;
 	}
-	
 }

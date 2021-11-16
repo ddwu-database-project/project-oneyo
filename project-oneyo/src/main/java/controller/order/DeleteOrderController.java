@@ -9,14 +9,14 @@ import model.dao.OrderDAO;
 
 public class DeleteOrderController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception{
-		HttpSession session = request.getSession();
-		int orderId = (int) session.getAttribute("orderId");
-		int cmkId = (int) session.getAttribute("cmkId");
-		
+//		HttpSession session = request.getSession();
+//		int orderId = (int) session.getAttribute("orderId");
+//		int cmkId = (int) session.getAttribute("cmkId");
+//		
     	OrderDAO orderDAO = new OrderDAO();
-    	orderDAO.deleteOrder(orderId, cmkId);
+    	orderDAO.deleteOrder(Integer.parseInt(request.getParameter("orderid")));
     	
     	//redirection
-    	return "redirect:/order/list";
+		return "redirect:/order/list";
 	}
 }

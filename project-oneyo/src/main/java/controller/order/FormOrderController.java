@@ -66,8 +66,8 @@ public class FormOrderController implements Controller{
 		List<CustomMealkit> customMealkitList = new ArrayList<CustomMealkit>();
 		customMealkitList.add(customMealkit);
 		request.setAttribute("customMealkitList", customMealkitList); //커스텀 밀키트 리스트 + 옵션 저장해두기  
-		
+		request.setAttribute("c", customer);
     	//redirection
-    	return "/order/order.jsp"; //이곳에서 사용
+    	return "/order/order2.jsp"; //이곳에서 사용
 	}
 }
