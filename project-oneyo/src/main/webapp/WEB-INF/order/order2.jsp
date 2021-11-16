@@ -176,9 +176,11 @@
 					</thead>
 					<!-- 주문 per 커스텀 밀키트 목록 -->
 						<tbody>
+						<c:set var="totalPrice" value="0" />
+						<c:forEach var="item" items="${customMealkitList}">
 							<tr style="height: 90px; background-color: #fff;">
-							<c:set var="totalPrice" value="0" />
-								<c:forEach var="item" items="${customMealkitList}">
+							
+								
 									<c:set var="totalPrice" value="${totalPrice + item.getPrice() }"/>
 									<td
 										style="text-align: left; text-align: center; border-right: none;">
@@ -186,7 +188,7 @@
 										<input type="checkbox" name="checkbox" />
 									</td>
 									<td style="border-left: none; border-right: none;"><img
-										style="width: 45%;" src="mincho.GIF"></td>
+										style="width: 45%;"></td>
 									<td
 										style="text-align: left; padding-left: 10px; border-left: none; font-weight: bold;">
 										${item.getOriginalMealkit().getMkName()} <!-- 밀키트명 -->
@@ -195,13 +197,14 @@
 									<!-- 가격 -->
 									<td style="width: 80px;"><span>${item.getQuantity()}</span>
 										<!-- 수량 --></td>
-								</c:forEach>
+								
 								<td>-</td>
 								<td>기본배송</td>
 								<td>고정</td>
 								<td><span>${item.getPrice()}</span></td>
 								<!-- 합계 -->
 							</tr>
+							</c:forEach>
 						</tbody>
 						<tfoot>
 						<tr style="height: 60px;">
@@ -314,9 +317,9 @@
 						<input type="radio" name="cardradio" checked><label>에스크로(가상계좌)</label>&nbsp;&nbsp;
 					</div>
 					<div align="left">
-						<img src="mincho.GIF" style="margin-left: 5px; position:relative; top:6px;">
+						<img src="" style="margin-left: 5px; position:relative; top:6px;">
 						<span style="font-size: 10pt; color:grey;">최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</span><br/>
-						<img src="mincho.GIF" style="margin-left: 5px; position:relative; top:6px;">
+						<img src="" style="margin-left: 5px; position:relative; top:6px;">
 						<span style="font-size: 10pt; color:grey;">소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</span><br/>
 					</div>
 				</div>
