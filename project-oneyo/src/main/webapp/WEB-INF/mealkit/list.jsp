@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -186,7 +185,7 @@ https://templatemo.com/tm-559-zay-shop
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
                             </li>
-                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä."/></li>
+                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="ê²€ìƒ‰ì–´ë¥¼ ìž…ë ¥í•˜ì„¸ìš”."/></li>
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
@@ -217,8 +216,8 @@ https://templatemo.com/tm-559-zay-shop
                             <div class="card-body">
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
                                 <p id="mkname">${mk.mkName}</p></a>
-                                <p>Ä®·Î¸® : ${mk.defaultCal}</p>
-                                <p>°¡°Ý : ${mk.defaultPrice}</p>
+                                <p>ì¹¼ë¡œë¦¬ : ${mk.defaultCal}</p>
+                                <p>ê°€ê²© : ${mk.defaultPrice}</p>
                             </div>
                         </div>
                         <div style="display:none;" id="ingList">
