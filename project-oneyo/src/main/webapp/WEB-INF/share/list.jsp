@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>O!NEYO - °øÀ¯ ¸®½ºÆ®</title>
+<title>O!NEYO - ê³µìœ  ë¦¬ìŠ¤íŠ¸</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,17 +45,17 @@
 						String name = (String) request.getSession().getAttribute("name");
 					if (name != null) {
 
-						out.print(name + "´Ô ¾È³çÇÏ¼¼¿ä! &ensp;");
+						out.print(name + "ë‹˜ ì•ˆë…•í•˜ì„¸ìš”! &ensp;");
 					%>
 					<a class="sign-in text-light"
-						href="<c:url value='/customer/logout'/>">·Î±×¾Æ¿ô</a>
+						href="<c:url value='/customer/logout'/>">ë¡œê·¸ì•„ì›ƒ</a>
 					<%
 						} else {
 					%>
 					<a class="sign-up text-light"
-						href="<c:url value='/customer/register'/>">È¸¿ø°¡ÀÔ &ensp;</a> <a
+						href="<c:url value='/customer/register'/>">íšŒì›ê°€ìž… &ensp;</a> <a
 						class="sign-in text-light"
-						href="<c:url value='/customer/login/form'/>">·Î±×ÀÎ</a>
+						href="<c:url value='/customer/login/form'/>">ë¡œê·¸ì¸</a>
 					<%
 						}
 					%>
@@ -126,7 +127,7 @@
 
 
 	<c:if test="${customMk.size() == 0}">
-		<p>°øÀ¯µÈ ¹ÐÅ°Æ®°¡ ¾ø½À´Ï´Ù.</p>
+		<p>ê³µìœ ëœ ë°€í‚¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
 	</c:if>
 
 	<!-- Start Categories of The Month -->
@@ -134,7 +135,7 @@
 		<div class="row text-center pt-3">
 			<div class="col-lg-6 m-auto">
 				<h1 class="h1">Share List</h1>
-				<p>³ª¸¸ÀÇ ¹ÐÅ°Æ®¸¦ °øÀ¯ÇÏ¼¼¿ä!</p>
+				<p>ë‚˜ë§Œì˜ ë°€í‚¤íŠ¸ë¥¼ ê³µìœ í•˜ì„¸ìš”!</p>
 			</div>
 		</div>
 
@@ -144,15 +145,15 @@
 							<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
 					<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
 						<a href="http://codepen.io/zFunx/pen/GmMGax" class="textOverImage" style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)" 
-						data-title="${customerMap.get(item.getCustomerId())}´Ô" data-text="
-						¹ÐÅ°Æ®: ${item.getOriginalMealkit().getMkName()} 
-						Àç·á: ${item.printCustomIng()}
-          	 			°¡°Ý: ${item.getPrice()}
-           				ÃÑ Ä®·Î¸®: ${item.getTotalCalorie()}">
+						data-title="${customerMap.get(item.getCustomerId())}ë‹˜" data-text="
+						ë°€í‚¤íŠ¸: ${item.getOriginalMealkit().getMkName()} 
+						ìž¬ë£Œ: ${item.printCustomIng()}
+          	 			ê°€ê²©: ${item.getPrice()}
+           				ì´ ì¹¼ë¡œë¦¬: ${item.getTotalCalorie()}">
 						</a>
 						<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
 							<td rowspan="4">
-								<input type="submit" onClick="return confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");" value="»èÁ¦ÇÏ±â">
+								<input type="submit" onClick="return confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");" value="ì‚­ì œí•˜ê¸°">
 							</td>
 						</c:if>
 				</form>		
@@ -169,8 +170,8 @@
 			<div class="container">
 				<div class="row pt-2">
 					<div class="col-12">
-						<p class="text-left text-light">µ¥ÀÌÅÍº£ÀÌ½º ÇÁ·Î±×·¡¹Ö - ±è°æÇö, ½ÅÈ¿°æ, ÀÌÇýÁØ,
-							Àü¼ö¹Î</p>
+						<p class="text-left text-light">ë°ì´í„°ë² ì´ìŠ¤ í”„ë¡œê·¸ëž˜ë° - ê¹€ê²½í˜„, ì‹ íš¨ê²½, ì´í˜œì¤€,
+							ì „ìˆ˜ë¯¼</p>
 					</div>
 				</div>
 			</div>

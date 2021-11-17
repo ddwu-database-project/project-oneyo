@@ -39,87 +39,7 @@
 </head>
 
 <body>
-<!-- Start Top Nav -->
-    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
-        <div class="container text-light">
-            <div class="w-100">
-                <div class="sign">
-                	<% 
-	                	String name = (String)request.getSession().getAttribute("name");
-	                	if (name != null) { 
-
-	                		out.print(name + "님 안녕하세요! &ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
-	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
-
-	                	} %>          
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Close Top Nav -->
-
-  
-   <!-- Header -->
-   <nav class="navbar navbar-expand-lg navbar-light shadow">
-      <div
-         class="container d-flex justify-content-between align-items-center">
-         <img class="logo_img"
-            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
-         <a
-            class="navbar-brand text-success logo logo_title h1 align-self-center"
-            href="<c:url value='/home'/>"> O!NEYO </a>
-
-         <button class="navbar-toggler border-0" type="button"
-            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div
-            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-            id="templatemo_main_nav">
-            <div class="flex-fill">
-               <ul
-                  class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/home'/>">Home</a></li>
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/mealkit/list'/>">Shop</a></li>
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/share/list/all'/>">Share</a></li>
-               </ul>
-            </div>
-            <div class="navbar align-self-center d-flex">
-               <div
-                  class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                  <div class="input-group">
-                     <input type="text" class="form-control" id="inputMobileSearch"
-                        placeholder="Search ...">
-                     <div class="input-group-text">
-                        <i class="fa fa-fw fa-search"></i>
-                     </div>
-                  </div>
-               </div>
-               <a class="nav-icon d-none d-lg-inline" href="#"
-                  data-bs-toggle="modal" data-bs-target="#templatemo_search"> <i
-                  class="fa fa-fw fa-search text-dark mr-2"></i>
-               </a> <a class="nav-icon position-relative text-decoration-none"
-                  href="<c:url value="/cart/list" />"> <i
-                  class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-               </a> <a class="nav-icon position-relative text-decoration-none"
-                  href="<c:url value='/customer/mypage'/>"> <i
-                  class="fa fa-fw fa-user text-dark mr-3"></i>
-               </a>
-            </div>
-         </div>
-
-      </div>
-   </nav>
-   <!-- Close Header -->
+<%@include file="/WEB-INF/base/header.jsp" %>
    
     <!-- Modal -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -252,16 +172,11 @@
 								<li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
                             </ul>
 
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
+                            <form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
+                                <input type="hidden" name="mkId" value="${mealkit.getMkId()}">
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <a href="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/>
-                                        <button class="btn btn-success btn-lg" name="submit" value="addtocard"></c:url>"> 재료 수정</button>
-                                        </a>
+                                        <button class="btn btn-success btn-lg" > 재료 수정</button>
                                     </div>
                                 </div>
                             </form>
