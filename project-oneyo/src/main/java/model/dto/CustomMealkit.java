@@ -51,6 +51,9 @@ public class CustomMealkit {
 		this(mealkitInfo, customMkId, customerId, 0, price, calorie, new ArrayList<Ingredient>());
 	}
 
+	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int price, int quantity) {
+		this(mealkitInfo, customMkId, 0, price, quantity, 0);
+	}
 	
 	public Mealkit getOriginalMealkit() {
 		return mealkitInfo;

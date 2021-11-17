@@ -110,7 +110,7 @@ public class OrderDAO {
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();
 				while(rs.next()) {
-					dateShipped = String.valueOf(rs.getDate("orderdate"));
+					dateShipped = String.valueOf(rs.getDate("orderdate")).split(" ")[0];
 					tmp1 = new ShippingDetail(dateShipped, rs.getString("company"), rs.getInt("trackingnum"));
 					orderId = rs.getInt("orderId");
 					
@@ -235,8 +235,7 @@ public class OrderDAO {
 			// update �� ����
 			while (rs.next()) {
 				orderList.add(new Order(rs.getInt("orderid"), customerId, rs.getInt("status"),
-						rs.getInt("totalprice"), rs.getString("orderdate")));
-				
+						rs.getInt("totalprice"), rs.getString("orderdate").split(" ")[0]));
 			}
 			return orderList;
 		} catch (Exception ex) {

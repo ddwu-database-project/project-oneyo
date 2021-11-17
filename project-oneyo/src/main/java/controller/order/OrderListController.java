@@ -29,7 +29,10 @@ public class OrderListController implements Controller {
     	OrderDAO orderDAO = new OrderDAO();
     	List<Order> orderList = orderDAO.findOrderByCustomerId(customerId);//5��� customerId
     	
-    	
+    	CustomMkDAO customMkDAO = new CustomMkDAO();
+    	for (Order order : OrderList) {
+    		
+    	}
     	
     	request.setAttribute("orderList", orderList);
     	//forwarding
