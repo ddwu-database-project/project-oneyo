@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,13 +44,13 @@
 		
 		for (let i = 0; i < select_mealkit_list.length; i++){
 			select_mealkit = select_mealkit_list[i].querySelector("#select-mealkit-price"); //밀키트 가격 span태그 전체
-			select_mealkit_price = parseInt(select_mealkit.innerText);
+			select_mealkit_price = parseInt(select_mealkit.innerText.replace(/[^-0-9]/g,''));
 			if (select_mealkit.classList.contains("selected")){
 				total_price += select_mealkit_price;
 			}
 		}
 		let total = document.getElementById("total_price");
-		total.innerHTML = total_price + "원";
+		total.innerHTML = total_price.toLocaleString('ko-KR') + "원";
 	}
 	function selected(index){
 		let select_mealkit_list = document.getElementsByClassName("cart_list");
@@ -263,7 +263,7 @@
 							<div class="media-body pt-3">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
-									가격: <span class="unselected" id="select-mealkit-price">${item.getPrice()*item.getQuantity()}</span>
+									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/></span>
 								</div>
 								<div class="font-size-sm">
 									<span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
