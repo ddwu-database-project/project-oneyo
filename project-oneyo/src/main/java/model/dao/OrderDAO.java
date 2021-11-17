@@ -3,9 +3,10 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 import model.dto.CustomMealkit;
-import model.dto.Customer;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
 import model.dto.Order;
@@ -226,7 +227,8 @@ public class OrderDAO {
 	
 	public List<Order> findOrderByCustomerId(int customerId) {
 		List<Order> orderList = new ArrayList<>();
-		String sql = "SELECT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=?";
+
+		String sql = "SELECT DISTINCT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=?";
 		// �ֹ���ȣ, �ֹ�����, �ֹ�����, ��ŰƮ��, ����, ����, ��Į�θ�
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
 		ResultSet rs = null;

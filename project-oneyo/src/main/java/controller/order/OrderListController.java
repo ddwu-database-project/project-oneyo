@@ -1,5 +1,6 @@
 package controller.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
-import model.dao.*;
-import model.dto.*;
+import model.dao.CustomMkDAO;
+import model.dao.CustomerDAO;
+import model.dao.OrderDAO;
+import model.dto.CustomMealkit;
+import model.dto.Customer;
+import model.dto.Order;
 
 public class OrderListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception{
@@ -30,8 +35,8 @@ public class OrderListController implements Controller {
     	List<Order> orderList = orderDAO.findOrderByCustomerId(customerId);//5��� customerId
     	
     	CustomMkDAO customMkDAO = new CustomMkDAO();
-    	for (Order order : OrderList) {
-    		
+    	for (Order order : orderList) {
+    		order.setOrderCustomMk(customMkDAO.findListByOrderId(order.getOrderId()));
     	}
     	
     	request.setAttribute("orderList", orderList);

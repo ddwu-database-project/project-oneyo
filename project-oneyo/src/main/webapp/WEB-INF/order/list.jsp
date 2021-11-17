@@ -215,6 +215,7 @@ $("#delete").click(function del(){
 					${order.getOrderId()}
 					</td>
 					<td>
+					${order.getOrderCustomMk().get(0).getCustomMealkitId()}
 					</td>
 					<td><!-- 주문일자 -->
 					${order.getOrderDate()}
