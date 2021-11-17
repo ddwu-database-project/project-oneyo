@@ -36,7 +36,6 @@
 
 	<script>
 		function ingModify() {
-			System.out.println("a");
 			for (i = 0; i < form.mkIng.size(); i++){
 				if (form.IngQuantity${mkIng.getIngId()}.value < 0) {
 					alert("재료의 개수를 확인해주세요.");
