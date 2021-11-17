@@ -182,7 +182,7 @@
 			<c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
+                        <div class="card rounded-0"  style="margin: 0 auto" >
                             <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/bulgogi/${ing.index}.jpg'/>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
@@ -192,17 +192,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="margin: 0 auto; text-align: center">
                             <a href="shop-single.html" class="h3 text-decoration-none">${mkIngs.getIngName()}</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                            <ul class="w-100 list-unstyled justify-content-between mb-0">
                                 <li>${mkIngs.getIngCalorie()}kcal</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                </li>
                             </ul>
                             <p class="text-center mb-0"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mkIngs.getIngPrice()}"/>원</p>
                  			<p class="text-center mb-0">${mkIngs.getIngQuantity()}개</p>
