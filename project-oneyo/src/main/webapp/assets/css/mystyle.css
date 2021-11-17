@@ -37,3 +37,11 @@
 .search {
 	margin-left: 10px !important;
 }
+
+.text-start {
+	text-align: left;
+}
+
+.shareBtn {
+	background-color: #E9ECEF;
+}
