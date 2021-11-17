@@ -36,6 +36,11 @@ public class Customer {
 		this.address = address;
 		this.email = email;
 	}
+	
+	public Customer(String customerName, int customerId) {
+		this.customerName = customerName;
+		this.customerId = customerId;
+	}
 
 	public int getCustomerId() {
 		return customerId;
