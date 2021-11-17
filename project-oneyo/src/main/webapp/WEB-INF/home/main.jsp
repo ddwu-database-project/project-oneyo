@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
@@ -29,26 +29,6 @@
 
 <body>
  <%@include file="/WEB-INF/base/header.jsp" %>
-
-    <!-- Modal -->
-    <div class="modal bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
     <!-- Start Banner Hero -->
     <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">

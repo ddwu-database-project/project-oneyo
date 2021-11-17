@@ -162,9 +162,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/base/header.jsp" %>
-
 <form name ="form" method="post" action="<c:url value='/order/add' />">
-
 <div id="backbody">
 	<div id="frame">
 			<div id="frame2">
