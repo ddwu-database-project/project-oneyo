@@ -86,6 +86,6 @@ public class FormOrderController implements Controller{
 		}
 		request.setAttribute("customMealkitList", customMealkitList); //Ŀ���� ��ŰƮ ����Ʈ + �ɼ� �����صα�  
 		request.setAttribute("c", customer);
-		return "/order/order2.jsp";
+		return "/order/orderForm.jsp";
 	}
 }

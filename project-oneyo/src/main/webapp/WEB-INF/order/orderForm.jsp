@@ -9,20 +9,20 @@
 <title>주문 페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-<link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
+<link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
 
-<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="../assets/css/templatemo.css">
-<link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/mystyle.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
 
 <!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+ <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 <style type="text/css">
 	div#backbody {
 	background-color: #f5f5f0;
@@ -247,7 +247,7 @@
 							<tr style="height: 90px; background-color: #fff;">
 							
 								
-									<c:set var="totalPrice" value="${totalPrice + item.getPrice() }"/>
+									<c:set var="totalPrice" value="${totalPrice = totalPrice + item.getPrice() * item.getQuantity() }"/>
 									<td
 										style="text-align: left; text-align: center; border-right: none;">
 										<input type="hidden" name="orderMkId" value="${item.getCustomMealkitId()}">
@@ -259,7 +259,7 @@
 										style="text-align: left; padding-left: 10px; border-left: none; font-weight: bold;">
 										${item.getOriginalMealkit().getMkName()} <!-- 밀키트명 -->
 									</td>
-									<td><span style="padding-left: 10px;">${item.getPrice()}</span>원</td>
+									<td><span style="padding-left: 10px;">${item.getPrice() * item.getQuantity()}</span>원</td>
 									<!-- 가격 -->
 									<td style="width: 80px;"><span>${item.getQuantity()}</span>
 										<!-- 수량 --></td>
@@ -267,7 +267,7 @@
 								<td>-</td>
 								<td>기본배송</td>
 								<td>고정</td>
-								<td><span>${item.getPrice()}</span></td>
+								<td><span>${item.getPrice() * item.getQuantity()}</span></td>
 								<!-- 합계 -->
 							</tr>
 							</c:forEach>
