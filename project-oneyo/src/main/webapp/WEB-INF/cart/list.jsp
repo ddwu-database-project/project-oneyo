@@ -28,11 +28,11 @@
 <title>장바구니</title>
 
 <script>
-  document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-    }
-}, true);
+	  document.addEventListener('keydown', function(event) {
+	    if (event.keyCode === 13) {
+	        event.preventDefault();
+	    }
+	}, true);
   
 	function caculatePrice(){
 		let total_price = 0;
@@ -53,6 +53,7 @@
 		select_mealkit = select_mealkit_list[index].querySelector("#select-mealkit-price");
 		if (select_mealkit.classList.contains("selected")){
 			select_mealkit.classList.replace("selected", "unselected");
+			console.log("Asdf");
 		}
 		else {
 			select_mealkit.classList.replace("unselected", "selected");
@@ -60,7 +61,21 @@
 		caculatePrice();
 	}
 	function deleteItem() {
-		form.submit();
+		var obj_len = document.getElementsByName("select").length;
+		var cnt = 0;
+		
+	    for (i = 0; i < obj_len; i++) {
+	        if (document.getElementsByName("select")[i].checked == true) {
+	           cnt++;
+	           document.getElementById("deleteids").value = document.getElementById("deleteids").value + "," + document.getElementsByName("select")[i].value;
+	        }
+	    }
+	    
+	    if (parseInt(cnt) < 1) {
+	    	alert('선택된 상품이 없습니다.');
+	    	return false;
+	    }
+	    fdelete.submit();
 	}
 	//주문버튼 클릭시, checkbox클릭된 customMkId 값들을 /order/cart로 넘겨준다
 	function buy() {
@@ -206,11 +221,11 @@
 			<!-- Item-->
             <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom cart_list">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
-                	<div style="width:40px;"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></div>
+                	<div style="width:40px;"><input onClick="selected()" type="checkbox" name="select" value="${item.getCustomMealkitId()}"></div>
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
-                        <div id="select-mealkit" class="font-size-sm"><span class="text-muted mr-2">가격: <span class="unselected" id="select-mealkit-price">${item.getPrice()}</span></div>
+                        <div id="select-mealkit" class="font-size-sm"><span class="text-muted mr-2">가격: <span class="unselected" id="select-mealkit-price">${item.getPrice()*item.getQuantity()}</span></div>
                         <div class="font-size-sm"><span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
                         <div class="font-size-lg text-primary pt-2">주문옵션:  ${item.printIng()}</div>
                     </div>
@@ -249,7 +264,7 @@
             <div class="h3 font-weight-semibold text-center py-3">
             	<%-- <input type="text" id="totalprice" value="${totalPrice}" disabled/>
             	<button type="button" onClick="setPrice()">test</button> --%>
-            	 ${totalPrice}WON</div>
+            	 0원</div>
             <hr>
             	<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
             		<input type="hidden" name="which" value="cart"> <input
