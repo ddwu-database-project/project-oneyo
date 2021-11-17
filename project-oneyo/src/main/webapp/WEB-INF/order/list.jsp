@@ -206,7 +206,7 @@
 
 
 									<td>
-										<!-- 가격 --><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.getTotalPrice()}"/>
+										<!-- 가격 --><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.getTotalPrice()}"/>원
 									</td>
 									<td>
 										<button type="button" id="share"
