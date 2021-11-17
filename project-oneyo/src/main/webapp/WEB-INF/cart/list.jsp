@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,8 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
-<title>¿ÂπŸ±∏¥œ</title>
+<title>Ïû•Î∞îÍµ¨Îãà</title>
+
 	
 <script>
 document.addEventListener('keydown', function(event) {
@@ -30,11 +30,10 @@ document.addEventListener('keydown', function(event) {
 
 function checkQty(obj) {
 	if (parseInt(obj.value) < 1) {
-		alert('0∫∏¥Ÿ ƒøæﬂ«’¥œ¥Ÿ!');
+		alert('ÏàòÎüâÏùÄ 1Ïù¥ÏÉÅÏù¥Ïñ¥Ïïº Ìï©ÎãàÎã§.');
 		return false;
 	}
 }
-
 function deleteItem() {
 	var obj_len = document.getElementsByName("select").length;
 	var cnt = 0;
@@ -47,13 +46,12 @@ function deleteItem() {
     }
     
     if (parseInt(cnt) < 1) {
-    	alert('º±≈√«— ªÛ«∞¿Ã æ¯Ω¿¥œ¥Ÿ.');
+    	alert('ÏÑ†ÌÉùÎêú ÏÉÅÌíàÏù¥ ÏóÜÏäµÎãàÎã§.');
     	return false;
     }
     fdelete.submit();
 }
-
-//¡÷πÆπˆ∆∞ ≈¨∏ØΩ√, checkbox≈¨∏Øµ» customMkId ∞™µÈ¿ª /order/cart∑Œ ≥—∞‹¡ÿ¥Ÿ
+//Ï£ºÎ¨∏Î≤ÑÌäº ÌÅ¥Î¶≠Ïãú, checkboxÌÅ¥Î¶≠Îêú customMkId Í∞íÎì§ÏùÑ /order/cartÎ°ú ÎÑòÍ≤®Ï§ÄÎã§
 function buy(){
 	var obj_len = document.getElementsByName("select").length;
 	var cnt = 0;
@@ -66,7 +64,7 @@ function buy(){
     }
     
     if (parseInt(cnt) < 1) {
-    	alert('º±≈√«— ªÛ«∞¿Ã æ¯Ω¿¥œ¥Ÿ.');
+    	alert("ÏÑ†ÌÉùÎêú ÏÉÅÌíàÏù¥ ÏóÜÏäµÎãàÎã§!");
     	return false;
     }
     forder.submit();
@@ -78,20 +76,16 @@ function buy(){
     display: block;
     width: 10rem
 }
-
 .cart-item-thumb>img {
     display: block;
     width: 100%
 }
-
 .product-card-title>a {
     color: #222;
 }
-
 .font-weight-semibold {
     font-weight: 600 !important;
 }
-
 .product-card-title {
     display: block;
     margin-bottom: .75rem;
@@ -100,15 +94,12 @@ function buy(){
     font-size: 1rem;
     font-weight: normal;
 }
-
 .text-muted {
     color: #888 !important;
 }
-
 .bg-secondary {
     background-color: #f7f7f7 !important;
 }
-
 .accordion .accordion-heading {
     margin-bottom: 0;
     font-size: 1rem;
@@ -175,10 +166,10 @@ function buy(){
 <div class="container pb-5 mt-n2 mt-md-n3">
     <div class="row" style="margin-top:50px;">
         <div class="col-xl-9 col-md-8">
-            <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>¿ÂπŸ±∏¥œ</span></h2>
+            <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Ïû•Î∞îÍµ¨Îãà</span></h2>
 
 			<c:if test="${cartitems.size() == 0}">
-				<div class="h4 font-weight-semibold text-center py-4"><p> ¿ÂπŸ±∏¥œø° ¥„±‰ æ∆¿Ã≈€¿Ã æ¯Ω¿¥œ¥Ÿ </p></div>
+				<div class="h4 font-weight-semibold text-center py-4"><p> Ïû•Î∞îÍµ¨ÎãàÏóê Îã¥Í∏¥ ÏïÑÏù¥ÌÖúÏù¥ ÏóÜÏäµÎãàÎã§ </p></div>
 			</c:if>
 
 <input type="hidden" value="cart" name="which">
@@ -192,16 +183,17 @@ function buy(){
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
-                        <div class="font-size-sm"><span class="text-muted mr-2">∞°∞›:</span> ${item.getPrice()}</div>
-                        <div class="font-size-sm"><span class="text-muted mr-2">øµæÁ¡§∫∏:</span>${item.getTotalCalorie()}</div>
-                        <div class="font-size-lg text-primary pt-2">¡÷πÆø…º«:  ${item.printIng()}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">Í∞ÄÍ≤©:</span> ${item.getPrice()}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">ÏòÅÏñëÏ†ïÎ≥¥:</span>${item.getTotalCalorie()}</div>
+                        <div class="font-size-lg text-primary pt-2">Ï£ºÎ¨∏ÏòµÏÖò:  ${item.printIng()}</div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <form name="f${item.getCustomMealkitId()}" method="get" action="<c:url value="/cart/update" />">
                     <div class="form-group mb-2">
-                    
-                        <label for="quantity1">ºˆ∑Æ</label>
+
+                        <label for="quantity1">ÏàòÎüâ</label>
+
                         <input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
                        
                         <input class="form-control form-control-sm" type="text" id="quantity" name="quantity" onchange="checkQty(this)" value="${item.getQuantity()}">
@@ -211,10 +203,12 @@ function buy(){
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>∫Ø∞Ê</button>
-                    </form>
+
+                        </svg>Î≥ÄÍ≤Ω</button>
+                    
                     
                 </div>
+                </form>
             </div>
 
 </c:forEach>
@@ -222,8 +216,9 @@ function buy(){
 
 </div>
  		<!-- Sidebar-->
-        <div class="col-xl-3 col-md-4 pt-3 pt-md-0" >
-            <h2 class="h6 px-4 py-3 bg-secondary text-center">√— ±›æ◊</h2>
+
+        <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
+            <h2 class="h6 px-4 py-3 bg-secondary text-center">Ï¥ù Í∏àÏï°</h2>
             <div class="h3 font-weight-semibold text-center py-3">${totalPrice} WON</div>
             <hr>
             	<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
@@ -241,7 +236,7 @@ function buy(){
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
                         </svg>
-						ªË¡¶
+						ÏÇ≠Ï†ú
 					</button>
             	</form>
 				<form name="forder" method="post" action="<c:url value="/order/form" /> ">
@@ -257,13 +252,10 @@ function buy(){
 								ry="2"></rect>
                     <line x1="1" y1="10" x2="23" y2="10"></line>
                 </svg>
-						¡÷πÆ«œ±‚
+						Ï£ºÎ¨∏ÌïòÍ∏∞
 					</button>
 				</form>
 			</div>
-        
-
-
 
     </div>
 </div>
