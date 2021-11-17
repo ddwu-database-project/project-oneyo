@@ -210,12 +210,36 @@ public class CustomMkDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}		
-		
 		return null;
 	}
-
-	private void cm() {
-		// TODO Auto-generated method stub
+	
+	public List<CustomMealkit> findListByOrderId(int orderId) {
+		List<CustomMealkit> cmList = new ArrayList<>();
+		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.quantity, c.sharestatus " +
+	"FROM custommealkit c, mealkit m, orderinfo o WHERE c.mkid=m.mkid and c.custommkid=o.custommkid and orderid=?";
 		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { orderId });
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				cmList.add(new CustomMealkit(rs.getInt("custommkid"), new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
+						rs.getInt("price"), rs.getInt("quantity"), rs.getInt("sharestatus")));
+			}
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+			}
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		
+		findIngList(cmList);
+		return cmList;
 	}
+
+
 }

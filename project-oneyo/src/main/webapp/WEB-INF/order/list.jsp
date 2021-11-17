@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -226,6 +227,7 @@
 			                            <thead>
 			                                <tr>
 			                                <th><span>주문번호</span></th>
+			                                <th><span>상품정보</span></th>
 			                                <th><span>주문일자</span></th>
 			                                <th><span>주문상태</span></th>
 			        
@@ -236,41 +238,56 @@
 			                            </thead>
 		
 		<c:forEach var="order" items="${orderList}">
+			<c:forEach var="customMk" items="${order.getOrderCustomMk()}">
+			<c:set var="size" value="${order.getOrderCustomMk().size()}"/>
 			<tbody>
 				<tr>
 					<!-- DB에서 가져오기 -->
-					<td><!-- 주문번호 -->
-					${order.getOrderId()}
+					
+					<td>
+						<c:if test="${customMk.getCustomMealkitId() ==  order.getOrderCustomMk().get(0).getCustomMealkitId()}">
+							${order.getOrderId()}
+						</c:if>
+					</td>
+					
+					<td>
+					${customMk.getOriginalMealkit().getMkName()} (${customMk.getQuantity()}개)
 					</td>
 					<td><!-- 주문일자 -->
 					${order.getOrderDate()}
 					</td>
 					<td><!-- 주문상태 -->
 					<c:set var="status" value="${order.getStatus()}" />
+					
 					<c:choose>
 						<c:when test="${status == 3}">
-						<input type="text" value="주문취소" disabled/>
+						<input type="text" style = "text-align:center;" value="주문취소" disabled/>
 						</c:when>
 						<c:when test="${status == 2}">
-						<input type="text" value="배송완료" disabled/>
+						<input type="text" style = "text-align:center;" value="배송완료" disabled/>
 						</c:when>
 						<c:when test="${status == 1}">
-						<input type="text" value="배송중" disabled/>
+						<input type="text" style = "text-align:center;" value="배송중" disabled/>
 						</c:when>
 						<c:when test="${status == 0}">
-						<input type="text" value="결제완료" disabled/>
+						<input type="text" style = "text-align:center;" value="결제완료" disabled/>
 						</c:when>
 					</c:choose>
 					</td>
 					
 
-					<td><!-- 가격 -->
-					${order.getTotalPrice()}
+					<td align="right"><!-- 가격 -->
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${customMk.getPrice() * customMk.getQuantity()}" />원
 					</td>
 					<td>
-					<button type="button" id="share" class="btn btn-primary btn-xs">공유하기</button>
+					<c:if test="${customMk.getSharestatus() == 0 && status != 3}">
+					<form method="post" action="<c:url value="/share/add"/>">
+						<input type="hidden" name="customMkId" value="${customMk.getCustomMealkitId()}">
+						<button type="submit" id="share" class="btn btn-primary btn-xs">공유하기</button>
+					</form>
+					</c:if>
 					</td>
-					<td><c:if test = "${status != 3}">
+					<td><c:if test = "${status == 0}">
 					<form name="f${order.getOrderId()}" method="get" action="<c:url value="/order/delete" />">
 						<input type="hidden" name="orderid" value="${order.getOrderId()}">
 						<button class="btn btn-danger btn-xs" type="submit">주문취소</button>
@@ -279,6 +296,7 @@
 					</td>
 				</tr>
 		</tbody>
+		</c:forEach>
 		</c:forEach>
 		</table>
   
