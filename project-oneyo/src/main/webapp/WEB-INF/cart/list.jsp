@@ -70,6 +70,10 @@ function buy(){
     forder.submit();
   
 } 
+
+function setPrice() {
+	document.getElementById('totalprice').value = "123";
+}
 </script>
 <style>
 .cart-item-thumb {
@@ -183,7 +187,7 @@ function buy(){
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
-                        <div class="font-size-sm"><span class="text-muted mr-2">가격:</span> ${item.getPrice()}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">가격:</span> ${item.getPrice() * item.getQuantity()}</div>
                         <div class="font-size-sm"><span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
                         <div class="font-size-lg text-primary pt-2">주문옵션:  ${item.printIng()}</div>
                     </div>
@@ -219,7 +223,10 @@ function buy(){
 
         <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
             <h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>
-            <div class="h3 font-weight-semibold text-center py-3">${totalPrice} WON</div>
+            <div class="h3 font-weight-semibold text-center py-3">
+            	<%-- <input type="text" id="totalprice" value="${totalPrice}" disabled/>
+            	<button type="button" onClick="setPrice()">test</button> --%>
+            	 ${totalPrice}WON</div>
             <hr>
             	<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
             		<input type="hidden" name="which" value="cart"> <input
