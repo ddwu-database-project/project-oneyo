@@ -9,12 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.customer.CustomerSessionUtils;
+import model.dao.CartDAO;
 import model.dao.CustomMkDAO;
 import model.dao.CustomerDAO;
 import model.dao.OrderDAO;
 import model.dto.CustomMealkit;
 import model.dto.Customer;
-import model.dto.Order;
 
 public class AddOrderController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,7 +27,7 @@ public class AddOrderController implements Controller {
 		Customer customer = customerDAO.findCustomer(email);
 		int customerId = customer.getCustomerId();
 		
-		//ÁÖ¹®ÆäÀÌÁö¿¡¼­ ¼¼¼Ç¿¡ ÀúÀåÇÑ ÁÖ¹®ÇÑ Ä¿½ºÅÒ ¹ÐÅ°Æ® ¸®½ºÆ® °¡Á®¿À±â
+		//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°Æ® ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		@SuppressWarnings("unchecked")
 //		List<CustomMealkit> cmList = (List<CustomMealkit>) session.getAttribute("orderedcmkList");
 //		System.out.println(cmList);
@@ -41,13 +41,19 @@ public class AddOrderController implements Controller {
 			customMealkitList.add(customMkDAO.findByCustomMkId(Integer.parseInt(id), customer.getCustomerId()));
 		}
 		
+		
 		OrderDAO orderDAO = new OrderDAO();
-		orderDAO.addOrder(customMealkitList); //Ãß°¡ÇÏ±â
-		List<Order> orderList = orderDAO.viewOrderList(customerId);
-		request.setAttribute("orderList", orderList);
+		orderDAO.addOrder(customMealkitList); //ï¿½ß°ï¿½ï¿½Ï±ï¿½
+		
+		CartDAO cartDAO = new CartDAO();
+		
+		for (CustomMealkit cm : customMealkitList) {
+			cartDAO.remove(cm.getCustomMealkitId());
+		}
+		
 		
 		//forwarding
-//    	return "/order/list.jsp"; //ÀÌ°÷¿¡¼­ »ç¿ë
+//    	return "/order/list.jsp"; //ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		return "redirect:/order/list";
 	}
 }

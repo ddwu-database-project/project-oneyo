@@ -33,6 +33,6 @@ public class OrderListController implements Controller {
     	
     	request.setAttribute("orderList", orderList);
     	//forwarding
-    	return "/order/list2.jsp";
+    	return "/order/list.jsp";
 	}
 }
