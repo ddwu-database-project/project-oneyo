@@ -23,8 +23,6 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css'/>">
-    
-    <c:url value='/assets/css/slick-theme.css'/>
 
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
