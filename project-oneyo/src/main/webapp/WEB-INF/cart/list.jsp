@@ -8,6 +8,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
 <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
 
@@ -169,6 +172,16 @@
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
 							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/60B5BC/FFFFFF" alt="Product"></a>
+
+							<div class="media-body pt-3" style="align:left;">
+								<h3 class="product-card-title font-weight-semibold border-0 pb-0"  style="text-align:left;">&nbsp;&nbsp;&nbsp;${item.getOriginalMealkit().getMkName()}</h3>
+								<div class="font-size-sm" id="select-mealkit" style="text-align:left;">&nbsp;&nbsp;&nbsp;
+									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/>원</span>
+								</div>
+								<div class="font-size-sm" style="text-align:left;">
+									<span class="text-muted mr-2" style="text-align:left;">&nbsp;&nbsp;&nbsp;영양정보:</span>${item.getTotalCalorie()}</div>
+								<div class="font-size-sm text-primary pt-2" style="text-align:left;">&nbsp;&nbsp;&nbsp;주문옵션:
+
 							<div class="media-body pt-3">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
@@ -177,6 +190,7 @@
 								<div class="font-size-sm">
 									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}</div>
 								<div class="font-size-lg text-primary pt-2" style="color: black !important">주문옵션: 
+
 									${item.printIng()}
 								</div>
 							</div>
