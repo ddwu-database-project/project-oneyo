@@ -151,39 +151,31 @@
 
 	<!-- Start Section -->
 	<section class="container py-5">
-
-		<form name="form" method="post" role="form"
-			action="<c:url value='/cart/add' />">
-			<input type="hidden" name="mealkit" value="${mealkit}" /> <input
-				type="hidden" name="mkId" value="${mealkit.getMkId()}" />
+		<form name="form" method="post" role="form" action="<c:url value='/cart/add' />">
+			<input type="hidden" name="mealkit" value="${mealkit}" /> 
+			<input type="hidden" name="mkId" value="${mealkit.getMkId()}" />
 			<div class="row">
 				<c:forEach var="mkIng" items="${mealkit.getIngredients()}">
 					<input type="hidden" name="mkIngIds" value="${mkIng.getIngId()}" />
 					<div class="col-md-6 col-lg-3 pb-5">
-						<div class="h-100 py-5 services-icon-wap shadow"
-							style="text-align: center">
+						<div class="h-100 py-5 services-icon-wap shadow" style="text-align: center">
 							<div class="h1 text-success text-center">
-								<img src="<c:url value='/assets/img/소고기.PNG' />"
-									class="opacityImg" alt="소고기" width="150px">
+								<img src="<c:url value='/assets/img/소고기.PNG' />" class="opacityImg" alt="소고기" width="150px">
 							</div>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngName()}</h2>
 							<input type="hidden" name="mkIngPrice${mkIng.getIngId()}" value="${mkIng.getIngPrice()}"/>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngPrice()}원</h2>
 							<input type="hidden" name="mkIngCalorie${mkIng.getIngId()}" value="${mkIng.getIngCalorie()}"/>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngCalorie()}cal/1인분</h2>
-							<input type="number" style="width: 70px; margin-top: 10px"
-								name="IngQuantity${mkIng.getIngId()}"
-								value="${mkIng.getIngQuantity()}">
+							<input type="number" style="width: 70px; margin-top: 10px" name="IngQuantity${mkIng.getIngId()}" value="${mkIng.getIngQuantity()}">
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 			<div class="row">
 				<div class="col text-end mt-2">
-					<button type="submit" class="btn btn-success btn-lg px-3"
-						onClick="ingModify()">장바구니 담기</button>
-					<button type="submit" class="btn btn-success btn-lg px-3"
-						formaction="<c:url value='/order/form' />">주문하기</button>
+					<button type="submit" class="btn btn-success btn-lg px-3" onClick="ingModify()">장바구니 담기</button>
+					<button type="submit" class="btn btn-success btn-lg px-3" formaction="<c:url value='/order/form' />">주문하기</button>
 				</div>
 			</div>
 		</form>
