@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -244,7 +244,7 @@
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
                                 <p id="mkname">${mk.mkName}</p></a>
                                 <p>칼로리: ${mk.defaultCal}</p>
-                                <p>가격: ${mk.defaultPrice}</p>
+                                <p>가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mk.defaultPrice}"/></p>
                             </div>
                         </div>
                         <div style="display:none;" id="ingList">

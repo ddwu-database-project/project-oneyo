@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.dto.*"%>
 <%@ page import="model.dao.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -164,7 +164,7 @@
 							</div>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngName()}</h2>
 							<input type="hidden" name="mkIngPrice${mkIng.getIngId()}" value="${mkIng.getIngPrice()}"/>
-							<h2 class="h5 text-center ingInfo">${mkIng.getIngPrice()}원</h2>
+							<h2 class="h5 text-center ingInfo"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mkIng.getIngPrice()}"/>원</h2>
 							<input type="hidden" name="mkIngCalorie${mkIng.getIngId()}" value="${mkIng.getIngCalorie()}"/>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngCalorie()}cal/1인분</h2>
 							<input type="number" style="width: 70px; margin-top: 10px" name="IngQuantity${mkIng.getIngId()}" value="${mkIng.getIngQuantity()}">

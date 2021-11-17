@@ -1,6 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -241,7 +240,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">${mealkit.getMkName()}</h1>
-                            <p class="h3 py-2">${mealkit.getDefaultPrice()}원</p>
+                            <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -354,7 +353,7 @@
                                     <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                 </li>
                             </ul>
-                            <p class="text-center mb-0">${mkIngs.getIngPrice()}원</p>
+                            <p class="text-center mb-0"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mkIngs.getIngPrice()}"/>원</p>
                  			<p class="text-center mb-0">${mkIngs.getIngQuantity()}개</p>
                         </div>
                     </div>
