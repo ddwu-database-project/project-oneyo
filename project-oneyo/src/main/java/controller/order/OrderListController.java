@@ -37,6 +37,7 @@ public class OrderListController implements Controller {
     	CustomMkDAO customMkDAO = new CustomMkDAO();
     	for (Order order : orderList) {
     		order.setOrderCustomMk(customMkDAO.findListByOrderId(order.getOrderId()));
+    		System.out.println(order.getOrderCustomMk().get(0).getSharestatus());
     	}
     	
     	request.setAttribute("orderList", orderList);

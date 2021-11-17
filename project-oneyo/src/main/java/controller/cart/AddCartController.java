@@ -28,8 +28,8 @@ public class AddCartController implements Controller{
 		}
 		String email = CustomerSessionUtils.getLoginCustomerId(session);
 		
-//		Mealkit mk = (Mealkit) request.getAttribute("mktest");
-//		System.out.println(mk);
+		Mealkit mk = (Mealkit) request.getAttribute("mktest");
+
 		// get login customer Id
 		CustomerDAO customerDAO = new CustomerDAO();
 		Customer customer = customerDAO.findCustomer(email);

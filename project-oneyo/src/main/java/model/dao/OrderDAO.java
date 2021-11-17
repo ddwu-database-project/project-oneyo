@@ -56,7 +56,7 @@ public class OrderDAO {
 					Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
 							rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
 					
-					CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
+					CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"), 0);
 					orderedItems.add(tmp2);
 				}
 			}catch(Exception ex) {
@@ -83,7 +83,7 @@ public class OrderDAO {
 				Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
 						rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
 				
-				CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
+				CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"), 0);
 				orderedItems.add(tmp2);
 			}
 		}catch(Exception ex) {
@@ -228,7 +228,7 @@ public class OrderDAO {
 	public List<Order> findOrderByCustomerId(int customerId) {
 		List<Order> orderList = new ArrayList<>();
 
-		String sql = "SELECT DISTINCT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=?";
+		String sql = "SELECT DISTINCT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=? ORDER BY mo.orderid";
 		// �ֹ���ȣ, �ֹ�����, �ֹ�����, ��ŰƮ��, ����, ����, ��Į�θ�
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
 		ResultSet rs = null;
