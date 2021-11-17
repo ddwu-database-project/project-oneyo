@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -11,25 +11,25 @@
 
 	<table width=100% border=1px>
 		<c:if test="${customMk.size() == 0}">
-			<p>°øÀ¯°¡´ÉÇÑ ¹ĞÅ°Æ®°¡ ¾ø½À´Ï´Ù.</p>
+			<p>ê³µìœ ê°€ëŠ¥í•œ ë°€í‚¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
 		</c:if>
 		<c:forEach var="item" items="${customMk}">
 			<form name="f${item.getCustomMealkitId()}" method="POST"
 				action="<c:url value="/share/add" />">
 				<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
 				<tr>
-					<td rowspan="4">»óÇ° ÀÌ¹ÌÁö</td>
+					<td rowspan="4">ìƒí’ˆ ì´ë¯¸ì§€</td>
 					<td width="50%">${item.getOriginalMealkit().getMkName()}</td>
-					<td rowspan="4"><input type="submit" value="°øÀ¯ÇÏ±â"></td>
+					<td rowspan="4"><input type="submit" value="ê³µìœ í•˜ê¸°"></td>
 				</tr>
 				<tr>
-					<td>ÁÖ¹® ¿É¼Ç : ${item.printCustomIng()}</td>
+					<td>ì£¼ë¬¸ ì˜µì…˜ : ${item.printCustomIng()}</td>
 				</tr>
 				<tr>
-					<td>°¡°İ : ${item.getPrice()}</td>
+					<td>ê°€ê²© : ${item.getPrice()}</td>
 				</tr>
 				<tr>
-					<td>¿µ¾ç Á¤º¸ : ${item.getTotalCalorie()}</td>
+					<td>ì˜ì–‘ ì •ë³´ : ${item.getTotalCalorie()}</td>
 				</tr>
 				
 			</form>

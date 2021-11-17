@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -12,27 +12,27 @@
 
 	<table width=100% border=1px>
 		<c:if test="${customMk.size() == 0}">
-			<p>°øÀ¯µÈ ¹ĞÅ°Æ®°¡ ¾ø½À´Ï´Ù.</p>
+			<p>ê³µìœ ëœ ë°€í‚¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
 		</c:if>
 		<c:forEach var="item" items="${customMk}">
 				<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
 				<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
 				<tr>
-					<td rowspan="4">${customerMap.get(item.getCustomerId())}´Ô</td>
-					<td rowspan="4">»óÇ° ÀÌ¹ÌÁö</td>
+					<td rowspan="4">${customerMap.get(item.getCustomerId())}ë‹˜</td>
+					<td rowspan="4">ìƒí’ˆ ì´ë¯¸ì§€</td>
 					<td width="50%">${item.getOriginalMealkit().getMkName()}</td>
 					<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
-						<td rowspan="4"><input type="submit" onClick="return confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");" value="»èÁ¦ÇÏ±â"></td>
+						<td rowspan="4"><input type="submit" onClick="return confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");" value="ì‚­ì œí•˜ê¸°"></td>
 					</c:if>
 				</tr>
 				<tr>
-					<td>ÁÖ¹® ¿É¼Ç : ${item.printCustomIng()}</td>
+					<td>ì£¼ë¬¸ ì˜µì…˜ : ${item.printCustomIng()}</td>
 				</tr>
 				<tr>
-					<td>°¡°İ : ${item.getPrice()}</td>
+					<td>ê°€ê²© : ${item.getPrice()}</td>
 				</tr>
 				<tr>
-					<td>¿µ¾ç Á¤º¸ : ${item.getTotalCalorie()}</td>
+					<td>ì˜ì–‘ ì •ë³´ : ${item.getTotalCalorie()}</td>
 				</tr>
 				</form>
 		</c:forEach>
