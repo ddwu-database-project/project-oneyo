@@ -25,7 +25,6 @@
 
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 
-<<<<<<< HEAD
 	<script type="text/javascript">
 	  function filterMealkit() {
 		if (window.event.keyCode == 13){
@@ -55,37 +54,6 @@
 	   }
 	  }
 	</script>
-=======
--->
-<script type="text/javascript">
-  function filterMealkit() {
-	if (window.event.keyCode == 13){
-    let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
-    let mkList = document.getElementsByClassName("mkList");
-    
-    for (let i = 0; i < mkList.length; i++) {
-      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
-      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
-      
-      let ingarr = ""
-      
-      for (let k = 0; k < ingList.length; k++){
-    	  ingarr += ingList.item(k).innerText.toLowerCase();
-    	  
-      }
-      
-      if (mealkitName.toLowerCase().indexOf(search) != -1 ||
-   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.includes(search)
-   		  ) {
-    	  mkList[i].style.display = "inherit"
-      } else {
-    	  mkList[i].style.display = "none"
-      }
-    }
-   }
-  }
-</script>
->>>>>>> 5e59ec8fb471a977dfdd2e0400dbb8c1edbcb88b
 </head>
 
 <body>
