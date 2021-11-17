@@ -117,27 +117,16 @@
 
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-6">
-                        <ul class="list-inline shop-top-menu pb-3 pt-1">
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Mealkit's</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Ingredient's</a>
-                            </li>
-                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="검색어를 입력하세요."/></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 pb-4">
+                	<div class="col-md-3 pb-4">
                         <div class="d-flex">
                             <select class="form-control">
                                 <option>가나다순으로</option>
                                 <option>인기순으로</option>
                             </select>
                         </div>
+                    </div>
+                    <div style="border-"class="col-md-9">
+                    	<input type="text" class="form-control" onkeyup="filterMealkit()" id="search" placeholder="검색어를 입력하세요."/>
                     </div>
                 </div>
                 <div class="row">
@@ -198,24 +187,9 @@
         </div>
     </div>
     <!-- End Content -->
-
-    <!-- Start Footer -->
-    <footer id="tempaltemo_footer">
-        <div class="w-100 py-3 footer-color">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
     
-
+	<%@include file="/WEB-INF/base/footer.jsp"%>
+    
     <!-- Start Script -->
     <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
     <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
