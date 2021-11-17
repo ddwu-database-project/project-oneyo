@@ -335,7 +335,7 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 				</tr>
 				
 				<tr style="background-color:#fff;">
-					<td style="padding: 23px 0;"><span class="price">${totalPrice}</span>원</td>
+					<td style="padding: 23px 0;"><span class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/></span>원</td>
 					<td>+<span class="price">0</span>원</td>
 					<td>=<span class="price">${totalPrice}</span>원</td>
 				</tr>

@@ -52,7 +52,7 @@
 	      if (mealkitName.toLowerCase().indexOf(search) != -1 ||
 	   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.includes(search)
 	   		  ) {
-	    	  mkList[i].style.display = "inherit"
+	    	  mkList[i].style.display = "inline"
 	      } else {
 	    	  mkList[i].style.display = "none"
 	      }
