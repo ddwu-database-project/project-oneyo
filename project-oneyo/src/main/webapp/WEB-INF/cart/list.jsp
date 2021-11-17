@@ -3,33 +3,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>O!NEYO - 장바구니</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="apple-touch-icon"
-	href="<c:url value='/assets/img/apple-icon.png' />">
-<link rel="shortcut icon" type="image/x-icon"
-	href="<c:url value='/assets/img/oneyo_fav.ico' />">
+<link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
 
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/bootstrap.min.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
 <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
-
 <!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/fontawesome.min.css' />">
+<link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 
 <script>
 	document.addEventListener('keydown', function(event) {
@@ -52,6 +43,7 @@
 		let total = document.getElementById("total_price");
 		total.innerHTML = total_price.toLocaleString('ko-KR') + "원";
 	}
+	
 	function selected(index){
 		let select_mealkit_list = document.getElementsByClassName("cart_list");
 		select_mealkit = select_mealkit_list[index].querySelector("#select-mealkit-price");
@@ -70,6 +62,7 @@
 			return false;
 		}
 	}
+	
 	function deleteItem() {
 		var obj_len = document.getElementsByName("select").length;
 		var cnt = 0;
@@ -106,7 +99,7 @@
 	    forder.submit();
 	  
 	} 
-	</script>
+</script>
 	<style>
 	.cart-item-thumb {
 		display: block;
@@ -159,11 +152,9 @@
 	<div class="container pb-5 mt-n2 mt-md-n3">
 		<div class="row" style="margin-top: 50px;">
 			<div class="col-xl-9 col-md-8">
-				<h2
-					class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary">
+				<h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary">
 					<span>장바구니</span>
 				</h2>
-
 				<c:if test="${cartitems.size() == 0}">
 					<div class="h4 font-weight-semibold text-center py-4">
 						<p>장바구니에 담긴 아이템이 없습니다</p>
@@ -181,7 +172,7 @@
 							<div class="media-body pt-3">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
-									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/></span>
+									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/>원</span>
 								</div>
 								<div class="font-size-sm">
 									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}</div>
@@ -208,17 +199,15 @@
 					</div>
 				</c:forEach>
 			</div>
+			
 			<!-- Sidebar-->
-
 			<div class="col-xl-3 col-md-4 pt-3 pt-md-0">
 				<h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>
-				<div id="total_price"
-					class="h3 font-weight-semibold text-center py-3">0원</div>
+				<div id="total_price" class="h3 font-weight-semibold text-center py-3">0원</div>
 				<hr>
-				<form name="fdelete" method="post"
-					action="<c:url value="/cart/delete" />">
-					<input type="hidden" name="which" value="cart"> <input
-						type="hidden" value="" id="deleteids" name="deleteids">
+				<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
+					<input type="hidden" name="which" value="cart"> 
+					<input type="hidden" value="" id="deleteids" name="deleteids">
 					<button class="btn btn-outline-danger btn-sm btn-block mb-2"
 						type="button" onClick="deleteItem()">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -226,8 +215,7 @@
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="feather feather-trash-2 mr-1">
                             <polyline points="3 6 5 6 21 6"></polyline>
-                            <path
-								d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
                         </svg>
@@ -252,7 +240,6 @@
 					</button>
 				</form>
 			</div>
-
 		</div>
 	</div>
 
@@ -271,7 +258,6 @@
         </div>
     </footer>
     <!-- End Footer -->
-    
 
     <!-- Start Script -->
     <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
