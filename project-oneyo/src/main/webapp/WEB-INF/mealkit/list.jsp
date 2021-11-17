@@ -38,7 +38,6 @@ https://templatemo.com/tm-559-zay-shop
     
     for (let i = 0; i < mkList.length; i++) {
       mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
-      console.log("mealkitname = "+mealkitName);
       let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
       
       let ingarr = ""
