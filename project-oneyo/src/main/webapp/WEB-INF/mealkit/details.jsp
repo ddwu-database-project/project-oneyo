@@ -10,37 +10,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
+    <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/templatemo.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
+    <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
+    
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css'/>">
+    
+    <c:url value='/assets/css/slick-theme.css'/>
 
     <!-- Slick -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
-<!--
-    
-TemplateMo 559 Zay Shop
+    <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick-theme.css'/>">
 
-https://templatemo.com/tm-559-zay-shop
-
--->
 </head>
 
 <body>
-    
-<!-- Header -->
+<!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+
+	                	} %>          
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
+  
+   <!-- Header -->
    <nav class="navbar navbar-expand-lg navbar-light shadow">
       <div
          class="container d-flex justify-content-between align-items-center">
          <img class="logo_img"
-            src="<c:url value='./assets/img/oneyo_logo.PNG'/>" width="50px">
+            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
          <a
             class="navbar-brand text-success logo logo_title h1 align-self-center"
             href="<c:url value='/home'/>"> O!NEYO </a>
@@ -119,7 +140,9 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="../assets/img/product_single_10.jpg" alt="Card image cap" id="product-detail">
+                        
+                    
+                        <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_10.jpg'/>" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -140,17 +163,18 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_01.jpg" alt="Product Image 1">
+                                            
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_01.jpg'/>" alt="Product Image 1">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_02.jpg" alt="Product Image 2">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_02.jpg'/>" alt="Product Image 2">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_03.jpg" alt="Product Image 3">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_03.jpg'/>" alt="Product Image 3">
                                             </a>
                                         </div>
                                     </div>
@@ -162,17 +186,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_04.jpg" alt="Product Image 4">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_04.jpg'/>" alt="Product Image 4">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_05.jpg" alt="Product Image 5">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_05.jpg'/>" alt="Product Image 5">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_06.jpg" alt="Product Image 6">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_06.jpg'/>" alt="Product Image 6">
                                             </a>
                                         </div>
                                     </div>
@@ -184,17 +208,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_07.jpg" alt="Product Image 7">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_07.jpg'/>" alt="Product Image 7">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_08.jpg" alt="Product Image 8">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_08.jpg'/>" alt="Product Image 8">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="../assets/img/product_single_09.jpg" alt="Product Image 9">
+                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_09.jpg'/>" alt="Product Image 9">
                                             </a>
                                         </div>
                                     </div>
@@ -311,7 +335,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="../assets/img/shop_08.jpg">
+                            <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/shop_08.jpg'/>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -346,7 +370,7 @@ https://templatemo.com/tm-559-zay-shop
     <!-- End Article -->
 
 
-    <<!-- Start Footer -->
+    <!-- Start Footer -->
     <footer id="tempaltemo_footer">
         <div class="w-100 py-3 footer-color">
             <div class="container">
@@ -362,16 +386,18 @@ https://templatemo.com/tm-559-zay-shop
     </footer>
     <!-- End Footer -->
 
+
     <!-- Start Script -->
-    <script src="../assets/js/jquery-1.11.0.min.js"></script>
-    <script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/templatemo.js"></script>
-    <script src="../assets/js/custom.js"></script>
+    <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+    <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+    <script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+    <script src="<c:url value='/assets/js/templatemo.js' />"></script>
+    <script src="<c:url value='/assets/js/custom.js' />"></script>
+    <script src="<c:url value='/assets/js/fade-in.js' />"></script>
     <!-- End Script -->
 
     <!-- Start Slider Script -->
-    <script src="../assets/js/slick.min.js"></script>
+    <script src="<c:url value='/assets/js/slick.min.js' />"></script>
     <script>
         $('#carousel-related-product').slick({
             infinite: true,
