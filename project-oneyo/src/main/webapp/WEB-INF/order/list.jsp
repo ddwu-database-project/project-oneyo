@@ -225,6 +225,7 @@ $("#delete").click(function del(){
 
 
 <%@include file="/WEB-INF/base/footer.jsp" %>
+
     <!-- Start Script -->
     <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
     <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>

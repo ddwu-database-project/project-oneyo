@@ -62,7 +62,7 @@
 						</a>
 						<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
 							<td rowspan="4">
-								<input type="submit" onClick="return confirm("정말 삭제하시겠습니까?");" value="삭제하기">
+								<input type="submit" onClick="return confirm("정말 삭제하시겠습니까?");" value="삭제하기" class="btn btn-lg px-3" style="border-color: grey; padding: 5px 0px">
 							</td>
 						</c:if>
 				</form>		
