@@ -151,16 +151,16 @@
                             <div class="card rounded-0">
                                 <c:choose>
                                   <c:when test ="${imgName eq '토마토카레'}">
-                                     <img class="card-img rounded-0 img-fluid" src="../assets/img/tomatocurry.png" style="background-size:cover;">
+                                     <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/tomatocurry.png' />" style="background-size:cover;">
                                   </c:when>
-                                  <c:when test= "${imgName eq '버섯소불고기'}">
-                                    <img class="card-img rounded-0 img-fluid" src="../assets/img/sobulgogi.png" style="background-size:cover;">
+                                  <c:when test= "${imgName eq '버섯소불고기'}"> 
+                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/sobulgogi.png' />" style="background-size:cover;">
                                  </c:when>
                                  <c:when test ="${imgName == '찹스테이크'}">
-                                    <img class="card-img rounded-0 img-fluid" src="../assets/img/stake.png" style="background-size:cover;">
+                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/stake.png' />" style="background-size:cover;">
                                  </c:when>
-                                 <c:when test= "${imgName == '토마토스튜'}">
-                                    <img class="card-img rounded-0 img-fluid" src="../assets/img/tomatostew.png" style="background-size:cover;">
+                                 <c:when test= "${imgName == '토마토스튜'}"> 
+                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/tomatostew.png' />" style="background-size:cover;">
                                  </c:when>
                               </c:choose>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
