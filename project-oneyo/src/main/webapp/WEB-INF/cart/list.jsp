@@ -172,6 +172,7 @@
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
 							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/60B5BC/FFFFFF" alt="Product"></a>
+
 							<div class="media-body pt-3" style="align:left;">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0"  style="text-align:left;">&nbsp;&nbsp;&nbsp;${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit" style="text-align:left;">&nbsp;&nbsp;&nbsp;
@@ -180,6 +181,16 @@
 								<div class="font-size-sm" style="text-align:left;">
 									<span class="text-muted mr-2" style="text-align:left;">&nbsp;&nbsp;&nbsp;영양정보:</span>${item.getTotalCalorie()}</div>
 								<div class="font-size-sm text-primary pt-2" style="text-align:left;">&nbsp;&nbsp;&nbsp;주문옵션:
+
+							<div class="media-body pt-3">
+								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
+								<div class="font-size-sm" id="select-mealkit">
+									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/>원</span>
+								</div>
+								<div class="font-size-sm">
+									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}</div>
+								<div class="font-size-lg text-primary pt-2" style="color: black !important">주문옵션: 
+
 									${item.printIng()}
 								</div>
 							</div>
@@ -229,7 +240,7 @@
 					action="<c:url value="/order/form" /> ">
 					<input type="hidden" name="which" value="cart"> <input
 						type="hidden" value="" id="orderids" name="orderids">
-					<button class="btn btn-primary btn-block" type="button"
+					<button class="btn btn-primary btn-block orderBtn" type="button" style="background-color: #60B5BC; border-color: #60B5BC"
 						onClick="buy()">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"

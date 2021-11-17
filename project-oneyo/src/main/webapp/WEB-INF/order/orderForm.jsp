@@ -183,6 +183,7 @@
 	
 </head>
 <body>
+
 <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
@@ -239,6 +240,11 @@
 <form name ="form" method="post" action="<c:url value='/order/add' />">
 
 <div id="backbody" >
+
+<%@include file="/WEB-INF/base/header.jsp" %>
+<form name ="form" method="post" action="<c:url value='/order/add' />">
+<div id="backbody">
+
 	<div id="frame">
 			<div id="frame2">
 				<span style="font-size: 16pt; font-weight:bold;">커스텀밀키트</span>
