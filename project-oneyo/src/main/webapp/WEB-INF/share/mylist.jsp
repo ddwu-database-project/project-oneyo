@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<table width=100% border=1px>
 		<c:if test="${customMk.size() == 0}">
 			<p>공유가능한 밀키트가 없습니다.</p>
@@ -31,10 +30,8 @@
 				<tr>
 					<td>영양 정보 : ${item.getTotalCalorie()}</td>
 				</tr>
-				
 			</form>
 		</c:forEach>
 	</table>
-
 </body>
 </html>
