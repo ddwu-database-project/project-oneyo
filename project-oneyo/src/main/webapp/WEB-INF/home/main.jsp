@@ -79,7 +79,7 @@
                   <li class="nav-item"><a class="nav-link"
                      href="<c:url value='/mealkit/list'/>">Shop</a></li>
                   <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/share/list/all'/>">Share</a></li>
+                     href="<c:url value='/share/list'/>">Share</a></li>
                </ul>
             </div>
             <div class="navbar align-self-center d-flex">

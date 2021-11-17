@@ -328,11 +328,11 @@
 
             <!--Start Carousel Wrapper-->
             <div id="carousel-related-product">
-			<c:forEach var="mkIngs" items="${mealkit.getIngredients()}">
+			<c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/shop_08.jpg'/>">
+                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/bulgogi/${ing.index}.jpg'/>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
