@@ -279,8 +279,7 @@
 									${item.printIng()}</div>
 							</div>
 						</div>
-						<div
-							class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left"
+						<div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left"
 							style="max-width: 10rem;">
 							<form name="f${item.getCustomMealkitId()}" method="get"
 								action="<c:url value="/cart/update" />">
@@ -293,19 +292,19 @@
 										name="quantity" onchange="checkQty(this)"
 										value="${item.getQuantity()}">
 								</div>
-								<button class="btn btn-outline-secondary btn-sm btn-block mb-2"
-									type="submit">
+								<button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="submit">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 										viewBox="0 0 24 24" fill="none" stroke="currentColor"
 										stroke-width="2" stroke-linecap="round"
 										stroke-linejoin="round"
 										class="feather feather-refresh-cw mr-1">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>변경<button>
+		                            <polyline points="23 4 23 10 17 10"></polyline>
+		                            <polyline points="1 20 1 14 7 14"></polyline>
+		                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        			</svg>
+                        		변경</button>
+							</form>
 						</div>
-						</form>
 					</div>
 
 				</c:forEach>
