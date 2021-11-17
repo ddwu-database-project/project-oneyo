@@ -309,10 +309,10 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 						</tbody>
 						<tfoot>
 						<tr style="height: 60px;">
-							<td colspan="5" style="border-right: none; text-align:left; padding-left: 10px;">
+							<td colspan="5" style="border-right: none;border-left: none; text-align:left; padding-left: 10px;">
 								<span>[기본배송]</span>
 							</td>
-							<td colspan="5" style="border-right: none; text-align:right; padding-right: 10px;">
+							<td colspan="5" style="border-right: none; border-left: none;text-align:right; padding-right: 10px;">
 								상품금액<span>${totalPrice}</span> + <span>배송비 0 = <br/>합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;">${totalPrice}원</span>
 							</td>
 						</tr>
