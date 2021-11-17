@@ -33,5 +33,7 @@
 			</form>
 		</c:forEach>
 	</table>
+	
+	<%@include file="/WEB-INF/base/footer.jsp"%>
 </body>
 </html>

@@ -210,23 +210,7 @@
     </section>
     <!-- End Article -->
 
-
-    <!-- Start Footer -->
-    <footer id="tempaltemo_footer">
-        <div class="w-100 py-3 footer-color">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-
+<%@include file="/WEB-INF/base/footer.jsp"%>
 
     <!-- Start Script -->
     <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
