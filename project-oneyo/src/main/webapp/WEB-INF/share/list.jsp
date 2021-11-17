@@ -18,7 +18,7 @@
 				<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
 				<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
 				<tr>
-					<td rowspan="4">∞Ì∞¥ Id <br> ${item.getCustomerId()}</td>
+					<td rowspan="4">${customerMap.get(item.getCustomerId())}¥‘</td>
 					<td rowspan="4">ªÛ«∞ ¿ÃπÃ¡ˆ</td>
 					<td width="50%">${item.getOriginalMealkit().getMkName()}</td>
 					<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
