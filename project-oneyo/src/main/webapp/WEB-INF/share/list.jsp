@@ -144,7 +144,7 @@
 			<div class="col-12 col-md-4 p-5 mt-3 text_photo">
 							<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
 					<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
-						<a href="http://codepen.io/zFunx/pen/GmMGax" class="textOverImage" style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)" 
+						<a class="textOverImage" style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)" 
 						data-title="${customerMap.get(item.getCustomerId())}님" data-text="
 						밀키트: ${item.getOriginalMealkit().getMkName()} 
 						재료: ${item.printCustomIng()}
