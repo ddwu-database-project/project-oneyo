@@ -15,10 +15,10 @@ public class DeleteShareController implements Controller {
 		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
 		if (customMkDAO.updateShare(customMkId, 0) == 0) {
-			System.out.println("°øÀ¯ Ãë¼Ò ¿À·ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
-		return "redirect:/share/list/all";
+		return "redirect:/share/list";
 	}
 
 }

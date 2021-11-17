@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
+    <title>O!NEYO - 로그인</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,10 +20,10 @@
     <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
     <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
-
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+	
 	<script>
 	function login() {
 		if (form.email.value == "") {
@@ -36,12 +36,6 @@
 			form.password.focus();
 			return false;
 		}		
-		form.submit();
-	}
-	
-	function customerCreate(targetUri) {
-		form.action = targetUri;
-		form.method="GET";		// register form 요청
 		form.submit();
 	}
 	</script>
@@ -87,10 +81,10 @@
                             <a class="nav-link" href="<c:url value='/home'/>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
+                            <a class="nav-link" href="<c:url value='/share/list/all'/>">Share</a>
                         </li>
                     </ul>
                 </div>
@@ -154,18 +148,18 @@
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form" action="<c:url value='/customer/login' />">
+            <form name="form" class="col-md-9 m-auto" method="post" role="form" action="<c:url value='/customer/login' />">
                 <div class="mb-3">
                     <label for="inputsubject">Email</label>
                     <input type="text" class="form-control mt-1" id="subject" name="email" placeholder="Email">
                 </div>
                 <div class="mb-3">
                   <label for="inputsubject">Password</label>
-                  <input type="text" class="form-control mt-1" id="subject" name="password" placeholder="Password">
+                  <input type="password" class="form-control mt-1" id="subject" name="password" placeholder="Password">
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Login</button>
+                        <button type="button" class="btn btn-success btn-lg px-3" onClick="login()">Login</button>
                     </div>
                 </div>
             </form>

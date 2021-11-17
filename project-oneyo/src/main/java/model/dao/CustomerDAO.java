@@ -4,7 +4,7 @@ import model.dto.Customer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// °í°´ °ü¸®¸¦ À§ÇØ DBÀÛ¾÷À» Àü´ãÇÏ´Â DAO Å¬·¡½º
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DBï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ DAO Å¬ï¿½ï¿½ï¿½ï¿½
 public class CustomerDAO {
 	private JDBCUtil jdbcUtil = null;
 	
@@ -12,37 +12,37 @@ public class CustomerDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	// °í°´ Å×ÀÌºí¿¡ »õ·Î¿î °í°´ »ý¼º
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int create(Customer customer) throws SQLException {
 		String sql = "INSERT INTO CUSTOMER VALUES (customer_seq.nextval, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {customer.getCustomerName(), customer.getEmail(), 
 				customer.getPassword(), customer.getPhone(), customer.getAddress()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback(); 
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;	
 	}
 	
-	// °í°´ÀÇ Á¤º¸ ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int update(Customer customer) throws SQLException {
 		String sql = "UPDATE CUSTOMER "
 					+ "SET customerName=?, password=?, phone=?, address=? "
 					+ "WHERE email=?";
 		Object[] param = new Object[] {customer.getCustomerName(), customer.getPassword(), customer.getPhone(), 
 				customer.getAddress(), customer.getEmail()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil¿¡ update¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtilï¿½ï¿½ updateï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -50,18 +50,18 @@ public class CustomerDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;
 	}
 	
-	// °í°´ id¿¡ ÇØ´çÇÏ´Â °í°´ »èÁ¦
+	// ï¿½ï¿½ idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int remove(String email) throws SQLException {
 		String sql = "DELETE FROM CUSTOMER WHERE email=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtilï¿½ï¿½ deleteï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// delete ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -69,22 +69,22 @@ public class CustomerDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;
 	}
 	
-	// ÁÖ¾îÁø °í°´ id¿¡ ÇØ´çÇÏ´Â Á¤º¸¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£¾Æ Customer DTO¿¡ ÀúÀåÇÏ¿© ¹ÝÈ¯
+	// ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ Customer DTOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯
 	public Customer findCustomer(String email) throws SQLException {
         String sql = "SELECT customerId, customerName, password, phone, address "
         			+ "FROM CUSTOMER "
         			+ "WHERE email=?";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {		
-				Customer customer = new Customer(		// Customer °´Ã¼¸¦ »ý¼ºÇÏ¿© °í°´ Á¤º¸¸¦ ÀúÀå
+				Customer customer = new Customer(		// Customer ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					rs.getInt("customerId"),
 					rs.getString("customerName"),
 					rs.getString("password"),
@@ -96,7 +96,26 @@ public class CustomerDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
+		}
+		return null;
+	}
+	
+	public String findNameById(int id) throws SQLException {
+        String sql = "SELECT customerName "
+        			+ "FROM CUSTOMER "
+        			+ "WHERE customerId=?";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			if (rs.next()) {		
+				return rs.getString("customerName");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}

@@ -51,10 +51,10 @@ public class CartDAO {
 	
 	public int update(String customMkId, String newQuantity) throws SQLException {
 		
-		String sql = "UPDATE custommealk "
+		String sql = "UPDATE custommealkit "
 					+ "SET quantity=? "
 					+ "WHERE custommkid=?";
-		Object[] param = new Object[] {newQuantity, customMkId};				
+		Object[] param = new Object[] {newQuantity, customMkId, };				
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				

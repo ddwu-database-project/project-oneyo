@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+
 </head>
 
 <body>
@@ -50,56 +51,64 @@
     <!-- Close Top Nav -->
 
   
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-            <img class="logo_img" src="./assets/img/oneyo_logo.PNG" width="50px">
-            <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="<c:url value='/home'/>">
-                O!NEYO
-            </a>
+   <!-- Header -->
+   <nav class="navbar navbar-expand-lg navbar-light shadow">
+      <div
+         class="container d-flex justify-content-between align-items-center">
+         <img class="logo_img"
+            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
+         <a
+            class="navbar-brand text-success logo logo_title h1 align-self-center"
+            href="<c:url value='/home'/>"> O!NEYO </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+         <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
 
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/home'/>">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<c:url value="/cart/list" />">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<c:url value='/customer/mypage'/>">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    </a>
-                </div>
+         <div
+            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            id="templatemo_main_nav">
+            <div class="flex-fill">
+               <ul
+                  class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/home'/>">Home</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/mealkit/list'/>">Shop</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/share/list'/>">Share</a></li>
+               </ul>
             </div>
+            <div class="navbar align-self-center d-flex">
+               <div
+                  class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                  <div class="input-group">
+                     <input type="text" class="form-control" id="inputMobileSearch"
+                        placeholder="Search ...">
+                     <div class="input-group-text">
+                        <i class="fa fa-fw fa-search"></i>
+                     </div>
+                  </div>
+               </div>
+               <a class="nav-icon d-none d-lg-inline" href="#"
+                  data-bs-toggle="modal" data-bs-target="#templatemo_search"> <i
+                  class="fa fa-fw fa-search text-dark mr-2"></i>
+               </a> <a class="nav-icon position-relative text-decoration-none"
+                  href="<c:url value="/cart/list" />"> <i
+                  class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+               </a> <a class="nav-icon position-relative text-decoration-none"
+                  href="<c:url value='/customer/mypage'/>"> <i
+                  class="fa fa-fw fa-user text-dark mr-3"></i>
+               </a>
+            </div>
+         </div>
 
-        </div>
-    </nav>
-    <!-- Close Header -->
+      </div>
+   </nav>
+   <!-- Close Header -->
 
     <!-- Modal -->
     <div class="modal bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,25 +134,21 @@
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_01.jpg" alt="">
+                            <img class="img-fluid" src="<c:url value='/assets/img/mk2.png' />">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
-                                <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                                <h1 class="h1 text-success"><b>Best</b></h1>
+                                <h1 style="font-size: 22px">오리지널의 맛</h1>
+                                <h3 style="font-size: 40px"><b>불고기 덮밥</b></h3>
                                 <p>
-                                    Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). 
-                                    This template is 100% free provided by <a rel="sponsored" class="text-success" href="https://templatemo.com" target="_blank">TemplateMo</a> website. 
-                                    Image credits go to <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                    <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                    <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
+                                    '불고기'는 남녀노소 누구나 좋아하는 친숙한 메뉴인데요. '불고기 덮밥'은 백만송이버섯, 만가닥버섯, 표고버섯, 팽이버섯 총 4가지 버섯을 넣어 특별함을 더했어요. 버섯 고유의 쫄깃한 식감과 은은한 향이 부드러운 소고기와 어우러져 온 가족이 좋아하는 조화로운 맛의 메뉴랍니다.
                                 </p>
                             </div>
                         </div>
@@ -154,34 +159,15 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_02.jpg" alt="">
+                            <img class="img-fluid" src="<c:url value='/assets/img/mk3.png' />">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            	<h1 class="h1 text-success"><b>Best</b></h1>
+                                <h1 style="font-size: 22px">꽃과 같은 비주얼 센터</h1>
+                                <h3 style="font-size: 40px"><b>밀푀유 나베</b></h3>
                                 <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_03.jpg" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Repr in voluptate</h1>
-                                <h3 class="h2">Ullamco laboris nisi ut </h3>
-                                <p>
-                                    We bring you 100% free CSS templates for your websites. 
-                                    If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+맛있으면서도 신경 쓴 듯한 인상을 줄 수 있는 요리. 평범한 식탁을, 매일 먹는 식사를 조금 특별하게 즐기고 싶다는 생각이 든다면, 주저말고 경험해보세요. 보내드리는 재료를 그대로 겹겹이 쌓아 냄비에 차곡차곡 쌓아주고 육수를 부어 한번 보글보글 끓여내면 완성되니까, 작은 노력으로 큰 만족을 얻으실 거에요.
                                 </p>
                             </div>
                         </div>
@@ -204,10 +190,9 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
+                    <h1 class="h1"><b>Best Mealkit</b></h1>
                     <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
+                        강력하게 추천드리는 최고의 밀키트
                     </p>
                 </div>
             </div>
@@ -215,15 +200,16 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+
+                            <img src="<c:url value='/assets/img/감바스알아히요.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                <li class="text-muted text-right">17,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">감바스알아히요</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                새우와 마늘을 올리브유에 튀기듯 구워낸 요리로 통통한 새우와 쫄깃한 문어를 넣어 씹는 맛과 감칠맛이 일품
                             </p>
                         </div>
                     </div>
@@ -231,15 +217,15 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img src="<c:url value='/assets/img/밀푀유나베.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                <li class="text-muted text-right">16,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">밀푀유나베</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                '천개의 잎사귀'라는 뜻을 가진 밀푀유나베는 퓨전요리로 깔끔한 국물과 부드러운 소고기, 신선한 야채가 잘 어우러진 든든한 전골 요리
                             </p>
                         </div>
                     </div>
@@ -247,15 +233,15 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img src="<c:url value='/assets/img/양장피.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                <li class="text-muted text-right">15,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">양장피</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                여러 가지 재료로 다채로운 빛을 내는 양장피<br>집들이, 홈파티, 생일상 등 화려한 식탁에 어울리는 메뉴
                             </p>
                         </div>
                     </div>
@@ -263,15 +249,15 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img src="<c:url value='/assets/img/직화 불고기 떡볶이.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                <li class="text-muted text-right">13,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">직화 불고기 떡볶이</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                불고기의 고소한 풍미까지 더한 매콤달콤한 직화 불고기 떡볶이
                             </p>
                         </div>
                     </div>
@@ -279,15 +265,15 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img src="<c:url value='/assets/img/매콤 소고기 우거지탕.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                <li class="text-muted text-right">7,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">매콤 소고기 우거지탕</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                매콤한 국물에 고소한 소고기와 아삭한 우거지를 한입 가득
                             </p>
                         </div>
                     </div>
@@ -295,15 +281,16 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.html">
-                            <img src="./assets/img/feature_prod_03.jpg" class="card-img-top" alt="...">
+                            <img src="<c:url value='/assets/img/로얄 크리미 스테이크.jpg' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$360.00</li>
+                                <li class="text-muted text-right">16,900원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">로얄 크리미 스테이크</a>
                             <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                                나만을 위한 작은 사치 <br>
+                                육즙 한가득 부드러운 스테이크
                             </p>
                         </div>
                     </div>
@@ -321,7 +308,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            �곗�댄�곕��댁�� ��濡�洹몃��諛� - 源�寃쏀��, ���④꼍, �댄��以�, ����誘�
+                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
                         </p>
                     </div>
                 </div>

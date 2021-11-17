@@ -1,35 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>주문 페이지</title>
-<style type="text/css">
+    <title>O!NEYO - 밀키트 리스트</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
+
+    <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
+
+    <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
+
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+
+    <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+
+	<style type="text/css">
 	div#backbody {
-	background-color: #f5f5f0;
-	font-size: 13pt;
-	min-width: 1480px;
-	width: 100%;	
-	padding: 50px 0 ;
+		background-color: #f5f5f0;
+		font-size: 13pt;
+		min-width: 1480px;
+		width: 100%;	
+		padding: 50px 0 ;
 	}
 	
 	#frame {
-	width: 80%;
-	margin: 0 auto;
-	padding: 50px 50px;
-	background-color: #fff;
+		width: 80%;
+		margin: 0 auto;
+		padding: 50px 50px;
+		background-color: #fff;
 	}
 	#frame2{
-	border-bottom: solid 1px #e0eGeb;
-	padding: 20px ;
+		border-bottom: solid 1px #e0eGeb;
+		padding: 20px ;
 	}
 	
 	.home { 
-	float: right;
-	clear: both;
+		float: right;
+		clear: both;
 	}
 	table. calculation1{
 		clear: both;
@@ -138,11 +158,90 @@
 		clear:both;
 	}
 	</style>
-	<script>
-	
-	</script>
+
 </head>
 <body>
+<!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+
+	                	} %>          
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
+  
+   <!-- Header -->
+   <nav class="navbar navbar-expand-lg navbar-light shadow">
+      <div
+         class="container d-flex justify-content-between align-items-center">
+         <img class="logo_img"
+            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
+         <a
+            class="navbar-brand text-success logo logo_title h1 align-self-center"
+            href="<c:url value='/home'/>"> O!NEYO </a>
+
+         <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div
+            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+            id="templatemo_main_nav">
+            <div class="flex-fill">
+               <ul
+                  class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/home'/>">Home</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/mealkit/list'/>">Shop</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="<c:url value='/share/list/all'/>">Share</a></li>
+               </ul>
+            </div>
+            <div class="navbar align-self-center d-flex">
+               <div
+                  class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                  <div class="input-group">
+                     <input type="text" class="form-control" id="inputMobileSearch"
+                        placeholder="Search ...">
+                     <div class="input-group-text">
+                        <i class="fa fa-fw fa-search"></i>
+                     </div>
+                  </div>
+               </div>
+               <a class="nav-icon d-none d-lg-inline" href="#"
+                  data-bs-toggle="modal" data-bs-target="#templatemo_search"> <i
+                  class="fa fa-fw fa-search text-dark mr-2"></i>
+               </a> <a class="nav-icon position-relative text-decoration-none"
+                  href="<c:url value="/cart/list" />"> <i
+                  class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+               </a> <a class="nav-icon position-relative text-decoration-none"
+                  href="<c:url value='/customer/mypage'/>"> <i
+                  class="fa fa-fw fa-user text-dark mr-3"></i>
+               </a>
+            </div>
+         </div>
+
+      </div>
+   </nav>
+   <!-- Close Header -->
 
 <form name ="form" method="post" action="<c:url value='/order/add' />">
 
@@ -181,7 +280,7 @@
 							<tr style="height: 90px; background-color: #fff;">
 							
 								
-									<c:set var="totalPrice" value="${totalPrice + item.getPrice() }"/>
+									<c:set var="totalPrice" value="${totalPrice = totalPrice + item.getPrice() * item.getQuantity() }"/>
 									<td
 										style="text-align: left; text-align: center; border-right: none;">
 										<input type="hidden" name="orderMkId" value="${item.getCustomMealkitId()}">
@@ -193,7 +292,7 @@
 										style="text-align: left; padding-left: 10px; border-left: none; font-weight: bold;">
 										${item.getOriginalMealkit().getMkName()} <!-- 밀키트명 -->
 									</td>
-									<td><span style="padding-left: 10px;">${item.getPrice()}</span>원</td>
+									<td><span style="padding-left: 10px;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice() * item.getQuantity()}"></fmt:formatNumber></span>원</td>
 									<!-- 가격 -->
 									<td style="width: 80px;"><span>${item.getQuantity()}</span>
 										<!-- 수량 --></td>
@@ -201,7 +300,9 @@
 								<td>-</td>
 								<td>기본배송</td>
 								<td>고정</td>
-								<td><span>${item.getPrice()}</span></td>
+								<td><span>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice() * item.getQuantity()}" />
+								</span></td>
 								<!-- 합계 -->
 							</tr>
 							</c:forEach>
@@ -212,7 +313,12 @@
 								<span>[기본배송]</span>
 							</td>
 							<td colspan="5" style="border-right: none; text-align:right; padding-right: 10px;">
-								상품금액<span>${totalPrice}</span> + <span>배송비 0 = 합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;">${totalPrice}원</span>
+								상품금액<span>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}" />
+								</span> + <span>배송비 0 = 합계</span>&nbsp;
+								<span style="font-weight:bold; font-size: 10pt;">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}" />원
+								</span>
 							</td>
 						</tr>
 					</tfoot>
@@ -300,9 +406,9 @@
 				</tr>
 				
 				<tr style="background-color:#fff;">
-					<td style="padding: 23px 0;"><span class="price">${totalPrice}</span>원</td>
+					<td style="padding: 23px 0;"><span class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}" /></span>원</td>
 					<td>+<span class="price">0</span>원</td>
-					<td>=<span class="price">${totalPrice}</span>원</td>
+					<td>=<span class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}" /></span>원</td>
 				</tr>
 			</table>
 			<br/><br/>
@@ -325,7 +431,9 @@
 				</div>
 			<div class="total">
 				<span style="display:inline-block; padding: 20px 10px;">카드결제 최종결제 금액</span><br/>
-				<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;">${totalPrice}원</span><br/><br/>
+				<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;">
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}" />원
+				</span><br/><br/>
 				
 				<input type="submit" class="btn default" value="결제하기" style="width:90%; height:60px; margin-right:10px; font-size:10pt;">
 			
@@ -371,5 +479,16 @@
 </div>
 </form>
 
+
+    
+
+    <!-- Start Script -->
+    <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+    <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+    <script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+    <script src="<c:url value='/assets/js/templatemo.js' />"></script>
+    <script src="<c:url value='/assets/js/custom.js' />"></script>
+    <script src="<c:url value='/assets/js/fade-in.js' />"></script>
+    <!-- End Script -->
 </body>
 </html>

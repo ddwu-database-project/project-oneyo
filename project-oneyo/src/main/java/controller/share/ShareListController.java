@@ -1,5 +1,7 @@
 package controller.share;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +29,21 @@ public class ShareListController implements Controller {
 			CustomerDAO customerDAO = new CustomerDAO();
 			customer = customerDAO.findCustomer(email);
 		}
-		
-		
-		
+
 		List<CustomMealkit> cmList = customMkDAO.findCustomMkList(-1);
 		
+		CustomerDAO customerDAO = new CustomerDAO();
+		HashMap<Integer, String> customerMap = new HashMap<>();
+		for (CustomMealkit cm : cmList) {
+			int customerId = cm.getCustomerId();
+			if (!customerMap.containsKey(customerId)) {
+				customerMap.put(customerId, customerDAO.findNameById(customerId));
+				System.out.println(customerMap.get(customerId));
+			}
+		}
+		
 		request.setAttribute("customer", customer);
+		request.setAttribute("customerMap", customerMap);
 		request.setAttribute("customMk", cmList);
 		return "/share/list.jsp";
 	}

@@ -15,15 +15,14 @@ public class DeleteCartController implements Controller {
 		CartDAO cartDAO = new CartDAO();
 		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
-		String[] list = request.getParameterValues("select");
-		System.out.println(list);
+		String ids = request.getParameter("deleteids");
+		String[] list = ids.split(",");
 		
-		if (list == null)
-			return "redirect:/cart/list";
 		for (String s : list) {
-			System.out.println(Integer.parseInt(s));
-			cartDAO.remove(Integer.parseInt(s));
-			customMkDAO.remove(Integer.parseInt(s));
+			if (!s.equals("")) {
+				cartDAO.remove(Integer.parseInt(s));
+				customMkDAO.remove(Integer.parseInt(s));
+			}
 		}
 		return "redirect:/cart/list";
 	}

@@ -32,11 +32,14 @@ public class FormOrderController implements Controller{
 		List<CustomMealkit> customMealkitList = new ArrayList<CustomMealkit>();
 		
 		if (which != null && which.equals("cart")) {
-			String[] customMkIds = request.getParameterValues("select");
+			String ids = request.getParameter("orderids");
+			String[] customMkIds = ids.split(",");
 			CustomMkDAO customMkDAO = new CustomMkDAO();
 			
 			for (String id : customMkIds) {
-				customMealkitList.add(customMkDAO.findByCustomMkId(Integer.parseInt(id), customerId));
+				if (!id.equals("")) {
+					customMealkitList.add(customMkDAO.findByCustomMkId(Integer.parseInt(id), customerId));
+				}
 			}
 			for (CustomMealkit cm : customMealkitList) {
 				System.out.println(cm.getCustomMealkitId());
@@ -83,6 +86,6 @@ public class FormOrderController implements Controller{
 		}
 		request.setAttribute("customMealkitList", customMealkitList); //Ŀ���� ��ŰƮ ����Ʈ + �ɼ� �����صα�  
 		request.setAttribute("c", customer);
-		return "/order/order2.jsp";
+		return "/order/orderForm.jsp";
 	}
 }
