@@ -117,7 +117,7 @@
 
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
@@ -128,10 +128,12 @@
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none" href="#">Ingredient's</a>
                             </li>
-                            <li><input type="text" onkeyup="filterMealkit()" id="search" placeholder="검색어를 입력하세요."/></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 pb-4">
+                    <div class="col-md-4">
+                    	<input type="text" onkeyup="filterMealkit()" id="search" placeholder="검색어를 입력하세요."/>
+                    </div>
+                    <div class="col-md-3 pb-4">
                         <div class="d-flex">
                             <select class="form-control">
                                 <option>가나다순으로</option>
