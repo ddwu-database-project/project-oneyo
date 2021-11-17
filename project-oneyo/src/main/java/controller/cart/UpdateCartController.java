@@ -14,9 +14,9 @@ public class UpdateCartController implements Controller {
 		CartDAO cartDAO = new CartDAO();
 				
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("customMkId");
 		
-		cartDAO.update(id, request.getParameter("quantity" + id));
+		cartDAO.update(id, request.getParameter("quantity"));
 		System.out.println(request.getParameter("quantity" + id));
 	
 		return "redirect:/cart/list";

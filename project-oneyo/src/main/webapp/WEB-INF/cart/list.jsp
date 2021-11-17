@@ -16,20 +16,24 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-<link rel="shortcut icon" type="image/x-icon"
-	href="../assets/img/oneyo_fav.ico">
-<link rel="stylesheet" href="../assets/css/templatemo.css">
-<link rel="stylesheet" href="../assets/css/custom.css">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
+<link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/mystyle.css">
+<link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 <title>장바구니</title>
 
 <script>
+  document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+}, true);
+  
 	function caculatePrice(){
 		let total_price = 0;
 		let select_mealkit_list = document.getElementsByClassName("cart_list");
@@ -76,6 +80,7 @@
 		}
 		return true;
 	}
+
 </script>
 <style>
 .cart-item-thumb {
@@ -194,92 +199,132 @@
 					</div>
 				</c:if>
 
-				<form id="f1" method="POST" action="<c:url value="/cart/delete" />">
-					<input type="hidden" value="cart" name="which">
+<input type="hidden" value="cart" name="which">
 
-					<c:forEach var="item" items="${cartitems}" varStatus="status">
+<c:forEach var="item" items="${cartitems}">
+		
+			<!-- Item-->
+            <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom cart_list">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                	<div style="width:40px;"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></div>
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
+                        <div id="select-mealkit" class="font-size-sm"><span class="text-muted mr-2">가격: <span class="unselected" id="select-mealkit-price">${item.getPrice()}</span></div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
+                        <div class="font-size-lg text-primary pt-2">주문옵션:  ${item.printIng()}</div>
+                    </div>
+                </div>
+                <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
+                    <form name="f${item.getCustomMealkitId()}" method="get" action="<c:url value="/cart/update" />">
+                    <div class="form-group mb-2">
 
-						<!-- Item-->
-						<div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom cart_list">
-							<div class="media d-block d-sm-flex text-center text-sm-left">
-								<div style="width: 40px;">
-									<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
-								</div>
-								<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img
-									src="https://via.placeholder.com/240x240/FF0000/000000"
-									alt="Product"></a>
-								<div class="media-body pt-3">
-									<h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
-									<div class="font-size-sm"  id="select-mealkit">
-										가격: <span class="unselected" id="select-mealkit-price">${item.getPrice()}</span> 
-									</div>
-									<div class="font-size-sm">
-										<span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
-									<div class="font-size-lg text-primary pt-2">주문옵션:
-										${item.printIng()}</div>
-								</div>
-							</div>
-							<div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left"
-								style="max-width: 10rem;">
-								<div class="form-group mb-2">
-									<label for="quantity1">수량</label> <input type="hidden"
-										id="customMkId" name="customMkId"
-										value="${item.getCustomMealkitId()}"> <input
-										class="form-control form-control-sm" type="number"
-										id="quantity" name="quantity${item.getCustomMealkitId()}"
-										value="${item.getQuantity()}">
-								</div>
-								<button class="btn btn-outline-secondary btn-sm btn-block mb-2"
-									type="submit" formaction="<c:url value="/cart/update" />">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-										viewBox="0 0 24 24" fill="none" stroke="currentColor"
-										stroke-width="2" stroke-linecap="round"
-										stroke-linejoin="round"
-										class="feather feather-refresh-cw mr-1">
-			                            <polyline points="23 4 23 10 17 10"></polyline>
-			                            <polyline points="1 20 1 14 7 14"></polyline>
-			                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        			</svg>
-								변경</button>
+                        <label for="quantity1">수량</label>
 
-							</div>
-						</div>
-						<!-- Item End-->
-					</c:forEach>
-			</div>
-			<!-- Sidebar-->
-			<div class="col-xl-3 col-md-4 pt-3 pt-md-0">
-				<h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>				
-				<div id="total_price" class="h3 font-weight-semibold text-center py-3">0원</div>				
-				<hr>
-				<button class="btn btn-outline-danger btn-sm btn-block mb-2"
-					type="submit" onClick="deleteItem()">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						class="feather feather-trash-2 mr-1">
+                        <input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
+                       
+                        <input class="form-control form-control-sm" type="text" id="quantity" name="quantity" onchange="checkQty(this)" value="${item.getQuantity()}">
+                    </div>
+                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+
+                        </svg>변경</button>
+                    
+                    
+                </div>
+                </form>
+            </div>
+
+</c:forEach>
+
+
+</div>
+ 		<!-- Sidebar-->
+
+        <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
+            <h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>
+            <div class="h3 font-weight-semibold text-center py-3">
+            	<%-- <input type="text" id="totalprice" value="${totalPrice}" disabled/>
+            	<button type="button" onClick="setPrice()">test</button> --%>
+            	 ${totalPrice}WON</div>
+            <hr>
+            	<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
+            		<input type="hidden" name="which" value="cart"> <input
+						type="hidden" value="" id="deleteids" name="deleteids">
+					<button class="btn btn-outline-danger btn-sm btn-block mb-2"
+						type="button" onClick="deleteItem()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-trash-2 mr-1">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path
-							d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+								d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
                         </svg>
-                삭제</button>
-
-				<button class="btn btn-primary btn-block" type="submit" id="buy"
-					onClick="buy()" formaction="<c:url value="/order/form" />">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						class="feather feather-credit-card mr-2">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+						삭제
+					</button>
+            	</form>
+				<form name="forder" method="post" action="<c:url value="/order/form" /> ">
+					<input type="hidden" name="which" value="cart"> <input
+						type="hidden" value="" id="orderids" name="orderids">
+					<button class="btn btn-primary btn-block" type="button"
+						onClick="buy()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-credit-card mr-2">
+                    <rect x="1" y="4" width="22" height="16" rx="2"
+								ry="2"></rect>
                     <line x1="1" y1="10" x2="23" y2="10"></line>
                 </svg>
-                주문하기</button>
+						주문하기
+					</button>
+				</form>
 			</div>
-		</form>
-		</div>
-	</div>
+
+    </div>
+</div>
+
+<!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            123 Consectetur at ligula 10660
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    </ul>
+                </div>
 
 	<<!-- Start Footer -->
     <footer id="tempaltemo_footer">
@@ -297,12 +342,13 @@
     </footer>
     <!-- End Footer -->
 
-	<!-- Start Script -->
-	<script src="../assets/js/jquery-1.11.0.min.js"></script>
-	<script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/templatemo.js"></script>
-	<script src="../assets/js/custom.js"></script>
-	<!-- End Script -->
+    <!-- Start Script -->
+    <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+    <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+    <script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+    <script src="<c:url value='/assets/js/templatemo.js' />"></script>
+    <script src="<c:url value='/assets/js/custom.js' />"></script>
+    <script src="<c:url value='/assets/js/fade-in.js' />"></script>
+    <!-- End Script --> 
 </body>
 </html>
