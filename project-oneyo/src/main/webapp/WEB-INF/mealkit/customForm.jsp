@@ -155,12 +155,12 @@
 			<input type="hidden" name="mealkit" value="${mealkit}" /> 
 			<input type="hidden" name="mkId" value="${mealkit.getMkId()}" />
 			<div class="row">
-				<c:forEach var="mkIng" items="${mealkit.getIngredients()}">
+				<c:forEach var="mkIng" items="${mealkit.getIngredients()}" varStatus="ing">
 					<input type="hidden" name="mkIngIds" value="${mkIng.getIngId()}" />
 					<div class="col-md-6 col-lg-3 pb-5">
 						<div class="h-100 py-5 services-icon-wap shadow" style="text-align: center">
 							<div class="h1 text-success text-center">
-								<img src="<c:url value='/assets/img/소고기.PNG' />" class="opacityImg" alt="소고기" width="150px">
+								<img src="<c:url value='/assets/img/bulgogi/${ing.index}.jpg' />" class="opacityImg" alt="재료" width="150px">
 							</div>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngName()}</h2>
 							<input type="hidden" name="mkIngPrice${mkIng.getIngId()}" value="${mkIng.getIngPrice()}"/>
