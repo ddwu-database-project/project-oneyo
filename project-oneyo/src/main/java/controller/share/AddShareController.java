@@ -15,10 +15,10 @@ public class AddShareController implements Controller {
 		CustomMkDAO customMkDAO = new CustomMkDAO();
 		
 		if (customMkDAO.updateShare(customMkId, 1) == 0) {
-			System.out.println("°øÀ¯ ¿À·ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
-		return "redirect:/share/mylist";
+		return "redirect:/share/list";
 	}
 
 }

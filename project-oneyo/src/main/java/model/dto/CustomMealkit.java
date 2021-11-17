@@ -11,6 +11,7 @@ public class CustomMealkit {
 	private int quantity;			
 	private int price;		
 	private int calorie;
+	private int sharestatus;
 	private List<Ingredient> ingredients;
 
 	public CustomMealkit(Mealkit mealkitInfo, int customMealkitId, int customerId, int quantity, int price, int calorie, List<Ingredient> ingredients) {
@@ -37,20 +38,24 @@ public class CustomMealkit {
 		this(mealkitInfo, customMkId, customerId, quantity, price, totalCalorie, new ArrayList<Ingredient>());
 	}
 	
-	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int calorie)
+	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int calorie, int sharestatus)
 	{
 		this(mealkitInfo, customMkId, 0, quantity, price, calorie, new ArrayList<Ingredient>());
 	}
 	
-	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity)
+	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int sharestatus)
 	{
 		this(mealkitInfo, customMkId, 0, quantity, price, 0, new ArrayList<Ingredient>());
+		this.sharestatus = sharestatus;
 	}
 	
 	public CustomMealkit(Mealkit mealkitInfo, int customerId, int customMkId, int price, int calorie) {
 		this(mealkitInfo, customMkId, customerId, 0, price, calorie, new ArrayList<Ingredient>());
 	}
 
+	public CustomMealkit(Mealkit mealkitInfo, int customMkId, int price, int quantity) {
+		this(mealkitInfo, customMkId, 0, price, quantity, 0);
+	}
 	
 	public Mealkit getOriginalMealkit() {
 		return mealkitInfo;
@@ -115,5 +120,13 @@ public class CustomMealkit {
 			result += ing.getIngName() + "(" + ing.getIngQuantity() + "개)";
 		}
 		return result;
+	}
+
+	public int getSharestatus() {
+		return sharestatus;
+	}
+
+	public void setSharestatus(int sharestatus) {
+		this.sharestatus = sharestatus;
 	}
 }
