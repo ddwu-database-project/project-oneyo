@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-   	<title>O!NEYO - È¸¿ø°¡ÀÔ</title>
-    <meta charset="utf-8">
+   	<title>O!NEYO - íšŒì›ê°€ìž…</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
@@ -32,9 +32,9 @@
         <div class="container">
             <div class="row align-items-center py-5">
                 <div class="col-md-8 text-white">
-                    <h1>È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù</h1>
+                    <h1>íšŒì›ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤</h1>
                     <p>
-                        ÀÌÁ¦ ´ç½Å¸¸À» À§ÇÑ O!NEYO: ¿À´ÃÀº ³»°¡ ¿ä¸®»çÀÇ ¼­ºñ½º¸¦ ÀÌ¿ëÇØº¸¼¼¿ä!
+                        ì´ì œ ë‹¹ì‹ ë§Œì„ ìœ„í•œ O!NEYO: ì˜¤ëŠ˜ì€ ë‚´ê°€ ìš”ë¦¬ì‚¬ì˜ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•´ë³´ì„¸ìš”!
                     </p>
                 </div>
                 <div class="col-md-4">

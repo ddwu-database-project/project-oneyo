@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>O!NEYO - 공유 리스트</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="apple-touch-icon"

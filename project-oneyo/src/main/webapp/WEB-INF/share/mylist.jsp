@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="/WEB-INF/base/header.jsp"%>
 	<table width=100% border=1px>
 		<c:if test="${customMk.size() == 0}">
 			<p>공유가능한 밀키트가 없습니다.</p>
@@ -34,6 +35,6 @@
 		</c:forEach>
 	</table>
 	
-	<%@include file="/WEB-INF/base/footer.jsp"%>
+<%@include file="/WEB-INF/base/footer.jsp"%>
 </body>
 </html>

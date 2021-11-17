@@ -6,7 +6,7 @@
 
 <head>
     <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
