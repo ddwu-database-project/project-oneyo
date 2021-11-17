@@ -27,6 +27,15 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick-theme.css'/>">
 
+	<style>
+	.small-slide-main {
+		height:400px; 
+	}
+	.small-slide{
+		width:100px;
+		height:100px;
+	}
+	</style>
 </head>
 
 <body>
@@ -137,9 +146,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        
-                    
-                        <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_10.jpg'/>" alt="Card image cap" id="product-detail">
+                        <img class="card-img small-slide-main img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi_mealkit.jpg'/>" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -160,18 +167,17 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                            
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_01.jpg'/>" alt="Product Image 1">
+                                               <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi_mealkit2.jpg'/>" alt="Product Image 1">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_02.jpg'/>" alt="Product Image 2">
+                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi.jpeg'/>" alt="Product Image 2">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_03.jpg'/>" alt="Product Image 3">
+                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi2.jpeg'/>" alt="Product Image 3">
                                             </a>
                                         </div>
                                     </div>
@@ -183,44 +189,22 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_04.jpg'/>" alt="Product Image 4">
+                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi3.jpg'/>" alt="Product Image 4">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_05.jpg'/>" alt="Product Image 5">
+                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi4.jpeg'/>" alt="Product Image 5">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_06.jpg'/>" alt="Product Image 6">
+                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi5.jpeg'/>" alt="Product Image 6">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/.Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_07.jpg'/>" alt="Product Image 7">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_08.jpg'/>" alt="Product Image 8">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="<c:url value='/assets/img/product_single_09.jpg'/>" alt="Product Image 9">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Third slide-->
                             </div>
                             <!--End Slides-->
                         </div>
@@ -251,53 +235,25 @@
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Calorie:</h6>
+                                    <h6>칼로리:</h6>
                                 </li>
                                 <li class="list-inline-item">
                                     <p class="text-muted">${mealkit.getDefaultCal()}</p>
                                 </li>
                             </ul>
 
-                            <h6>Description:</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum convallis. Nunc sed orci a diam ultrices aliquet interdum quis nulla.</p>
+                            <h6>제품 설명:</h6>
+                            <p>비법간장에 재운 소불고기의 부드러운 식감과 채소, 당면 등 재료 본연의 맛이 조화롭게 어우러진 버섯소불고기! 한식요리는 어렵다는 편견을 깨부시다</p>
                             
-                            <h6>Specification:</h6>
+                            <h6>유의 사항:</h6>
                             <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li>Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li>Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
+								<li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
+								<li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
+								<li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
                             </ul>
 
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
