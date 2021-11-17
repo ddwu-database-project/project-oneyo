@@ -27,9 +27,7 @@ public class ShareListController implements Controller {
 			CustomerDAO customerDAO = new CustomerDAO();
 			customer = customerDAO.findCustomer(email);
 		}
-		
-		
-		
+
 		List<CustomMealkit> cmList = customMkDAO.findCustomMkList(-1);
 		
 		request.setAttribute("customer", customer);

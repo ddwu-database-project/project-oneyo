@@ -74,10 +74,10 @@
                             <a class="nav-link" href="<c:url value='/home'/>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
+                            <a class="nav-link" href="<c:url value='/share/list/all'/>">Share</a>
                         </li>
                     </ul>
                 </div>
@@ -170,6 +170,10 @@
                   </table>
                 </div>
                 <div class="row">
+                	<div class="col text-start mt-2">
+                    	<a href="<c:url value='/share/list/my'></c:url>"
+                    	class="btn shareBtn btn-lg px-3">밀키트 공유하기</a>
+                    </div>
                     <div class="col text-end mt-2">
                     	<a href="<c:url value='/customer/update'><c:param name='email' value='<%=customer.getEmail()%>'/></c:url>"
                     	class="btn btn-success btn-lg px-3">수정</a>
