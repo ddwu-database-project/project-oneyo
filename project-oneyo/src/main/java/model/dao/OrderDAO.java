@@ -3,9 +3,10 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 import model.dto.CustomMealkit;
-import model.dto.Customer;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
 import model.dto.Order;
@@ -55,7 +56,7 @@ public class OrderDAO {
 					Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
 							rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
 					
-					CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
+					CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"), 0);
 					orderedItems.add(tmp2);
 				}
 			}catch(Exception ex) {
@@ -82,7 +83,7 @@ public class OrderDAO {
 				Mealkit tmp1 = new Mealkit(rs.getInt("mkId"), rs.getString("mkname"), 
 						rs.getInt("defaultCal"), rs.getInt("defaultPrice"));
 				
-				CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"));
+				CustomMealkit tmp2 = new CustomMealkit(rs.getInt("custommkId"), tmp1, rs.getInt("price"), rs.getInt("quantity"), 0);
 				orderedItems.add(tmp2);
 			}
 		}catch(Exception ex) {
@@ -110,7 +111,7 @@ public class OrderDAO {
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();
 				while(rs.next()) {
-					dateShipped = String.valueOf(rs.getDate("orderdate"));
+					dateShipped = String.valueOf(rs.getDate("orderdate")).split(" ")[0];
 					tmp1 = new ShippingDetail(dateShipped, rs.getString("company"), rs.getInt("trackingnum"));
 					orderId = rs.getInt("orderId");
 					
@@ -226,7 +227,8 @@ public class OrderDAO {
 	
 	public List<Order> findOrderByCustomerId(int customerId) {
 		List<Order> orderList = new ArrayList<>();
-		String sql = "SELECT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=?";
+
+		String sql = "SELECT DISTINCT mo.orderid, mo.orderdate, mo.status, mo.totalprice FROM mealkitorder mo, orderinfo o WHERE mo.orderid=o.orderid AND customerid=? ORDER BY mo.orderid";
 		// �ֹ���ȣ, �ֹ�����, �ֹ�����, ��ŰƮ��, ����, ����, ��Į�θ�
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
 		ResultSet rs = null;
@@ -235,8 +237,7 @@ public class OrderDAO {
 			// update �� ����
 			while (rs.next()) {
 				orderList.add(new Order(rs.getInt("orderid"), customerId, rs.getInt("status"),
-						rs.getInt("totalprice"), rs.getString("orderdate")));
-				
+						rs.getInt("totalprice"), rs.getString("orderdate").split(" ")[0]));
 			}
 			return orderList;
 		} catch (Exception ex) {

@@ -136,10 +136,10 @@
                             <a class="nav-link" href="<c:url value='/home'/>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value='/mealkit/list'/>">Shop</a>
+                            <a class="nav-link" href="<c:url value='/share/list/all'/>">Share</a>
                         </li>
                     </ul>
                 </div>
@@ -240,7 +240,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="button" class="btn btn-success btn-lg px-3" onClick="customerModify()">Modify</button>
+                        <button type="button" class="btn btn-success btn-lg px-3" onClick="customerModify()">수정</button>
                     </div>
                 </div>
             </form>
