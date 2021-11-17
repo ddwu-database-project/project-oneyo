@@ -34,7 +34,7 @@ public class Cart {
 	public int getTotalPrice() {
 		int totalPrice = 0;
 		for (CustomMealkit cm : customMealkits) {
-			totalPrice += cm.getPrice();
+			totalPrice += cm.getPrice() * cm.getQuantity();
 		}
 		return totalPrice;
 	}

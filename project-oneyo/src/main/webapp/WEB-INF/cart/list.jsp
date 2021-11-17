@@ -10,22 +10,46 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
 <link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
-<link rel="stylesheet" href="../assets/css/templatemo.css">
-<link rel="stylesheet" href="../assets/css/custom.css">
+<link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/mystyle.css">
+<link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+<link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 <title>장바구니</title>
+
 	
 <script>
-function updateQty(a) {
-	alert(a);
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+}, true);
+
+function checkQty(obj) {
+	if (parseInt(obj.value) < 1) {
+		alert('수량은 1이상이어야 합니다.');
+		return false;
+	}
 }
 function deleteItem() {
-	form.submit();
+	var obj_len = document.getElementsByName("select").length;
+	var cnt = 0;
+	
+    for (i = 0; i < obj_len; i++) {
+        if (document.getElementsByName("select")[i].checked == true) {
+           cnt++;
+           document.getElementById("deleteids").value = document.getElementById("deleteids").value + "," + document.getElementsByName("select")[i].value;
+        }
+    }
+    
+    if (parseInt(cnt) < 1) {
+    	alert('선택된 상품이 없습니다.');
+    	return false;
+    }
+    fdelete.submit();
 }
 //주문버튼 클릭시, checkbox클릭된 customMkId 값들을 /order/cart로 넘겨준다
 function buy(){
@@ -34,18 +58,16 @@ function buy(){
 	
     for (i = 0; i < obj_len; i++) {
         if (document.getElementsByName("select")[i].checked == true) {
-            cnt++;
+           cnt++;
+           document.getElementById("orderids").value = document.getElementById("orderids").value + "," + document.getElementsByName("select")[i].value;
         }
     }
-    
-    alert(cnt);
     
     if (parseInt(cnt) < 1) {
     	alert("선택된 상품이 없습니다!");
     	return false;
     }
-	return true;
-    
+    forder.submit();
   
 } 
 </script>
@@ -150,7 +172,6 @@ function buy(){
 				<div class="h4 font-weight-semibold text-center py-4"><p> 장바구니에 담긴 아이템이 없습니다 </p></div>
 			</c:if>
 
-<form id="f1" method="POST" action="<c:url value="/cart/delete" />">
 <input type="hidden" value="cart" name="which">
 
 <c:forEach var="item" items="${cartitems}">
@@ -168,46 +189,73 @@ function buy(){
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
+                    <form name="f${item.getCustomMealkitId()}" method="get" action="<c:url value="/cart/update" />">
                     <div class="form-group mb-2">
+
                         <label for="quantity1">수량</label>
+
                         <input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
-                        <input class="form-control form-control-sm" type="number" id="quantity" name="quantity${item.getCustomMealkitId()}" value="${item.getQuantity()}">
+                       
+                        <input class="form-control form-control-sm" type="text" id="quantity" name="quantity" onchange="checkQty(this)" value="${item.getQuantity()}">
                     </div>
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="submit" formaction="<c:url value="/cart/update" />">
+                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+
                         </svg>변경</button>
                     
+                    
                 </div>
+                </form>
             </div>
 
 </c:forEach>
+
+
 </div>
  		<!-- Sidebar-->
+
         <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
             <h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>
             <div class="h3 font-weight-semibold text-center py-3">${totalPrice} WON</div>
             <hr>
-            <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="submit" onClick="deleteItem()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+            	<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
+            		<input type="hidden" name="which" value="cart"> <input
+						type="hidden" value="" id="deleteids" name="deleteids">
+					<button class="btn btn-outline-danger btn-sm btn-block mb-2"
+						type="button" onClick="deleteItem()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-trash-2 mr-1">
                             <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <path
+								d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>삭제</button>
-        
-              <button class="btn btn-primary btn-block" type="submit" id="buy" onClick="buy()" formaction="<c:url value="/order/form" />">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        </svg>
+						삭제
+					</button>
+            	</form>
+				<form name="forder" method="post" action="<c:url value="/order/form" /> ">
+					<input type="hidden" name="which" value="cart"> <input
+						type="hidden" value="" id="orderids" name="orderids">
+					<button class="btn btn-primary btn-block" type="button"
+						onClick="buy()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-credit-card mr-2">
+                    <rect x="1" y="4" width="22" height="16" rx="2"
+								ry="2"></rect>
                     <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>주문하기</button>
-             
-        </div>
-
-
-</form>
+                </svg>
+						주문하기
+					</button>
+				</form>
+			</div>
 
     </div>
 </div>
@@ -308,11 +356,12 @@ function buy(){
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <!-- End Script -->
+    <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+    <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+    <script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+    <script src="<c:url value='/assets/js/templatemo.js' />"></script>
+    <script src="<c:url value='/assets/js/custom.js' />"></script>
+    <script src="<c:url value='/assets/js/fade-in.js' />"></script>
+    <!-- End Script --> 
 </body>
 </html>
