@@ -307,7 +307,7 @@ https://templatemo.com/tm-559-zay-shop
 
             <!--Start Carousel Wrapper-->
             <div id="carousel-related-product">
-<c:forEach var="mkIngs" items="${mealkit.getIngredients()}">
+			<c:forEach var="mkIngs" items="${mealkit.getIngredients()}">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
