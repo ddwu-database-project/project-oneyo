@@ -240,7 +240,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="button" class="btn btn-success btn-lg px-3" onClick="customerModify()">Modify</button>
+                        <button type="button" class="btn btn-success btn-lg px-3" onClick="customerModify()">수정</button>
                     </div>
                 </div>
             </form>
