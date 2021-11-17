@@ -252,16 +252,11 @@
 								<li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
                             </ul>
 
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
+                            <form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
+                                <input type="hidden" name="mkId" value="${mealkit.getMkId()}">
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <a href="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/>
-                                        <button class="btn btn-success btn-lg" name="submit" value="addtocard"></c:url>"> 재료 수정</button>
-                                        </a>
+                                        <button class="btn btn-success btn-lg" > 재료 수정</button>
                                     </div>
                                 </div>
                             </form>
