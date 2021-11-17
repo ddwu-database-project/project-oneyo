@@ -5,69 +5,87 @@
 <html lang="en">
 
 <head>
-    <title>O!NEYO 오늘은 내가 요리사: 맞춤형 밀키트 판매 서비스</title>
+    <title>O!NEYO - 밀키트 리스트</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/oneyo_fav.ico">
+    <link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/templatemo.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/mystyle.css">
+    <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+    <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-<!--
-    
-TemplateMo 559 Zay Shop
 
-https://templatemo.com/tm-559-zay-shop
+    <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 
--->
-<script type="text/javascript">
-  function filterMealkit() {
-	if (window.event.keyCode == 13){
-    let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
-    let mkList = document.getElementsByClassName("mkList");
-    
-    for (let i = 0; i < mkList.length; i++) {
-      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
-      console.log("mealkitname = "+mealkitName);
-      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
-      
-      let ingarr = ""
-      
-      for (let k = 0; k < ingList.length; k++){
-    	  ingarr += ingList.item(k).innerText.toLowerCase();
-    	  
-      }
-      
-      if (mealkitName.toLowerCase().indexOf(search) != -1 ||
-   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.includes(search)
-   		  ) {
-    	  mkList[i].style.display = "inherit"
-      } else {
-    	  mkList[i].style.display = "none"
-      }
-    }
-   }
-  }
-</script>
+	<script type="text/javascript">
+	  function filterMealkit() {
+		if (window.event.keyCode == 13){
+	    let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
+	    let mkList = document.getElementsByClassName("mkList");
+	    
+	    for (let i = 0; i < mkList.length; i++) {
+	      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
+	      console.log("mealkitname = "+mealkitName);
+	      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
+	      
+	      let ingarr = ""
+	      
+	      for (let k = 0; k < ingList.length; k++){
+	    	  ingarr += ingList.item(k).innerText.toLowerCase();
+	    	  
+	      }
+	      
+	      if (mealkitName.toLowerCase().indexOf(search) != -1 ||
+	   		  mealkitName.toLowerCase().indexOf(search) != -1  || ingarr.includes(search)
+	   		  ) {
+	    	  mkList[i].style.display = "inherit"
+	      } else {
+	    	  mkList[i].style.display = "none"
+	      }
+	    }
+	   }
+	  }
+	</script>
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+
+	                	} %>          
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
+  
+   <!-- Header -->
    <nav class="navbar navbar-expand-lg navbar-light shadow">
       <div
          class="container d-flex justify-content-between align-items-center">
          <img class="logo_img"
-            src="<c:url value='./assets/img/oneyo_logo.PNG'/>" width="50px">
+            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
          <a
             class="navbar-brand text-success logo logo_title h1 align-self-center"
             href="<c:url value='/home'/>"> O!NEYO </a>
@@ -272,13 +290,15 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </footer>
     <!-- End Footer -->
+    
 
     <!-- Start Script -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+    <script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+    <script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+    <script src="<c:url value='/assets/js/templatemo.js' />"></script>
+    <script src="<c:url value='/assets/js/custom.js' />"></script>
+    <script src="<c:url value='/assets/js/fade-in.js' />"></script>
     <!-- End Script -->
 </body>
 </html>

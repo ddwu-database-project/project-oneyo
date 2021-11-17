@@ -56,7 +56,7 @@
       <div
          class="container d-flex justify-content-between align-items-center">
          <img class="logo_img"
-            src="<c:url value='./assets/img/oneyo_logo.PNG'/>" width="50px">
+            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
          <a
             class="navbar-brand text-success logo logo_title h1 align-self-center"
             href="<c:url value='/home'/>"> O!NEYO </a>
