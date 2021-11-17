@@ -50,7 +50,6 @@
 
 <body>
 	<%@include file="/WEB-INF/base/header.jsp" %>
-
 	<div class="container-fluid bg-light py-5">
 		<div class="col-md-6 m-auto text-center">
 			<h1 class="h1">${mealkit.getMkName()}</h1>
