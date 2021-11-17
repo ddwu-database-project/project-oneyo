@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-<title>Àå¹Ù±¸´Ï</title>
+<title>ì¥ë°”êµ¬ë‹ˆ</title>
 	
 <script>
 function updateQty(a) {
@@ -30,7 +29,7 @@ function deleteItem() {
 	form.submit();
 }
 
-//ÁÖ¹®¹öÆ° Å¬¸¯½Ã, checkboxÅ¬¸¯µÈ customMkId °ªµéÀ» /order/cart·Î ³Ñ°ÜÁØ´Ù
+//ì£¼ë¬¸ë²„íŠ¼ í´ë¦­ì‹œ, checkboxí´ë¦­ëœ customMkId ê°’ë“¤ì„ /order/cartë¡œ ë„˜ê²¨ì¤€ë‹¤
 function buy(){
 	var obj_len = document.getElementsByName("select").length;
 	var cnt = 0;
@@ -44,7 +43,7 @@ function buy(){
     alert(cnt);
     
     if (parseInt(cnt) < 1) {
-    	alert("¼±ÅÃµÈ »óÇ°ÀÌ ¾ø½À´Ï´Ù!");
+    	alert("ì„ íƒëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤!");
     	return false;
     }
 	return true;
@@ -154,10 +153,10 @@ function buy(){
 <div class="container pb-5 mt-n2 mt-md-n3">
     <div class="row" style="margin-top:50px;">
         <div class="col-xl-9 col-md-8">
-            <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Àå¹Ù±¸´Ï</span></h2>
+            <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>ì¥ë°”êµ¬ë‹ˆ</span></h2>
 
 			<c:if test="${cartitems.size() == 0}">
-				<div class="h4 font-weight-semibold text-center py-4"><p> Àå¹Ù±¸´Ï¿¡ ´ã±ä ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù </p></div>
+				<div class="h4 font-weight-semibold text-center py-4"><p> ì¥ë°”êµ¬ë‹ˆì— ë‹´ê¸´ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤ </p></div>
 			</c:if>
 
 <form id="f1" method="POST" action="<c:url value="/cart/delete" />">
@@ -172,14 +171,14 @@ function buy(){
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
-                        <div class="font-size-sm"><span class="text-muted mr-2">°¡°İ:</span> ${item.getPrice()}</div>
-                        <div class="font-size-sm"><span class="text-muted mr-2">¿µ¾çÁ¤º¸:</span>${item.getTotalCalorie()}</div>
-                        <div class="font-size-lg text-primary pt-2">ÁÖ¹®¿É¼Ç:  ${item.printIng()}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">ê°€ê²©:</span> ${item.getPrice()}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2">ì˜ì–‘ì •ë³´:</span>${item.getTotalCalorie()}</div>
+                        <div class="font-size-lg text-primary pt-2">ì£¼ë¬¸ì˜µì…˜:  ${item.printIng()}</div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
-                        <label for="quantity1">¼ö·®</label>
+                        <label for="quantity1">ìˆ˜ëŸ‰</label>
                         <input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
                         <input class="form-control form-control-sm" type="number" id="quantity" name="quantity${item.getCustomMealkitId()}" value="${item.getQuantity()}">
                     </div>
@@ -188,7 +187,7 @@ function buy(){
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>º¯°æ</button>
+                        </svg>ë³€ê²½</button>
                     
                 </div>
             </div>
@@ -197,7 +196,7 @@ function buy(){
 </div>
  		<!-- Sidebar-->
         <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
-            <h2 class="h6 px-4 py-3 bg-secondary text-center">ÃÑ ±İ¾×</h2>
+            <h2 class="h6 px-4 py-3 bg-secondary text-center">ì´ ê¸ˆì•¡</h2>
             <div class="h3 font-weight-semibold text-center py-3">${totalPrice} WON</div>
             <hr>
             <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="submit" onClick="deleteItem()">
@@ -206,13 +205,13 @@ function buy(){
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>»èÁ¦</button>
+                        </svg>ì‚­ì œ</button>
         
               <button class="btn btn-primary btn-block" type="submit" id="buy" onClick="buy()" formaction="<c:url value="/order/form" />">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2">
                     <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                     <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>ÁÖ¹®ÇÏ±â</button>
+                </svg>ì£¼ë¬¸í•˜ê¸°</button>
              
         </div>
 
