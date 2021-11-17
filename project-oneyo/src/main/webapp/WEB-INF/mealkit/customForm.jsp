@@ -27,7 +27,6 @@
 
 <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
-<link rel="stylesheet" href="<c:url value='/assets/css/numInput.css' />">
 
 <!-- Load fonts style after rendering the layout styles -->
 <link rel="stylesheet"
@@ -51,20 +50,27 @@
 </head>
 
 <body>
-	<!-- Start Top Nav -->
-	<nav
-		class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block"
-		id="templatemo_nav_top">
-		<div class="container text-light">
-			<div class="w-100 d-flex justify-content-between">
-				<div>
-					<a class="text-light" href="">회원가입</a> <a class="text-light"
-						href="">로그인</a>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<!-- Close Top Nav -->
+  <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100">
+                <div class="sign">
+                	<% 
+	                	String name = (String)request.getSession().getAttribute("name");
+	                	if (name != null) { 
+
+	                		out.print(name + "님 안녕하세요! &ensp;"); %>
+	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
+	                	} else { %>
+	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
+
+	                	} %>          
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
 
 
 	<!-- Header -->
