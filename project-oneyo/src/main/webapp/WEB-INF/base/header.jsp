@@ -23,7 +23,7 @@
          class="container d-flex justify-content-between align-items-center">
          <img class="logo_img"
             src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
-         <a class="navbar-brand text-success logo logo_title h1 align-self-center" href="<c:url value='/home'/>"> O!NEYO </a>
+         <a class="navbar-brand logo logo_title h1 align-self-center" style="color: #60B5BC; padding-top: 10px" href="<c:url value='/home'/>"> O!NEYO </a>
 
          <button class="navbar-toggler border-0" type="button"
             data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
