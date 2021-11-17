@@ -102,7 +102,7 @@ public class CustomMealkit {
 		for (Ingredient ing : ingList) {
 			if (ing != ingList.get(0))
 				result += ", ";
-			result += ing.getIngName() + "(" + ing.getIngQuantity() + "°³)";
+			result += ing.getIngName() + "(" + ing.getIngQuantity() + "ê°œ)";
 		}
 		return result;
 	}
@@ -112,7 +112,7 @@ public class CustomMealkit {
 		for (Ingredient ing : ingredients) {
 			if (ing != ingredients.get(0))
 				result += ", ";
-			result += ing.getIngName() + "(" + ing.getIngQuantity() + "°³)";
+			result += ing.getIngName() + "(" + ing.getIngQuantity() + "ê°œ)";
 		}
 		return result;
 	}
