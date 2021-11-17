@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Àå¹Ù±¸´Ï</title>
+<title>ï¿½ï¿½Ù±ï¿½ï¿½ï¿½</title>
 <script>
 function updateQty(a) {
 	alert(a);
@@ -15,7 +14,7 @@ function deleteItem() {
 	form.submit();
 }
 
-//ÁÖ¹®¹öÆ° Å¬¸¯½Ã, checkboxÅ¬¸¯µÈ customMkId °ªµéÀ» /order/cart·Î ³Ñ°ÜÁØ´Ù
+//ï¿½Ö¹ï¿½ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½, checkboxÅ¬ï¿½ï¿½ï¿½ï¿½ customMkId ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /order/cartï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½
 function buy(){
 	var obj_len = document.getElementsByName("select").length;
 	var cnt = 0;
@@ -29,7 +28,7 @@ function buy(){
     alert(cnt);
     
     if (parseInt(cnt) < 1) {
-    	alert("¼±ÅÃµÈ »óÇ°ÀÌ ¾ø½À´Ï´Ù!");
+    	alert("ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
     	return false;
     }
 	return true;
@@ -43,16 +42,16 @@ function buy(){
 
 
 
-<h2>Àå¹Ù±¸´Ï</h2>
+<h2>ï¿½ï¿½Ù±ï¿½ï¿½ï¿½</h2>
 <hr>
 
 <c:if test="${cartitems.size() == 0}">
-	<p> Àå¹Ù±¸´Ï¿¡ ´ã±ä ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù </p>
+	<p> ï¿½ï¿½Ù±ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ </p>
 </c:if>
 
 <form id="f1" method="POST" action="<c:url value="/cart/delete" />">
 <input type="hidden" value="cart" name="which">
-<input type="submit" value="»èÁ¦" onClick="deleteItem()">
+<input type="submit" value="ï¿½ï¿½ï¿½ï¿½" onClick="deleteItem()">
 <c:forEach var="item" items="${cartitems}">
 <table width = 100% border = 1px>
 	<tr>
@@ -60,23 +59,23 @@ function buy(){
 			<table height = "200" width = 100%>
 				<tr>
 					<td rowspan="4"><input type="checkbox" name="select" value="${item.getCustomMealkitId()}"></td>
-					<td rowspan="4" width = "200">»óÇ° ÀÌ¹ÌÁö</td>
+					<td rowspan="4" width = "200">ï¿½ï¿½Ç° ï¿½Ì¹ï¿½ï¿½ï¿½</td>
 					<td width = "50%">${item.getOriginalMealkit().getMkName()}</td>
 					<td rowspan="4">
-						¼ö·®
+						ï¿½ï¿½ï¿½ï¿½
 						<input type="hidden" id="customMkId" name="customMkId" value="${item.getCustomMealkitId()}">
 						<input type="number" id="quantity" name="quantity${item.getCustomMealkitId()}" width="20" value="${item.getQuantity()}">
-						<input type="submit" value="º¯°æ" formaction="<c:url value="/cart/update" />">
+						<input type="submit" value="ï¿½ï¿½ï¿½ï¿½" formaction="<c:url value="/cart/update" />">
 					</td>
 				</tr>
 				<tr>
-					<td>ÁÖ¹® ¿É¼Ç : ${item.printIng()}</td>
+					<td>ï¿½Ö¹ï¿½ ï¿½É¼ï¿½ : ${item.printIng()}</td>
 				</tr>
 				<tr>
-					<td>°¡°Ý : ${item.getPrice()}</td>
+					<td>ï¿½ï¿½ï¿½ï¿½ : ${item.getPrice()}</td>
 				</tr>
 				<tr>
-					<td>¿µ¾ç Á¤º¸ : ${item.getTotalCalorie()}</td>
+					<td>ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ${item.getTotalCalorie()}</td>
 				</tr>
 			</table>
 		</td>
@@ -88,9 +87,9 @@ function buy(){
 
 
 <tr height = 80 align="center">
-	<td>ÃÑ ±Ý¾× : ${totalPrice}</td>
+	<td>ï¿½ï¿½ ï¿½Ý¾ï¿½ : ${totalPrice}</td>
 </tr>
-<button type="submit" id="buy" onClick="buy()" formaction="<c:url value="/order/form" />">ÁÖ¹®ÇÏ±â</button>
+<button type="submit" id="buy" onClick="buy()" formaction="<c:url value="/order/form" />">ï¿½Ö¹ï¿½ï¿½Ï±ï¿½</button>
 </form>
 
 </body>
