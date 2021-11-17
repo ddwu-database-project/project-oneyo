@@ -259,7 +259,7 @@
 							<div style="width: 40px;">
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
-							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
+							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/60B5BC/FFFFFF" alt="Product"></a>
 							<div class="media-body pt-3">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
