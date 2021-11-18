@@ -192,6 +192,7 @@
                         </div>
                         <div id="ingList">
 							<c:forEach var="mkIngs" items="${mk.ingredients}"> 
+								<p type="hidden" id="ingname">${mkIngs.getIngName()}</p>
 								<c:forEach var="alleries" items="${alleries}" varStatus="allery"> 
 									<c:if test="${alleries.getIngName() eq mkIngs.getIngName()}">
 									    <span style="color:red;">*<c:out value="${mkIngs.getIngName()}" /></span>
