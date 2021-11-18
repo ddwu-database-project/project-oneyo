@@ -190,9 +190,13 @@
                                 <p>가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mk.defaultPrice}"/></p>
                             </div>
                         </div>
-                        <div style="display:none;" id="ingList">
+                        <div id="ingList">
 							<c:forEach var="mkIngs" items="${mk.ingredients}"> 
-								<p id="ingname">${mkIngs.getIngName()}</p>
+								<c:forEach var="alleries" items="${alleries}" varStatus="allery"> 
+									<c:if test="${alleries.getIngName() eq mkIngs.getIngName()}">
+									    <span style="color:red;">*<c:out value="${mkIngs.getIngName()}" /></span>
+									</c:if>
+								</c:forEach>
 							</c:forEach>
 						</div>
                     </div>
