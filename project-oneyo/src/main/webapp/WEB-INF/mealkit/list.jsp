@@ -33,24 +33,26 @@
 
 	<script type="text/javascript">
 	  function filterMealkit() {
-		if (window.event.keyCode == 13){
-			let selection = document.getElementById("search-selection");
-			let selection_index = document.getElementById("search-selection").options.selectedIndex;
-			let search_fiter = selection.options[selection_index].value;
-			
-		    let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
-		    let mkList = document.getElementsByClassName("mkList");
-		    
+		  let selection = document.getElementById("search-selection");
+		  let selection_index = document.getElementById("search-selection").options.selectedIndex;
+		  let search_fiter = selection.options[selection_index].value;
+		  let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
+		  let mkList = document.getElementsByClassName("mkList");
+		  if (!search){
+			  for (let i = 0; i < mkList.length; i++) {
+			      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
+			      mkList[i].style.display = "inline"
+			  }
+		  }
+		  if (window.event.keyCode == 13){
 		    for (let i = 0; i < mkList.length; i++) {
 		      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
-		      console.log("mealkitname = "+mealkitName);
 		      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
 		      
 		      let ingarr = ""
 		      
 		      for (let k = 0; k < ingList.length; k++){
 		    	  ingarr += ingList.item(k).innerText.toLowerCase();
-		    	  
 		      }
 		      
 		      if (search_fiter == "all"){
