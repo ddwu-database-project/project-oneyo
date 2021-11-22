@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
 
 </head>
 <body>
-	<%@include file="/WEB-INF/base/header.jsp" %>   
+	<%@include file="/WEB-INF/base/header.jsp"%>
 	<c:if test="${customMk.size() == 0}">
 		<p>공유된 밀키트가 없습니다.</p>
 	</c:if>
@@ -49,30 +49,50 @@
 		</div>
 
 		<div class="row">
-			<c:forEach var="item" items="${customMk}">			
-			<div class="col-12 col-md-4 p-5 mt-3 text_photo">
-							<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
-					<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
-						<a class="textOverImage" style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)" 
-						data-title="${customerMap.get(item.getCustomerId())}님" data-text="
+			<c:forEach var="item" items="${customMk}">
+				<div class="col-12 col-md-4 p-5 mt-3 text_photo">
+					<a class="textOverImage"
+						style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)"
+						data-title="${customerMap.get(item.getCustomerId())}님"
+						data-text="
 						밀키트: ${item.getOriginalMealkit().getMkName()} 
 						재료: ${item.printCustomIng()}
           	 			가격: ${item.getPrice()}
            				총 칼로리: ${item.getTotalCalorie()}">
-						</a>
-						<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
-							<td rowspan="4">
-								<input type="submit" onClick="return confirm("정말 삭제하시겠습니까?");" value="삭제하기" class="btn btn-lg px-3" style="border-color: grey; padding: 5px 0px">
+					</a>
+					<form name="f${item.getCustomMealkitId()}" method="post"
+						action="<c:url value="/share/delete"/>">
+						<input type="hidden" name="customMkId"
+							value="${item.getCustomMealkitId()}">
+						<c:if
+							test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
+							<td rowspan="4"><input type="submit"
+								onClick="return confirm(" 정말 삭제하시겠습니까?");" value="삭제하기"
+								class="btn btn-lg px-3"
+								style="border-color: grey; padding: 5px 0px"></td>
+						</c:if>
+					</form>
+					 
+					<form name="f${item.getCustomMealkitId()}" method="post"
+						action="<c:url value="/share/cart/add"/>">
+						<input type="hidden" name="customMkId"
+							value="${item.getCustomMealkitId()}">
+						<c:if
+							test="${customer != null && customer.getCustomerId() != item.getCustomerId()}">
+							<td rowspan="4"><input type="submit" value="장바구니 담기"
+								class="btn btn-lg px-3"
+								style="border-color: grey; padding: 5px 0px;">
 							</td>
 						</c:if>
-				</form>		
+					</form>
+					
 				</div>
 			</c:forEach>
 		</div>
 	</section>
 	<!-- End Categories of The Month -->
 
-<%@include file="/WEB-INF/base/footer.jsp"%>
+	<%@include file="/WEB-INF/base/footer.jsp"%>
 
 	<!-- Start Script -->
 	<script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>

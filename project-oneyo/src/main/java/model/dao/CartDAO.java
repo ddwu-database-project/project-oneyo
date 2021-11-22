@@ -47,7 +47,6 @@ public class CartDAO {
 		}		
 		return 0;			
 	}
-
 	
 	public int update(String customMkId, String newQuantity) throws SQLException {
 		
@@ -179,5 +178,25 @@ public class CartDAO {
 		}
 		return cartitem;
 	}	
+	
+	
+	public int shareCart(int customerId, int customMkId) throws SQLException {
+		String sql = "INSERT INTO cartitem VALUES (cart_seq.nextval, ?, ?)";		
+		Object[] param = new Object[] {customerId, customMkId};
+
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
 	
 }
