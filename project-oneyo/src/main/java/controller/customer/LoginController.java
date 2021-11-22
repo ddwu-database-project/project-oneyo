@@ -22,13 +22,12 @@ public class LoginController implements Controller {
     		customer = customerDAO.findCustomer(email);
     		
 			if (customer == null) {
-				throw new CustomerNotFoundException(email + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+				throw new CustomerNotFoundException(email + "ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 			if (!customer.matchPassword(password)) {
-				throw new PasswordMismatchException("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. ");
+				throw new PasswordMismatchException("ë¹„ë°€ë²ˆí˜¸ê°€ ì˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 			
-			// ¼¼¼Ç¿¡ °í°´ Á¤º¸ ÀúÀå (°í°´ ÀÌ¸ŞÀÏ)
 			HttpSession session = request.getSession();
             session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
            

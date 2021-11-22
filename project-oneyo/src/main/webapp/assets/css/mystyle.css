@@ -56,3 +56,12 @@
 * {
 	font-family: 'Hahmlet-ExtraLight';
 }
+
+.failMsg {
+	text-align: center; 
+	color: white; 
+	background-color: #CB3533; 
+	border-radius: 10px; 
+	width: 500px; 
+	margin: 0 auto;
+}

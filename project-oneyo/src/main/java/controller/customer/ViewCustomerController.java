@@ -19,9 +19,8 @@ public class ViewCustomerController implements Controller {
 	
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-		// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ
     	if (!CustomerSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/customer/login/form";		// login form ¿äÃ»À¸·Î redirect
+            return "redirect:/customer/login/form";	
         }
 
     	String email = CustomerSessionUtils.getLoginCustomerId(request.getSession());	
@@ -31,15 +30,15 @@ public class ViewCustomerController implements Controller {
     	try {
     		customer = customerDAO.findCustomer(email);
 			if (customer == null) {
-				throw new CustomerNotFoundException(email + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+				throw new CustomerNotFoundException(email + "ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 	    	int cId = customerDAO.findCustomer(email).getCustomerId();
 	    	allergyList = allergyDAO.findAllergyList(cId);		
 		} catch (Exception e) {				
 	        return "redirect:/";
 		}	
-    	request.setAttribute("customer", customer);		// »ç¿ëÀÚ Á¤º¸ ÀúÀå	
+    	request.setAttribute("customer", customer);		
     	request.setAttribute("allergyList", allergyList);	
-		return "/customer/mypage.jsp";				// ¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿
+		return "/customer/mypage.jsp";			
     }
 }

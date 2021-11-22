@@ -24,8 +24,6 @@ public class UpdateCustomerController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
     	if (request.getMethod().equals("GET")) {	
-    		// GET request: 회원정보 수정 form 요청	
-    		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
     		String email = request.getParameter("email");
     		int cId = customerDAO.findCustomer(email).getCustomerId();
     		
@@ -40,15 +38,13 @@ public class UpdateCustomerController implements Controller {
 			
 			HttpSession session = request.getSession();
 			if (CustomerSessionUtils.isLoginCustomer(email, session)) {
-				return "/customer/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+				return "/customer/updateForm.jsp";     
 			}    
 			
-			// else (수정 불가능한 경우) 사용자 보기 화면으로 오류 메세지를 전달
 			request.setAttribute("updateFailed", true);          
-			return "/customer/mypage.jsp";	// 사용자 보기 화면으로 이동 (forwarding)
+			return "/customer/mypage.jsp";	
 	    }	
     	
-    	// POST request (회원정보가 parameter로 전송됨)
     	String email = request.getParameter("email");
     	Customer updateCustomer = new Customer(
     		request.getParameter("name"),

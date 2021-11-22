@@ -21,11 +21,11 @@ public class DeleteCustomerController implements Controller {
 	
 		HttpSession session = request.getSession();	
 	
-		if (CustomerSessionUtils.isLoginCustomer(deleteEmail, session)) { // 로그인한 사용자가 삭제 대상인 경우 (자기 자신을 삭제)
+		if (CustomerSessionUtils.isLoginCustomer(deleteEmail, session)) { 
 				
-			customerDAO.remove(deleteEmail);				// 사용자 정보 삭제
-			return "redirect:/customer/logout";		// logout 처리
+			customerDAO.remove(deleteEmail);			
+			return "redirect:/customer/logout";		
 		}
-		return "redirect:/customer/mypage"; // 삭제가 안된 경우
+		return "redirect:/customer/mypage"; 
 	}
 }

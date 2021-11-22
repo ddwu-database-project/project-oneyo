@@ -70,7 +70,7 @@
 
 
     <c:if test="${loginFailed}">
-    	<br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
+    	<br><p class="failMsg"><c:out value="${exception.getMessage()}" /></p>
 	</c:if>	
 	
 
