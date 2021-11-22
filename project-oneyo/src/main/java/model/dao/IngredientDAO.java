@@ -18,24 +18,24 @@ public class IngredientDAO {
         String sql = "SELECT INGID, INGNAME, PRICE, CALORIE " 
         		   + "FROM INGREDIENT "
         		   + "WHERE INGNAME LIKE '%' || ? || '%'";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingName});		// JDBCUtil에 query문 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingName});		
 					
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<Ingredient> ingList = new ArrayList<Ingredient>();	// 재료들의 리스트 생성
+			ResultSet rs = jdbcUtil.executeQuery();						
+			List<Ingredient> ingList = new ArrayList<Ingredient>();	
 			while (rs.next()) {
 				Ingredient ing = new Ingredient(
 						rs.getInt("INGID"),
 						rs.getString("INGNAME"),
 						rs.getInt("PRICE"),
 						rs.getInt("CALORIE"));	
-				ingList.add(ing);				// List에 재료 저장
+				ingList.add(ing);				
 			}		
 			return ingList;					
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		
 		}
 		return null;
 	}
