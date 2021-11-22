@@ -197,14 +197,15 @@ $("#delete").click(function del(){
 					<td align="right"><!-- 가격 -->
 					<fmt:formatNumber type="number" maxFractionDigits="3" value="${customMk.getPrice() * customMk.getQuantity()}" />원
 					</td>
-					<td>
-					<c:if test="${customMk.getSharestatus() == 0 && status != 3}">
+					
+					<td><c:if test="${customMk.getSharestatus() == 0 && status != 3}">
 					<form method="post" action="<c:url value="/share/add"/>">
 						<input type="hidden" name="customMkId" value="${customMk.getCustomMealkitId()}">
 						<button type="submit" id="share" style="background-color: #60B5BC; color:white;" class="btn btn-xs">공유하기</button>
 					</form>
 					</c:if>
 					</td>
+					
 					<td><c:if test = "${status == 0}">
 					<form name="f${order.getOrderId()}" method="get" action="<c:url value="/order/delete" />">
 						<input type="hidden" name="orderid" value="${order.getOrderId()}">
