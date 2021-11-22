@@ -108,7 +108,7 @@
     </div>
 
     <c:if test="${registerFailed}">
-	  <font color="red"><c:out value="${exception.getMessage()}" /></font>
+	  <br><p class="failMsg"><c:out value="${exception.getMessage()}" /></p>
 	</c:if>
 
     <!-- Start Contact -->

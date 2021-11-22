@@ -19,13 +19,11 @@ public class RegisterCustomerController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	if (request.getMethod().equals("GET")) {	
-    		// GET request: È¸¿øÁ¤º¸ µî·Ï form ¿äÃ»	
     		log.debug("RegisterForm Request");
 		
 			return "/customer/registerForm.jsp";    	
 	    }	
     	
-    	// POST request (È¸¿øÁ¤º¸°¡ parameter·Î Àü¼ÛµÊ)
     	String email = request.getParameter("email");
     	Customer customer = new Customer(
     		request.getParameter("name"),
@@ -41,7 +39,7 @@ public class RegisterCustomerController implements Controller {
 		try {
 			result = customerDAO.create(customer);	
 			if (result == 0) {
-				throw new ExistingCustomerException("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+				throw new ExistingCustomerException("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì´ë©”ì¼ì…ë‹ˆë‹¤.");
 			}
 			if (aIds != null) {
 				int cId = customerDAO.findCustomer(email).getCustomerId();
@@ -49,7 +47,7 @@ public class RegisterCustomerController implements Controller {
 					allergyDAO.create(cId, Integer.parseInt(aIds[i]));
 				}
 			}
-		} catch (Exception e) {		// ¿¹¿Ü ¹ß»ı ½Ã È¸¿ø°¡ÀÔ formÀ¸·Î forwarding
+		} catch (Exception e) {	
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("customer", customer);
