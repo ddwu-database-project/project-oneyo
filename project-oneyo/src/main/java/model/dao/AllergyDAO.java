@@ -18,27 +18,27 @@ public class AllergyDAO {
 	public int create(int cId, int aId) throws SQLException {
 		String sql = "INSERT INTO ALLERGY VALUES (?, ?)";		
 		Object[] param = new Object[] {cId, aId};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param);	
 						
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback(); 
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	
 		}		
 		return 0;	
 	}
 	
 	public int remove(int cId) throws SQLException {
 		String sql = "DELETE FROM ALLERGY WHERE customerId=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {cId});	// JDBCUtil에 delete문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cId});
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete 문 실행
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -46,7 +46,7 @@ public class AllergyDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
@@ -55,10 +55,10 @@ public class AllergyDAO {
         String sql = "SELECT A.CUSTOMERID, A.INGID, I.INGNAME " 
         		   + "FROM ALLERGY A, INGREDIENT I "
         		   + "WHERE A.INGID = I.INGID AND A.CUSTOMERID = ?" ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {cId});		// JDBCUtil에 query문 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cId});		
 					
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			ResultSet rs = jdbcUtil.executeQuery();						
 			List<Allergy> allergyList = new ArrayList<Allergy>();	
 			while (rs.next()) {
 				Allergy allergy = new Allergy(
@@ -71,7 +71,7 @@ public class AllergyDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		
 		}
 		return null;
 	}

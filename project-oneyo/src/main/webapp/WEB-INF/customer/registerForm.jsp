@@ -67,16 +67,16 @@
 	}
 	
 	function setChildValue(name, id){
-		var search = document.getElementById("search");
-		var allergy = document.createElement("span");
+		const search = document.getElementById("search");
+		const allergy = document.createElement("span");
 		
-		var hiddenInput = document.createElement("input");
+		const hiddenInput = document.createElement("input");
 		hiddenInput.style.display = "none";
 		hiddenInput.name = "allergy";
 		hiddenInput.value = id;
 		hiddenInput.className = "allergy"
 		
-		var td = search.parentNode;
+		const td = search.parentNode;
 		td.insertBefore(allergy, search)
 		td.insertBefore(hiddenInput, search)
 		
@@ -84,14 +84,14 @@
 	}
 	
 	function resetData(){
-	    var spans = document.getElementsByTagName("span");
-	    var len = spans.length;
-	    for (var i = 0; i < len; i++) {
+		const spans = document.getElementsByTagName("span");
+		let len = spans.length;
+	    for (let i = 0; i < len; i++) {
 	      spans[0].remove();
 	    }
-	    var input = document.getElementsByClassName("allergy");
-	    var len = input.length;
-	    for (var i = 0; i < len; i++) {
+	    const input = document.getElementsByClassName("allergy");
+	    len = input.length;
+	    for (let i = 0; i < len; i++) {
 	    	input[0].remove();
 	    }
 	}

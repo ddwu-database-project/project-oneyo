@@ -1,7 +1,5 @@
 package model.dto;
 
-//import java.util.List;
-
 public class Customer {
 	private int customerId;
 	private String customerName;
@@ -9,7 +7,6 @@ public class Customer {
 	private String phone;
 	private String address;
 	private String email;
-//	private List<Ingredient> allergy;
 	
 	public Customer(String customerName, String password, String phone, String address, String email) {
 		this.customerName = customerName;

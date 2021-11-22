@@ -22,6 +22,15 @@ public class Order {
 		this.orderCustomMk = orderCustomMk;
 	}
 	
+
+	public Order(int orderId, ShippingDetail shippingDetail, List<CustomMealkit> orderCustomMk) {
+		super();
+		this.orderId = orderId;
+		this.shippingDetail = shippingDetail;
+		this.orderCustomMk = orderCustomMk;
+	}
+	
+	
 	public Order(int orderId, int customerId, int status, int totalPrice, String orderDate) {
 		this(orderId, customerId, status, totalPrice, orderDate, null, null);
 	}
@@ -94,6 +103,7 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 	
+	
 	public int calcCalorie(List<CustomMealkit> l) {
 		int result = 0;
 		for(CustomMealkit item : l) {
@@ -101,6 +111,18 @@ public class Order {
 		}
 		return result;
 	}
+	
+	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	
+	
 	public int calcTotalPrice(List<CustomMealkit> l) {
 		int result = 0;
 		for(CustomMealkit item : l) {
@@ -108,23 +130,5 @@ public class Order {
 		}
 		return result;
 	}
-
-
-
-	public Order(int orderId, ShippingDetail shippingDetail, List<CustomMealkit> orderCustomMk) {
-		super();
-		this.orderId = orderId;
-		this.shippingDetail = shippingDetail;
-		this.orderCustomMk = orderCustomMk;
-	}
-
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-	
 	
 }

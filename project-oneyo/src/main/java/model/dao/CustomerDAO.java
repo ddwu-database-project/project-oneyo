@@ -4,7 +4,6 @@ import model.dto.Customer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// �� ������ ���� DB�۾��� �����ϴ� DAO Ŭ����
 public class CustomerDAO {
 	private JDBCUtil jdbcUtil = null;
 	
@@ -12,37 +11,35 @@ public class CustomerDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	// �� ���̺� ���ο� �� ����
 	public int create(Customer customer) throws SQLException {
 		String sql = "INSERT INTO CUSTOMER VALUES (customer_seq.nextval, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {customer.getCustomerName(), customer.getEmail(), 
 				customer.getPassword(), customer.getPhone(), customer.getAddress()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil �� insert���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, param);
 						
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert �� ����
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback(); 
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ��ȯ
+			jdbcUtil.close();	
 		}		
 		return 0;	
 	}
 	
-	// ���� ���� ����
 	public int update(Customer customer) throws SQLException {
 		String sql = "UPDATE CUSTOMER "
 					+ "SET customerName=?, password=?, phone=?, address=? "
 					+ "WHERE email=?";
 		Object[] param = new Object[] {customer.getCustomerName(), customer.getPassword(), customer.getPhone(), 
 				customer.getAddress(), customer.getEmail()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil�� update���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, param);	
 			
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update �� ����
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -50,18 +47,17 @@ public class CustomerDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ��ȯ
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
 	
-	// �� id�� �ش��ϴ� �� ����
 	public int remove(String email) throws SQLException {
 		String sql = "DELETE FROM CUSTOMER WHERE email=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtil�� delete���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete �� ����
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -69,22 +65,21 @@ public class CustomerDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ��ȯ
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
 	
-	// �־��� �� id�� �ش��ϴ� ������ �����ͺ��̽����� ã�� Customer DTO�� �����Ͽ� ��ȯ
 	public Customer findCustomer(String email) throws SQLException {
         String sql = "SELECT customerId, customerName, password, phone, address "
         			+ "FROM CUSTOMER "
         			+ "WHERE email=?";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	// JDBCUtil�� query���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ����
+			ResultSet rs = jdbcUtil.executeQuery();		
 			if (rs.next()) {		
-				Customer customer = new Customer(		// Customer ��ü�� �����Ͽ� �� ������ ����
+				Customer customer = new Customer(		
 					rs.getInt("customerId"),
 					rs.getString("customerName"),
 					rs.getString("password"),
@@ -96,7 +91,7 @@ public class CustomerDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ��ȯ
+			jdbcUtil.close();		
 		}
 		return null;
 	}
@@ -105,17 +100,17 @@ public class CustomerDAO {
         String sql = "SELECT customerName "
         			+ "FROM CUSTOMER "
         			+ "WHERE customerId=?";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	// JDBCUtil�� query���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ����
+			ResultSet rs = jdbcUtil.executeQuery();		
 			if (rs.next()) {		
 				return rs.getString("customerName");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ��ȯ
+			jdbcUtil.close();		
 		}
 		return null;
 	}
