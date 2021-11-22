@@ -64,22 +64,35 @@
     	window.open("/project-oneyo/ingredient/search", "검색", "width=400px, height=500px");
     }
 
-    function setChildValue(name, id){
-    	const search = document.getElementById("search");
-    	const allergy = document.createElement("span");
-    	
-    	const hiddenInput = document.createElement("input");
-    	hiddenInput.style.display = "none";
-    	hiddenInput.name = "allergy";
-    	hiddenInput.value = id;
-    	hiddenInput.className = "allergy"
-    	
-    		const td = search.parentNode;
-    	td.insertBefore(allergy, search)
-    	td.insertBefore(hiddenInput, search)
-    	
-        allergy.innerText = name + " ";
-    }
+	function setChildValue(name, id){
+		const search = document.getElementById("search");
+		
+		const spans = document.getElementsByTagName("span");
+		let exist = 0;
+	    for (let i = 0; i < spans.length; i++) {
+    		console.log(spans[i].innerText);
+	    	if ((name + " ") === spans[i].innerText) {
+	    		exist = 1;
+	    		break;
+	    	}
+	    }
+		
+		if (!exist) {
+			const allergy = document.createElement("span");
+			
+			const hiddenInput = document.createElement("input");
+			hiddenInput.style.display = "none";
+			hiddenInput.name = "allergy";
+			hiddenInput.value = id;
+			hiddenInput.className = "allergy"
+			
+			const td = search.parentNode;
+			td.insertBefore(allergy, search)
+			td.insertBefore(hiddenInput, search)
+			
+		    allergy.innerText = name + " ";
+		}
+	}
 
     function resetData(){
     	const spans = document.getElementsByTagName("span");
