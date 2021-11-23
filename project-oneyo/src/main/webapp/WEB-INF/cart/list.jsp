@@ -269,6 +269,9 @@
 									<span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
 								<div class="font-size-lg text-primary pt-2">주문옵션:
 									${item.printIng()}
+									<c:if test="${item.getIngredients().size() == 0}">
+										재료 없음.
+									</c:if>
 								</div>
 							</div>
 						</div>
