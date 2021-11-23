@@ -1,42 +1,107 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>O!NEYO - ê³µìœ  ë¦¬ìŠ¤íŠ¸</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon"
+	href="<c:url value='/assets/img/apple-icon.png' />">
+<link rel="shortcut icon" type="image/x-icon"
+	href="<c:url value='/assets/img/oneyo_fav.ico' />">
+
+<link rel="stylesheet"
+	href="<c:url value='/assets/css/bootstrap.min.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
+
+<link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
+
+
+<!-- Load fonts style after rendering the layout styles -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="<c:url value='/assets/css/fontawesome.min.css' />">
+
+<link rel="stylesheet" href="<c:url value='/assets/css/share.css' />">
 
 </head>
 <body>
+	<%@include file="/WEB-INF/base/header.jsp"%>
+	<c:if test="${customMk.size() == 0}">
+		<p>ê³µìœ ëœ ë°€í‚¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.</p>
+	</c:if>
 
-	<table width=100% border=1px>
-		<c:if test="${customMk.size() == 0}">
-			<p>°øÀ¯µÈ ¹ĞÅ°Æ®°¡ ¾ø½À´Ï´Ù.</p>
-		</c:if>
-		<c:forEach var="item" items="${customMk}">
-				<form name="f${item.getCustomMealkitId()}" method="post" action="<c:url value="/share/delete"/>">
-				<input type="hidden" name="customMkId" value="${item.getCustomMealkitId()}">
-				<tr>
-					<td rowspan="4">${customerMap.get(item.getCustomerId())}´Ô</td>
-					<td rowspan="4">»óÇ° ÀÌ¹ÌÁö</td>
-					<td width="50%">${item.getOriginalMealkit().getMkName()}</td>
-					<c:if test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
-						<td rowspan="4"><input type="submit" onClick="return confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");" value="»èÁ¦ÇÏ±â"></td>
-					</c:if>
-				</tr>
-				<tr>
-					<td>ÁÖ¹® ¿É¼Ç : ${item.printCustomIng()}</td>
-				</tr>
-				<tr>
-					<td>°¡°İ : ${item.getPrice()}</td>
-				</tr>
-				<tr>
-					<td>¿µ¾ç Á¤º¸ : ${item.getTotalCalorie()}</td>
-				</tr>
-				</form>
-		</c:forEach>
-	</table>
+	<!-- Start Categories of The Month -->
+	<section class="container py-5">
+		<div class="row text-center pt-3">
+			<div class="col-lg-6 m-auto">
+				<h1 class="h1">Share List</h1>
+				<p>ë‚˜ë§Œì˜ ë°€í‚¤íŠ¸ë¥¼ ê³µìœ í•˜ì„¸ìš”!</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<c:forEach var="item" items="${customMk}">
+				<div class="col-12 col-md-4 p-5 mt-3 text_photo">
+					<a class="textOverImage"
+						style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)"
+						data-title="${customerMap.get(item.getCustomerId())}ë‹˜"
+						data-text="
+						ë°€í‚¤íŠ¸: ${item.getOriginalMealkit().getMkName()} 
+						ì¬ë£Œ: ${item.printCustomIng()}
+          	 			ê°€ê²©: ${item.getPrice()}
+           				ì´ ì¹¼ë¡œë¦¬: ${item.getTotalCalorie()}">
+					</a>
+					<form name="f${item.getCustomMealkitId()}" method="post"
+						action="<c:url value="/share/delete"/>">
+						<input type="hidden" name="customMkId"
+							value="${item.getCustomMealkitId()}">
+						<c:if
+							test="${customer != null && customer.getCustomerId() == item.getCustomerId()}">
+							<td rowspan="4"><input type="submit"
+								onClick="return confirm(" ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");" value="ì‚­ì œí•˜ê¸°"
+								class="btn btn-lg px-3"
+								style="border-color: grey; padding: 5px 0px"></td>
+						</c:if>
+					</form>
+					 
+					<form name="f${item.getCustomMealkitId()}" method="post"
+						action="<c:url value="/share/cart/add"/>">
+						<input type="hidden" name="customMkId"
+							value="${item.getCustomMealkitId()}">
+						<c:if
+							test="${customer != null && customer.getCustomerId() != item.getCustomerId()}">
+							<td rowspan="4"><input type="submit" value="ì¥ë°”êµ¬ë‹ˆ ë‹´ê¸°"
+								class="btn btn-lg px-3"
+								style="border-color: grey; padding: 5px 0px;">
+							</td>
+						</c:if>
+					</form>
+					
+				</div>
+			</c:forEach>
+		</div>
+	</section>
+	<!-- End Categories of The Month -->
+
+	<%@include file="/WEB-INF/base/footer.jsp"%>
+
+	<!-- Start Script -->
+	<script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
+	<script src="<c:url value='/assets/js/jquery-migrate-1.2.1.min.js' />"></script>
+	<script src="<c:url value='/assets/js/bootstrap.bundle.min.js' />"></script>
+	<script src="<c:url value='/assets/js/templatemo.js' />"></script>
+	<script src="<c:url value='/assets/js/custom.js' />"></script>
+	<script src="<c:url value='/assets/js/fade-in.js' />"></script>
+	<!-- End Script -->
 
 </body>
 </html>

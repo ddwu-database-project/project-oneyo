@@ -47,7 +47,6 @@ public class CartDAO {
 		}		
 		return 0;			
 	}
-
 	
 	public int update(String customMkId, String newQuantity) throws SQLException {
 		
@@ -58,7 +57,7 @@ public class CartDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update �� ����
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -66,7 +65,7 @@ public class CartDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ��ȯ
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
@@ -74,10 +73,10 @@ public class CartDAO {
 	
 	public int remove(int customMkId) throws SQLException {
 		String sql = "DELETE FROM cartitem WHERE custommkid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {customMkId});	// JDBCUtil�� delete���� �Ű� ���� ����
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {customMkId});	
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete �� ����
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -85,7 +84,7 @@ public class CartDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ��ȯ
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
@@ -179,5 +178,25 @@ public class CartDAO {
 		}
 		return cartitem;
 	}	
+	
+	
+	public int shareCart(int customerId, int customMkId) throws SQLException {
+		String sql = "INSERT INTO cartitem VALUES (cart_seq.nextval, ?, ?)";		
+		Object[] param = new Object[] {customerId, customMkId};
+
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
 	
 }

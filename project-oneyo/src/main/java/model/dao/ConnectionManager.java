@@ -34,7 +34,6 @@ public class ConnectionManager {
 		} 
 		
 		try {
-    		// DataSource 생성 및 설정
 			BasicDataSource bds = new BasicDataSource();
 	        bds.setDriverClassName(prop.getProperty("db.driver"));
 	        bds.setUrl(prop.getProperty("db.url"));
@@ -42,7 +41,6 @@ public class ConnectionManager {
 	        bds.setPassword(prop.getProperty("db.password"));     
 			ds = bds;
 			
-			// 참고: WAS의 DataSource를 이용할 경우: 
 			// Context init = new InitialContext();
 			// ds = (DataSource)init.lookup("java:comp/env/jdbc/OracleDS");
 		} catch (Exception ex) {
@@ -69,7 +67,6 @@ public class ConnectionManager {
 		}
 	}
 
-	// 현재 활성화 상태인 Connection 의 개수와 비활성화 상태인 Connection 개수 출력
 	public void printDataSourceStats() {
 		try {
 			BasicDataSource bds = (BasicDataSource) ds;

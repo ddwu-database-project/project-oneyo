@@ -30,7 +30,4 @@ public class ShippingDetail {
 		this.trackingNum = trackingNum;
 	}
 	
-	
-	
-	
 }

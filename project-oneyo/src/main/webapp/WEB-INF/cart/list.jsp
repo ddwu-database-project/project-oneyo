@@ -3,33 +3,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>O!NEYO - 장바구니</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="apple-touch-icon"
-	href="<c:url value='/assets/img/apple-icon.png' />">
-<link rel="shortcut icon" type="image/x-icon"
-	href="<c:url value='/assets/img/oneyo_fav.ico' />">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/bootstrap.min.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
+
+<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
 
 <link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
 
-
 <!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-
-<link rel="stylesheet"
-	href="<c:url value='/assets/css/fontawesome.min.css' />">
+<link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
 
 <script>
 	document.addEventListener('keydown', function(event) {
@@ -52,6 +46,7 @@
 		let total = document.getElementById("total_price");
 		total.innerHTML = total_price.toLocaleString('ko-KR') + "원";
 	}
+	
 	function selected(index){
 		let select_mealkit_list = document.getElementsByClassName("cart_list");
 		select_mealkit = select_mealkit_list[index].querySelector("#select-mealkit-price");
@@ -70,6 +65,7 @@
 			return false;
 		}
 	}
+	
 	function deleteItem() {
 		var obj_len = document.getElementsByName("select").length;
 		var cnt = 0;
@@ -106,7 +102,7 @@
 	    forder.submit();
 	  
 	} 
-	</script>
+</script>
 	<style>
 	.cart-item-thumb {
 		display: block;
@@ -155,97 +151,13 @@
 	</style>
 </head>
 <body>
-	<!-- Start Top Nav -->
-    <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block" id="templatemo_nav_top">
-        <div class="container text-light">
-            <div class="w-100">
-                <div class="sign">
-                	<% 
-	                	String name = (String)request.getSession().getAttribute("name");
-	                	if (name != null) { 
-
-	                		out.print(name + "님 안녕하세요! &ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">로그아웃</a> <%
-	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">회원가입 &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인</a> <% 
-
-	                	} %>          
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Close Top Nav -->
-
-  
-   <!-- Header -->
-   <nav class="navbar navbar-expand-lg navbar-light shadow">
-      <div
-         class="container d-flex justify-content-between align-items-center">
-         <img class="logo_img"
-            src="<c:url value='/assets/img/oneyo_logo.PNG'/>" width="50px">
-         <a
-            class="navbar-brand text-success logo logo_title h1 align-self-center"
-            href="<c:url value='/home'/>"> O!NEYO </a>
-
-         <button class="navbar-toggler border-0" type="button"
-            data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div
-            class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
-            id="templatemo_main_nav">
-            <div class="flex-fill">
-               <ul
-                  class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/home'/>">Home</a></li>
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/mealkit/list'/>">Shop</a></li>
-                  <li class="nav-item"><a class="nav-link"
-                     href="<c:url value='/share/list/all'/>">Share</a></li>
-               </ul>
-            </div>
-            <div class="navbar align-self-center d-flex">
-               <div
-                  class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                  <div class="input-group">
-                     <input type="text" class="form-control" id="inputMobileSearch"
-                        placeholder="Search ...">
-                     <div class="input-group-text">
-                        <i class="fa fa-fw fa-search"></i>
-                     </div>
-                  </div>
-               </div>
-               <a class="nav-icon d-none d-lg-inline" href="#"
-                  data-bs-toggle="modal" data-bs-target="#templatemo_search"> <i
-                  class="fa fa-fw fa-search text-dark mr-2"></i>
-               </a> <a class="nav-icon position-relative text-decoration-none"
-                  href="<c:url value="/cart/list" />"> <i
-                  class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-               </a> <a class="nav-icon position-relative text-decoration-none"
-                  href="<c:url value='/customer/mypage'/>"> <i
-                  class="fa fa-fw fa-user text-dark mr-3"></i>
-               </a>
-            </div>
-         </div>
-
-      </div>
-   </nav>
-   <!-- Close Header -->
-
-
+	<%@include file="/WEB-INF/base/header.jsp" %>
 	<div class="container pb-5 mt-n2 mt-md-n3">
 		<div class="row" style="margin-top: 50px;">
 			<div class="col-xl-9 col-md-8">
-				<h2
-					class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary">
+				<h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary">
 					<span>장바구니</span>
 				</h2>
-
 				<c:if test="${cartitems.size() == 0}">
 					<div class="h4 font-weight-semibold text-center py-4">
 						<p>장바구니에 담긴 아이템이 없습니다</p>
@@ -259,15 +171,17 @@
 							<div style="width: 40px;">
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
-							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
-							<div class="media-body pt-3">
-								<h3 class="product-card-title font-weight-semibold border-0 pb-0">${item.getOriginalMealkit().getMkName()}</h3>
+							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/60B5BC/FFFFFF" alt="Product"></a>
+							
+							<div class="media-body pt-3" style="text-align:left; padding-left: 15px">
+								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
-									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/></span>
+									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/>원</span>
 								</div>
 								<div class="font-size-sm">
-									<span class="text-muted mr-2">영양정보:</span>${item.getTotalCalorie()}</div>
-								<div class="font-size-lg text-primary pt-2">주문옵션:
+									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}</div>
+								<div class="font-size-lg text-primary pt-2">주문옵션: 
+
 									${item.printIng()}
 									<c:if test="${item.getIngredients().size() == 0}">
 										재료 없음.
@@ -293,17 +207,15 @@
 					</div>
 				</c:forEach>
 			</div>
+			
 			<!-- Sidebar-->
-
 			<div class="col-xl-3 col-md-4 pt-3 pt-md-0">
 				<h2 class="h6 px-4 py-3 bg-secondary text-center">총 금액</h2>
-				<div id="total_price"
-					class="h3 font-weight-semibold text-center py-3">0원</div>
+				<div id="total_price" class="h3 font-weight-semibold text-center py-3">0원</div>
 				<hr>
-				<form name="fdelete" method="post"
-					action="<c:url value="/cart/delete" />">
-					<input type="hidden" name="which" value="cart"> <input
-						type="hidden" value="" id="deleteids" name="deleteids">
+				<form name="fdelete" method="post" action="<c:url value="/cart/delete" />">
+					<input type="hidden" name="which" value="cart"> 
+					<input type="hidden" value="" id="deleteids" name="deleteids">
 					<button class="btn btn-outline-danger btn-sm btn-block mb-2"
 						type="button" onClick="deleteItem()">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -311,8 +223,7 @@
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="feather feather-trash-2 mr-1">
                             <polyline points="3 6 5 6 21 6"></polyline>
-                            <path
-								d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
                         </svg>
@@ -323,7 +234,7 @@
 					action="<c:url value="/order/form" /> ">
 					<input type="hidden" name="which" value="cart"> <input
 						type="hidden" value="" id="orderids" name="orderids">
-					<button class="btn btn-primary btn-block" type="button"
+					<button class="btn btn-primary btn-block orderBtn" type="button" style="background-color: #60B5BC; border-color: #60B5BC"
 						onClick="buy()">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -337,26 +248,10 @@
 					</button>
 				</form>
 			</div>
-
 		</div>
 	</div>
 
-	<!-- Start Footer -->
-    <footer id="tempaltemo_footer">
-        <div class="w-100 py-3 footer-color">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            데이터베이스 프로그래밍 - 김경현, 신효경, 이혜준, 전수민
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-    
+	<%@include file="/WEB-INF/base/footer.jsp"%>
 
     <!-- Start Script -->
     <script src="<c:url value='/assets/js/jquery-1.11.0.min.js' />"></script>
