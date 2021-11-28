@@ -117,4 +117,26 @@ public class MealkitDAO {
 			jdbcUtil.close();		
 		}return category;
 	}
+	
+	public Category findIngCateg(int ingId) throws Exception{
+		String sql = "select categinfo.ingcategoryid as ingId, categinfo.ingcategoryname as ingName "
+				+ "from (select c.ingcategoryid, c.ingcategoryname, i.ingname, i.ingid "
+				+ "    from ingcategory c join ingredient i on c.ingcategoryid = i.ingcategoryid) categinfo "
+				+ "where categinfo.ingid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingId});
+		Category category = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				category = new Category(
+						rs.getInt("ingId"),
+						rs.getString("ingName")
+						);
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}return category;
+	}
 }
