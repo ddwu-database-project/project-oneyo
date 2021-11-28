@@ -56,11 +56,7 @@
 			form.phone.focus();
 			return false;
 		}
-		if (form.address.value == "") {
-			alert("주소를 입력하십시오.");
-			form.address.focus();
-			return false;
-		}
+		
 	
 		form.submit();
 	}
