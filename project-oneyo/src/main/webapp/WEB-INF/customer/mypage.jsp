@@ -36,11 +36,6 @@
 
 <body>
   <%@include file="/WEB-INF/base/header.jsp" %>    
-     <!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-    <c:if test="${updateFailed || deleteFailed}">
-	   <font color="red"><c:out value="${exception.getMessage()}" /></font>
-	</c:if>  
-
 
     <!-- Start Content Page -->
     <div class="container-fluid bg-light py-5">
@@ -48,7 +43,11 @@
             <h1 class="h1">My Page</h1>
         </div>
     </div>
-
+    
+    <!-- 탈퇴 실패시 exception 객체에 저장된 오류 메시지를 출력 -->
+	<c:if test="${deleteFailed}">
+	  <br><p class="failMsg"><c:out value="${exception.getMessage()}" /></p>
+	</c:if>
 
     <!-- Start Contact -->
     <div class="container py-5">
@@ -91,7 +90,7 @@
                     	<a href="<c:url value='/customer/update'><c:param name='email' value='<%=customer.getEmail()%>'/></c:url>"
                     	class="btn btn-success btn-lg px-3">수정</a>
  	    				<a href="<c:url value='/customer/delete'><c:param name='email' value='<%=customer.getEmail()%>'/></c:url>" 
- 	    				class="btn btn-success btn-lg px-3" onclick="return customerRemove();">삭제</a>
+ 	    				class="btn btn-success btn-lg px-3" onclick="return customerRemove();">탈퇴</a>
                     </div>
                 </div>
             </form>
