@@ -104,7 +104,7 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.defaultPrice}"/>원</li>
+                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.getDefaultPrice()}"/>원</li>
                             </ul>
                             <a href="shop-single.html" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
                             <p class="card-text">
