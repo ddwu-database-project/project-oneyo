@@ -183,7 +183,7 @@
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
-                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${mkIngs.getIngName()}.jpg'/>">
+                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getIngName()}.jpg'/>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>

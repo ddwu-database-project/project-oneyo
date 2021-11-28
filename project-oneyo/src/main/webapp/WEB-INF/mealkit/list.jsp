@@ -109,23 +109,7 @@
                     <p hidden id="ctgId">${mk.getCategory().getCategoryId()}</p>
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <c:choose>
-                                  <c:when test ="${imgName eq '토마토카레'}">
-                                     <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/tomatocurry.png' />" style="background-size:cover;">
-                                  </c:when>
-                                  <c:when test= "${imgName eq '버섯소불고기'}"> 
-                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/sobulgogi.png' />" style="background-size:cover;">
-                                 </c:when>
-                                 <c:when test ="${imgName == '찹스테이크'}">
-                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/stake.png' />" style="background-size:cover;">
-                                 </c:when>
-                                 <c:when test= "${imgName == '토마토스튜'}"> 
-                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/tomatostew.png' />" style="background-size:cover;">
-                                 </c:when>
-                                 <c:when test= "${imgName == '새우완자탕'}"> 
-                                    <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/seauwanja.jpg' />" style="background-size:cover;">
-                                 </c:when>
-                              </c:choose>
+                                <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${imgName}.png' />" style="background-size:cover;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
