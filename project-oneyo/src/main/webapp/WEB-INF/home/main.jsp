@@ -43,9 +43,9 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Best</b></h1>
+                                <h1 class="h1 text-success"><b>New</b></h1>
                                 <h1 style="font-size: 22px">오리지널의 맛</h1>
-                                <h3 style="font-size: 40px"><b>불고기 덮밥</b></h3>
+                                <h3 style="font-size: 40px"><b>${newMealkits.get(0).getMkName()}</b></h3>
                                 <p>
                                     '불고기'는 남녀노소 누구나 좋아하는 친숙한 메뉴인데요. '불고기 덮밥'은 백만송이버섯, 만가닥버섯, 표고버섯, 팽이버섯 총 4가지 버섯을 넣어 특별함을 더했어요. 버섯 고유의 쫄깃한 식감과 은은한 향이 부드러운 소고기와 어우러져 온 가족이 좋아하는 조화로운 맛의 메뉴랍니다.
                                 </p>
@@ -62,9 +62,9 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                            	<h1 class="h1 text-success"><b>Best</b></h1>
+                            	<h1 class="h1 text-success"><b>New</b></h1>
                                 <h1 style="font-size: 22px">꽃과 같은 비주얼 센터</h1>
-                                <h3 style="font-size: 40px"><b>밀푀유 나베</b></h3>
+                                <h3 style="font-size: 40px"><b>${newMealkits.get(1).getMkName()}</b></h3>
                                 <p>
 맛있으면서도 신경 쓴 듯한 인상을 줄 수 있는 요리. 평범한 식탁을, 매일 먹는 식사를 조금 특별하게 즐기고 싶다는 생각이 든다면, 주저말고 경험해보세요. 보내드리는 재료를 그대로 겹겹이 쌓아 냄비에 차곡차곡 쌓아주고 육수를 부어 한번 보글보글 끓여내면 완성되니까, 작은 노력으로 큰 만족을 얻으실 거에요.
                                 </p>

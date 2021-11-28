@@ -11,6 +11,7 @@ import controller.customer.*;
 import controller.ingredient.*;
 import controller.mealkit.*;
 import controller.order.*;
+import controller.review.*;
 import controller.share.*;
 import controller.home.*;
 
@@ -39,6 +40,10 @@ public class RequestMapping {
         mappings.put("/order/delete", new DeleteOrderController());
         mappings.put("/order/cart", new CartOrderController());
         mappings.put("/order/form", new FormOrderController());
+      
+        mappings.put("/review/review", new ReviewController());
+        mappings.put("/review/list", new ReviewListController());
+        mappings.put("/review/add", new AddReviewController());
 
         mappings.put("/cart/list", new CartListController());
         mappings.put("/cart/add", new AddCartController());

@@ -24,6 +24,9 @@ public class Mealkit {
 		ingredients = new ArrayList<>();
 	}
 	
+	public Mealkit() {
+		super();
+	}
 	public int getMkId() {
 		return mkId;
 	}
