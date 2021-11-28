@@ -169,10 +169,41 @@ public class MealkitDAO {
 		return null;
 	}
 	
-	public List<Mealkit> findNewMealkitList() throws Exception {
-		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid from (select * from mealkit order by mkId desc) where rownum <= 2";
+	public List<Mealkit> findNewMealkitList(int cnt) throws Exception {
+		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid from (select * from mealkit order by mkId desc) where rownum <= ?";
 		
-		jdbcUtil.setSql(sql);
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cnt});
+		List<Mealkit> mealkits = new ArrayList<Mealkit>();
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				Mealkit mealkit = new Mealkit(
+					rs.getInt("mkId"),
+					rs.getString("mkname"),
+					rs.getInt("defaultcal"),
+					rs.getInt("defaultprice"));
+				mealkits.add(mealkit);	
+				System.out.println(rs.getString("mkname"));
+			}		
+			return mealkits;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
+	}
+	
+	public List<Mealkit> findTopReviewMealkitList(int cnt) throws Exception {
+		String sql = "select rslt.*, m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice "
+				+ "from mealkit m join (select c.mkid, count(*) "
+				+ "from custommealkit c join review r on c.custommkid = r.custommkid "
+				+ "group by c.mkid "
+				+ "order by count(*) desc) rslt on m.mkid = rslt.mkid "
+				+ "where rownum <= ?";
+		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cnt});
 		List<Mealkit> mealkits = new ArrayList<Mealkit>();
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

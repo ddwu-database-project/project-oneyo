@@ -17,10 +17,12 @@ public class HomeController implements Controller{
 		
 		MealkitDAO mealkitDAO = new MealkitDAO();
 		List<Mealkit> topMealkits = mealkitDAO.findTopMealkitList(3);
-		List<Mealkit> newMealkits = mealkitDAO.findNewMealkitList();
+		List<Mealkit> newMealkits = mealkitDAO.findNewMealkitList(2);
+		List<Mealkit> topReviewMealkits = mealkitDAO.findTopReviewMealkitList(3);
 		
 		request.setAttribute("topMealkits", topMealkits);
 		request.setAttribute("newMealkits", newMealkits);
+		request.setAttribute("topReviewMealkits", topReviewMealkits);
 		return "/home/main.jsp";
 	}
 
