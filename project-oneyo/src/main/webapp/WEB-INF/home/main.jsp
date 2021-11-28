@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -103,7 +104,7 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">${topMk.getDefaultPrice()}</li>
+                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.defaultPrice}"/>원</li>
                             </ul>
                             <a href="shop-single.html" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
                             <p class="card-text">
