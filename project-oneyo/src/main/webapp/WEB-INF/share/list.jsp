@@ -52,7 +52,7 @@
 			<c:forEach var="item" items="${customMk}">
 				<div class="col-12 col-md-4 p-5 mt-3 text_photo">
 					<a class="textOverImage"
-						style="background-image: url(https://via.placeholder.com/240x240/60B5BC/FFFFFF)"
+						style="background-image: url(<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />)"
 						data-title="${customerMap.get(item.getCustomerId())}님"
 						data-text="
 						밀키트: ${item.getOriginalMealkit().getMkName()} 
