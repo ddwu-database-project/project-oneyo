@@ -7,6 +7,7 @@ public class Customer {
 	private String phone;
 	private String address;
 	private String email;
+	private int previlege;
 	
 	public Customer(String customerName, String password, String phone, String address, String email) {
 		this.customerName = customerName;
@@ -14,6 +15,16 @@ public class Customer {
 		this.phone = phone;
 		this.address = address;
 		this.email = email;
+	}
+	
+	public Customer(int customerId, String customerName, String password, String phone, String address, String email, int privilege) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+		this.previlege = privilege;
 	}
 	
 	public Customer(int customerId, String customerName, String password, String phone, String address, String email) {
@@ -81,6 +92,14 @@ public class Customer {
 			return false;
 		}
 		return this.password.equals(password);
+	}
+
+	public int getPrevilege() {
+		return previlege;
+	}
+
+	public void setPrevilege(int previlege) {
+		this.previlege = previlege;
 	}
  
 }

@@ -6,6 +6,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.admin.AdminAddMealkitController;
+import controller.admin.AdminHomeController;
+import controller.admin.AdminMkListController;
 import controller.cart.*;
 import controller.customer.*;
 import controller.ingredient.*;
@@ -53,6 +56,10 @@ public class RequestMapping {
         mappings.put("/share/add", new AddShareController());
         mappings.put("/share/delete", new DeleteShareController());
         mappings.put("/share/cart/add", new AddShareCartController());
+        
+        mappings.put("/admin/home", new AdminHomeController());
+        mappings.put("/admin/mealkit/list", new AdminMkListController());
+        mappings.put("/admin/mealkit/add", new AdminAddMealkitController());
         logger.info("Initialized Request Mapping!");
     }
 

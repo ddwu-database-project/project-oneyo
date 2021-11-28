@@ -71,7 +71,7 @@ public class CustomerDAO {
 	}
 	
 	public Customer findCustomer(String email) throws SQLException {
-        String sql = "SELECT customerId, customerName, password, phone, address "
+        String sql = "SELECT customerId, customerName, password, phone, address, previlege "
         			+ "FROM CUSTOMER "
         			+ "WHERE email=?";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {email});	
@@ -85,7 +85,8 @@ public class CustomerDAO {
 					rs.getString("password"),
 					rs.getString("phone"),
 					rs.getString("address"),
-					email);
+					email,
+					rs.getInt("previlege"));
 				return customer;
 			}
 		} catch (Exception ex) {

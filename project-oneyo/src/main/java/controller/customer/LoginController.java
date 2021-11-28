@@ -30,8 +30,12 @@ public class LoginController implements Controller {
 			
 			HttpSession session = request.getSession();
             session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_KEY, email);
-           
+            session.setAttribute(CustomerSessionUtils.CUSTOMER_SESSION_ADMIN, customer.getPrevilege());
             session.setAttribute("name", customer.getCustomerName()); 
+            
+            if (customer.getPrevilege() == 1) {
+            	return "redirect:/admin/home";
+            }
             
 		} catch (Exception e) {	
             request.setAttribute("loginFailed", true);
