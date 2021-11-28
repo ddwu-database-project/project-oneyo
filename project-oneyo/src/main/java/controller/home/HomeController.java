@@ -17,8 +17,10 @@ public class HomeController implements Controller{
 		
 		MealkitDAO mealkitDAO = new MealkitDAO();
 		List<Mealkit> topMealkits = mealkitDAO.findTopMealkitList(3);
+		List<Mealkit> newMealkits = mealkitDAO.findNewMealkitList();
 		
 		request.setAttribute("topMealkits", topMealkits);
+		request.setAttribute("newMealkits", newMealkits);
 		return "/home/main.jsp";
 	}
 
