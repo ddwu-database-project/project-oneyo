@@ -114,7 +114,7 @@
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
                                         <li><a class="btn btn-success text-white mt-2" href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mk.mkId}'/></c:url>"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
