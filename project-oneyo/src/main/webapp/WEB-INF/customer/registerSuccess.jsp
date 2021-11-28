@@ -36,6 +36,7 @@
                     <p>
                         이제 당신만을 위한 O!NEYO: 오늘은 내가 요리사의 서비스를 이용해보세요!
                     </p>
+                    <a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인 하러 가기</a>
                 </div>
                 <div class="col-md-4">
                     <img src="<c:url value='/assets/img/oneyo-full-logo.png' />" alt="About Hero" width="300px">
