@@ -24,8 +24,6 @@
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">	
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    
-
   
 	function customerCreate() {
 		// 형식 검토 과정
@@ -56,7 +54,6 @@
 			form.phone.focus();
 			return false;
 		}
-		
 	
 		form.submit();
 	}
