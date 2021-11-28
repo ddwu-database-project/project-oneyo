@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.dto.Mealkit;
+import model.dto.Category;
 import model.dto.Ingredient;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MealkitDAO {
 			ResultSet rs = jdbcUtil.executeQuery();						
 			List<Mealkit> mealkits = new ArrayList<Mealkit>();	
 			while (rs.next()) {
-				Mealkit mealkit = new Mealkit(			
+				Mealkit mealkit = new Mealkit(
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
@@ -60,7 +61,7 @@ public class MealkitDAO {
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return mealkit;
 		
@@ -94,5 +95,26 @@ public class MealkitDAO {
 			jdbcUtil.close();	
 		}
 		return null;
+	}
+	
+	public Category findMealkitCateg(int mkId) throws Exception{
+		String sql = "select c.mkcategoryid, c.mkcategoryname "
+				+ "from mkcategory c join mealkit m on c.mkcategoryid = m.mkcategoryid "
+				+ "where m.mkid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
+		Category category = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				category = new Category(
+						rs.getInt("mkcategoryid"),
+						rs.getString("mkcategoryname")
+						);
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}return category;
 	}
 }
