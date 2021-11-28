@@ -26,16 +26,43 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick-theme.css'/>">
-
-	<style>
-	.small-slide-main {
-		height:400px; 
-	}
-	.small-slide{
-		width:100px;
-		height:100px;
-	}
-	</style>
+	
+   <style>
+   .small-slide-main {
+      height:400px; 
+   }
+   .small-slide{
+      width:100px;
+      height:100px;
+   }
+   td:hover{
+	color: #60B5BC;
+   }
+   </style>
+   
+   <script>
+			function ings(){
+				$(".reviews").hide();
+				$(".ings").show();
+			}
+			function reviews(){
+				<!--location.href = "<c:url value='/review/list'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>";-->
+				$(".ings").hide();
+				$.ajax({
+					url:"<c:url value='/review/list'/>",
+					cache:false,
+					type:"post",
+					data:{
+						mkId:"${mealkit.getMkId()}"
+					},
+					success:function(result){
+						$("#reviews").html(result);
+					}
+				});
+				$(".reviews").show();
+				
+			}
+	</script>
 </head>
 
 <body>
@@ -147,9 +174,9 @@
                             
                             <h6>유의 사항:</h6>
                             <ul class="list-unstyled pb-3">
-								<li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
-								<li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
-								<li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
+                        <li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
+                        <li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
+                        <li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
                             </ul>
 
                             <form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
@@ -173,13 +200,18 @@
     <section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
-                <h4>밀키트 구성</h4>
-                
+               <table style="width:200px;">
+            		<tr>
+            			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성</h4></td>
+	      				<td onClick="reviews()" style="cursor:pointer;"><h4>리뷰</h4>	</td>	
+					</tr>
+            	</table>
             </div>
 
             <!--Start Carousel Wrapper-->
-            <div id="carousel-related-product">
-			<c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
+          
+            <div id="carousel-related-product" class="ings">
+         <c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
@@ -198,13 +230,15 @@
                                 <li>${mkIngs.getIngCalorie()}kcal</li>
                             </ul>
                             <p class="text-center mb-0"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mkIngs.getIngPrice()}"/>원</p>
-                 			<p class="text-center mb-0">${mkIngs.getIngQuantity()}개</p>
+                          <p class="text-center mb-0">${mkIngs.getIngQuantity()}개</p>
                         </div>
                     </div>
                 </div>
                 </c:forEach>
             </div>
-
+      		<div id="reviews" class="reviews">
+      			
+      		</div>
 
         </div>
     </section>
