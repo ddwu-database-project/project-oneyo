@@ -24,8 +24,6 @@
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">	
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    
-
   
 	function customerCreate() {
 		// 형식 검토 과정
@@ -54,11 +52,6 @@
 		if(phoneExp.test(form.phone.value)==false) {
 			alert("전화번호 형식이 올바르지 않습니다.");
 			form.phone.focus();
-			return false;
-		}
-		if (form.address.value == "") {
-			alert("주소를 입력하십시오.");
-			form.address.focus();
 			return false;
 		}
 	
