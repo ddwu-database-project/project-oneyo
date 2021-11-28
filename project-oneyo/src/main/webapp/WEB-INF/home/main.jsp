@@ -99,14 +99,14 @@
             <c:forEach var="topMk" items="${topMealkits}">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>">
                             <img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
                                 <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.getDefaultPrice()}"/>원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
+                            <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
                             <p class="card-text">
                                 나만을 위한 작은 사치 <br>
                                 육즙 한가득 부드러운 스테이크
