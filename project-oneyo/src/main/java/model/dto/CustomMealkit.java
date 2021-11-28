@@ -13,6 +13,7 @@ public class CustomMealkit {
 	private int calorie;
 	private int sharestatus;
 	private List<Ingredient> ingredients;
+	
 
 	public CustomMealkit(Mealkit mealkitInfo, int customMealkitId, int customerId, int quantity, int price, int calorie, List<Ingredient> ingredients) {
 		this.mealkitInfo = mealkitInfo;

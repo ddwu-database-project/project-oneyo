@@ -118,8 +118,14 @@
     margin-left: -14px;
     background: transparent;
 }
-
-
+.link-button { 
+     background: none;
+     border: none;
+     cursor: pointer; 
+}
+.link-button:hover{
+	color: #60B5BC;
+}
 </style>
 <script>
 $("#delete").click(function del(){
@@ -158,6 +164,7 @@ $("#delete").click(function del(){
 		<c:forEach var="order" items="${orderList}">
 			<c:forEach var="customMk" items="${order.getOrderCustomMk()}">
 			<c:set var="size" value="${order.getOrderCustomMk().size()}"/>
+			<c:set var="status" value="${order.getStatus()}" />
 			<tbody>
 				<tr>
 					<!-- DB에서 가져오기 -->
@@ -169,13 +176,29 @@ $("#delete").click(function del(){
 					</td>
 					
 					<td>
-					${customMk.getOriginalMealkit().getMkName()} (${customMk.getQuantity()}개)
+						<c:choose>
+							<c:when test="${status == 3}">
+								${customMk.getOriginalMealkit().getMkName()} (${customMk.getQuantity()}개)
+							</c:when>
+							<c:otherwise>
+								<form name="detail" method="get" action="<c:url value="/review/review" />">
+											<input type="hidden" name="mkname" value="${customMk.getOriginalMealkit().getMkName()}">
+											<input type="hidden" name="orderId" value="${order.getOrderId()}">
+											<input type="hidden" name="custommkId" value="${customMk.getCustomMealkitId()}">
+											<input type="hidden" name="orderdate" value="${order.getOrderDate()}">
+											<input type="hidden" name="customerId" value="${order.getCustomerId()}">
+											<a href = "<c:url value="/review/review" />">
+												<input type="submit" class="link-button" value="${customMk.getOriginalMealkit().getMkName()} (${customMk.getQuantity()}개)">
+											</a>
+								</form>
+							</c:otherwise>
+						</c:choose>
 					</td>
 					<td><!-- 주문일자 -->
 					${order.getOrderDate()}
 					</td>
 					<td><!-- 주문상태 -->
-					<c:set var="status" value="${order.getStatus()}" />
+	
 					
 					<c:choose>
 						<c:when test="${status == 3}">
