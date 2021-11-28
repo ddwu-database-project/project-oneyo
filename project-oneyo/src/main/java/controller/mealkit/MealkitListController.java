@@ -23,6 +23,7 @@ public class MealkitListController implements Controller {
 		
 		for (Mealkit mk : mealkits) {
 			mk.setIngredients(mealkitDAO.findMealkitIng(mk.getMkId()));
+			mk.setCategory(mealkitDAO.findMealkitCateg(mk.getMkId()));
 		}
 		
 		// get login customer

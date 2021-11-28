@@ -4,6 +4,11 @@ public class Category {
 	private int categoryId;
 	private String name;
 	
+	public Category(int ctgId, String ctgName) {
+		this.categoryId = ctgId;
+		this.name = ctgName;
+	}
+	
 	public int getCategoryId() {
 		return categoryId;
 	}
