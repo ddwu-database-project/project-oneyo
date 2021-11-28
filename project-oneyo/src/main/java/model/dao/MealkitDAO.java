@@ -168,4 +168,32 @@ public class MealkitDAO {
 		}
 		return null;
 	}
+	
+	public List<Mealkit> findNewMealkitList() throws Exception {
+		String sql = "select mkid, mkname, defaultcal, defaultprice, mkcategoryid "
+				+ "from (select * "
+				+ "from mealkit "
+				+ "order by mkid desc) "
+				+ "where rownum <= 2";
+		
+		List<Mealkit> mealkits = new ArrayList<Mealkit>();
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				Mealkit mealkit = new Mealkit(
+					rs.getInt("mkId"),
+					rs.getString("mkname"),
+					rs.getInt("defaultcal"),
+					rs.getInt("defaultprice"));
+				mealkits.add(mealkit);				
+			}		
+			return mealkits;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
+	}
 }
