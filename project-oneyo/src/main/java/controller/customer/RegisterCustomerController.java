@@ -25,12 +25,15 @@ public class RegisterCustomerController implements Controller {
 	    }	
     	
     	String email = request.getParameter("email");
-    	
+    	String a1 = request.getParameter("address1");
+    	String a2 = request.getParameter("address2");
+    	String a3 = request.getParameter("address3");
+    	String addr = a1 + a2 + a3;
     	Customer customer = new Customer(
     		request.getParameter("name"),
 			request.getParameter("password"),
 			request.getParameter("phone"),
-			request.getParameter("address"),
+			addr,
 			email);
     	
     	String[] aIds = request.getParameterValues("allergy");
