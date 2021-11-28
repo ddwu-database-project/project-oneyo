@@ -139,4 +139,33 @@ public class MealkitDAO {
 			jdbcUtil.close();		
 		}return category;
 	}
+	
+	public List<Mealkit> findTopMealkitList(int cnt) throws Exception {
+		String sql = "select m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.mkcategoryid "
+				+ "from mealkit m join (select mkid, count(*) "
+				+ "from custommealkit "
+				+ "group by mkid "
+				+ "order by COUNT(*) desc) groupBy on m.mkid = groupby.mkid "
+				+ "where rownum <= ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {cnt});
+		List<Mealkit> mealkits = new ArrayList<Mealkit>();
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				Mealkit mealkit = new Mealkit(
+					rs.getInt("mkId"),
+					rs.getString("mkname"),
+					rs.getInt("defaultcal"),
+					rs.getInt("defaultprice"));
+				mealkits.add(mealkit);				
+			}		
+			return mealkits;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
+	}
 }
