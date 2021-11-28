@@ -54,7 +54,7 @@ public class RegisterCustomerController implements Controller {
 			System.out.println("error");
 			return "/customer/registerForm.jsp";
 		}
-		return "/customer/registerSuccess.jsp";
+		return "/customer/loginForm.jsp";
     }
 }
 
