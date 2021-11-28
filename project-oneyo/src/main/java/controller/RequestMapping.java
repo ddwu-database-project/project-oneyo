@@ -14,7 +14,9 @@ import controller.customer.*;
 import controller.ingredient.*;
 import controller.mealkit.*;
 import controller.order.*;
+import controller.review.*;
 import controller.share.*;
+import controller.home.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -24,7 +26,7 @@ public class RequestMapping {
     public void initMapping() {
 
         mappings.put("/", new ForwardController("index.jsp"));
-        mappings.put("/home", new ForwardController("/home/main.jsp"));
+        mappings.put("/home", new HomeController());
         mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
         mappings.put("/customer/login", new LoginController());
         mappings.put("/customer/logout", new LogoutController());
@@ -41,6 +43,10 @@ public class RequestMapping {
         mappings.put("/order/delete", new DeleteOrderController());
         mappings.put("/order/cart", new CartOrderController());
         mappings.put("/order/form", new FormOrderController());
+      
+        mappings.put("/review/review", new ReviewController());
+        mappings.put("/review/list", new ReviewListController());
+        mappings.put("/review/add", new AddReviewController());
 
         mappings.put("/cart/list", new CartListController());
         mappings.put("/cart/add", new AddCartController());

@@ -25,6 +25,7 @@ public class RegisterCustomerController implements Controller {
 	    }	
     	
     	String email = request.getParameter("email");
+    	
     	Customer customer = new Customer(
     		request.getParameter("name"),
 			request.getParameter("password"),
@@ -54,7 +55,7 @@ public class RegisterCustomerController implements Controller {
 			System.out.println("error");
 			return "/customer/registerForm.jsp";
 		}
-		return "/customer/loginForm.jsp";
+		return "/customer/registerSuccess.jsp";
     }
 }
 

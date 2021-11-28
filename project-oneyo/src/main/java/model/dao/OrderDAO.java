@@ -246,4 +246,24 @@ public class OrderDAO {
 		
 		return null;
 	}
+	
+	public int checkOrderStatus(int customerId) {
+		String sql = "select * "
+				+ "from mealkitorder "
+				+ "where status = 0 and customerid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {customerId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			if (rs.next()) {		
+				return 1;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}	
+		return 0;	
+	}
+
 }
