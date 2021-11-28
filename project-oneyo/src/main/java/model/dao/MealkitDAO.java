@@ -170,12 +170,9 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findNewMealkitList() throws Exception {
-		String sql = "select mkid, mkname, defaultcal, defaultprice, mkcategoryid "
-				+ "from (select * "
-				+ "from mealkit "
-				+ "order by mkid desc) "
-				+ "where rownum <= 2";
+		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid from (select * from mealkit order by mkId desc) where rownum <= 2";
 		
+		jdbcUtil.setSql(sql);
 		List<Mealkit> mealkits = new ArrayList<Mealkit>();
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -185,7 +182,8 @@ public class MealkitDAO {
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"));
-				mealkits.add(mealkit);				
+				mealkits.add(mealkit);	
+				System.out.println(rs.getString("mkname"));
 			}		
 			return mealkits;					
 			
