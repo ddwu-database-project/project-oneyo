@@ -39,28 +39,33 @@
 	color: #60B5BC;
    }
    </style>
-   
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script>
-			function ings(){
-				$(".reviews").hide();
-				$(".ings").show();
-			}
-			function reviews(){
-				<!--location.href = "<c:url value='/review/list'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>";-->
-				$(".ings").hide();
-				$.ajax({
+   			var cnt = 0;
+   			window.onload = function (){
+   				$.ajax({
 					url:"<c:url value='/review/list'/>",
 					cache:false,
 					type:"post",
 					data:{
 						mkId:"${mealkit.getMkId()}"
 					},
-					success:function(result){
-						$("#reviews").html(result);
+					success:function(data){
+						$("#reviews").html(data);
+						$(".reviews").hide();
+						cnt = $("#rsize").val();
+						$("#size").html(cnt);
 					}
 				});
+   			}
+   			console.log(cnt);
+			function ings(){
+				$(".reviews").hide();
+				$(".ings").show();
+			}
+			function reviews(){
+				$(".ings").hide();
 				$(".reviews").show();
-				
 			}
 	</script>
 </head>
@@ -153,12 +158,8 @@
                             <h1 class="h2">${mealkit.getMkName()}</h1>
                             <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
                             <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                  
+                                <span class="list-inline-item text-dark"><span id="size"></span> Comments</span> 
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">

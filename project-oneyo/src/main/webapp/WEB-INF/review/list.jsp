@@ -25,12 +25,13 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick-theme.css'/>">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 </head>
 <body>
+<input type="hidden" id="rsize" value="${rsize}">
 <div class="container">
 <c:forEach var="r" items="${rlist}">
-   
           <div class="shadow p-3 mb-5 bg-white rounded">
               <div style="color:#60B5BC;">
                 <h5 class="h5 g-color-gray-dark-v1 mb-0">${r.getCname()}</h5>
@@ -38,7 +39,6 @@
               </div>
         	<hr class="my-2">
               <p>${r.getReviewWrites()}</p>
-              
         </div>
      </c:forEach>  
      </div>

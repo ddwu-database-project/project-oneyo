@@ -164,22 +164,20 @@ public class OrderDAO {
 					jdbcUtil.rollback();
 				}
 			}
-
-//			String sql3 = "INSERT INTO CUSTOMMEALKITING VALUES(?, ?, ?)"; 
-//			for (CustomMealkit item : l) {
-//				int custommealkitId = item.getCustomMealkitId();
-//				List<Ingredient> customIng = getCustomIngList(item);
-//				for (Ingredient ing : customIng) {
-//					param = new Object[] { custommealkitId, ing.getIngId(), ing.getIngQuantity() };
-//					jdbcUtil.setSqlAndParameters(sql3, param);
-//
-//					int result = jdbcUtil.executeUpdate(); 
-//					if (result != 1) {
-//						jdbcUtil.rollback();
-//					}
-//
-//				}
-//			}
+			//첫주문시 해당 CustomMealkit's orderstatus = 1(주문완료)로 set
+			String sql3 = "UPDATE CUSTOMMEALKIT "
+					+ "SET orderstatus = 1 "
+					+"WHERE custommkId = ?";
+			
+			for (CustomMealkit item : l) {
+				int customMkId = item.getCustomMealkitId();
+				jdbcUtil.setSqlAndParameters(sql3, new Object[] {customMkId});		
+				int result = jdbcUtil.executeUpdate();	
+				if (result != 1) {
+					jdbcUtil.rollback();
+				}
+			}
+			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -193,11 +191,21 @@ public class OrderDAO {
 		String sql = "UPDATE mealkitorder "
 				+ "SET status = 3 "
 				+"WHERE orderId = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {orderId});
+		//주문 취소시 해당 주문의 커스텀 밀키트들의 order status = 0(주문취소)로 변경
+		String sql2 = "UPDATE custommealkit SET orderstatus = 0 WHERE custommkId = "
+				+ "(SELECT c.custommkId FROM custommealkit c, orderinfo o WHERE o.orderId = ? AND c.custommkId = o.custommkId)";
 		
-		try {				
+		try {		
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {orderId});
 			int result = jdbcUtil.executeUpdate();	
+			if (result != 1) {
+				jdbcUtil.rollback();
+			}
+			jdbcUtil.setSqlAndParameters(sql2, new Object[] {orderId});
+			jdbcUtil.executeUpdate();	
+			
 			return result;
+			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -246,4 +254,6 @@ public class OrderDAO {
 		
 		return null;
 	}
+	
+	
 }
