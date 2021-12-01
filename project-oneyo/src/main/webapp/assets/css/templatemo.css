@@ -106,13 +106,12 @@ body, ul, li, p, a, label, input, div {
 }
 /* Brand */
 .brand-img {
-  filter: grayscale(100%);
-  opacity: 0.5;
-  transition: .5s;
+  border-radius: 10px;
 }
 .brand-img:hover {
+  opacity: 0.7;
+  transition: .5s;
   filter: grayscale(0%);
-  opacity: 1;
 }
 /* Carousel Hero */
 #template-mo-zay-hero-carousel .carousel-indicators li {

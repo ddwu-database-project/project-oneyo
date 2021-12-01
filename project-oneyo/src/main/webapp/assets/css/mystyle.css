@@ -65,3 +65,21 @@
 	width: 500px; 
 	margin: 0 auto;
 }
+
+.dev-name {   
+	margin-top: 15px;
+}
+
+.footer-bg {
+    background-color: #8BC9CE;
+}
+
+.footer-font {
+	color: white;
+	text-align: center;
+}
+
+.footer-msg {
+	text-align: center;
+	color: black;
+}

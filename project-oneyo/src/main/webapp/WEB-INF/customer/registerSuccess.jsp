@@ -28,15 +28,16 @@
 
 <body>
 <%@include file="/WEB-INF/base/header.jsp" %>
-    <section class="bg-success py-5">
+    <section class="py-5">
         <div class="container">
             <div class="row align-items-center py-5">
-                <div class="col-md-8 text-white">
+                <div class="col-md-8">
                     <h1>회원가입이 완료되었습니다</h1>
                     <p>
                         이제 당신만을 위한 O!NEYO: 오늘은 내가 요리사의 서비스를 이용해보세요!
                     </p>
-                    <a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">로그인 하러 가기</a>
+                    
+                    <a class="btn btn-success btn-xs" href="<c:url value='/customer/login/form'/>">로그인 하러 가기</a>
                 </div>
                 <div class="col-md-4">
                     <img src="<c:url value='/assets/img/oneyo-full-logo.png' />" alt="About Hero" width="300px">
