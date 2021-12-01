@@ -48,7 +48,9 @@
 	<div class="container">
 		<div class="row pt-2">
 			<div class="col-12 footer-msg">
-				<a class="text-light text-decoration-none" target="_blank" href="https://github.com/ddwu-database-project"><i class="fab fa-github fa-lg fa-fw"></i></a>
+				<a class="text-light text-decoration-none" target="_blank" href="https://github.com/ddwu-database-project">
+					<i class="fab fa-github fa-lg fa-fw" style="color: black !important"></i>
+				</a>
 			</div>
 		</div>
 	</div>
