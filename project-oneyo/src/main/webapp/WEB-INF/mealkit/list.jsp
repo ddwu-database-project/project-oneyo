@@ -42,6 +42,11 @@
             <div class="col-lg-3">
                 <h1 class="h2 pb-4">Categories</h1>
                 <ul class="list-unstyled templatemo-accordion">
+                	<li class="pb-3">
+                        <a onclick="MealkitAll()" class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            밀키트 전체
+                        </a>
+                    </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             한식
@@ -112,7 +117,6 @@
                                 <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${imgName}.png' />" style="background-size:cover;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
                                         <li><a class="btn btn-success text-white mt-2" href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>"><i class="far fa-eye"></i></a></li>
                                         <li><a class="btn btn-success text-white mt-2" href="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mk.mkId}'/></c:url>"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
@@ -139,14 +143,10 @@
 				</c:forEach> 
                     
                 </div>
-                <div div="row">
-                    <ul class="pagination pagination-lg justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
-                        </li>
-                        
-                    </ul>
-                </div>
+                <div id="pagination">
+				  <button>&laquo;</button>
+				  <button id="raquo">&raquo;</button>
+				</div>
             </div>
 
         </div>
@@ -163,7 +163,7 @@
     <script src="<c:url value='/assets/js/custom.js' />"></script>
     <script src="<c:url value='/assets/js/fade-in.js' />"></script>
     
-    <script src="<c:url value='/assets/js/mealkit/list.js' />"></script>
+    <script src="<c:url value='/assets/js/mealkit/list.js' />" defer></script>
     <!-- End Script -->
 </body>
 </html>
