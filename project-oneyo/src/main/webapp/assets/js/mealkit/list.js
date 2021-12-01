@@ -12,7 +12,7 @@ function filterMealkit() {
 	  }
 	  if (window.event.keyCode == 13){
 	    for (let i = 0; i < mkList.length; i++) {
-	      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
+	      let mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
 	      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
 	      
 	      let ingarr = ""
@@ -48,6 +48,7 @@ function filterMealkit() {
 	      }
 	    }
   	 }
+console.log("Adfasd");
   }
 
 function selectCategory(ctgId){
