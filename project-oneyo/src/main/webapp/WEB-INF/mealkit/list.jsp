@@ -42,6 +42,11 @@
             <div class="col-lg-3">
                 <h1 class="h2 pb-4">Categories</h1>
                 <ul class="list-unstyled templatemo-accordion">
+                	<li class="pb-3">
+                        <a onclick="MealkitAll()" class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            밀키트 전체
+                        </a>
+                    </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             한식
