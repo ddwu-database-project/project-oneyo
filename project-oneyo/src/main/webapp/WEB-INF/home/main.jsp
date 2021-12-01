@@ -99,14 +99,43 @@
             <c:forEach var="topMk" items="${topMealkits}">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>">
                             <img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
                                 <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.getDefaultPrice()}"/>원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
+                            <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
+                            <p class="card-text">
+                                나만을 위한 작은 사치 <br>
+                                육즙 한가득 부드러운 스테이크
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              </c:forEach>
+              </div>
+              <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1"><b>Best Reviews</b></h1>
+                    <p>
+                        가장 많은 리뷰가 달린 밀키트 추천
+                    </p>
+                </div>
+            </div>
+              <div class="row">
+              <c:forEach var="topRvMk" items="${topReviewMealkits}">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>">
+                            <img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topRvMk.getDefaultPrice()}"/>원</li>
+                            </ul>
+                            <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
                             <p class="card-text">
                                 나만을 위한 작은 사치 <br>
                                 육즙 한가득 부드러운 스테이크

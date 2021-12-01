@@ -153,12 +153,7 @@
                             <h1 class="h2">${mealkit.getMkName()}</h1>
                             <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
                             <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <span class="list-inline-item text-dark">36 Comments</span>
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
