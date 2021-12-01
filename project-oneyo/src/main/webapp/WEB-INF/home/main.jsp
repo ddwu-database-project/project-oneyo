@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -42,9 +43,9 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Best</b></h1>
+                                <h1 class="h1 text-success"><b>New</b></h1>
                                 <h1 style="font-size: 22px">오리지널의 맛</h1>
-                                <h3 style="font-size: 40px"><b>불고기 덮밥</b></h3>
+                                <h3 style="font-size: 40px"><b>${newMealkits.get(0).getMkName()}</b></h3>
                                 <p>
                                     '불고기'는 남녀노소 누구나 좋아하는 친숙한 메뉴인데요. '불고기 덮밥'은 백만송이버섯, 만가닥버섯, 표고버섯, 팽이버섯 총 4가지 버섯을 넣어 특별함을 더했어요. 버섯 고유의 쫄깃한 식감과 은은한 향이 부드러운 소고기와 어우러져 온 가족이 좋아하는 조화로운 맛의 메뉴랍니다.
                                 </p>
@@ -61,9 +62,9 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                            	<h1 class="h1 text-success"><b>Best</b></h1>
+                            	<h1 class="h1 text-success"><b>New</b></h1>
                                 <h1 style="font-size: 22px">꽃과 같은 비주얼 센터</h1>
-                                <h3 style="font-size: 40px"><b>밀푀유 나베</b></h3>
+                                <h3 style="font-size: 40px"><b>${newMealkits.get(1).getMkName()}</b></h3>
                                 <p>
 맛있으면서도 신경 쓴 듯한 인상을 줄 수 있는 요리. 평범한 식탁을, 매일 먹는 식사를 조금 특별하게 즐기고 싶다는 생각이 든다면, 주저말고 경험해보세요. 보내드리는 재료를 그대로 겹겹이 쌓아 냄비에 차곡차곡 쌓아주고 육수를 부어 한번 보글보글 끓여내면 완성되니까, 작은 노력으로 큰 만족을 얻으실 거에요.
                                 </p>
@@ -95,97 +96,17 @@
                 </div>
             </div>
             <div class="row">
+            <c:forEach var="topMk" items="${topMealkits}">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
-
-                            <img src="<c:url value='/assets/img/감바스알아히요.jpg' />" class="card-img-top" alt="...">
+                        <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>">
+                            <img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">17,900원</li>
+                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topMk.getDefaultPrice()}"/>원</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">감바스알아히요</a>
-                            <p class="card-text">
-                                새우와 마늘을 올리브유에 튀기듯 구워낸 요리로 통통한 새우와 쫄깃한 문어를 넣어 씹는 맛과 감칠맛이 일품
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="<c:url value='/assets/img/밀푀유나베.jpg' />" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">16,900원</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">밀푀유나베</a>
-                            <p class="card-text">
-                                '천개의 잎사귀'라는 뜻을 가진 밀푀유나베는 퓨전요리로 깔끔한 국물과 부드러운 소고기, 신선한 야채가 잘 어우러진 든든한 전골 요리
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="<c:url value='/assets/img/양장피.jpg' />" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">15,900원</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">양장피</a>
-                            <p class="card-text">
-                                여러 가지 재료로 다채로운 빛을 내는 양장피<br>집들이, 홈파티, 생일상 등 화려한 식탁에 어울리는 메뉴
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="<c:url value='/assets/img/직화 불고기 떡볶이.jpg' />" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">13,900원</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">직화 불고기 떡볶이</a>
-                            <p class="card-text">
-                                불고기의 고소한 풍미까지 더한 매콤달콤한 직화 불고기 떡볶이
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="<c:url value='/assets/img/매콤 소고기 우거지탕.jpg' />" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">7,900원</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">매콤 소고기 우거지탕</a>
-                            <p class="card-text">
-                                매콤한 국물에 고소한 소고기와 아삭한 우거지를 한입 가득
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="<c:url value='/assets/img/로얄 크리미 스테이크.jpg' />" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">16,900원</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">로얄 크리미 스테이크</a>
+                            <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
                             <p class="card-text">
                                 나만을 위한 작은 사치 <br>
                                 육즙 한가득 부드러운 스테이크
@@ -193,6 +114,36 @@
                         </div>
                     </div>
                 </div>
+              </c:forEach>
+              </div>
+              <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1"><b>Best Reviews</b></h1>
+                    <p>
+                        가장 많은 리뷰가 달린 밀키트 추천
+                    </p>
+                </div>
+            </div>
+              <div class="row">
+              <c:forEach var="topRvMk" items="${topReviewMealkits}">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>">
+                            <img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted text-right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${topRvMk.getDefaultPrice()}"/>원</li>
+                            </ul>
+                            <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>" class="h2 text-decoration-none text-dark">${topMk.getMkName()}</a>
+                            <p class="card-text">
+                                나만을 위한 작은 사치 <br>
+                                육즙 한가득 부드러운 스테이크
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              </c:forEach>
             </div>
         </div>
     </section>

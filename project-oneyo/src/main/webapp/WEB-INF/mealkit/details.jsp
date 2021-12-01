@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img small-slide-main img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi_mealkit.jpg'/>" alt="Card image cap" id="product-detail">
+                        <img class="card-img small-slide-main img-fluid" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -158,8 +158,12 @@
                             <h1 class="h2">${mealkit.getMkName()}</h1>
                             <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
                             <p class="py-2">
+
                   
                                 <span class="list-inline-item text-dark"><span id="size"></span> Comments</span> 
+
+                                <span class="list-inline-item text-dark">36 Comments</span>
+
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -216,7 +220,7 @@
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
-                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/bulgogi/${ing.index}.jpg'/>">
+                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getIngName()}.jpg'/>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>

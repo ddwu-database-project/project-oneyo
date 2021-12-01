@@ -12,7 +12,7 @@ public class CustomerDAO {
 	}
 	
 	public int create(Customer customer) throws SQLException {
-		String sql = "INSERT INTO CUSTOMER VALUES (customer_seq.nextval, ?, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO CUSTOMER VALUES (customer_seq.nextval, ?, ?, ?, ?, ?, 0)";		
 		Object[] param = new Object[] {customer.getCustomerName(), customer.getEmail(), 
 				customer.getPassword(), customer.getPhone(), customer.getAddress()};				
 		jdbcUtil.setSqlAndParameters(sql, param);
