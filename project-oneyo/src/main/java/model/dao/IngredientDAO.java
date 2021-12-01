@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.dto.Category;
 import model.dto.Ingredient;
 
 public class IngredientDAO {
@@ -38,5 +39,34 @@ public class IngredientDAO {
 			jdbcUtil.close();		
 		}
 		return null;
+	}
+	
+	public List<Ingredient> findAllIngList() throws SQLException {
+		String sql = "select i.ingid, i.ingname, i.ingcategoryid, c.ingcategoryname "
+				+ "from ingredient i, ingcategory c where i.ingcategoryid=c.ingcategoryid "
+				+ "order by ingcategoryid";
+		jdbcUtil.setSql(sql);
+		List<Ingredient> ingList = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				ingList.add(new Ingredient(
+						rs.getInt("ingid"),
+						rs.getString("ingname"),
+						new Category(
+								rs.getInt("ingcategoryid"),
+								rs.getString("ingcategoryname"))									
+						));
+			}
+			return ingList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		} finally {
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+			}
+		}
 	}
 }

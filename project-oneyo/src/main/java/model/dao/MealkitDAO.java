@@ -15,6 +15,30 @@ public class MealkitDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
+	public int create(Mealkit mealkit) throws SQLException {
+		String sql = "INSERT INTO mealkit VALUES (mealkit_seq.nextval, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {
+				mealkit.getMkName(),
+				mealkit.getDefaultCal(),
+				mealkit.getDefaultPrice(),
+				mealkit.getCategory().getCategoryId()
+		};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
+	
 	public List<Mealkit> findMealkitList() throws SQLException{
 		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
 				+"FROM mealkit";

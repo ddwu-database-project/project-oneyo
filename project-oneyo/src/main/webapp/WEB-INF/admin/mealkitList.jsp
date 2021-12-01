@@ -5,12 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 목록</title>
 </head>
 <body>
-	<a href="<c:url value="/admin/mealkit/add" />">상품추가</a>
+	
+	<button type="button" onclick = "location.href = '<c:url value="/admin/mealkit/add" />'">상품추가</button>
+	<table>	
 	<c:forEach var="item" items="${mkList}">
-		<br>${item.getMkName()}
-	</c:forEach>
+		<tr>
+			<td><a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${item.mkId}'/></c:url>">
+				${item.mkName} <br/>
+			</a> </td>
+		</tr>
+	</c:forEach>	
+	</table>
 </body>
 </html>
