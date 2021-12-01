@@ -16,6 +16,13 @@
 			<td><a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${item.mkId}'/></c:url>">
 				${item.mkName} <br/>
 			</a> </td>
+			<td>
+			<form method="get" action="<c:url value="/admin/mealkit/remove"/>">
+				<input type="hidden" name="id" value="${item.mkId}">
+				<input type="submit" value="삭제">
+				<input type="submit" formaction="<c:url value="/admin/ing/add"/>" value="재료 추가">
+			</form>
+			</td>
 		</tr>
 	</c:forEach>	
 	</table>

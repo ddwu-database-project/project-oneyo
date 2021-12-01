@@ -4,26 +4,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.dao.MealkitDAO;
+import model.dao.IngredientDAO;
 import model.dto.Category;
-import model.dto.Mealkit;
+import model.dto.Ingredient;
 
-public class AdminAddMealkitController implements Controller {
+public class AdminAddIngController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		if (request.getMethod().equals("GET")) {
-			return "/admin/addMealkit.jsp";
+			return "/admin/newIngForm.jsp";
 		}
-		MealkitDAO mkDAO = new MealkitDAO();
-		Mealkit mealkit;
-		mealkit = new Mealkit(request.getParameter("name"),
-				Integer.parseInt(request.getParameter("calorie")),
+		IngredientDAO ingDAO = new IngredientDAO();
+		Ingredient ing = new Ingredient(
+				request.getParameter("name"),
 				Integer.parseInt(request.getParameter("price")),
+				Integer.parseInt(request.getParameter("calorie")),
 				new Category(Integer.parseInt(request.getParameter("category"))));
-		mkDAO.create(mealkit);
-		return "redirect:/admin/mealkit/list";
+		
+		ingDAO.create(ing);
+		return "redirect:/admin/home";
 	}
 
 }
