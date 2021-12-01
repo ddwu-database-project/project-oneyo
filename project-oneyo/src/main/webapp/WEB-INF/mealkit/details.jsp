@@ -216,7 +216,7 @@
             <!--Start Carousel Wrapper-->
           
             <div id="carousel-related-product" class="ings">
-         <c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
+         	<c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
