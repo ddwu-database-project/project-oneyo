@@ -24,6 +24,15 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+    
+    <style>
+    .new_mealkit_img {
+    	width: 350px;
+    	height: 350px;
+    	margin-left:80px;
+    	border-radius: 5%;
+    }
+    </style>
 </head>
 
 <body>
@@ -39,7 +48,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="<c:url value='/assets/img/mk2.png' />">
+                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -58,7 +67,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="<c:url value='/assets/img/mk3.png' />">
+                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getMkName()}.png' />">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
