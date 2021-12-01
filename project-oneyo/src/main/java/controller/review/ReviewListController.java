@@ -19,6 +19,7 @@ public class ReviewListController implements Controller {
 		r = reviewDAO.getAll(Integer.parseInt(request.getParameter("mkId")));
 		
 		request.setAttribute("rlist", r);
+		request.setAttribute("rsize", r.size());
 		return "/review/list.jsp";
 	}
 

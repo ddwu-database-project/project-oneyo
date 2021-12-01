@@ -12,8 +12,17 @@ public class CustomMealkit {
 	private int price;		
 	private int calorie;
 	private int sharestatus;
+	private int orderstatus;
 	private List<Ingredient> ingredients;
 	
+	
+	public int getOrderstatus() {
+		return orderstatus;
+	}
+
+	public void setOrderstatus(int orderstatus) {
+		this.orderstatus = orderstatus;
+	}
 
 	public CustomMealkit(Mealkit mealkitInfo, int customMealkitId, int customerId, int quantity, int price, int calorie, List<Ingredient> ingredients) {
 		this.mealkitInfo = mealkitInfo;
@@ -25,6 +34,17 @@ public class CustomMealkit {
 		this.ingredients = ingredients;
 	}
 	
+	public CustomMealkit(int customMealkitId, Mealkit mealkitInfo, int price, int quantity, int sharestatus,
+			int orderstatus) {
+		super();
+		this.mealkitInfo = mealkitInfo;
+		this.customMealkitId = customMealkitId;
+		this.quantity = quantity;
+		this.price = price;
+		this.sharestatus = sharestatus;
+		this.orderstatus = orderstatus;
+	}
+
 	public CustomMealkit(Mealkit mealkitInfo, int customerId) {
 		this(mealkitInfo, 0, customerId, 0, 0, 0, new ArrayList<Ingredient>());
 	}
@@ -38,12 +58,7 @@ public class CustomMealkit {
 	{
 		this(mealkitInfo, customMkId, customerId, quantity, price, totalCalorie, new ArrayList<Ingredient>());
 	}
-	
-	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int calorie, int sharestatus)
-	{
-		this(mealkitInfo, customMkId, 0, quantity, price, calorie, new ArrayList<Ingredient>());
-	}
-	
+
 	public CustomMealkit(int customMkId, Mealkit mealkitInfo, int price, int quantity, int sharestatus)
 	{
 		this(mealkitInfo, customMkId, 0, quantity, price, 0, new ArrayList<Ingredient>());

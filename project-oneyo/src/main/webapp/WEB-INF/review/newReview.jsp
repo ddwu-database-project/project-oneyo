@@ -56,6 +56,7 @@
 					        <input type="hidden" name="orderdate" value="${orderdate}">
 					        <input type="hidden" name="orderId" value="${orderId}">
 					        <input type="hidden" name="customerId" value="${customerId}">
+					        <input type="hidden" name="mkId" value="${mkId}">
  					        <textarea class="form-control" id="reviewwrites" name="reviewwrites" placeholder="글을 작성하세요." style="width:600px; height:400px;" required></textarea>
 					        <br/>
 					        <p>첨부파일: <input type="file"></p>
