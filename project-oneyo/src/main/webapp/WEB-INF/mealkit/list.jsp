@@ -118,14 +118,12 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body ingList">
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
                                 <p id="mkname">${mk.mkName}</p></a>
                                 <p>칼로리: ${mk.defaultCal}</p>
                                 <p>가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mk.defaultPrice}"/></p>
-                            </div>
-                        </div>
-                        <div id="ingList">
+                          
 							<c:forEach var="mkIngs" items="${mk.ingredients}"> 
 								<p hidden id="ingname">${mkIngs.getIngName()}</p>
 								<c:forEach var="alleries" items="${alleries}" varStatus="allery"> 
@@ -135,6 +133,7 @@
 								</c:forEach>
 							</c:forEach>
 						</div>
+                        </div>
                     </div>
 				</c:forEach> 
                     
