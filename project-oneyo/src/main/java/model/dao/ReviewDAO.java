@@ -36,6 +36,26 @@ public class ReviewDAO {
 		return all;
 	}
 	
+	public boolean checkIfOverlap(int customMkId) {
+		String sql = "SELECT custommkId FROM REVIEW WHERE custommkId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {customMkId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			while(rs.next()) { 
+				if(rs.getInt("custommkId") == customMkId)
+					return false;
+			}
+		}catch(Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}
+		return true;
+	}
+	
 	public void newReview(Review r) {
 		String sql = "INSERT INTO REVIEW VALUES(review_seq.nextval, ?, ?, ?, ?)";
 		int result = 0;

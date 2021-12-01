@@ -157,7 +157,8 @@ $("#delete").click(function del(){
    
                            <th><span>가격</span></th>
         					<th></th>
-                           <th>&nbsp;</th>
+                           <th></th>
+                           <th></th>
                            </tr>
                        </thead>
 		
@@ -187,6 +188,7 @@ $("#delete").click(function del(){
 											<input type="hidden" name="custommkId" value="${customMk.getCustomMealkitId()}">
 											<input type="hidden" name="orderdate" value="${order.getOrderDate()}">
 											<input type="hidden" name="customerId" value="${order.getCustomerId()}">
+											<input type="hidden" name="mkId" value="${customMk.getOriginalMealkit().getMkId()}">
 											<a href = "<c:url value="/review/review" />">
 												<input type="submit" class="link-button" value="${customMk.getOriginalMealkit().getMkName()} (${customMk.getQuantity()}개)">
 											</a>
@@ -221,7 +223,7 @@ $("#delete").click(function del(){
 					<fmt:formatNumber type="number" maxFractionDigits="3" value="${customMk.getPrice() * customMk.getQuantity()}" />원
 					</td>
 					
-					<td><c:if test="${customMk.getSharestatus() == 0 && status != 3}">
+					<td><c:if test="${customMk.getSharestatus() == 0 && status != 3 && customMk.getOrderstatus() == 1}">
 					<form method="post" action="<c:url value="/share/add"/>">
 						<input type="hidden" name="customMkId" value="${customMk.getCustomMealkitId()}">
 						<button type="submit" id="share" style="background-color: #60B5BC; color:white;" class="btn btn-xs">공유하기</button>
@@ -229,12 +231,27 @@ $("#delete").click(function del(){
 					</c:if>
 					</td>
 					
-					<td><c:if test = "${status == 0}">
+					<td><c:if test = "${status == 0 && customMk.getOrderstatus() != 0}">
 					<form name="f${order.getOrderId()}" method="get" action="<c:url value="/order/delete" />">
 						<input type="hidden" name="orderid" value="${order.getOrderId()}">
 						<button class="btn btn-danger btn-xs" type="submit">주문취소</button>
 					</form>
 					</c:if>
+					</td>
+					
+					<td>
+							<c:if test = "${status != 3 && customMk.getOrderstatus() != 0}">
+								<form name="detail" method="get" action="<c:url value="/review/review" />">
+											<input type="hidden" name="mkname" value="${customMk.getOriginalMealkit().getMkName()}">
+											<input type="hidden" name="mkId" value="${customMk.getOriginalMealkit().getMkId()}">
+											<input type="hidden" name="orderId" value="${order.getOrderId()}">
+											<input type="hidden" name="custommkId" value="${customMk.getCustomMealkitId()}">
+											<input type="hidden" name="orderdate" value="${order.getOrderDate()}">
+											<input type="hidden" name="customerId" value="${order.getCustomerId()}">
+											<button type="submit" id="review" style="background-color: #4a8c8a; color:white;" class="btn btn-xs">리뷰작성</button>
+							
+								</form>
+							</c:if>
 					</td>
 				</tr>
 		</tbody>

@@ -16,12 +16,14 @@ public class ReviewController implements Controller {
 		String customMkId = request.getParameter("custommkId");
 		String orderId = request.getParameter("orderId");
 		String customerId = request.getParameter("customerId");
+		String mkId = request.getParameter("mkId");
 		
 		request.setAttribute("customerId", customerId);
 		request.setAttribute("orderId", orderId);
 		request.setAttribute("mkName", mkName);
 		request.setAttribute("orderdate", orderdate);
 		request.setAttribute("customMkId", customMkId);
+		request.setAttribute("mkId", mkId);
 		return "/review/newReview.jsp";
 	}
 

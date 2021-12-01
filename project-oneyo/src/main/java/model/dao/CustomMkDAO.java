@@ -215,7 +215,7 @@ public class CustomMkDAO {
 	
 	public List<CustomMealkit> findListByOrderId(int orderId) {
 		List<CustomMealkit> cmList = new ArrayList<>();
-		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.quantity, c.sharestatus " +
+		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.quantity, c.sharestatus, c.orderstatus " +
 	"FROM custommealkit c, mealkit m, orderinfo o WHERE c.mkid=m.mkid and c.custommkid=o.custommkid and orderid=?";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { orderId });
@@ -224,7 +224,7 @@ public class CustomMkDAO {
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
 				cmList.add(new CustomMealkit(rs.getInt("custommkid"), new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
-						rs.getInt("price"), rs.getInt("quantity"), rs.getInt("sharestatus")));
+						rs.getInt("price"), rs.getInt("quantity"), rs.getInt("sharestatus"), rs.getInt("orderstatus")));
 			}
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
