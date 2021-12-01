@@ -233,6 +233,7 @@ $("#delete").click(function del(){
 					
 					<td><c:if test = "${status == 0 && customMk.getOrderstatus() != 0}">
 					<form name="f${order.getOrderId()}" method="get" action="<c:url value="/order/delete" />">
+						<input type="hidden" name="custommkId" value="${customMk.getCustomMealkitId()}">
 						<input type="hidden" name="orderid" value="${order.getOrderId()}">
 						<button class="btn btn-danger btn-xs" type="submit">주문취소</button>
 					</form>
