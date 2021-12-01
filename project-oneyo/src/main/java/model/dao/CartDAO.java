@@ -138,8 +138,6 @@ public class CartDAO {
 		ResultSet rs = null;
 		Cart cartitem = new Cart();
 		List<CustomMealkit> cmList = cartitem.getCustomMealkits();
-		List<Ingredient> cmIng;
-		
 		try {
 			String query = "SELECT cm.customMkId, m.mkid, m.mkname, cm.price, cm.quantity, cm.calorie "
 					+ "FROM cartitem c, mealkit m, custommealkit cm "

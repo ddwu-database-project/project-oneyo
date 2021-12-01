@@ -15,6 +15,48 @@ public class MealkitDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
+	public int create(Mealkit mealkit) throws SQLException {
+		String sql = "INSERT INTO mealkit VALUES (mealkit_seq.nextval, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {
+				mealkit.getMkName(),
+				mealkit.getDefaultCal(),
+				mealkit.getDefaultPrice(),
+				mealkit.getCategory().getCategoryId()
+		};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
+	
+	public int remove(int mkId) throws SQLException {
+		String sql = "DELETE FROM mealkit WHERE mkid=?";		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});	
+
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
+		return 0;
+	}
+	
 	public List<Mealkit> findMealkitList() throws SQLException{
 		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
 				+"FROM mealkit";
@@ -84,7 +126,8 @@ public class MealkitDAO {
 					rs.getString("ingname"),
 					rs.getInt("price"),
 					rs.getInt("calorie"),
-					rs.getInt("ingquantity"));
+					rs.getInt("ingquantity"),
+					new Category(rs.getInt("ingcategoryid")));
 				mealkitIng.add(ingredient);	
 			}		
 			return mealkitIng;					

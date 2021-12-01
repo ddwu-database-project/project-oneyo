@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 public class CustomerSessionUtils {
     public static final String CUSTOMER_SESSION_KEY = "email";
+    public static final String CUSTOMER_SESSION_ADMIN = "admin";
 
     public static String getLoginCustomerId(HttpSession session) {
         String email = (String)session.getAttribute(CUSTOMER_SESSION_KEY);
@@ -23,5 +24,13 @@ public class CustomerSessionUtils {
             return false;
         }
         return loginCustomer.equals(email);
+    }
+    
+    public static boolean isAdminUser(HttpSession session) {
+    	if (getLoginCustomerId(session) != null 
+    			&& (int)session.getAttribute(CUSTOMER_SESSION_ADMIN) == 1) {
+    		return true;
+    	}
+    	return false;
     }
 }

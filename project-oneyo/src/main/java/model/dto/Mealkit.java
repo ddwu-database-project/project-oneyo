@@ -24,6 +24,10 @@ public class Mealkit {
 		ingredients = new ArrayList<>();
 	}
 	
+	public Mealkit(String mkName, int deCal, int dePrice, Category cat) {
+		this(0, mkName, deCal, dePrice);
+		this.Category = cat;
+	}
 	public Mealkit() {
 		super();
 	}

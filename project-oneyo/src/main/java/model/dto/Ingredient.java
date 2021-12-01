@@ -41,6 +41,14 @@ public class Ingredient {
 		this.Category = Category;
 	}
 	
+	public Ingredient(int ingId, String ingName, Category category) {
+		this(ingId, ingName, 0, 0, 0, category);
+	}
+	
+	public Ingredient(String ingName, int ingPrice, int ingCalorie, Category category) {
+		this(0, ingName, ingPrice, ingCalorie, 0, category);
+	}
+	
 	public int getIngId() {
 		return ingId;
 	}
