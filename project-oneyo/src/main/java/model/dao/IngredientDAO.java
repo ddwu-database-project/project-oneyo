@@ -174,8 +174,29 @@ public class IngredientDAO {
 				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
 			}
 		}
+	}
+	
+	public List<Category> findAllCategory() throws Exception {
+		String sql = "select * from ingcategory";
 		
-		
+		jdbcUtil.setSql(sql);
+		List<Category> catList = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				catList.add(new Category(
+						rs.getInt("ingcategoryid"),
+						rs.getString("ingcategoryname")));
+			}		
+			return catList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
 	}
 
 }

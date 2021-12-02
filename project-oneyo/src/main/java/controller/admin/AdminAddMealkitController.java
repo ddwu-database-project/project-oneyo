@@ -1,5 +1,7 @@
 package controller.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +15,13 @@ public class AdminAddMealkitController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		MealkitDAO mkDAO = new MealkitDAO();
 		if (request.getMethod().equals("GET")) {
+			List<Category> catList = mkDAO.findAllCategory();
+			request.setAttribute("categories", catList);
 			return "/admin/addMealkit.jsp";
 		}
-		MealkitDAO mkDAO = new MealkitDAO();
+		
 		Mealkit mealkit;
 		mealkit = new Mealkit(request.getParameter("name"),
 				Integer.parseInt(request.getParameter("calorie")),

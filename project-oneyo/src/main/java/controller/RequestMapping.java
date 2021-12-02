@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import controller.admin.AdminAddIngController;
 import controller.admin.AdminAddMealkitController;
 import controller.admin.AdminHomeController;
+import controller.admin.AdminIngListController;
 import controller.admin.AdminMkListController;
 import controller.admin.AdminRemoveMkController;
 import controller.admin.AdminSetIngController;
@@ -72,6 +73,7 @@ public class RequestMapping {
         mappings.put("/admin/mealkit/remove", new AdminRemoveMkController());
         mappings.put("/admin/ing/new", new AdminAddIngController());
         mappings.put("/admin/ing/add", new AdminSetIngController());
+        mappings.put("/admin/ing/list", new AdminIngListController());
         logger.info("Initialized Request Mapping!");
     }
 

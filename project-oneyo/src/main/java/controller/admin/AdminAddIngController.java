@@ -1,5 +1,7 @@
 package controller.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +15,13 @@ public class AdminAddIngController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		IngredientDAO ingDAO = new IngredientDAO();
 		if (request.getMethod().equals("GET")) {
+			List<Category> categories = ingDAO.findAllCategory();
+			request.setAttribute("categories", categories);
 			return "/admin/newIngForm.jsp";
 		}
-		IngredientDAO ingDAO = new IngredientDAO();
+
 		Ingredient ing = new Ingredient(
 				request.getParameter("name"),
 				Integer.parseInt(request.getParameter("price")),
