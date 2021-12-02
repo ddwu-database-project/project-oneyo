@@ -18,8 +18,10 @@ public class AdminSetIngController implements Controller {
 		if (request.getMethod().equals("GET")) {
 			
 			int mkid = Integer.parseInt(request.getParameter("id"));
-			List<Ingredient> ingList = ingDAO.findNotIngList(mkid);
-			request.setAttribute("ingList", ingList);
+			List<Ingredient> notIngList = ingDAO.findNotIngList(mkid);
+			List<Ingredient> mkIngList = ingDAO.findMealkitIngList(mkid);
+			request.setAttribute("notIngList", notIngList);
+			request.setAttribute("mkIngList", mkIngList);
 			request.setAttribute("mkid", mkid);
 			return "/admin/addIngredients.jsp";
 		}
@@ -28,7 +30,7 @@ public class AdminSetIngController implements Controller {
 		for (String id : ids) {
 			ingDAO.createBase(Integer.parseInt(id), mkid);
 		}
-		return "redirect:/mealkit/list";
+		return "redirect:/admin/mealkit/list";
 	}
 
 }

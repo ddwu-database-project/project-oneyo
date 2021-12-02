@@ -60,8 +60,7 @@ public class RequestMapping {
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
         mappings.put("/mealkit/custom", new CustomMealkitIngController());
-
-//        mappings.put("/share/list/my", new ShareMyListController());
+       
         mappings.put("/share/list", new ShareListController());
         mappings.put("/share/add", new AddShareController());
         mappings.put("/share/delete", new DeleteShareController());

@@ -5,11 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>밀키트 상세 수정</title>
 </head>
 <body>
-	${name} 관리자님, 환영합니다!<br/>
-	<a href="<c:url value='/admin/mealkit/list'/>">상품 목록 보기</a>
-	<a href="<c:url value='/admin/ing/list'/>">재료 목록 보기</a>
+
 </body>
 </html>
