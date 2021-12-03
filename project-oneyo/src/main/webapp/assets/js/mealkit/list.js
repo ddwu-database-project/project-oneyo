@@ -1,18 +1,5 @@
 const MkNuminOnePage = 9;
 const mkList = document.getElementsByClassName("mkList");
-function printDisp(){
-	for (let i = 0; i < mkList.length; i++){
-		if (mkList[i].style.display == "inline"){
-			console.log(i+"= display 0");
-		}
-		else {
-			console.log(i+"=display x");
-		}
-	}
-	console.log("------------");
-}
-
-
 
 function showOtherPage(page){
 	for (let i = 0; i < mkList.length; i++){
@@ -22,8 +9,6 @@ function showOtherPage(page){
 			mkList[i].style.display = "none";
 		}
 	}
-	printDisp();
-	
 }
 
 function showPageMealkits(page, arr){
@@ -34,20 +19,15 @@ function showPageMealkits(page, arr){
 			mkList[arr[i]].style.display = "none";
 		}
 	}
-	printDisp();
 }
 
 function resetPageBtn(){
 	let pagination = document.querySelector("#pagination");
 	if (pagination.hasChildNodes){
 		let childern = pagination.querySelector("button");
-	pagination.removeChild(childern);
-	pagination.innerHTML = "<button>&laquo;</button><button id='raquo'>&raquo;</button>";
+		pagination.removeChild(childern);
+		pagination.innerHTML = "<button>&laquo;</button><button id='raquo'>&raquo;</button>";
 	}
-}
-
-function displayNewPageBtn(){
-	
 }
 
 function calculatePage(){
@@ -74,12 +54,12 @@ function calculatePage(){
 		page_btn.classList.add("btn_num");
 		page_btn.innerText = i;
 		page_btn.addEventListener('click', function(event){
+			event.preventDefault();
 	        showPageMealkits(i, arr);
 	    });
 		raquo.before(page_btn);
 	}
 	showPageMealkits(1, arr);
-	printDisp();
 }
 
 $(document).ready(function(){
@@ -161,7 +141,7 @@ function filterMealkit() {
 	      }
 	    }
   	 }
-calculatePage();
+	calculatePage();
   }
 
 function selectCategory(ctgId){
@@ -174,7 +154,6 @@ function selectCategory(ctgId){
 			mkList[i].style.display = "none"
 		 }
 	}
-	printDisp();
 	calculatePage();
 }
 

@@ -38,35 +38,37 @@
    td:hover{
 	color: #60B5BC;
    }
+   .card-img {
+     hright: 500px;
+   }
    </style>
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script>
-   			var cnt = 0;
-   			window.onload = function (){
-   				$.ajax({
-					url:"<c:url value='/review/list'/>",
-					cache:false,
-					type:"post",
-					data:{
-						mkId:"${mealkit.getMkId()}"
-					},
-					success:function(data){
-						$("#reviews").html(data);
-						$(".reviews").hide();
-						cnt = $("#rsize").val();
-						$("#size").html(cnt);
-					}
-				});
-   			}
-   			console.log(cnt);
-			function ings(){
+		var cnt = 0;
+		window.onload = function (){
+			$.ajax({
+			url:"<c:url value='/review/list'/>",
+			cache:false,
+			type:"post",
+			data:{
+				mkId:"${mealkit.getMkId()}"
+			},
+			success:function(data){
+				$("#reviews").html(data);
 				$(".reviews").hide();
-				$(".ings").show();
+				cnt = $("#rsize").val();
+				$("#size").html(cnt);
 			}
-			function reviews(){
-				$(".ings").hide();
-				$(".reviews").show();
-			}
+			});
+ 		}
+		function ings(){
+			$(".reviews").hide();
+			$(".ings").show();
+		}
+		function reviews(){
+			$(".ings").hide();
+			$(".reviews").show();
+		}
 	</script>
 </head>
 
@@ -78,77 +80,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img small-slide-main img-fluid" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
-                    </div>
-                    <div class="row">
-                        <!--Start Controls-->
-                        <div class="col-1 align-self-center">
-                            <a href="#multi-item-example" role="button" data-bs-slide="prev">
-                                <i class="text-dark fas fa-chevron-left"></i>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </div>
-                        <!--End Controls-->
-                        <!--Start Carousel Wrapper-->
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
-                            <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                               <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi_mealkit2.jpg'/>" alt="Product Image 1">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi.jpeg'/>" alt="Product Image 2">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi2.jpeg'/>" alt="Product Image 3">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.First slide-->
-
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi3.jpg'/>" alt="Product Image 4">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi4.jpeg'/>" alt="Product Image 5">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img small-slide img-fluid" src="<c:url value='/assets/img/bulgogi/bulgogi5.jpeg'/>" alt="Product Image 6">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Second slide-->
-                            </div>
-                            <!--End Slides-->
-                        </div>
-                        <!--End Carousel Wrapper-->
-                        <!--Start Controls-->
-                        <div class="col-1 align-self-center">
-                            <a href="#multi-item-example" role="button" data-bs-slide="next">
-                                <i class="text-dark fas fa-chevron-right"></i>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <!--End Controls-->
+                        <img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
                     </div>
                 </div>
                 <!-- col end -->
@@ -156,32 +88,15 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">${mealkit.getMkName()}</h1>
-                            <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
-                            <p class="py-2">
-
-                  
-                                <span class="list-inline-item text-dark"><span id="size"></span> Comments</span> 
-
-                                <span class="list-inline-item text-dark">36 Comments</span>
-
-                            </p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>칼로리:</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted">${mealkit.getDefaultCal()}</p>
-                                </li>
-                            </ul>
-
+                            <p class="h3 py-2">가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원 | 칼로리: ${mealkit.getDefaultCal()}kcal</p>
                             <h6>제품 설명:</h6>
-                            <p>비법간장에 재운 소불고기의 부드러운 식감과 채소, 당면 등 재료 본연의 맛이 조화롭게 어우러진 버섯소불고기! 한식요리는 어렵다는 편견을 깨부시다</p>
+                            <p>${mealkit.getFull_intro()}</p>
                             
                             <h6>유의 사항:</h6>
                             <ul class="list-unstyled pb-3">
-                        <li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
-                        <li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
-                        <li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
+		                        <li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
+		                        <li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
+		                        <li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
                             </ul>
 
                             <form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
@@ -205,10 +120,10 @@
     <section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
-               <table style="width:200px;">
+               <table style="width:250px;">
             		<tr>
-            			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성</h4></td>
-	      				<td onClick="reviews()" style="cursor:pointer;"><h4>리뷰</h4>	</td>	
+            			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성 &ensp;&#124;</h4></td>
+	      				<td onClick="reviews()" style="cursor:pointer;"><h4>리뷰 (<span id="size"></span>)</h4>	</td>	
 					</tr>
             	</table>
             </div>

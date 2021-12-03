@@ -30,6 +30,35 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 
     <link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+    
+    <style>
+    .mkList {
+      height: 450px;
+      margin-top:auto;
+    }
+    .card-img {
+      height: 290px;
+    }
+    a {
+      text-decoration:none;
+    }
+    #pgination {
+     padding-top: 500px;
+    }
+    .allergy{
+      font-size: 15px;
+    }
+    .mealkit_name{
+      font-size: 18px;
+      font-weight:bold;
+    }
+    .mealkit_cal{
+      font-size: 13px;
+    }
+    .mealkit_price{
+      font-size: 16px;
+    }
+    </style>
 
 </head>
 
@@ -38,9 +67,8 @@
     <!-- Start Content -->
     <div class="container py-5">
         <div class="row">
-
-            <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categories</h1>
+            <div class="col-lg-2">
+                <h1 class="h2 pb-3">Categories</h1>
                 <ul class="list-unstyled templatemo-accordion">
                 	<li class="pb-3">
                         <a onclick="MealkitAll()" class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
@@ -91,7 +119,7 @@
                 </ul>
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <div class="row">
                 	<div class="col-md-3 pb-4">
                         <div class="d-flex">
@@ -113,7 +141,7 @@
                     <div class="col-md-4 mkList">
                     <p hidden id="ctgId">${mk.getCategory().getCategoryId()}</p>
                         <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
+                            <div class="card rounded-0 mealkit_img">
                                 <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${imgName}.png' />" style="background-size:cover;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
@@ -124,18 +152,20 @@
                             </div>
                             <div class="card-body">
                             <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>">
-                                <p id="mkname">${mk.mkName}</p></a>
-                                <p>칼로리: ${mk.defaultCal}</p>
-                                <p>가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mk.defaultPrice}"/></p>
+                                <p class="mealkit_name" id="mkname">${mk.mkName} <span class="mealkit_cal">&ensp;(${mk.defaultCal}kcal)</span></p></a>
+                                <p class="mealkit_price">가격: <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${mk.defaultPrice}"/></b>원</p>
                             <div id="ingList">
 							<c:forEach var="mkIngs" items="${mk.ingredients}"> 
 								<p hidden id="ingname">${mkIngs.getIngName()}</p>
-								<c:forEach var="alleries" items="${alleries}" varStatus="allery"> 
-									<c:if test="${alleries.getIngName() eq mkIngs.getIngName()}">
-									    <span style="color:red;">*<c:out value="${mkIngs.getIngName()}" /></span>
+								<c:forEach var="allergies" items="${alleries}" varStatus="allery">
+									<c:if test="${allergies.getIngName() eq mkIngs.getIngName()}">
+									    <span class="allergy" style="color:red;">*<c:out value="${mkIngs.getIngName()}" /></span>
 									</c:if>
 								</c:forEach>
 							</c:forEach>
+							<c:if test="${empty allergies }">
+								<br>
+							</c:if>
 							</div>
                             </div>
                         </div>
