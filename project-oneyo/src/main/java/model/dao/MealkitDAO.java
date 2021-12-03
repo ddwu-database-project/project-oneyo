@@ -58,7 +58,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findMealkitList() throws SQLException{
-		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
+		String sql = "SELECT mkId, mkname, defaultcal, defaultprice, full_introduction, short_introduction "
 				+"FROM mealkit";
 		
 		jdbcUtil.setSql(sql);
@@ -70,7 +70,9 @@ public class MealkitDAO {
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice"));
+					rs.getInt("defaultprice"),
+					rs.getString("full_introduction"),
+					rs.getString("short_introduction"));
 				mealkits.add(mealkit);				
 			}		
 			return mealkits;					
@@ -84,7 +86,7 @@ public class MealkitDAO {
 	}
 	
 	public Mealkit findMealkit(int mkId) throws SQLException{
-		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
+		String sql = "SELECT mkId, mkname, defaultcal, defaultprice, full_introduction, short_introduction "
 				+"FROM mealkit "
 				+"WHERE mkId = ?";
 		
@@ -97,7 +99,9 @@ public class MealkitDAO {
 					mkId,
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice")
+					rs.getInt("defaultprice"),
+					rs.getString("full_introduction"),
+					rs.getString("short_introduction")
 					);
 			}
 		}catch (Exception ex) {
@@ -184,7 +188,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findTopMealkitList(int cnt) throws Exception {
-		String sql = "select m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.mkcategoryid "
+		String sql = "select m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.mkcategoryid, m.full_introduction, m.short_introduction "
 				+ "from mealkit m join (select mkid, count(*) "
 				+ "from custommealkit "
 				+ "group by mkid "
@@ -199,7 +203,10 @@ public class MealkitDAO {
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice"));
+					rs.getInt("defaultprice"),
+					rs.getString("full_introduction"),
+					rs.getString("short_introduction")
+					);
 				mealkits.add(mealkit);				
 			}		
 			return mealkits;					
@@ -213,7 +220,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findNewMealkitList(int cnt) throws Exception {
-		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid from (select * from mealkit order by mkId desc) where rownum <= ?";
+		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid, full_introduction, short_introduction from (select * from mealkit order by mkId desc) where rownum <= ?";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {cnt});
 		List<Mealkit> mealkits = new ArrayList<Mealkit>();
@@ -224,7 +231,9 @@ public class MealkitDAO {
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice"));
+					rs.getInt("defaultprice"),
+					rs.getString("full_introduction"),
+					rs.getString("short_introduction"));
 				mealkits.add(mealkit);	
 				System.out.println(rs.getString("mkname"));
 			}		
@@ -239,7 +248,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findTopReviewMealkitList(int cnt) throws Exception {
-		String sql = "select rslt.*, m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice "
+		String sql = "select rslt.*, m.mkid as mkId, m.mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.full_introduction, m.short_introduction "
 				+ "from mealkit m join (select c.mkid, count(*) "
 				+ "from custommealkit c join review r on c.custommkid = r.custommkid "
 				+ "group by c.mkid "
@@ -255,7 +264,9 @@ public class MealkitDAO {
 					rs.getInt("mkId"),
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice"));
+					rs.getInt("defaultprice"),
+					rs.getString("full_introduction"),
+					rs.getString("short_introduction"));
 				mealkits.add(mealkit);	
 				System.out.println(rs.getString("mkname"));
 			}		
