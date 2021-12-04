@@ -20,9 +20,11 @@
 			class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${ing.ingName}.jpg'/>"></td>
 			<td>${ing.ingName}</td>
 			<td>
-			<form method="post"  onsubmit="return confirm('정말 삭제하시겠습니까?')" action="<c:url value="/admin/ing/modify"/>">
+			<form method="post" action="<c:url value="/admin/ing/remove"/>">
 				<input type="hidden" name="ingId" value="${ing.ingId}">
 				<input type="hidden" name="mkId" value="${mkid}">
+				<input type="number" name="qty" value="${ing.ingQuantity}">
+				<input type="submit" value="수량 변경" formaction="<c:url value="/admin/ing/modify"/>">
 				<input type="submit" value="삭제">
 			</form>
 			</td>

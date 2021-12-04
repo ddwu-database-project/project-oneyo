@@ -1,5 +1,6 @@
 package controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +27,15 @@ public class AdminSetIngController implements Controller {
 			return "/admin/addIngredients.jsp";
 		}
 		String[] ids = request.getParameterValues("id");
+		List<Ingredient> ingredients = new ArrayList<>();
 		int mkid = Integer.parseInt(request.getParameter("mkid"));
-		for (String id : ids) {
-			ingDAO.createBase(Integer.parseInt(id), mkid);
+		for (int i = 0; i < ids.length; i++) {
+			ingredients.add(new Ingredient(Integer.parseInt(ids[i]), request.getParameter("ing"+ids[i])));
+//			ingDAO.createBase(Integer.parseInt(id), mkid);
 		}
-		return "redirect:/admin/mealkit/list";
+		request.setAttribute("mkid", mkid);
+		request.setAttribute("ingredients", ingredients);
+		return "/admin/setIngQty.jsp";
 	}
 
 }
