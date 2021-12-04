@@ -10,8 +10,34 @@ public class Mealkit {
 	private int defaultPrice;
 	private Category Category;
 	private List<Ingredient> ingredients;	
+	private String full_intro;
+	private String short_intro;
 	
 	
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
+			List<Ingredient> ingredients, String full_intro, String short_intro) {
+		super();
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+		this.ingredients = ingredients;
+		this.full_intro = full_intro;
+		this.short_intro = short_intro;
+	}
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
+			String short_intro) {
+		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro);
+	}
+	
+	public Mealkit(String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
+			String short_intro) {
+		this(0, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro);
+	}
+
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
 			List<Ingredient> ingredients) {
 		this.mkId = mkId;
@@ -45,6 +71,16 @@ public class Mealkit {
 		this.defaultCal = defaultCal;
 		this.defaultPrice = defaultPrice;
 		ingredients = new ArrayList<>();
+	}
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, String full_intro, String short_intro) {
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		ingredients = new ArrayList<>();
+		this.full_intro = full_intro;
+		this.short_intro = short_intro;
 	}
 	
 	public Mealkit(String mkName, int deCal, int dePrice, Category cat) {
@@ -91,5 +127,17 @@ public class Mealkit {
 
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+	public String getFull_intro() {
+		return full_intro;
+	}
+	public void setFull_intro(String full_intro) {
+		this.full_intro = full_intro;
+	}
+	public String getShort_intro() {
+		return short_intro;
+	}
+	public void setShort_intro(String short_intro) {
+		this.short_intro = short_intro;
 	}
 }

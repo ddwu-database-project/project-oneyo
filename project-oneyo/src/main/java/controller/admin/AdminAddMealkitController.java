@@ -26,7 +26,9 @@ public class AdminAddMealkitController implements Controller {
 		mealkit = new Mealkit(request.getParameter("name"),
 				Integer.parseInt(request.getParameter("calorie")),
 				Integer.parseInt(request.getParameter("price")),
-				new Category(Integer.parseInt(request.getParameter("category"))));
+				new Category(Integer.parseInt(request.getParameter("category"))),
+				request.getParameter("fullintro"),
+				request.getParameter("shortintro"));
 		mkDAO.create(mealkit);
 		return "redirect:/admin/mealkit/list";
 	}

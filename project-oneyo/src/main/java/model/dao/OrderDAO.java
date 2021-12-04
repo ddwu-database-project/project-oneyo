@@ -192,7 +192,7 @@ public class OrderDAO {
 				+ "SET status = 3 "
 				+"WHERE orderId = ?";
 		//주문 취소시 해당 주문의 커스텀 밀키트들의 order status = 0(주문취소)로 변경
-		String sql2 = "UPDATE custommealkit SET orderstatus = 0 WHERE custommkId = "
+		String sql2 = "UPDATE custommealkit SET orderstatus = 0 WHERE custommkId in "
 				+ "(SELECT c.custommkId FROM custommealkit c, orderinfo o WHERE o.orderId = ? AND c.custommkId = o.custommkId)";
 		
 		try {		
