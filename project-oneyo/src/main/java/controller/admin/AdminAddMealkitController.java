@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -29,21 +30,13 @@ public class AdminAddMealkitController implements Controller {
 			request.setAttribute("categories", catList);
 			return "/admin/addMealkit.jsp";
 		}
-		
-		Mealkit mealkit;
-		mealkit = new Mealkit(request.getParameter("name"),
-				Integer.parseInt(request.getParameter("calorie")),
-				Integer.parseInt(request.getParameter("price")),
-				new Category(Integer.parseInt(request.getParameter("category"))),
-				request.getParameter("fullintro"),
-				request.getParameter("shortintro"));
-		mkDAO.create(mealkit);
-		
+				
 		String name = null;
 		String calorie = null;
 		String price = null;
 		String fullintro = null;
 		String shortintro = null;
+		File dir = null;
 		String filename = null;
 		
 		boolean check = ServletFileUpload.isMultipartContent(request);
@@ -55,7 +48,7 @@ public class AdminAddMealkitController implements Controller {
 			// �Ʒ��� ���� �ϸ� Tomcat ���ο� ����� ������Ʈ�� ���� �ؿ� upload ������ ������ 
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath("/upload");
-			File dir = new File(path);
+			dir = new File(path);
 			
 			// Tomcat �ܺ��� ������ �����Ϸ��� �Ʒ��� ���� ���� ��η� ���� �̸��� ������
 			// File dir = new File("C:/Temp");
@@ -101,7 +94,7 @@ public class AdminAddMealkitController implements Controller {
                 		else if(item.getFieldName().equals("shortintro")) shortintro = value;
                 	}
                 	else {//�����̶��...
-                		if(item.getFieldName().equals("picture")) {
+                		if(item.getFieldName().equals("uploadfile")) {
                 		//key ���� picture�̸� ���� ������ �Ѵ�.
                 			filename = item.getName();//���� �̸� ȹ�� (�ڵ� �ѱ� ó�� ��)
                 			if(filename == null || filename.trim().length() == 0) continue;
@@ -132,7 +125,31 @@ public class AdminAddMealkitController implements Controller {
 			request.setAttribute("price", price);
 			request.setAttribute("fullintro", fullintro);
 			request.setAttribute("shortintro", shortintro);
+			request.setAttribute("dir", dir);
+			HttpSession session = request.getSession();
+			session.setAttribute("dir", dir);
+			request.setAttribute("filename", filename);
 		}
+		System.out.println("dir = "+ dir.getPath());
+		System.out.println("filename = "+filename);
+		System.out.println("name = " + name);
+		System.out.println("cal = "+calorie);
+		System.out.println("full " +fullintro);
+		Category categ = new Category(Integer.parseInt(request.getParameter("category")));
+		System.out.println("categ = " + request.getParameter("category"));
+		System.out.println("sh = " + shortintro);
+		
+		Mealkit mealkit;
+		mealkit = new Mealkit(request.getParameter("name"),
+				Integer.parseInt(request.getParameter("calorie")),
+				Integer.parseInt(request.getParameter("price")),
+				new Category(Integer.parseInt(request.getParameter("category"))),
+				request.getParameter("fullintro"),
+				request.getParameter("shortintro"),
+				dir.getPath(), filename
+				);
+		mkDAO.create(mealkit);
+		
 		return "redirect:/admin/mealkit/list";
 		
 	}

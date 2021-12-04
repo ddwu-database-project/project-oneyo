@@ -24,6 +24,15 @@
 				<input type="submit" formaction="<c:url value="/admin/mealkit/modify"/>" value="상세 수정">
 			</form>
 			</td>
+			<td>
+			<c:if test="${item.getDir() != null}">
+			<img src="${item.getDir()}/${item.getFilename()}">
+			${item.getDir()}
+			</c:if>
+			<c:if test="${item.getFilename() == null}">
+			<img src="<c:url value='/assets/img/${item.getMkName()}.png' />" height=10 width=10 alt="no img">
+			</c:if>
+			</td>
 		</tr>
 	</c:forEach>	
 	</table>
