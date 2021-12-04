@@ -32,12 +32,12 @@
     실제 업로드된 파일명 : <%=uploadFile %><br><Br>
     <h3>업로드된 파일 불러오기</h3>
     <img src="../img/<%=uploadFile %>">
+    <br><%=uploadFile %>
     <%
     }catch(Exception e){
       out.write("업로드 용량 오류 또는 그 이외..." + e.getMessage());
     }
 
     %>
-    <p><%=uploadFile %></p>
 </body>
 </html>
