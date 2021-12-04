@@ -55,6 +55,7 @@ public class RequestMapping {
         mappings.put("/review/review", new ReviewController());
         mappings.put("/review/list", new ReviewListController());
         mappings.put("/review/add", new AddReviewController());
+        mappings.put("/review/delete", new DeleteReviewController());
 
         mappings.put("/cart/list", new CartListController());
         mappings.put("/cart/add", new AddCartController());

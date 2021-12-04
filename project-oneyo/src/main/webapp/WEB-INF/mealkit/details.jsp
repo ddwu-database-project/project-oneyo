@@ -44,6 +44,27 @@
    </style>
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script>
+   			var cnt = 0;
+   			$(document).ready(function() {
+				$.ajax({
+					url:"<c:url value='/review/list'/>",
+					cache:false,
+					type:"post",
+					data:{
+						mkId:"${mealkit.getMkId()}",
+						loginCustomerId:"${loginCustomerId}"
+					},
+					success:function(data){
+						$("#reviews").html(data);
+						cnt = $("#rsize").val();
+						$("#size").html(cnt);
+						$(".reviews").hide();
+					}
+				});
+			});
+   			console.log(cnt);
+			function ings(){
+
 		var cnt = 0;
 		window.onload = function (){
 			$.ajax({
@@ -55,6 +76,7 @@
 			},
 			success:function(data){
 				$("#reviews").html(data);
+
 				$(".reviews").hide();
 				cnt = $("#rsize").val();
 				$("#size").html(cnt);
@@ -88,7 +110,28 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">${mealkit.getMkName()}</h1>
+
+                            <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
+                            <p class="py-2">
+
+                 
+                                <span class="list-inline-item text-dark"><span id="size"></span> Comments</span> 
+
+                              
+
+                            </p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>칼로리:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted">${mealkit.getDefaultCal()}</p>
+                                </li>
+                            </ul>
+
+
                             <p class="h3 py-2">가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원 | 칼로리: ${mealkit.getDefaultCal()}kcal</p>
+
                             <h6>제품 설명:</h6>
                             <p>${mealkit.getFull_intro()}</p>
                             
@@ -122,8 +165,13 @@
             <div class="row text-left p-2 pb-3">
                <table style="width:250px;">
             		<tr>
+
+            			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성</h4></td>
+	      				<td id = "rs" onClick="reviews()" style="cursor:pointer;"><h4>리뷰</h4>	</td>	
+
             			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성 &ensp;&#124;</h4></td>
 	      				<td onClick="reviews()" style="cursor:pointer;"><h4>리뷰 (<span id="size"></span>)</h4>	</td>	
+
 					</tr>
             	</table>
             </div>
