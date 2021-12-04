@@ -64,6 +64,7 @@ public class AddReviewController implements Controller {
 		
 		
 		return "/mealkit/details.jsp";   
+
 	}
 
 }

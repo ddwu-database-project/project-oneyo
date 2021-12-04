@@ -36,7 +36,7 @@
           <div class="shadow p-3 mb-5 bg-white rounded">
               <div style="color:#60B5BC;">
                 <h5 class="h5 g-color-gray-dark-v1 mb-0">${r.getCname()}</h5>
-                <span class="g-color-gray-dark-v4 g-font-size-12">${r.getOrderdate()}</span>
+                <span class="g-color-gray-dark-v4 g-font-size-12">주문일자: ${r.getOrderdate()}</span>
               </div>
         	<hr class="my-2">
               <p>${r.getReviewWrites()}</p>

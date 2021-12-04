@@ -59,7 +59,7 @@
 					        <input type="hidden" name="mkId" value="${mkId}">
  					        <textarea class="form-control" id="reviewwrites" name="reviewwrites" placeholder="글을 작성하세요." style="width:600px; height:400px;" required></textarea>
 					        <br/>
-					        <p>첨부파일: <input type="file"></p>
+					     <!--    <p>첨부파일: <input type="file"></p> -->
 					        <h6 class="pull-right" id="count_message"></h6>
 					        <button class="btn btn-info" type="submit">등록</button>
 					    </form>
