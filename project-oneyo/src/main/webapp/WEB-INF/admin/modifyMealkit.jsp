@@ -27,6 +27,7 @@
 		</select>
 		<br/>
 		<input type="submit" value="수정">
+		<input type="submit" value="취소" formaction="<c:url value="/admin/mealkit/list"/>">
 	</form>
 </body>
 </html>
