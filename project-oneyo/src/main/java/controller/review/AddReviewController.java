@@ -53,6 +53,15 @@ public class AddReviewController implements Controller {
 		
 		request.setAttribute("mealkit", mealkit);	
 
+		CustomerDAO customerDAO = new CustomerDAO();
+		CustomerSessionUtils u = new CustomerSessionUtils();
+		HttpSession session = request.getSession();	
+		@SuppressWarnings("static-access")
+		String email = u.getLoginCustomerId(session);
+		Customer c = customerDAO.findCustomer(email);
+		
+		request.setAttribute("loginCustomerId", c.getCustomerId());
+		
 		
 		return "/mealkit/details.jsp";   
 	}

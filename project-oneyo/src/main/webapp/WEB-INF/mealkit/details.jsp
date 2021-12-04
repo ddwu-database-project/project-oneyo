@@ -43,7 +43,6 @@
    <script>
    			var cnt = 0;
    			$(document).ready(function() {
-   				console.log("a");
 				$.ajax({
 					url:"<c:url value='/review/list'/>",
 					cache:false,
@@ -60,7 +59,6 @@
 					}
 				});
 			});
- 
    			console.log(cnt);
 			function ings(){
 				$(".reviews").hide();
@@ -211,7 +209,7 @@
                <table style="width:200px;">
             		<tr>
             			<td onClick="ings()" style="cursor:pointer;"><h4>밀키트 구성</h4></td>
-	      				<td onClick="reviews()" style="cursor:pointer;"><h4>리뷰</h4>	</td>	
+	      				<td id = "rs" onClick="reviews()" style="cursor:pointer;"><h4>리뷰</h4>	</td>	
 					</tr>
             	</table>
             </div>
