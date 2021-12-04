@@ -41,6 +41,34 @@ public class MealkitDAO {
 		return 0;			
 	}
 	
+	public int update(Mealkit mealkit) throws SQLException {
+		String sql = "UPDATE mealkit SET mkname=?, defaultcal=?, defaultprice=?, mkcategoryid=?, full_introduction=?, short_introduction=? "
+				+ "WHERE mkid=?";		
+		Object[] param = new Object[] {
+				mealkit.getMkName(),
+				mealkit.getDefaultCal(),
+				mealkit.getDefaultPrice(),
+				mealkit.getCategory().getCategoryId(),
+				mealkit.getFull_intro(),
+				mealkit.getShort_intro(),
+				mealkit.getMkId()
+		};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
+	
 	public int remove(int mkId) throws SQLException {
 		String sql = "DELETE FROM mealkit WHERE mkid=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});	
@@ -88,16 +116,15 @@ public class MealkitDAO {
 	}
 	
 	public Mealkit findMealkit(int mkId) throws SQLException{
-		String sql = "SELECT m.mkId, m.mkname, m.defaultcal, m.defaultprice, m.mkcategoryid, c.mkcategoryname, m.full_introduction, m.short_introduction"
-				+"FROM mealkit m, category c"
+		String sql = "SELECT m.mkId, m.mkname, m.defaultcal, m.defaultprice, m.mkcategoryid, c.mkcategoryname, m.full_introduction, m.short_introduction "
+				+"FROM mealkit m, mkcategory c "
 				+"WHERE mkId = ? and m.mkcategoryid = c.mkcategoryid";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
-		Mealkit mealkit = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();	
 			if (rs.next()) {
-				mealkit = new Mealkit(
+				Mealkit mealkit = new Mealkit(
 					mkId,
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
@@ -108,14 +135,16 @@ public class MealkitDAO {
 					rs.getString("full_introduction"),
 					rs.getString("short_introduction")
 					);
+				return mealkit;
 			}
+			
 		}catch (Exception ex) {
 			ex.printStackTrace();
+			System.out.println("밀키트 찾기 에러");
 		} finally {
 			jdbcUtil.close();		// resource ��ȯ
 		}
-		return mealkit;
-		
+		return null;
 	}
 	
 	public List<Ingredient> findMealkitIng(int mkId) throws Exception{
@@ -301,6 +330,7 @@ public class MealkitDAO {
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			System.out.println("카테고리 에러");
 		} finally {
 			jdbcUtil.close();	
 		}
