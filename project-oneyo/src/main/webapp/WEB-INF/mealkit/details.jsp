@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.io.File"%>
 <!DOCTYPE html>
 <html>
 
@@ -80,6 +81,11 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
+                     ${mealkit.getDir().getPath()}
+                     사진 저장 경로 : ${dir} <br/>
+사진 파일 이름 : ${filename} <br/>
+                    <img src="${dir}/${filename}">
+                    ${dir}/${filename}
                         <img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
                     </div>
                 </div>

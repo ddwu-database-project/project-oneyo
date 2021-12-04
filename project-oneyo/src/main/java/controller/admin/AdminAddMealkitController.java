@@ -36,6 +36,7 @@ public class AdminAddMealkitController implements Controller {
 		String price = null;
 		String fullintro = null;
 		String shortintro = null;
+		String category = null;
 		File dir = null;
 		String filename = null;
 		
@@ -92,6 +93,7 @@ public class AdminAddMealkitController implements Controller {
                 		//key ���� pw�̸� pw ������ ���� �����Ѵ�.
                 		else if(item.getFieldName().equals("fullintro")) fullintro = value;
                 		else if(item.getFieldName().equals("shortintro")) shortintro = value;
+                		else if(item.getFieldName().equals("category")) category = value;
                 	}
                 	else {//�����̶��...
                 		if(item.getFieldName().equals("uploadfile")) {
@@ -120,37 +122,30 @@ public class AdminAddMealkitController implements Controller {
                 e.printStackTrace();
             }
 			
+			request.setAttribute("dir", dir);
+			request.setAttribute("filename", filename);
 			request.setAttribute("name", name);
 			request.setAttribute("calorie", calorie);
 			request.setAttribute("price", price);
 			request.setAttribute("fullintro", fullintro);
 			request.setAttribute("shortintro", shortintro);
-			request.setAttribute("dir", dir);
-			HttpSession session = request.getSession();
-			session.setAttribute("dir", dir);
-			request.setAttribute("filename", filename);
+			request.setAttribute("category", category);
+			
+			Category categ = new Category(Integer.parseInt(category));
+			Mealkit mealkit  = new Mealkit(
+					name,
+					Integer.parseInt(calorie),
+					Integer.parseInt(price),
+					categ,
+					fullintro,
+					shortintro,
+					dir,
+					filename
+					);
+			mkDAO.create(mealkit);
 		}
-		System.out.println("dir = "+ dir.getPath());
-		System.out.println("filename = "+filename);
-		System.out.println("name = " + name);
-		System.out.println("cal = "+calorie);
-		System.out.println("full " +fullintro);
-		Category categ = new Category(Integer.parseInt(request.getParameter("category")));
-		System.out.println("categ = " + request.getParameter("category"));
-		System.out.println("sh = " + shortintro);
 		
-		Mealkit mealkit;
-		mealkit = new Mealkit(request.getParameter("name"),
-				Integer.parseInt(request.getParameter("calorie")),
-				Integer.parseInt(request.getParameter("price")),
-				new Category(Integer.parseInt(request.getParameter("category"))),
-				request.getParameter("fullintro"),
-				request.getParameter("shortintro"),
-				dir.getPath(), filename
-				);
-		mkDAO.create(mealkit);
-		
-		return "redirect:/admin/mealkit/list";
+		return "/mealkit/details.jsp";
 		
 	}
 

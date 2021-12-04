@@ -1,5 +1,6 @@
 package model.dto;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,11 @@ public class Mealkit {
 	private List<Ingredient> ingredients;	
 	private String full_intro;
 	private String short_intro;
-	private String dir = null;
-	private String filename = null;
+	private File dir;
+	private String filename;
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
-			List<Ingredient> ingredients, String full_intro, String short_intro, String dir, String filename) {
+			List<Ingredient> ingredients, String full_intro, String short_intro, File dir, String filename) {
 		super();
 		this.mkId = mkId;
 		this.mkName = mkName;
@@ -31,12 +32,12 @@ public class Mealkit {
 	}
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
-			String short_intro, String dir, String filename) {
-		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, dir, filename);
+			String short_intro, String filename) {
+		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, null, filename);
 	}
 	
 	public Mealkit(String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
-			String short_intro, String dir, String filename) {
+			String short_intro, File dir, String filename) {
 		this(0, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, dir, filename);
 	}
 
@@ -73,7 +74,7 @@ public class Mealkit {
 	}
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, String full_intro, String short_intro,
-			String dir, String filename) {
+			 String filename) {
 		this.mkId = mkId;
 		this.mkName = mkName;
 		this.defaultCal = defaultCal;
@@ -81,7 +82,6 @@ public class Mealkit {
 		ingredients = new ArrayList<>();
 		this.full_intro = full_intro;
 		this.short_intro = short_intro;
-		this.dir = dir;
 		this.filename = filename;
 	}	
 	public Mealkit(String mkName, int deCal, int dePrice, Category cat) {
@@ -139,16 +139,18 @@ public class Mealkit {
 	public void setShort_intro(String short_intro) {
 		this.short_intro = short_intro;
 	}
-	public String getDir() {
-		return dir;
-	}
-	public void setDir(String dir) {
-		this.dir = dir;
-	}
 	public String getFilename() {
 		return filename;
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public File getDir() {
+		return dir;
+	}
+
+	public void setDir(File dir) {
+		this.dir = dir;
 	}
 }

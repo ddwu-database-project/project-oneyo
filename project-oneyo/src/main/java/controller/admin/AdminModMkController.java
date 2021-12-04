@@ -37,7 +37,7 @@ public class AdminModMkController implements Controller {
 				Integer.parseInt(request.getParameter("price")),
 				new Category(Integer.parseInt(request.getParameter("category"))),
 				request.getParameter("fullintro"),
-				request.getParameter("shortintro"), null, null); //임시코드
+				request.getParameter("shortintro"), null); //임시코드
 		mkDAO.update(mealkit);
 		return "redirect:/admin/mealkit/list";
 	}

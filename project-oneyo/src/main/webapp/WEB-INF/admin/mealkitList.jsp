@@ -8,7 +8,6 @@
 <title>상품 목록</title>
 </head>
 <body>
-	
 	<button type="button" onclick = "location.href = '<c:url value="/admin/mealkit/add" />'">상품추가</button>
 	<table>	
 	<c:forEach var="item" items="${mkList}">
@@ -25,13 +24,6 @@
 			</form>
 			</td>
 			<td>
-			<c:if test="${item.getDir() != null}">
-			<img src="${item.getDir()}/${item.getFilename()}">
-			${item.getDir()}
-			</c:if>
-			<c:if test="${item.getFilename() == null}">
-			<img src="<c:url value='/assets/img/${item.getMkName()}.png' />" height=10 width=10 alt="no img">
-			</c:if>
 			</td>
 		</tr>
 	</c:forEach>	
