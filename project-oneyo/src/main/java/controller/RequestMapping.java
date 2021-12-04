@@ -79,6 +79,9 @@ public class RequestMapping {
         mappings.put("/admin/ing/remove", new AdminRemoveIngController());
         mappings.put("/admin/mealkit/modify", new AdminModMkController());
         mappings.put("/admin/ing/modify", new AdminModIngController());
+        
+        mappings.put("/img/test", new ForwardController("FileUploadForm.jsp"));
+        mappings.put("/img/test/action", new ForwardController("/admin/fileUploadAction.jsp"));
         logger.info("Initialized Request Mapping!");
     }
 
