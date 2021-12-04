@@ -11,7 +11,42 @@ function showOtherPage(page){
 	}
 }
 
-function showPageMealkits(page, arr){
+function calculatePageNum(page_num, inlineMkNum){
+	if (inlineMkNum % MkNuminOnePage == 0){
+		page_num = inlineMkNum/MkNuminOnePage;
+	}
+	else {
+		page_num = inlineMkNum/MkNuminOnePage + 1;
+	}
+	return page_num;
+}
+
+$(document).ready(function(){
+	let raquo = document.getElementById("raquo");
+	let page_num = 0;
+	let inlineMkNum = 0;
+	for (let i = 0; i < mkList.length; i++){
+		if (mkList[i].style.display != "none"){
+			inlineMkNum += 1;
+		}
+	}
+	page_num = calculatePageNum(page_num, inlineMkNum);
+	
+	for (let i = 1; i <= page_num; i++){
+		let page_btn = document.createElement("button");
+		page_btn.classList.add("btn_num");
+		page_btn.innerText = i;
+		page_btn.addEventListener('click', function(event){
+	        showOtherPage(i);
+	    });
+		raquo.before(page_btn);
+	}
+	for (let i = MkNuminOnePage; i < mkList.length; i++){
+		mkList[i].style.display = "none";
+	}
+});
+
+function showFilteredPageMealkits(page, arr){
 	for (let i = 0; i < arr.length; i++){
 		if (arr.indexOf(arr[i]) >= (page-1)*MkNuminOnePage && arr.indexOf(arr[i]) < page*MkNuminOnePage){
 			mkList[arr[i]].style.display = "inline";
@@ -30,9 +65,10 @@ function resetPageBtn(){
 	}
 }
 
-function calculatePage(){
+function calculatePageBtn(){
 	resetPageBtn();
 	let inlineMkNum = 0;
+	let page_num = 0;
 	let arr = [];
 	for (let i = 0; i < mkList.length; i++){
 		if (mkList[i].style.display != "none"){
@@ -40,70 +76,35 @@ function calculatePage(){
 			arr.push(i);
 		}
 	}
-	console.log("inlineMkNum = "+inlineMkNum);
 	let raquo = document.getElementById("raquo");
-	let page_num = 0;
-	if (inlineMkNum % MkNuminOnePage == 0){
-		page_num = inlineMkNum/MkNuminOnePage;
-	}
-	else {
-		page_num = inlineMkNum/MkNuminOnePage + 1;
-	}
+	
+	page_num = calculatePageNum(page_num, inlineMkNum);
+	
 	for (let i = 1; i <= page_num; i++){
 		let page_btn = document.createElement("button");
 		page_btn.classList.add("btn_num");
 		page_btn.innerText = i;
 		page_btn.addEventListener('click', function(event){
 			event.preventDefault();
-	        showPageMealkits(i, arr);
+	        showFilteredPageMealkits(i, arr);
 	    });
 		raquo.before(page_btn);
 	}
-	showPageMealkits(1, arr);
+	showFilteredPageMealkits(1, arr);
 }
-
-$(document).ready(function(){
-	let raquo = document.getElementById("raquo");
-	let page_num = 0;
-	let inlineMkNum = 0;
-	for (let i = 0; i < mkList.length; i++){
-		if (mkList[i].style.display != "none"){
-			inlineMkNum += 1;
-		}
-	}
-	if (inlineMkNum % MkNuminOnePage == 0){
-		page_num = inlineMkNum/MkNuminOnePage;
-	}
-	else {
-		page_num = inlineMkNum/MkNuminOnePage + 1;
-	}
-	console.log("page num = " + page_num);
-	for (let i = 1; i <= page_num; i++){
-		let page_btn = document.createElement("button");
-		page_btn.classList.add("btn_num");
-		page_btn.innerText = i;
-		page_btn.addEventListener('click', function(event){
-	        showOtherPage(i);
-	    });
-		raquo.before(page_btn);
-	}
-	for (let i = MkNuminOnePage; i < mkList.length; i++){
-		mkList[i].style.display = "none";
-	}
-});
 
 function filterMealkit() {	
 	  let selection = document.getElementById("search-selection");
 	  let selection_index = selection.options.selectedIndex;
 	  let search_fiter = selection.options[selection_index].value;
 	  let search = document.getElementById("search").value.toLowerCase().replaceAll(' ','');
-	  if (!search){
+	  if (!search){ //if search input is empty
 		  for (let i = 0; i < mkList.length; i++) {
 		      mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
 		      mkList[i].style.display = "inline"
 		  }
 	  }
-	  if (window.event.keyCode == 13){
+	  if (window.event.keyCode == 13){  //if user press enter key
 	    for (let i = 0; i < mkList.length; i++) {
 	      let mealkitName = mkList[i].querySelector("#mkname").innerHTML.replaceAll(' ','');
 	      let ingList = mkList[i].querySelector("#ingList").getElementsByTagName("p");
@@ -141,7 +142,7 @@ function filterMealkit() {
 	      }
 	    }
   	 }
-	calculatePage();
+	calculatePageBtn();
   }
 
 function selectCategory(ctgId){
@@ -154,7 +155,7 @@ function selectCategory(ctgId){
 			mkList[i].style.display = "none"
 		 }
 	}
-	calculatePage();
+	calculatePageBtn();
 }
 
 function MealkitAll(){
