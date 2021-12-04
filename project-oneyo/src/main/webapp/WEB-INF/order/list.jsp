@@ -168,8 +168,7 @@ $("#delete").click(function del(){
 			<c:set var="status" value="${order.getStatus()}" />
 			<tbody>
 				<tr>
-					<!-- DB에서 가져오기 -->
-					
+					<!-- DB에서 가져오기 -->	
 					<td>
 						<c:if test="${customMk.getCustomMealkitId() ==  order.getOrderCustomMk().get(0).getCustomMealkitId()}">
 							${order.getOrderId()}
@@ -238,7 +237,7 @@ $("#delete").click(function del(){
 					</form>
 					</c:if>
 					</td>
-					
+		
 					<td>
 							<c:if test = "${status != 3 && customMk.getOrderstatus() != 0}">
 								<form name="detail" method="get" action="<c:url value="/review/review" />">

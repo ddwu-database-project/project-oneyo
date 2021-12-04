@@ -1,13 +1,18 @@
 package controller.review;
 
+import java.io.Console;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.customer.CustomerSessionUtils;
+import model.dao.CustomerDAO;
 import model.dao.MealkitDAO;
 import model.dao.ReviewDAO;
+import model.dto.Customer;
 import model.dto.Ingredient;
 import model.dto.Mealkit;
 import model.dto.Review;
@@ -47,6 +52,8 @@ public class AddReviewController implements Controller {
 		mealkit.setIngredients(mealkitIng);
 		
 		request.setAttribute("mealkit", mealkit);	
+
+		
 		return "/mealkit/details.jsp";   
 	}
 

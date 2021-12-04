@@ -42,22 +42,25 @@
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script>
    			var cnt = 0;
-   			window.onload = function (){
-   				$.ajax({
+   			$(document).ready(function() {
+   				console.log("a");
+				$.ajax({
 					url:"<c:url value='/review/list'/>",
 					cache:false,
 					type:"post",
 					data:{
-						mkId:"${mealkit.getMkId()}"
+						mkId:"${mealkit.getMkId()}",
+						loginCustomerId:"${loginCustomerId}"
 					},
 					success:function(data){
 						$("#reviews").html(data);
-						$(".reviews").hide();
 						cnt = $("#rsize").val();
 						$("#size").html(cnt);
+						$(".reviews").hide();
 					}
 				});
-   			}
+			});
+ 
    			console.log(cnt);
 			function ings(){
 				$(".reviews").hide();
@@ -159,10 +162,10 @@
                             <p class="h3 py-2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원</p>
                             <p class="py-2">
 
-                  
+                 
                                 <span class="list-inline-item text-dark"><span id="size"></span> Comments</span> 
 
-                                <span class="list-inline-item text-dark">36 Comments</span>
+                              
 
                             </p>
                             <ul class="list-inline">
