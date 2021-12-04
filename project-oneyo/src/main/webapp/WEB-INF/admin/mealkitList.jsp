@@ -21,6 +21,7 @@
 				<input type="hidden" name="id" value="${item.mkId}">
 				<input type="submit" value="삭제">
 				<input type="submit" formaction="<c:url value="/admin/ing/add"/>" value="재료 추가">
+				<input type="submit" formaction="<c:url value="/admin/mealkit/modify"/>" value="상세 수정">
 			</form>
 			</td>
 		</tr>

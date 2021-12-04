@@ -84,9 +84,9 @@ public class MealkitDAO {
 	}
 	
 	public Mealkit findMealkit(int mkId) throws SQLException{
-		String sql = "SELECT mkId, mkname, defaultcal, defaultprice "
-				+"FROM mealkit "
-				+"WHERE mkId = ?";
+		String sql = "SELECT m.mkId, m.mkname, m.defaultcal, m.defaultprice, m.mkcategoryid, c.mkcategoryname"
+				+"FROM mealkit m, category c"
+				+"WHERE mkId = ? and m.mkcategoryid = c.mkcategoryid";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
 		Mealkit mealkit = null;
@@ -97,7 +97,10 @@ public class MealkitDAO {
 					mkId,
 					rs.getString("mkname"),
 					rs.getInt("defaultcal"),
-					rs.getInt("defaultprice")
+					rs.getInt("defaultprice"),
+					new Category(
+							rs.getInt("mkcategoryid"),
+							rs.getString("mkcategoryname"))
 					);
 			}
 		}catch (Exception ex) {

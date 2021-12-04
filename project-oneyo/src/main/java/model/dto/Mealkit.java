@@ -11,6 +11,29 @@ public class Mealkit {
 	private Category Category;
 	private List<Ingredient> ingredients;	
 	
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
+			List<Ingredient> ingredients) {
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+		this.ingredients = ingredients;
+	}
+	
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category) {
+		super();
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+	}
+
+
+
 	public Mealkit(int mkId, String mkName) {
 		this.mkId = mkId;
 		this.mkName = mkName;

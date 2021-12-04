@@ -18,7 +18,7 @@
 			class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${ing.ingName}.jpg'/>"></td>
 			<td>${ing.ingName}</td>
 			<td>
-			<form method="get" action="<c:url value="/admin/ing/remove"/>">
+			<form method="get"  onsubmit="return confirm('정말 삭제하시겠습니까?')" action="<c:url value="/admin/ing/remove"/>">
 				<input type="hidden" name="id" value="${ing.ingId}">
 				<input type="submit" value="삭제">
 			</form>
