@@ -35,15 +35,18 @@ public class ViewMealkitController implements Controller{
 		mealkit.setCategory(mkCategory);
 		
 		request.setAttribute("mealkit", mealkit);	
-		
 		CustomerDAO customerDAO = new CustomerDAO();
-		CustomerSessionUtils u = new CustomerSessionUtils();
-		HttpSession session = request.getSession();	
-		@SuppressWarnings("static-access")
-		String email = u.getLoginCustomerId(session);
-		Customer c = customerDAO.findCustomer(email);
+		HttpSession session = request.getSession();
 		
-		request.setAttribute("loginCustomerId", c.getCustomerId());
+		
+		if (CustomerSessionUtils.hasLogined(session)) {
+			String email = CustomerSessionUtils.getLoginCustomerId(session);
+			Customer c = customerDAO.findCustomer(email);
+			
+			request.setAttribute("loginCustomerId", c.getCustomerId());
+		}
+		request.setAttribute("loginCustomerId", null);
+		
 		
 		return "/mealkit/details.jsp";        
     }

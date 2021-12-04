@@ -12,7 +12,7 @@ public class AddReviewController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String orderdate = request.getParameter("orderdate");
+		String orderdate = request.getParameter("orderdate").split(" ")[0];
 		int customMkId = Integer.parseInt(request.getParameter("customMkId"));
 		
 		ReviewDAO reviewDAO = new ReviewDAO();
