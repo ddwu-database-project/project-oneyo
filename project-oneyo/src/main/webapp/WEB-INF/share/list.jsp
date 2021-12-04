@@ -81,7 +81,7 @@
 							test="${customer != null && customer.getCustomerId() != item.getCustomerId()}">
 							<td rowspan="4"><input type="submit" value="장바구니 담기"
 								class="btn btn-lg px-3"
-								style="border-color: grey; padding: 5px 0px;">
+								style="border-color: grey; padding: 5px 0px; background-color: #E5DDD3">
 							</td>
 						</c:if>
 					</form>
