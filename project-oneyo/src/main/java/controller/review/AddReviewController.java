@@ -3,9 +3,13 @@ package controller.review;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.customer.CustomerSessionUtils;
+import model.dao.CustomerDAO;
 import model.dao.ReviewDAO;
+import model.dto.Customer;
 import model.dto.Review;
 
 public class AddReviewController implements Controller {
@@ -35,7 +39,7 @@ public class AddReviewController implements Controller {
 		
 		reviewDAO.newReview(tmp);
 		
-		return "redirect:/mealkit/detail?mkId=" + mkId;   
+		return "redirect:/mealkit/detail?mkId=" + mkId;
 
 	}
 

@@ -30,11 +30,18 @@ public class AdminModMkController implements Controller {
 
 			return "/admin/modifyMealkit.jsp";
 		}
+		int calculatedCal = Integer.parseInt(request.getParameter("calorie"));
+		int calculatedPrice = Integer.parseInt(request.getParameter("price"));
+		if(calculatedCal == 0 && calculatedPrice == 0) {
+			List<Integer> tmp = mkDAO.calculateCalNPrice(Integer.parseInt(request.getParameter("id")));
+			calculatedCal = tmp.get(0);
+			calculatedPrice = tmp.get(1);
+		}
 		Mealkit mealkit = new Mealkit(
 				Integer.parseInt(request.getParameter("id")),
 				request.getParameter("name"),
-				Integer.parseInt(request.getParameter("calorie")),
-				Integer.parseInt(request.getParameter("price")),
+				calculatedCal,
+				calculatedPrice,
 				new Category(Integer.parseInt(request.getParameter("category"))),
 				request.getParameter("fullintro"),
 				request.getParameter("shortintro"));
