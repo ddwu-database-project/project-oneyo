@@ -12,7 +12,7 @@
     <%
     int fileSize = 1024*1024*3; //3mb로 파일 크기를 제한 
     ServletContext context = getServletContext();
-    String uploadPath = context.getRealPath("/img");
+    String uploadPath = context.getRealPath("/assets/img");
     %>
     업로드 경로 확인 : <%=uploadPath %><br>
     <%
@@ -31,8 +31,7 @@
     오리지날 파일명 : <%=originalFile %><br>
     실제 업로드된 파일명 : <%=uploadFile %><br><Br>
     <h3>업로드된 파일 불러오기</h3>
-    <img src="../img/<%=uploadFile %>">
-    <br><%=uploadFile %>
+    <img src="<%=uploadPath %>\<%=uploadFile %>">
     <%
     }catch(Exception e){
       out.write("업로드 용량 오류 또는 그 이외..." + e.getMessage());
