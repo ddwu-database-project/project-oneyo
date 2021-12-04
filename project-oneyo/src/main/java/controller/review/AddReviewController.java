@@ -47,7 +47,7 @@ public class AddReviewController implements Controller {
 		mealkit.setIngredients(mealkitIng);
 		
 		request.setAttribute("mealkit", mealkit);	
-		return "/mealkit/details.jsp";   
+		return "/mealkit/details";   
 	}
 
 }
