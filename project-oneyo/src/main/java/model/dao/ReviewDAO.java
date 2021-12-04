@@ -22,7 +22,7 @@ public class ReviewDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			while(rs.next()) { 
-				Review tmp = new Review(rs.getInt("reviewid"), rs.getString("orderdate"), rs.getString("reviewwrites"), rs.getString("customername"), rs.getInt("customerid"));
+				Review tmp = new Review(rs.getInt("reviewid"), rs.getString("orderdate").split(" ")[0], rs.getString("reviewwrites"), rs.getString("customername"), rs.getInt("customerid"));
 				all.add(tmp);
 			}
 		}catch(Exception ex) {
