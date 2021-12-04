@@ -2,13 +2,14 @@ const MkNuminOnePage = 9;
 const mkList = document.getElementsByClassName("mkList");
 
 function showOtherPage(page){
+	window.scrollTo({ top: 0, behavior: 'smooth'});
 	for (let i = 0; i < mkList.length; i++){
 		if (i >= (page-1)*MkNuminOnePage && i < page*MkNuminOnePage){
 			mkList[i].style.display = "inline";
 		} else {
 			mkList[i].style.display = "none";
 		}
-	}
+	}	
 }
 
 function calculatePageNum(page_num, inlineMkNum){
@@ -47,13 +48,14 @@ $(document).ready(function(){
 });
 
 function showFilteredPageMealkits(page, arr){
+	window.scrollTo({ top: 0, behavior: 'smooth' });
 	for (let i = 0; i < arr.length; i++){
 		if (arr.indexOf(arr[i]) >= (page-1)*MkNuminOnePage && arr.indexOf(arr[i]) < page*MkNuminOnePage){
 			mkList[arr[i]].style.display = "inline";
 		} else {
 			mkList[arr[i]].style.display = "none";
 		}
-	}
+	}	
 }
 
 function resetPageBtn(){
