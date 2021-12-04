@@ -13,6 +13,53 @@ public class Mealkit {
 	private String full_intro;
 	private String short_intro;
 	
+	
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
+			List<Ingredient> ingredients, String full_intro, String short_intro) {
+		super();
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+		this.ingredients = ingredients;
+		this.full_intro = full_intro;
+		this.short_intro = short_intro;
+	}
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
+			String short_intro) {
+		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro);
+	}
+	
+	public Mealkit(String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
+			String short_intro) {
+		this(0, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro);
+	}
+
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
+			List<Ingredient> ingredients) {
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+		this.ingredients = ingredients;
+	}
+	
+	
+	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category) {
+		super();
+		this.mkId = mkId;
+		this.mkName = mkName;
+		this.defaultCal = defaultCal;
+		this.defaultPrice = defaultPrice;
+		Category = category;
+	}
+
+
+
 	public Mealkit(int mkId, String mkName) {
 		this.mkId = mkId;
 		this.mkName = mkName;

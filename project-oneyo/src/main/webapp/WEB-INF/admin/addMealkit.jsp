@@ -12,12 +12,12 @@
 		밀키트명 : <input type="text" name="name"> <br/>
 		칼로리 : <input type="text" name="calorie"> <br/>
 		가격 : <input type="text" name="price"> <br/>
+		제품 상세 설명 : <input type="text" name="fullintro"><br/>
+		제품 간략 설명 : <input type="text" name="shortintro"><br/>
 		<select name="category">
-			<option value="1">퓨전한식</option>
-			<option value="2">양식</option>
-			<option value="3">중식</option>
-			<option value="4">일식</option>
-			<option value="5">전통한식</option>
+		<c:forEach var="category" items="${categories}">
+			<option value="${category.categoryId}">${category.name}</option>
+		</c:forEach>
 		</select>
 		<br/>
 		<input type="submit" value="추가">

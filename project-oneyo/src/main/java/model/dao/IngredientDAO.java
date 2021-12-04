@@ -61,6 +61,43 @@ public class IngredientDAO {
 		return 0;			
 	}
 	
+	public int remove(int ingId) throws SQLException {
+		String sql = "DELETE FROM ingredient WHERE ingid=?";		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingId});	
+
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
+		return 0;
+	}
+	
+	public int removeBase(int ingId, int mkId) throws SQLException {
+		String sql = "DELETE FROM baseingredient WHERE ingid=? AND mkid=?";		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingId, mkId});	
+
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
+		return 0;
+	}
+	
+	
 	public List<Ingredient> findIngList(String ingName) throws SQLException {
         String sql = "SELECT INGID, INGNAME, PRICE, CALORIE " 
         		   + "FROM INGREDIENT "
@@ -174,8 +211,29 @@ public class IngredientDAO {
 				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
 			}
 		}
+	}
+	
+	public List<Category> findAllCategory() throws Exception {
+		String sql = "select * from ingcategory";
 		
-		
+		jdbcUtil.setSql(sql);
+		List<Category> catList = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			while (rs.next()) {
+				catList.add(new Category(
+						rs.getInt("ingcategoryid"),
+						rs.getString("ingcategoryname")));
+			}		
+			return catList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
 	}
 
 }

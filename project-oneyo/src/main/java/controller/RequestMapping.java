@@ -9,7 +9,11 @@ import org.slf4j.LoggerFactory;
 import controller.admin.AdminAddIngController;
 import controller.admin.AdminAddMealkitController;
 import controller.admin.AdminHomeController;
+import controller.admin.AdminIngListController;
 import controller.admin.AdminMkListController;
+import controller.admin.AdminModIngController;
+import controller.admin.AdminModMkController;
+import controller.admin.AdminRemoveIngController;
 import controller.admin.AdminRemoveMkController;
 import controller.admin.AdminSetIngController;
 import controller.cart.*;
@@ -59,8 +63,7 @@ public class RequestMapping {
         mappings.put("/mealkit/list", new MealkitListController());
         mappings.put("/mealkit/detail", new ViewMealkitController());
         mappings.put("/mealkit/custom", new CustomMealkitIngController());
-
-//        mappings.put("/share/list/my", new ShareMyListController());
+       
         mappings.put("/share/list", new ShareListController());
         mappings.put("/share/add", new AddShareController());
         mappings.put("/share/delete", new DeleteShareController());
@@ -72,6 +75,10 @@ public class RequestMapping {
         mappings.put("/admin/mealkit/remove", new AdminRemoveMkController());
         mappings.put("/admin/ing/new", new AdminAddIngController());
         mappings.put("/admin/ing/add", new AdminSetIngController());
+        mappings.put("/admin/ing/list", new AdminIngListController());
+        mappings.put("/admin/ing/remove", new AdminRemoveIngController());
+        mappings.put("/admin/mealkit/modify", new AdminModMkController());
+        mappings.put("/admin/ing/modify", new AdminModIngController());
         logger.info("Initialized Request Mapping!");
     }
 
