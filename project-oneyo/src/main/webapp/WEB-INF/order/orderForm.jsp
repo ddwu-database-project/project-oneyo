@@ -216,8 +216,6 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 					<c:set var="totalPrice" value="0" />
 					<c:forEach var="item" items="${customMealkitList}">
 						<tr style="height: 90px; background-color: #fff;">
-						
-							
 								<c:set var="totalPrice" value="${totalPrice = totalPrice + item.getPrice() * item.getQuantity() }"/>
 								<td
 									style="text-align: left; text-align: center; border-right: none;">
@@ -225,12 +223,12 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 									<input type="checkbox" name="checkbox" />
 								</td>
 								<!-- 이미지 추가 -->
-								<td><a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/60B5BC/FFFFFF" alt="Product" style="margin-left: auto; margin-right: auto; display: block;"></a></td>
+								<td><a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product" style="margin-left: auto; margin-right: auto; display: block;"></a></td>
 								<td
 									style="text-align: left; padding-left: 10px; border-left: none; font-weight: bold;">
 									${item.getOriginalMealkit().getMkName()} <!-- 밀키트명 -->
 								</td>
-								<td><span style="padding-left: 10px;">${item.getPrice() * item.getQuantity()}</span>원</td>
+								<td><span style="padding-left: 10px;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice() * item.getQuantity()}"/></span>원</td>
 								<!-- 가격 -->
 								<td style="width: 80px;"><span>${item.getQuantity()}</span>
 									<!-- 수량 --></td>
@@ -238,7 +236,7 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 							<td>-</td>
 							<td>기본배송</td>
 							<td>고정</td>
-							<td><span>${item.getPrice() * item.getQuantity()}</span></td>
+							<td><span><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice() * item.getQuantity()}"/></span>원</td>
 							<!-- 합계 -->
 							
 						</tr>
@@ -250,7 +248,7 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 								<span>[기본배송]</span>
 							</td>
 							<td colspan="5" style="border-right: none; border-left: none;text-align:right; padding-right: 10px;">
-								상품금액<span>${totalPrice}</span> + <span>배송비 0 = <br/>합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;">${totalPrice}원</span>
+								상품금액<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/></span> + <span>배송비 0 = <br/>합계</span>&nbsp;<span style="font-weight:bold; font-size: 10pt;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/>원</span>
 							</td>
 						</tr>
 					</tfoot>
@@ -337,7 +335,7 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 				<tr style="background-color:#fff;">
 					<td style="padding: 23px 0;"><span class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/></span>원</td>
 					<td>+<span class="price">0</span>원</td>
-					<td>=<span class="price">${totalPrice}</span>원</td>
+					<td>=<span class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/></span>원</td>
 				</tr>
 			</table>
 			<br/><br/>
@@ -360,7 +358,7 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 				</div>
 				<div class="total">
 					<span style="display:inline-block; padding: 20px 10px;">카드결제 최종결제 금액</span><br/>
-					<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;">${totalPrice}원</span><br/><br/>
+					<span style="font-size: 25pt; font-weight: bold; padding: 0px 10px;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalPrice}"/>원</span><br/><br/>
 					
 					<input type="submit" class="btn default" value="결제하기" style="width:90%; height:60px; margin-right:10px; font-size:10pt;">
 				
