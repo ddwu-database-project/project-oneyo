@@ -11,11 +11,17 @@ public class AdminRemoveIngController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		int ingId = Integer.parseInt(request.getParameter("id"));
 		IngredientDAO ingDAO = new IngredientDAO();
-		ingDAO.remove(ingId);
-				
-		return "redirect:/admin/ing/list";
+		if (request.getParameter("mkId") == null) {
+			int ingId = Integer.parseInt(request.getParameter("id"));
+			ingDAO.remove(ingId);
+			return "redirect:/admin/ing/list";
+		}
+		
+		int mkId = Integer.parseInt(request.getParameter("mkId"));
+		int ingId = Integer.parseInt(request.getParameter("ingId"));
+		ingDAO.removeBase(ingId, mkId);
+		return "redirect:/admin/ing/modify?id=" + String.valueOf(mkId);
 	}
 
 }
