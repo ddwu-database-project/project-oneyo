@@ -79,6 +79,25 @@ public class IngredientDAO {
 		return 0;
 	}
 	
+	public int removeBase(int ingId, int mkId) throws SQLException {
+		String sql = "DELETE FROM baseingredient WHERE ingid=? AND mkid=?";		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingId, mkId});	
+
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
+		return 0;
+	}
+	
+	
 	public List<Ingredient> findIngList(String ingName) throws SQLException {
         String sql = "SELECT INGID, INGNAME, PRICE, CALORIE " 
         		   + "FROM INGREDIENT "

@@ -11,6 +11,7 @@ import controller.admin.AdminAddMealkitController;
 import controller.admin.AdminHomeController;
 import controller.admin.AdminIngListController;
 import controller.admin.AdminMkListController;
+import controller.admin.AdminModIngController;
 import controller.admin.AdminModMkController;
 import controller.admin.AdminRemoveIngController;
 import controller.admin.AdminRemoveMkController;
@@ -77,6 +78,7 @@ public class RequestMapping {
         mappings.put("/admin/ing/list", new AdminIngListController());
         mappings.put("/admin/ing/remove", new AdminRemoveIngController());
         mappings.put("/admin/mealkit/modify", new AdminModMkController());
+        mappings.put("/admin/ing/modify", new AdminModIngController());
         logger.info("Initialized Request Mapping!");
     }
 

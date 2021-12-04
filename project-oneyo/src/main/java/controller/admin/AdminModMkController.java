@@ -19,11 +19,12 @@ public class AdminModMkController implements Controller {
 		if (request.getMethod().equals("GET")) {
 			int mkid = Integer.parseInt(request.getParameter("id"));		
 			Mealkit mealkit = mkDAO.findMealkit(mkid);
-			
+			mkDAO = new MealkitDAO();
+			mealkit.setIngredients(mkDAO.findMealkitIng(mkid));
 			mkDAO = new MealkitDAO();
 			List<Category> catList = mkDAO.findAllCategory();
 			request.setAttribute("categories", catList);
-	
+			
 			mealkit.setIngredients(mkDAO.findMealkitIng(mkid));
 			request.setAttribute("mealkit", mealkit);
 
