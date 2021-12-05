@@ -2,6 +2,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.io.File"%>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <!DOCTYPE html>
 <html>
 
@@ -81,16 +84,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                     사진 저장 경로 : ${dir} <br/>
-사진 파일 이름 : ${filename} <br/>
-<c:if test="${mealkit.getFilename() != ''}">
-                    <img src="${dir}/${filename}" alt="img"/>
-                    ${dir}/${filename}
-                    </c:if>
-                    
-                    <c:if test="${mealkit.getMkName() != ''} ">
                         <img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
-                        </c:if>
                     </div>
                 </div>
                 <!-- col end -->

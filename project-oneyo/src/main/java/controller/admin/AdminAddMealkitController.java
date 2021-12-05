@@ -48,11 +48,12 @@ public class AdminAddMealkitController implements Controller {
 			// �Ʒ��� ���� �ϸ� Tomcat ���ο� ����� ������Ʈ�� ���� �ؿ� upload ������ ������ 
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath("/upload");
-			File dir = new File(path);
+			
 			
 			String path2 = request.getContextPath();
 			path2 += "/src/main/webapp/assets/img/";
-			File dir2 = new File(path2);
+			File dir = new File(path2);
+			File dir2 = new File(path);
 			
 			// Tomcat �ܺ��� ������ �����Ϸ��� �Ʒ��� ���� ���� ��η� ���� �̸��� ������
 			// File dir = new File("C:/Temp");
@@ -100,11 +101,13 @@ public class AdminAddMealkitController implements Controller {
                 	}
                 	else {//�����̶��...
                 		if(item.getFieldName().equals("uploadfile")) {
+                			System.out.println("in file upladassafa");
                 		//key ���� picture�̸� ���� ������ �Ѵ�.
                 			filename = item.getName();//���� �̸� ȹ�� (�ڵ� �ѱ� ó�� ��)
                 			if(filename == null || filename.trim().length() == 0) continue;
                 			//������ ���۵Ǿ� ���� �ʾҴٸ� �ǳ� �ڴ�.
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
+                			System.out.println("filename = "+filename);
                 			//���� �̸��� ������ ��ü ��α��� �����ϱ� ������ �̸� �κи� �����ؾ� �Ѵ�.
                 			//���� C:\Web_Java\aaa.gif��� �ϸ� aaa.gif�� �����ϱ� ���� �ڵ��̴�.
                 			File file = new File(dir, filename);
@@ -125,7 +128,7 @@ public class AdminAddMealkitController implements Controller {
                 e.printStackTrace();
             }
 			
-			request.setAttribute("dir", dir2);
+			request.setAttribute("dir", dir);
 			request.setAttribute("name", name);
 			request.setAttribute("calorie", calorie);
 			request.setAttribute("price", price);
@@ -134,6 +137,7 @@ public class AdminAddMealkitController implements Controller {
 			request.setAttribute("category", category);
 			
 			System.out.println("dir2 = "+dir2);
+			System.out.println("dir = "+dir);
 			System.out.println("filename = "+filename);
 			Category categ = new Category(Integer.parseInt(category));
 			Mealkit mealkit  = new Mealkit(
