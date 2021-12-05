@@ -30,15 +30,25 @@
 </head>
 <body>
 <input type="hidden" id="rsize" value="${rsize}">
+<c:set var="loginCustomerId" value="${loginCustomerId}" />
 <div class="container">
 <c:forEach var="r" items="${rlist}">
           <div class="shadow p-3 mb-5 bg-white rounded">
               <div style="color:#60B5BC;">
                 <h5 class="h5 g-color-gray-dark-v1 mb-0">${r.getCname()}</h5>
-                <span class="g-color-gray-dark-v4 g-font-size-12">${r.getOrderdate()}</span>
+                <span class="g-color-gray-dark-v4 g-font-size-12">주문일자: ${r.getOrderdate()}</span>
               </div>
         	<hr class="my-2">
               <p>${r.getReviewWrites()}</p>
+              
+              <c:if test="${loginCustomerId == r.getCustomerId()}">
+                <form name="fix" method="post" action="<c:url value="/review/delete" />">
+              		<input type="hidden" name="reviewId" value="${r.getReviewId()}">
+              		<input type="hidden" name="mkId" value="${mkId}">
+              		<button type="submit" class="btn btn-danger btn-xs">삭제</button>
+              	</form>
+              </c:if>
+              
         </div>
      </c:forEach>  
      </div>

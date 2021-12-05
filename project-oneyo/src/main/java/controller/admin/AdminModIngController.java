@@ -24,8 +24,9 @@ public class AdminModIngController implements Controller {
 		}
 		int mkId = Integer.parseInt(request.getParameter("mkId"));
 		int ingId = Integer.parseInt(request.getParameter("ingId"));
-		ingDAO.removeBase(ingId, mkId);
-		return "redirect:/admin/ing/modify?id=" + String.valueOf(mkId);
+		int qty = Integer.parseInt(request.getParameter("qty"));
+		ingDAO.updateBase(ingId, mkId, qty);
+		return "redirect:/admin/mealkit/list";
 	}
 
 }

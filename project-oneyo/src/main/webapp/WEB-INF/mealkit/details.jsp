@@ -30,7 +30,7 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick.min.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/slick-theme.css'/>">
-	
+   
    <style>
    .small-slide-main {
       height:400px; 
@@ -40,88 +40,91 @@
       height:100px;
    }
    td:hover{
-	color: #60B5BC;
+   color: #60B5BC;
    }
    .card-img {
-     hright: 500px;
+     height: 500px;
    }
    </style>
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script>
-		var cnt = 0;
-		window.onload = function (){
-			$.ajax({
-			url:"<c:url value='/review/list'/>",
-			cache:false,
-			type:"post",
-			data:{
-				mkId:"${mealkit.getMkId()}"
-			},
-			success:function(data){
-				$("#reviews").html(data);
-				$(".reviews").hide();
-				cnt = $("#rsize").val();
-				$("#size").html(cnt);
-			}
-			});
- 		}
-		function ings(){
-			$(".reviews").hide();
-			$(".ings").show();
-		}
-		function reviews(){
-			$(".ings").hide();
-			$(".reviews").show();
-		}
-	</script>
+            var cnt = 0;
+            $(document).ready(function() {
+            $.ajax({
+               url:"<c:url value='/review/list'/>",
+               cache:false,
+               type:"post",
+               data:{
+                  mkId:"${mealkit.getMkId()}",
+                  loginCustomerId:"${loginCustomerId}"
+               },
+               success:function(data){
+                  $("#reviews").html(data);
+                  cnt = $("#rsize").val();
+                  $("#size").html(cnt);
+                  $(".reviews").hide();
+               }
+            });
+         });
+            console.log(cnt);
+         function ings(){
+            $(".reviews").hide();
+            $(".ings").show();
+         }
+         function reviews(){
+            $(".ings").hide();
+            $(".reviews").show();
+         }
+   </script>
 </head>
 
-<body>
-<%@include file="/WEB-INF/base/header.jsp" %>
-    <!-- Open Content -->
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
-                    </div>
-                </div>
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="h2">${mealkit.getMkName()}</h1>
-                            <p class="h3 py-2">가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원 | 칼로리: ${mealkit.getDefaultCal()}kcal</p>
-                            <h6>제품 설명:</h6>
-                            <p>${mealkit.getFull_intro()}</p>
-                            
-                            <h6>유의 사항:</h6>
-                            <ul class="list-unstyled pb-3">
-		                        <li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
-		                        <li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
-		                        <li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
-                            </ul>
 
-                            <form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
-                                <input type="hidden" name="mkId" value="${mealkit.getMkId()}">
-                                <div class="row pb-3">
-                                    <div class="col d-grid">
-                                        <button class="btn btn-success btn-lg" > 재료 수정</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<body>
+		<%@include file="/WEB-INF/base/header.jsp" %>
+			<!-- Open Content -->
+			<section class="bg-light">
+				<div class="container pb-5">
+					<div class="row">
+						<div class="col-lg-5 mt-5">
+							<div class="card mb-3">
+								<img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
+							</div>
+						</div>
+						<!-- col end -->
+						<div class="col-lg-7 mt-5">
+							<div class="card">
+								<div class="card-body">
+									<h1 class="h2">${mealkit.getMkName()}</h1>
+									<p class="h3 py-2">가격: <fmt:formatNumber type="number" maxFractionDigits="3" value="${mealkit.getDefaultPrice()}"/>원 | 칼로리: ${mealkit.getDefaultCal()}kcal</p>
+									<h6>제품 설명:</h6>
+									<p>${mealkit.getFull_intro()}</p>
+									
+									<h6>유의 사항:</h6>
+									<ul class="list-unstyled pb-3">
+										<li>- 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)</li>
+										<li>- 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.</li>
+										<li>- 네이버페이 결제 주문은 동일 상품/동일 옵션 교환만 가능합니다.</li>
+									</ul>
+		
+									<form action="<c:url value='/mealkit/custom'><c:param name='mkId' value='${mealkit.getMkId()}'/></c:url>" method="GET">
+										<input type="hidden" name="mkId" value="${mealkit.getMkId()}">
+										<div class="row pb-3">
+											<div class="col d-grid">
+												<button class="btn btn-success btn-lg" > 재료 수정</button>
+											</div>
+										</div>
+									</form>
+		
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
     <!-- Close Content -->
 
     <!-- Start Article -->
-    <section class="py-5">
+	<section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
                <table style="width:250px;">
@@ -132,17 +135,19 @@
             	</table>
             </div>
 
+
             <!--Start Carousel Wrapper-->
           
             <div id="carousel-related-product" class="ings">
-         	<c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
+         <c:forEach var="mkIngs" items="${mealkit.getIngredients()}" varStatus="ing">
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
                             <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getIngName()}.jpg'/>">
+                         
                         </div>
                         <div class="card-body" style="margin: 0 auto; text-align: center">
-                            <a href="shop-single.html" class="h3 text-decoration-none">${mkIngs.getIngName()}</a>
+                            <a class="h3 text-decoration-none">${mkIngs.getIngName()}</a>
                             <ul class="w-100 list-unstyled justify-content-between mb-0">
                                 <li>${mkIngs.getIngCalorie()}kcal</li>
                             </ul>
@@ -153,9 +158,9 @@
                 </div>
                 </c:forEach>
             </div>
-      		<div id="reviews" class="reviews">
-      			
-      		</div>
+            <div id="reviews" class="reviews">
+               
+            </div>
 
         </div>
     </section>

@@ -13,6 +13,7 @@ import controller.admin.AdminIngListController;
 import controller.admin.AdminMkListController;
 import controller.admin.AdminModIngController;
 import controller.admin.AdminModMkController;
+import controller.admin.AdminQtyIngController;
 import controller.admin.AdminRemoveIngController;
 import controller.admin.AdminRemoveMkController;
 import controller.admin.AdminSetIngController;
@@ -54,6 +55,7 @@ public class RequestMapping {
         mappings.put("/review/review", new ReviewController());
         mappings.put("/review/list", new ReviewListController());
         mappings.put("/review/add", new AddReviewController());
+        mappings.put("/review/delete", new DeleteReviewController());
 
         mappings.put("/cart/list", new CartListController());
         mappings.put("/cart/add", new AddCartController());
@@ -79,9 +81,7 @@ public class RequestMapping {
         mappings.put("/admin/ing/remove", new AdminRemoveIngController());
         mappings.put("/admin/mealkit/modify", new AdminModMkController());
         mappings.put("/admin/ing/modify", new AdminModIngController());
-        
-        mappings.put("/img/test", new ForwardController("FileUploadForm.jsp"));
-        mappings.put("/img/test/action", new ForwardController("/admin/fileUploadAction.jsp"));
+        mappings.put("/admin/ing/create", new AdminQtyIngController());
         logger.info("Initialized Request Mapping!");
     }
 

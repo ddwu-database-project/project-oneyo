@@ -2,10 +2,15 @@ package controller.mealkit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import controller.Controller;
+import controller.customer.CustomerSessionUtils;
 import model.dto.Mealkit;
+import model.dao.CustomerDAO;
 import model.dao.MealkitDAO;
 import model.dto.Category;
+import model.dto.Customer;
 import model.dto.Ingredient;
 
 import java.util.List;
@@ -30,6 +35,19 @@ public class ViewMealkitController implements Controller{
 		mealkit.setCategory(mkCategory);
 		
 		request.setAttribute("mealkit", mealkit);	
+		CustomerDAO customerDAO = new CustomerDAO();
+		HttpSession session = request.getSession();
+		
+		
+		if (CustomerSessionUtils.hasLogined(session)) {
+			String email = CustomerSessionUtils.getLoginCustomerId(session);
+			Customer c = customerDAO.findCustomer(email);
+			
+			request.setAttribute("loginCustomerId", c.getCustomerId());
+		}
+		request.setAttribute("loginCustomerId", null);
+		
+		
 		return "/mealkit/details.jsp";        
     }
 }

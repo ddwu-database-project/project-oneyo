@@ -24,6 +24,13 @@ public class Ingredient {
 		this.ingCalorie = ingCalorie;
 	}
 	
+	public Ingredient(int ingId, String ingName, int ingQuantity, Category category) {
+		this.ingId = ingId;
+		this.ingName = ingName;
+		this.ingQuantity = ingQuantity;
+		this.Category = category;
+	}
+	
 	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity) {
 		this.ingId = ingId;
 		this.ingName = ingName;
@@ -39,6 +46,11 @@ public class Ingredient {
 		this.ingCalorie = ingCalorie;
 		this.ingQuantity = ingQuantity;
 		this.Category = Category;
+	}
+	
+	public Ingredient(int ingId, String ingName) {
+		this.ingId = ingId;
+		this.ingName = ingName;
 	}
 	
 	public Ingredient(int ingId, String ingName, Category category) {
