@@ -37,7 +37,6 @@ public class AdminAddMealkitController implements Controller {
 		String fullintro = null;
 		String shortintro = null;
 		String category = null;
-		File dir = null;
 		String filename = null;
 		
 		boolean check = ServletFileUpload.isMultipartContent(request);
@@ -49,7 +48,11 @@ public class AdminAddMealkitController implements Controller {
 			// �Ʒ��� ���� �ϸ� Tomcat ���ο� ����� ������Ʈ�� ���� �ؿ� upload ������ ������ 
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath("/upload");
-			dir = new File(path);
+			File dir = new File(path);
+			
+			String path2 = request.getContextPath();
+			path2 += "/src/main/webapp/assets/img/";
+			File dir2 = new File(path2);
 			
 			// Tomcat �ܺ��� ������ �����Ϸ��� �Ʒ��� ���� ���� ��η� ���� �̸��� ������
 			// File dir = new File("C:/Temp");
@@ -122,8 +125,7 @@ public class AdminAddMealkitController implements Controller {
                 e.printStackTrace();
             }
 			
-			request.setAttribute("dir", dir);
-			request.setAttribute("filename", filename);
+			request.setAttribute("dir", dir2);
 			request.setAttribute("name", name);
 			request.setAttribute("calorie", calorie);
 			request.setAttribute("price", price);
@@ -131,6 +133,8 @@ public class AdminAddMealkitController implements Controller {
 			request.setAttribute("shortintro", shortintro);
 			request.setAttribute("category", category);
 			
+			System.out.println("dir2 = "+dir2);
+			System.out.println("filename = "+filename);
 			Category categ = new Category(Integer.parseInt(category));
 			Mealkit mealkit  = new Mealkit(
 					name,
@@ -139,7 +143,6 @@ public class AdminAddMealkitController implements Controller {
 					categ,
 					fullintro,
 					shortintro,
-					dir,
 					filename
 					);
 			mkDAO.create(mealkit);

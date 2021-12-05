@@ -81,12 +81,16 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                     ${mealkit.getDir().getPath()}
                      사진 저장 경로 : ${dir} <br/>
 사진 파일 이름 : ${filename} <br/>
-                    <img src="${dir}/${filename}">
+<c:if test="${mealkit.getFilename() != ''}">
+                    <img src="${dir}/${filename}" alt="img"/>
                     ${dir}/${filename}
+                    </c:if>
+                    
+                    <c:if test="${mealkit.getMkName() != ''} ">
                         <img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
+                        </c:if>
                     </div>
                 </div>
                 <!-- col end -->

@@ -17,7 +17,7 @@ public class Mealkit {
 	private String filename;
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
-			List<Ingredient> ingredients, String full_intro, String short_intro, File dir, String filename) {
+			List<Ingredient> ingredients, String full_intro, String short_intro, String filename) {
 		super();
 		this.mkId = mkId;
 		this.mkName = mkName;
@@ -27,18 +27,17 @@ public class Mealkit {
 		this.ingredients = ingredients;
 		this.full_intro = full_intro;
 		this.short_intro = short_intro;
-		this.dir = dir;
 		this.filename = filename;
 	}
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
 			String short_intro, String filename) {
-		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, null, filename);
+		this(mkId, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, filename);
 	}
 	
 	public Mealkit(String mkName, int defaultCal, int defaultPrice, Category category, String full_intro,
-			String short_intro, File dir, String filename) {
-		this(0, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, dir, filename);
+			String short_intro, String filename) {
+		this(0, mkName, defaultCal, defaultPrice, category, null, full_intro, short_intro, filename);
 	}
 
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
