@@ -22,7 +22,6 @@ public class AdminAddMealkitController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
 		MealkitDAO mkDAO = new MealkitDAO();
 		if (request.getMethod().equals("GET")) {
 			List<Category> catList = mkDAO.findAllCategory();
