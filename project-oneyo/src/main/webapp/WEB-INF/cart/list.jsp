@@ -179,12 +179,12 @@
 									가격: <span class="unselected" id="select-mealkit-price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.getPrice()*item.getQuantity()}"/>원</span>
 								</div>
 								<div class="font-size-sm">
-									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}</div>
+									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}cal</div>
 								<div class="font-size-lg text-primary pt-2">주문옵션: 
 
-									${item.printIng()}
+									${item.printCustomIng()}
 									<c:if test="${item.getIngredients().size() == 0}">
-										재료 없음.
+										없음.
 									</c:if>
 								</div>
 							</div>

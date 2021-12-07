@@ -102,7 +102,7 @@ public class CartDAO {
 			
 			for (CustomMealkit cm : cmList) {
 				int customMkId = cm.getCustomMealkitId();
-				List<Ingredient> ingList = cm.getOriginalMealkit().getIngredients();
+				List<Ingredient> ingList = cm.getIngredients();
 				pstmt.setInt(1, customMkId);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
@@ -156,7 +156,7 @@ public class CartDAO {
 				int price = rs.getInt("PRICE");
 				int quantity = rs.getInt("QUANTITY");
 				int calorie = rs.getInt("CALORIE");
-				cmList.add(new CustomMealkit(customMkId, new Mealkit(mkId, mkName), price, quantity, calorie));
+				cmList.add(new CustomMealkit(new Mealkit(mkId, mkName), customMkId, customerId, price, quantity, calorie));
 			}
 			findIngList(cmList);
 			

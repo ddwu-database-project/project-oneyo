@@ -82,6 +82,7 @@ public class RequestMapping {
         mappings.put("/admin/mealkit/modify", new AdminModMkController());
         mappings.put("/admin/ing/modify", new AdminModIngController());
         mappings.put("/admin/ing/create", new AdminQtyIngController());
+
         logger.info("Initialized Request Mapping!");
     }
 
