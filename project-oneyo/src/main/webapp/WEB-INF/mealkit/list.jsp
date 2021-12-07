@@ -103,7 +103,7 @@
 									<img class="card-img" src="<c:url value='/assets/img/${mk.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
 								</c:if>
 								<c:if test="${mk.getFilename() != null}">                                	
-									<img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${mk.getFilename()}' />" style="background-size:cover;">
+									<img class="card-img rounded-0 img-fluid" src="${pageContext.request.contextPath}/${mk.getFilename()}' />" style="background-size:cover;">
 								</c:if>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">

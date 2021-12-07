@@ -17,6 +17,9 @@ import controller.Controller;
 import model.dao.MealkitDAO;
 import model.dto.Category;
 import model.dto.Mealkit;
+import java.io.File;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
 
 public class AdminAddMealkitController implements Controller {
 
@@ -29,7 +32,7 @@ public class AdminAddMealkitController implements Controller {
 			return "/admin/addMealkit.jsp";
 		}
 		
-		String filename = null;
+		/*String filename = null;
 		String name = null;
 		String calorie = null;
 		String price = null;
@@ -43,10 +46,11 @@ public class AdminAddMealkitController implements Controller {
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath("/");
 			
-			int idx = path.indexOf(".metadata");
-			path = path.substring(0, idx);
-			path += "project-oneyo/src/main/webapp/assets/img/";
+//			int idx = path.indexOf(".metadata");
+//			path = path.substring(0, idx);
+//			path += "project-oneyo/src/main/webapp/assets/img/";
 			File dir = new File(path);
+			System.out.println("path = "+path);
 			
 			if(!dir.exists()) dir.mkdir();
 			
@@ -90,18 +94,36 @@ public class AdminAddMealkitController implements Controller {
                 e.printStackTrace();
             }catch(Exception e) {            
                 e.printStackTrace();
-            }
+            }*/
 		
+		String filename = "";
+		int sizeLimit = 15*1024*1024;
+		String realPath = request.getServletContext().getRealPath("upload");
+		
+		File dir = new File(realPath);
+		if (!dir.exists()) dir.mkdirs();
+		
+		MultipartRequest multipartReqeust = null;
+		multipartReqeust = new MultipartRequest(request, realPath, sizeLimit, 
+				"UTF-8", new DefaultFileRenamePolicy());
+		filename = multipartReqeust.getFilesystemName("file");
+		
+		System.out.println("filename = "+filename);
+		System.out.println("realPath = "+realPath);
+		System.out.println("name = "+request.getParameter("name"));
+		System.out.println("price = "+Integer.parseInt(request.getParameter("calorie")));
+		System.out.println("category = "+Integer.parseInt(request.getParameter("category")));
+		System.out.println("fullintro = "+request.getParameter("fullintro"));
+		System.out.println("shortintro = "+request.getParameter("shortintro"));
 		Mealkit mealkit;
-		mealkit = new Mealkit(name,
-				Integer.parseInt(calorie),
-				Integer.parseInt(price),
-				new Category(Integer.parseInt(category)),
-				fullintro,
-				shortintro,
+		mealkit = new Mealkit(request.getParameter("name"),
+				Integer.parseInt(request.getParameter("calorie")),
+				Integer.parseInt(request.getParameter("price")),
+				new Category(Integer.parseInt(request.getParameter("category"))),
+				request.getParameter("fullintro"),
+				request.getParameter("shortintro"),
 				filename);
 		mkDAO.create(mealkit);
-		}
 		return "redirect:/admin/mealkit/list";
 	}
 
