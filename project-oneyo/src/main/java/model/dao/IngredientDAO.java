@@ -40,10 +40,31 @@ public class IngredientDAO {
 		return 0;			
 	}
 	
-	public int createBase(int ingId, int mkId) throws SQLException {
-		String sql = "INSERT INTO baseingredient VALUES (?, ?, 1)";		
+	public int createBase(int ingId, int mkId, int qty) throws SQLException {
+		String sql = "INSERT INTO baseingredient VALUES (?, ?, ?)";		
 		Object[] param = new Object[] {
-				mkId, ingId
+				mkId, ingId, qty
+		};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}		
+		return 0;			
+	}
+	
+	public int updateBase(int ingId, int mkId, int qty) throws SQLException {
+		String sql = "UPDATE baseingredient SET ingquantity=? WHERE ingid=? AND mkid=?";		
+		Object[] param = new Object[] {
+				qty, ingId, mkId
 		};
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -184,9 +205,9 @@ public class IngredientDAO {
 	}
 	
 	public List<Ingredient> findMealkitIngList(int mkid) throws SQLException {
-		String sql = "select i.ingid, i.ingname, i.ingcategoryid, c.ingcategoryname "
-				+ "from ingredient i, ingcategory c where i.ingcategoryid=c.ingcategoryid "
-				+ "and i.ingid in (select ingid from baseingredient where mkid=?) "
+		String sql = "select i.ingid, i.ingname, i.ingcategoryid, c.ingcategoryname, b.ingquantity "
+				+ "from ingredient i, ingcategory c, baseingredient b where i.ingcategoryid=c.ingcategoryid and b.ingid=i.ingid "
+				+ "and b.mkid=? "
 				+ "order by ingcategoryid";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { mkid });
 		List<Ingredient> ingList = new ArrayList<>();
@@ -197,6 +218,7 @@ public class IngredientDAO {
 				ingList.add(new Ingredient(
 						rs.getInt("ingid"),
 						rs.getString("ingname"),
+						rs.getInt("ingquantity"),
 						new Category(
 								rs.getInt("ingcategoryid"),
 								rs.getString("ingcategoryname"))									
@@ -212,6 +234,8 @@ public class IngredientDAO {
 			}
 		}
 	}
+	
+	
 	
 	public List<Category> findAllCategory() throws Exception {
 		String sql = "select * from ingcategory";

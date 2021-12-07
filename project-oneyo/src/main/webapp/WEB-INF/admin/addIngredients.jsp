@@ -29,7 +29,8 @@
 			<c:set var="i" value="${ing.getCategory().categoryId}"/>
 			<p><strong> ${ing.getCategory().name} </strong> <p/>
 			</c:if>
-			<input type="checkbox" name="id" value="${ing.ingId}">${ing.ingName} 
+			<input type="checkbox" name="id" value="${ing.ingId}"> ${ing.ingName}
+			<input type="hidden" name="ing${ing.ingId}" value="${ing.ingName}"> 
 		</c:forEach>
 		
 		<input type="hidden" name="mkid" value="${mkid}"><br/>

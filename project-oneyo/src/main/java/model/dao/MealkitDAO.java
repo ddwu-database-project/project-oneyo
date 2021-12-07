@@ -87,6 +87,32 @@ public class MealkitDAO {
 		return 0;
 	}
 	
+	public List<Integer> calculateCalNPrice(int mkId) {
+		int cal = 0;
+		int price = 0;
+		List<Integer> rslt = new ArrayList<Integer>();
+		String sql = "SELECT price, calorie, ingquantity FROM ingredient i, baseingredient b WHERE i.ingid = b.ingid AND b.mkid = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mkId});
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();						
+			while (rs.next()) {
+				int ingqty = rs.getInt("ingquantity");
+				int tmpc = rs.getInt("calorie");
+				int tmpp = rs.getInt("price");
+				cal += (tmpc*ingqty);
+				price += (tmpp*ingqty);
+			}		
+			rslt.add(cal);
+			rslt.add(price);
+			return rslt;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return null;
+	}
 	public List<Mealkit> findMealkitList() throws SQLException{
 		String sql = "SELECT mkId, mkname, defaultcal, defaultprice, full_introduction, short_introduction "
 				+"FROM mealkit";

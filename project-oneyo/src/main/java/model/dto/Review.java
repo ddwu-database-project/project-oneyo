@@ -60,11 +60,12 @@ public class Review {
 	public void setReviewWrites(String reviewWrites) {
 		this.reviewWrites = reviewWrites;
 	}
-	public Review(int reviewId, String orderdate, String reviewWrites, String cname) {
+	public Review(int reviewId, String orderdate, String reviewWrites, String cname, int customerId) {
 		this.reviewId = reviewId;
 		this.orderdate = orderdate;
 		this.reviewWrites = reviewWrites;
 		this.cname = cname;
+		this.customerId = customerId;
 	}
 
 	public Review() {

@@ -1,22 +1,22 @@
 package controller.review;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import model.dao.MealkitDAO;
+import controller.customer.CustomerSessionUtils;
+import model.dao.CustomerDAO;
 import model.dao.ReviewDAO;
-import model.dto.Ingredient;
-import model.dto.Mealkit;
+import model.dto.Customer;
 import model.dto.Review;
 
 public class AddReviewController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String orderdate = request.getParameter("orderdate");
+		String orderdate = request.getParameter("orderdate").split(" ")[0];
 		int customMkId = Integer.parseInt(request.getParameter("customMkId"));
 		
 		ReviewDAO reviewDAO = new ReviewDAO();
@@ -39,15 +39,8 @@ public class AddReviewController implements Controller {
 		
 		reviewDAO.newReview(tmp);
 		
-		MealkitDAO mealkitDAO = new MealkitDAO();
-		
-		Mealkit mealkit =mealkitDAO.findMealkit(mkId);
-		List<Ingredient> mealkitIng = mealkitDAO.findMealkitIng(mkId);
+		return "redirect:/mealkit/detail?mkId=" + mkId;
 
-		mealkit.setIngredients(mealkitIng);
-		
-		request.setAttribute("mealkit", mealkit);	
-		return "/mealkit/details.jsp";   
 	}
 
 }
