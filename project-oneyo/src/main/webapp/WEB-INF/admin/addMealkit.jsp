@@ -20,7 +20,7 @@
 		</c:forEach>
 		</select>
 		<br/>
-		<input type="file" name="uploadfile" >
+		<input type="file" name="file" >
 		<input type="submit" value="추가">
 	</form>
 </body>
