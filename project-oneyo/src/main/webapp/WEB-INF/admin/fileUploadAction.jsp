@@ -38,6 +38,6 @@
     }
 
     %>
-    <p><%=uploadFile %></p>
+    <p><%= uploadFile %></p>
 </body>
 </html>
