@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.mkList {
+  height: 450px;
+  margin-top:auto;
+ }
+ .card-img {
+  height: 290px;
+ }
+ a {
+   text-decoration:none;
+ }
+ #pgination {
+  padding-top: 500px;
+ }
+ .allergy{
+  font-size: 15px;
+ }
+ .mealkit_name{
+  font-size: 18px;
+  font-weight:bold;
+ }
+ .mealkit_cal{
+  font-size: 13px;
+ }
+ .mealkit_price{
+  font-size: 16px;
+ }
+ .pagination_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+ }
+#pagination button {
+  border: none;
+  background: none;
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;  
+}
+#pagination button:focus{
+  border: none;
+  outline: none;
+  background-color:#8BC9CE;
+  color: white;
+  text-decoration: none; 
+}
+a, li :focus {
+  font-weight: bold;
+}

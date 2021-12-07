@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="model.dao.JDBCUtil"/>
+    <fullyQualifiedTypeName name="controller.manager.MealkitManager"/>
+    <fullyQualifiedTypeName name="controller.Controller"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="model.dto.Ingredient"/>
+    <fullyQualifiedTypeName name="model.dto.Mealkit"/>
+    <fullyQualifiedTypeName name="model.dto.Customer"/>
+    <fullyQualifiedTypeName name="model.dao.CustomerDAO"/>
+    <fullyQualifiedTypeName name="model.dto.CustomMealkit"/>
+    <fullyQualifiedTypeName name="model.dao.MealkitDAO"/>
+    <fullyQualifiedTypeName name="model.dao.AllergyDAO"/>
+    <fullyQualifiedTypeName name="model.dto.Allergy"/>
+</qualifiedTypeNameHistroy>

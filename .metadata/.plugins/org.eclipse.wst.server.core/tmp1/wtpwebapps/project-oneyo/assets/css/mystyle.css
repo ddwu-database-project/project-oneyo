@@ -1,0 +1,85 @@
+.logo_img {
+  margin-right: 10px;
+}
+
+.logo_title {
+  padding-top: 10px;
+}
+
+.footer-color {
+  background-color: #EFEFEF;
+}
+
+.nav-bg-color {
+  background-color: #60B5BC;
+}
+
+.sign {
+	text-align: right;
+}
+
+.sign-up, .sign-in {
+	text-decoration: none;
+}
+
+.ag {
+  background-color: white !important;
+  color: #6C757D;
+  padding: 5px 13px  !important;
+  border-radius: 0.3rem;
+  border: 1px solid #E8E8E8;
+}
+
+.ag:hover {
+  color: #60B5BC;
+}
+
+.search {
+	margin-left: 10px !important;
+}
+
+.text-start {
+	text-align: left;
+}
+
+.shareBtn {
+	background-color: #E9ECEF;
+}
+
+@font-face {
+	font-family: 'Hahmlet-ExtraLight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-ExtraLight.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Hahmlet-ExtraLight';
+}
+
+.failMsg {
+	text-align: center; 
+	color: white; 
+	background-color: #CB3533; 
+	border-radius: 10px; 
+	width: 500px; 
+	margin: 0 auto;
+}
+
+.dev-name {   
+	margin-top: 15px;
+}
+
+.footer-bg {
+    background-color: #8BC9CE;
+}
+
+.footer-font {
+	color: white;
+	text-align: center;
+}
+
+.footer-msg {
+	text-align: center;
+	color: black;
+}
