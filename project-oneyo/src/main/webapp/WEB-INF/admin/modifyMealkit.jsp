@@ -26,6 +26,7 @@
 		</c:forEach>
 		</select>
 		<br/>
+		<input type="file" name="file">
 		<input type="submit" value="수정">
 		<input type="submit" value="취소" formaction="<c:url value="/admin/mealkit/list"/>">
 	</form>

@@ -43,7 +43,7 @@ public class MealkitDAO {
 	}
 	
 	public int update(Mealkit mealkit) throws SQLException {
-		String sql = "UPDATE mealkit SET mkname=?, defaultcal=?, defaultprice=?, mkcategoryid=?, full_introduction=?, short_introduction=? "
+		String sql = "UPDATE mealkit SET mkname=?, defaultcal=?, defaultprice=?, mkcategoryid=?, full_introduction=?, short_introduction=?, filename=? "
 				+ "WHERE mkid=?";		
 		Object[] param = new Object[] {
 				mealkit.getMkName(),
@@ -52,6 +52,7 @@ public class MealkitDAO {
 				mealkit.getCategory().getCategoryId(),
 				mealkit.getFull_intro(),
 				mealkit.getShort_intro(),
+				mealkit.getFilename(),
 				mealkit.getMkId()
 		};
 		

@@ -223,7 +223,16 @@ overflow : hidden; white-space : nowrap; border-left:none; border-right:none; bo
 									<input type="checkbox" name="checkbox" />
 								</td>
 								<!-- 이미지 추가 -->
-								<td><a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product" style="margin-left: auto; margin-right: auto; display: block;"></a></td>
+								<td>
+									<a class="cart-item-thumb mx-auto mr-sm-4" href="#">
+										<c:if test="${item.getOriginalMealkit().getFilename() == null}"> 
+										<img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product" style="margin-left: auto; margin-right: auto; display: block;">
+										</c:if>
+										<c:if test="${item.getOriginalMealkit().getFilename() != null}">                                	
+											<img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${item.getOriginalMealkit().getFilename()}' />" style="background-size:cover;">
+										</c:if>
+									</a>
+								</td>
 								<td
 									style="text-align: left; padding-left: 10px; border-left: none; font-weight: bold;">
 									${item.getOriginalMealkit().getMkName()} <!-- 밀키트명 -->

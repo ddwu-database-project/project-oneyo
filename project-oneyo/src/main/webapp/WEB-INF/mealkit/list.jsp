@@ -94,12 +94,17 @@
                 </div>
                 <div class="row">
                 	<c:forEach var="mk" items="${mealkits}" varStatus="status"> 
-                		<c:set var="imgName" value="${mk.mkName }"/>
+                		<c:set var="imgName" value="${mk.mkName}"/>
                     <div class="col-md-4 mkList">
                     <p hidden id="ctgId">${mk.getCategory().getCategoryId()}</p>
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0 mealkit_img">
-                                <img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${imgName}.png' />" style="background-size:cover;">
+								<c:if test="${mk.getFilename() == null}">
+									<img class="card-img" src="<c:url value='/assets/img/${mk.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
+								</c:if>
+								<c:if test="${mk.getFilename() != null}">                                	
+									<img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${mk.getFilename()}' />" style="background-size:cover;">
+								</c:if>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white mt-2" href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${mk.mkId}'/></c:url>"><i class="far fa-eye"></i></a></li>

@@ -171,8 +171,14 @@
 							<div style="width: 40px;">
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
-							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product"></a>
-							
+							<a class="cart-item-thumb mx-auto mr-sm-4" href="#">
+								<c:if test="${item.getOriginalMealkit().getFilename() == null}">  
+									<img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product">
+								</c:if>
+								<c:if test="${item.getOriginalMealkit().getFilename() != null}">                                	
+									<img class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/${item.getOriginalMealkit().getFilename()}' />" style="background-size:cover;">
+								</c:if>
+							</a>
 							<div class="media-body pt-3" style="text-align:left; padding-left: 15px">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
 								<div class="font-size-sm" id="select-mealkit">
@@ -183,7 +189,7 @@
 								<div class="font-size-lg text-primary pt-2">주문옵션: 
 
 									${item.printIng()}
-									<c:if test="${item.getIngredients().size() == 0}">
+									<c:if test="${empty item.getIngredients()}">
 										재료 없음.
 									</c:if>
 								</div>

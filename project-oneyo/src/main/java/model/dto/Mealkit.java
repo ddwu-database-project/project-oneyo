@@ -13,8 +13,21 @@ public class Mealkit {
 	private List<Ingredient> ingredients;	
 	private String full_intro;
 	private String short_intro;
-	private File dir;
 	private String filename;
+	
+	//contstructor for file test
+//	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
+//			String full_intro, String short_intro, String filename) {
+//		super();
+//		this.mkId = mkId;
+//		this.mkName = mkName;
+//		this.defaultCal = defaultCal;
+//		this.defaultPrice = defaultPrice;
+//		Category = category;
+//		this.full_intro = full_intro;
+//		this.short_intro = short_intro;
+//		this.filename = filename;
+//	}
 	
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice, Category category,
 			List<Ingredient> ingredients, String full_intro, String short_intro, String filename) {
@@ -59,9 +72,10 @@ public class Mealkit {
 		Category = category;
 	}
 
-	public Mealkit(int mkId, String mkName) {
+	public Mealkit(int mkId, String mkName, String filename) {
 		this.mkId = mkId;
 		this.mkName = mkName;
+		this.filename = filename;
 		ingredients = new ArrayList<>();
 	}
 	public Mealkit(int mkId, String mkName, int defaultCal, int defaultPrice) {
@@ -143,13 +157,5 @@ public class Mealkit {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
-	}
-
-	public File getDir() {
-		return dir;
-	}
-
-	public void setDir(File dir) {
-		this.dir = dir;
 	}
 }

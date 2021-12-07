@@ -130,11 +130,11 @@ public class CustomMkDAO {
 		ArrayList<CustomMealkit> cmList = new ArrayList<>();
 		String sql;
 		if (customerId == -1) {
-			sql = "SELECT c.customerid, m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
+			sql = "SELECT c.customerid, m.mkname, m.mkid, c.custommkid, c.price, c.calorie, m.filename "
 					+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE sharestatus=1";
 			jdbcUtil.setSql(sql);
 		} else {
-			sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie "
+			sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie, m.filename "
 					+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE orderstatus=1 AND sharestatus=0 AND customerid=?";
 			Object[] param = new Object[] { customerId };
 			jdbcUtil.setSqlAndParameters(sql, param);
@@ -145,7 +145,7 @@ public class CustomMkDAO {
 		try {
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
-				cmList.add(new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
+				cmList.add(new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname"), rs.getString("filename")),
 						customerId == -1 ? rs.getInt("customerid"):customerId, rs.getInt("custommkid"), rs.getInt("price"), rs.getInt("calorie")));
 			}
 		} catch (Exception ex) {
@@ -183,7 +183,7 @@ public class CustomMkDAO {
 	}
 	
 	public CustomMealkit findByCustomMkId(int customMkId, int customerId) {
-		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie, c.quantity "
+		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.calorie, c.quantity, m.filename "
 				+"FROM custommealkit c JOIN mealkit m ON c.mkid = m.mkid WHERE custommkid=?";
 		Object[] param = new Object[] { customMkId };
 		jdbcUtil.setSqlAndParameters(sql, param);		
@@ -193,7 +193,7 @@ public class CustomMkDAO {
 		try {
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
-				CustomMealkit cm = new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
+				CustomMealkit cm = new CustomMealkit(new Mealkit(rs.getInt("mkid"), rs.getString("mkname"), rs.getString("filename")),
 						rs.getInt("custommkid"), customerId, rs.getInt("price"), rs.getInt("quantity"), rs.getInt("calorie"));
 				List<CustomMealkit> cmList = new ArrayList<>();
 				cmList.add(cm);
@@ -215,7 +215,7 @@ public class CustomMkDAO {
 	
 	public List<CustomMealkit> findListByOrderId(int orderId) {
 		List<CustomMealkit> cmList = new ArrayList<>();
-		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.quantity, c.sharestatus, c.orderstatus " +
+		String sql = "SELECT m.mkname, m.mkid, c.custommkid, c.price, c.quantity, c.sharestatus, c.orderstatus, m.filename " +
 	"FROM custommealkit c, mealkit m, orderinfo o WHERE c.mkid=m.mkid and c.custommkid=o.custommkid and orderid=?";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { orderId });
@@ -223,7 +223,7 @@ public class CustomMkDAO {
 		try {
 			rs = jdbcUtil.executeQuery();
 			while (rs.next()) {
-				cmList.add(new CustomMealkit(rs.getInt("custommkid"), new Mealkit(rs.getInt("mkid"), rs.getString("mkname")),
+				cmList.add(new CustomMealkit(rs.getInt("custommkid"), new Mealkit(rs.getInt("mkid"), rs.getString("mkname"), rs.getString("filename")),
 						rs.getInt("price"), rs.getInt("quantity"), rs.getInt("sharestatus"), rs.getInt("orderstatus")));
 			}
 		} catch (Exception ex) {

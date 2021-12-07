@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -30,20 +29,81 @@ public class AdminAddMealkitController implements Controller {
 			request.setAttribute("categories", catList);
 			return "/admin/addMealkit.jsp";
 		}
+		
+		String filename = null;
+		String name = null;
+		String calorie = null;
+		String price = null;
+		String fullintro = null;
+		String shortintro = null;
+		String category = null;
+		
+		boolean check = ServletFileUpload.isMultipartContent(request);
+		
+		if(check) {
+			ServletContext context = request.getServletContext();
+			String path = context.getRealPath("/");
 			
-		Category categ = new Category(Integer.parseInt(category));
-		Mealkit mealkit  = new Mealkit(
-				reques
+			int idx = path.indexOf(".metadata");
+			path = path.substring(0, idx);
+			path += "project-oneyo/src/main/webapp/assets/img/";
+			File dir = new File(path);
+			
+			if(!dir.exists()) dir.mkdir();
+			
+			try {
+				DiskFileItemFactory factory = new DiskFileItemFactory();
+                factory.setSizeThreshold(10 * 1024);
+                factory.setRepository(dir);
+    
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                upload.setSizeMax(10 * 1024 * 1024);
+                upload.setHeaderEncoding("utf-8");
+                                
+                List<FileItem> items = (List<FileItem>)upload.parseRequest(request);
+                
+                for(int i = 0; i < items.size(); ++i) {
+                	FileItem item = (FileItem)items.get(i);
+                	
+                	String value = item.getString("utf-8");
+                	
+                	if(item.isFormField()) {             		
+                		if(item.getFieldName().equals("name")) name = value;
+                		else if(item.getFieldName().equals("price")) price = value;
+                		else if(item.getFieldName().equals("calorie")) calorie = value;
+                		else if(item.getFieldName().equals("fullintro")) fullintro = value;
+                		else if(item.getFieldName().equals("shortintro")) shortintro = value;
+                		else if(item.getFieldName().equals("category")) category = value;
+                	}else {
+                		if(item.getFieldName().equals("file")) {
+                			filename = item.getName();
+                			if(filename == null || filename.trim().length() == 0) continue;
+                			filename = filename.substring(filename.lastIndexOf("\\") + 1);
+                			File file = new File(dir, filename);
+                			item.write(file);
+                		}
+                	}
+                }
+                
+			}catch(SizeLimitExceededException e) {
+				e.printStackTrace();           
+            }catch(FileUploadException e) {
+                e.printStackTrace();
+            }catch(Exception e) {            
+                e.printStackTrace();
+            }
+		
+		Mealkit mealkit;
+		mealkit = new Mealkit(name,
 				Integer.parseInt(calorie),
 				Integer.parseInt(price),
-				categ,
+				new Category(Integer.parseInt(category)),
 				fullintro,
-				shortintro
-				);
+				shortintro,
+				filename);
 		mkDAO.create(mealkit);
-		
-		return "/mealkit/details.jsp";
-		
+		}
+		return "redirect:/admin/mealkit/list";
 	}
 
 }

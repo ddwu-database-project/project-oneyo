@@ -139,7 +139,7 @@ public class CartDAO {
 		Cart cartitem = new Cart();
 		List<CustomMealkit> cmList = cartitem.getCustomMealkits();
 		try {
-			String query = "SELECT cm.customMkId, m.mkid, m.mkname, cm.price, cm.quantity, cm.calorie "
+			String query = "SELECT cm.customMkId, m.mkid, m.mkname, cm.price, cm.quantity, cm.calorie, m.filename "
 					+ "FROM cartitem c, mealkit m, custommealkit cm "
 					+ "WHERE c.customerId = ? AND c.customMkId = cm.customMkId AND cm.mkId = m.mkId";
 			
@@ -156,7 +156,8 @@ public class CartDAO {
 				int price = rs.getInt("PRICE");
 				int quantity = rs.getInt("QUANTITY");
 				int calorie = rs.getInt("CALORIE");
-				cmList.add(new CustomMealkit(customMkId, new Mealkit(mkId, mkName), price, quantity, calorie));
+				String filename = rs.getString("FILENAME");
+				cmList.add(new CustomMealkit(customMkId, new Mealkit(mkId, mkName, filename), price, quantity, calorie));
 			}
 			findIngList(cmList);
 			

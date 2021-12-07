@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" enctype = "multipart/form-data" action="<c:url value="/admin/mealkit/add/test"/>">
-	<select name="category">
+<form method="post" enctype = "multipart/form-data" action="<c:url value="/admin/mealkit/add/test/ok"/>">
+<%-- 	<select name="category">
 		<c:forEach var="category" items="${categories}">
 			<option value="${category.categoryId}">${category.name}</option>
 		</c:forEach>
-	</select>
+	</select> --%>
 	<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 		<thead>
 			<tr>
@@ -36,7 +37,7 @@
 				<td><textarea class="form-control" placeholder="shortintro" name="shortintro" maxlength="2048" style="height:350px;"></textarea></td>
 			</tr>
 			<tr>
-				<td><input type="file" name="fileName"></td>
+				<td><input type="file" name="file"></td>
 			</tr>
 		</tbody>
 		</table>

@@ -48,7 +48,12 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
+                        	<c:if test="${newMealkits.get(0).getFilename() == null}"> 
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
+                            </c:if>
+                            <c:if test="${newMealkits.get(0).getFilename() != null}">                                	
+								<img class="card-img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getFilename()}' />" style="background-size:cover;">
+							</c:if>
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -65,7 +70,12 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getMkName()}.png' />">
+                        	<c:if test="${newMealkits.get(0).getFilename() == null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getMkName()}.png' />">
+                            </c:if>
+                            <c:if test="${newMealkits.get(0).getFilename() != null}">                                	
+								<img class="card-img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getFilename()}' />" style="background-size:cover;">
+							</c:if>
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -105,7 +115,12 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>">
-                            <img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	<c:if test="${topMk.getFilename() == null}">
+                        		<img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	</c:if>
+                            <c:if test="${topMk.getFilename() != null}">
+                            	<img src="<c:url value='/assets/img/${topMk.getFilename()}' />" class="card-img-top" alt="...">
+                            </c:if>
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -131,7 +146,12 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>">
-                            <img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	<c:if test="${topRvMk.getFilename() == null}">
+                        		<img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	</c:if>
+                            <c:if test="${topRvMk.getFilename() != null}">
+                            	<img src="<c:url value='/assets/img/${topRvMk.getFilename()}' />" class="card-img-top" alt="...">
+                            </c:if>
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">

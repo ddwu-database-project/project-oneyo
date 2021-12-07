@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.admin.AddTestController;
 import controller.admin.AdminAddIngController;
 import controller.admin.AdminAddMealkitController;
 import controller.admin.AdminHomeController;
@@ -83,7 +84,8 @@ public class RequestMapping {
         mappings.put("/admin/ing/modify", new AdminModIngController());
         mappings.put("/admin/ing/create", new AdminQtyIngController());
         
-        mappings.put("/admin/mealkit/add/test", new AdminAddMealkitController2());
+        mappings.put("/admin/mealkit/add/test", new ForwardController("/admin/write.jsp"));
+        mappings.put("/admin/mealkit/add/test/ok", new AddTestController());
         logger.info("Initialized Request Mapping!");
     }
 
