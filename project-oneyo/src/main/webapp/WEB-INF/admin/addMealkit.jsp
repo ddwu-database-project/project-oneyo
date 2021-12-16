@@ -8,7 +8,7 @@
 <title>밀키트 추가</title>
 </head>
 <body>
-	<form method="post" action="<c:url value="/admin/mealkit/add"/>">
+	<form method="post" action="<c:url value="/admin/mealkit/add"/>" enctype="multipart/form-data">
 		밀키트명 : <input type="text" name="name"> <br/>
 		칼로리 : <input type="text" name="calorie"> <br/>
 		가격 : <input type="text" name="price"> <br/>
@@ -20,6 +20,7 @@
 		</c:forEach>
 		</select>
 		<br/>
+		<input type="file" name="photo"/>
 		<input type="submit" value="추가">
 	</form>
 </body>

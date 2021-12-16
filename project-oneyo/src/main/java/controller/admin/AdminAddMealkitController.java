@@ -10,6 +10,10 @@ import model.dao.MealkitDAO;
 import model.dto.Category;
 import model.dto.Mealkit;
 
+import java.io.*;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 public class AdminAddMealkitController implements Controller {
 
 	@Override
@@ -30,6 +34,21 @@ public class AdminAddMealkitController implements Controller {
 				request.getParameter("fullintro"),
 				request.getParameter("shortintro"));
 		mkDAO.create(mealkit);
+		
+		String filename = "";
+		int sizeLimit = 15*1024*1024;
+		
+		String realPath = request.getServletContext().getRealPath("upload");
+		
+		File dir = new File(realPath);
+		if (!dir.exists()) dir.mkdirs();
+		
+		MultipartRequest multipartRequest = null;
+		multipartRequest = new MultipartRequest(request, realPath, sizeLimit, "UTFF-8", new DefaultFileRenamePolicy());
+		
+		filename = multipartRequest.getFilesystemName("photo");
+		System.out.println("filename = " + filename);
+		System.out.println("realPath = " + realPath);
 		return "redirect:/admin/mealkit/list";
 	}
 

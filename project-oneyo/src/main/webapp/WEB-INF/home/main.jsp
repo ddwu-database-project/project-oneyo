@@ -49,6 +49,7 @@
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
                             <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
+                            <img class="new_mealkit_img img-fluid" src="${pageContext.request.contextPath}/upload/1a.jpeg' />">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
