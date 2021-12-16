@@ -15,7 +15,6 @@ import model.dao.CustomerDAO;
 import model.dao.OrderDAO;
 import model.dto.Allergy;
 import model.dto.Customer;
-import model.service.CustomerNotFoundException;
 import model.service.DeleteCustomerException;
 
 public class DeleteCustomerController implements Controller {
