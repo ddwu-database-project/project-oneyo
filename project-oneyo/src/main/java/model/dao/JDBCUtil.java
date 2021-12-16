@@ -39,7 +39,7 @@ public class JDBCUtil {
 
 	private Object getParameter(int index) throws Exception {
 		if (index >= getParameterSize())
-			throw new Exception("INDEX ���� �Ķ������ �������� �����ϴ�.");
+			throw new Exception("INDEX ???? ???????? ???????? ???????.");
 		return parameters[index];
 	}
 

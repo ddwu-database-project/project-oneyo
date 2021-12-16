@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.dto.Allergy;
-import model.dto.Customer;
 
 public class AllergyDAO {
 	private JDBCUtil jdbcUtil = null;

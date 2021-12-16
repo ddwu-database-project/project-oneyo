@@ -7,7 +7,6 @@ import java.util.List;
 
 import model.dto.Category;
 import model.dto.Ingredient;
-import model.dto.Mealkit;
 
 public class IngredientDAO {
 	private JDBCUtil jdbcUtil = null;

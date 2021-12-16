@@ -8,8 +8,8 @@
 <title>재료 목록</title>
 </head>
 <body>
+<form method="post" action="<c:url value="/admin/ing/create" />">
 	<table>
-	<form method="post" action="<c:url value="/admin/ing/create"/>">
 		<c:forEach var="ing" items="${ingredients}">
 			<tr>
 			<td>
@@ -26,8 +26,7 @@
 		<input type="submit" value="추가">
 		</td>
 		</tr>
-	</form>
-	
 	</table>
+</form>
 </body>
 </html>
