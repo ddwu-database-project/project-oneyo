@@ -25,8 +25,6 @@ public class AddOrderController implements Controller {
 		// get login customer Id
 		CustomerDAO customerDAO = new CustomerDAO();
 		Customer customer = customerDAO.findCustomer(email);
-		int customerId = customer.getCustomerId();
-		
 		//�ֹ����������� ���ǿ� ������ �ֹ��� Ŀ���� ��ŰƮ ����Ʈ ��������
 //		@SuppressWarnings("unchecked")
 //		List<CustomMealkit> cmList = (List<CustomMealkit>) session.getAttribute("orderedcmkList");

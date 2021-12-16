@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import controller.Controller;
 import model.dao.AllergyDAO;
 import model.dao.CustomerDAO;
