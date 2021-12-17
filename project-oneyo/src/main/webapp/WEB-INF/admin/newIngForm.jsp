@@ -39,10 +39,14 @@
 	<div class="container top">
 		<div class="input-form-backgroud row"> 
 			<div class="input-form col-md-12 mx-auto">
-				<form class="validation-form modform" method="post" action="<c:url value="/admin/ing/new"/>" onsubmit="return confirm('추가하시겠습니까?')">
+				<form class="validation-form modform" method="post" action="<c:url value="/admin/ing/new"/>" onsubmit="return confirm('추가하시겠습니까?')" enctype="multipart/form-data">
 					<div class="mb-3">
 						<lable for="name">재료명</lable>
 						<input class="form-control" id="name" type="text" name="name">
+					</div>
+					<div class="mb-3">
+						<lable for="name">재료 이미지</lable>
+						<input class="form-control" id="file" type="file" name="file">
 					</div>
 					<div class="mb-3">
 						<lable for="cal">칼로리</lable>
