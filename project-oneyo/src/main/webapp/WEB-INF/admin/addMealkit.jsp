@@ -6,22 +6,73 @@
 <head>
 <meta charset="UTF-8">
 <title>밀키트 추가</title>
+
+<link rel="apple-touch-icon" href="<c:url value='/assets/img/apple-icon.png' />">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/img/oneyo_fav.ico' />">
+
+<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/templatemo.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/custom.css' />">
+
+<link rel="stylesheet" href="<c:url value='/assets/css/style.css' />">
+<link rel="stylesheet" href="<c:url value='/assets/css/mystyle.css' />">
+
+<!-- Load fonts style after rendering the layout styles -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="<c:url value='/assets/css/fontawesome.min.css' />">
+
+<style>
+.modform {
+	width: 50%;
+	margin: 0 auto;
+}
+.top {
+	margin-top: 50px;
+}
+.btn-color {
+	background-color: #F6F6F6;
+}
+</style>
+
 </head>
 <body>
-	<form method="post" action="<c:url value="/admin/mealkit/add"/>" enctype="multipart/form-data">
-		밀키트명 : <input type="text" name="name"> <br/>
-		칼로리 : <input type="text" name="calorie"> <br/>
-		가격 : <input type="text" name="price"> <br/>
-		제품 상세 설명 : <input type="text" name="fullintro"><br/>
-		제품 간략 설명 : <input type="text" name="shortintro"><br/>
-		<select name="category">
-		<c:forEach var="category" items="${categories}">
-			<option value="${category.categoryId}">${category.name}</option>
-		</c:forEach>
-		</select>
-		<br/>
-		<input type="file" name="photo"/>
-		<input type="submit" value="추가">
-	</form>
+<%@include file="/WEB-INF/base/header.jsp" %>
+	<div class="container top">
+		<div class="input-form-backgroud row"> 
+			<div class="input-form col-md-12 mx-auto">
+				<form class="validation-form modform" method="post" action="<c:url value="/admin/mealkit/add"/>">
+					
+					<div class="mb-3">
+						<lable for="name">밀키트명</lable>
+						<input class="form-control" id="name" type="text" name="name">
+					</div>
+					<div class="mb-3">
+						<lable for="cal">칼로리</lable>
+						<input class="form-control" id="cal" type="text" name="calorie">
+					</div>
+					<div class="mb-3">
+						<lable for="price">가격</lable>
+						<input class="form-control" id="price" type="text" name="price">
+					</div>
+					<div class="mb-3">
+						<lable for="desc">제품 상세 설명</lable>
+						<input class="form-control" id="desc" type="text" name="fullintro">
+					</div>
+					<div class="mb-3">
+						<lable for="info">제품 간략 설명</lable>
+						<input class="form-control" id="info" type="text" name="shortintro">
+					</div>
+
+					<select class="form-control" name="category">
+						<c:forEach var="category" items="${categories}">
+							<option value="${category.categoryId}">${category.name}</option>
+						</c:forEach>
+					</select>
+					<hr class="mb-4">
+					<input class="btn btn-color btn-sm" type="submit" value="추가">
+				</form>
+				</div>
+		</div>
+	</div>
 </body>
 </html>
