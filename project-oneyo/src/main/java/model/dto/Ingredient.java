@@ -7,6 +7,7 @@ public class Ingredient {
 	private int ingCalorie;
 	private int ingQuantity;
 	private Category Category;
+	private String filename;
 	
 	public Ingredient() {}
 	
@@ -17,11 +18,12 @@ public class Ingredient {
 		this.ingQuantity = ingQuantity;
 	}
 	
-	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie) {
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, String filename) {
 		this.ingId = ingId;
 		this.ingName = ingName;
 		this.ingPrice = ingPrice;
 		this.ingCalorie = ingCalorie;
+		this.filename = filename;
 	}
 	
 	public Ingredient(int ingId, String ingName, int ingQuantity, Category category) {
@@ -31,21 +33,29 @@ public class Ingredient {
 		this.Category = category;
 	}
 	
-	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity) {
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, String filename) {
 		this.ingId = ingId;
 		this.ingName = ingName;
 		this.ingPrice = ingPrice;
 		this.ingCalorie = ingCalorie;
 		this.ingQuantity = ingQuantity;
+		this.filename = filename;
 	}
 	
-	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, Category Category) {
+	public Ingredient(int ingId, String ingName, int ingPrice, int ingCalorie, int ingQuantity, Category Category, String filename) {
 		this.ingId = ingId;
 		this.ingName = ingName;
 		this.ingPrice = ingPrice;
 		this.ingCalorie = ingCalorie;
 		this.ingQuantity = ingQuantity;
 		this.Category = Category;
+		this.filename = filename;
+	}
+	
+	public Ingredient(int ingId, String ingName, String filename) {
+		this.ingId = ingId;
+		this.ingName = ingName;
+		this.filename = filename;
 	}
 	
 	public Ingredient(int ingId, String ingName) {
@@ -53,12 +63,12 @@ public class Ingredient {
 		this.ingName = ingName;
 	}
 	
-	public Ingredient(int ingId, String ingName, Category category) {
-		this(ingId, ingName, 0, 0, 0, category);
+	public Ingredient(int ingId, String ingName, Category category, String filename) {
+		this(ingId, ingName, 0, 0, 0, category, filename);
 	}
 	
-	public Ingredient(String ingName, int ingPrice, int ingCalorie, Category category) {
-		this(0, ingName, ingPrice, ingCalorie, 0, category);
+	public Ingredient(String ingName, int ingPrice, int ingCalorie, Category category, String filename) {
+		this(0, ingName, ingPrice, ingCalorie, 0, category, filename);
 	}
 	
 	public int getIngId() {
@@ -96,6 +106,14 @@ public class Ingredient {
 	}
 	public void setCategory(Category category) {
 		Category = category;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}	
 
 }

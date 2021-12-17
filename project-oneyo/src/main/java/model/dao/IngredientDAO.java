@@ -16,12 +16,13 @@ public class IngredientDAO {
 	}
 	
 	public int create(Ingredient ing) throws SQLException {
-		String sql = "INSERT INTO ingredient VALUES (ingredient_seq.nextval, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO ingredient VALUES (ingredient_seq.nextval, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {
 				ing.getIngName(),
 				ing.getIngPrice(),
 				ing.getIngCalorie(),
-				ing.getCategory().getCategoryId()
+				ing.getCategory().getCategoryId(),
+				ing.getFilename()
 		};
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -119,7 +120,7 @@ public class IngredientDAO {
 	
 	
 	public List<Ingredient> findIngList(String ingName) throws SQLException {
-        String sql = "SELECT INGID, INGNAME, PRICE, CALORIE " 
+        String sql = "SELECT INGID, INGNAME, PRICE, CALORIE, FILENAME " 
         		   + "FROM INGREDIENT "
         		   + "WHERE INGNAME LIKE '%' || ? || '%'";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {ingName});		
@@ -132,7 +133,8 @@ public class IngredientDAO {
 						rs.getInt("INGID"),
 						rs.getString("INGNAME"),
 						rs.getInt("PRICE"),
-						rs.getInt("CALORIE"));	
+						rs.getInt("CALORIE"),
+						rs.getString("FILENAME"));	
 				ingList.add(ing);				
 			}		
 			return ingList;					
@@ -145,7 +147,7 @@ public class IngredientDAO {
 	}
 	
 	public List<Ingredient> findAllIngList() throws SQLException {
-		String sql = "select i.ingid, i.ingname, i.ingcategoryid, c.ingcategoryname "
+		String sql = "select i.ingid, i.ingname, i.ingcategoryid, i.filename, c.ingcategoryname "
 				+ "from ingredient i, ingcategory c where i.ingcategoryid=c.ingcategoryid "
 				+ "order by ingcategoryid";
 		jdbcUtil.setSql(sql);
@@ -159,7 +161,8 @@ public class IngredientDAO {
 						rs.getString("ingname"),
 						new Category(
 								rs.getInt("ingcategoryid"),
-								rs.getString("ingcategoryname"))									
+								rs.getString("ingcategoryname")),
+						rs.getString("filename")
 						));
 			}
 			return ingList;
@@ -174,7 +177,7 @@ public class IngredientDAO {
 	}
 	
 	public List<Ingredient> findNotIngList(int mkid) throws SQLException {
-		String sql = "select i.ingid, i.ingname, i.ingcategoryid, c.ingcategoryname "
+		String sql = "select i.ingid, i.ingname, i.ingcategoryid, i.filename, c.ingcategoryname "
 				+ "from ingredient i, ingcategory c where i.ingcategoryid=c.ingcategoryid "
 				+ "and i.ingid not in (select ingid from baseingredient where mkid=?) "
 				+ "order by ingcategoryid";
@@ -189,7 +192,8 @@ public class IngredientDAO {
 						rs.getString("ingname"),
 						new Category(
 								rs.getInt("ingcategoryid"),
-								rs.getString("ingcategoryname"))									
+								rs.getString("ingcategoryname")),
+						rs.getString("filename")
 						));
 			}
 			return ingList;
@@ -234,8 +238,6 @@ public class IngredientDAO {
 		}
 	}
 	
-	
-	
 	public List<Category> findAllCategory() throws Exception {
 		String sql = "select * from ingcategory";
 		
@@ -257,6 +259,31 @@ public class IngredientDAO {
 			jdbcUtil.close();	
 		}
 		return null;
+	}
+	
+	public String findIngByName(String name) throws Exception {
+		String sql = "select ingid, ingname, filename from ingredient where ingname=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { name });
+		Ingredient ingredient = new Ingredient();
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				ingredient = new Ingredient(
+						rs.getInt("ingid"),
+						rs.getString("ingname"),
+						rs.getString("filename")
+						);
+			}
+			return ingredient.getFilename();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		} finally {
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+			}
+		}
 	}
 
 }
