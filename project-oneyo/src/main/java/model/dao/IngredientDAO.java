@@ -261,7 +261,7 @@ public class IngredientDAO {
 		return null;
 	}
 	
-	public String findIngByName(String name) throws Exception {
+	public String findIngFileByName(String name) throws Exception {
 		String sql = "select ingid, ingname, filename from ingredient where ingname=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { name });
 		Ingredient ingredient = new Ingredient();
@@ -285,5 +285,32 @@ public class IngredientDAO {
 			}
 		}
 	}
+	
+	public Ingredient findIngFileById(int id) throws Exception {
+		String sql = "select ingid, ingname, filename from ingredient where ingid=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { id });
+		Ingredient ingredient = new Ingredient();
+		ResultSet rs = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				ingredient = new Ingredient(
+						rs.getInt("ingid"),
+						rs.getString("ingname"),
+						rs.getString("filename")
+						);
+			}
+			return ingredient;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		} finally {
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+			}
+		}
+	}
+	
+	
 
 }

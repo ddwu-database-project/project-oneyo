@@ -96,7 +96,7 @@ public class AdminAddIngController implements Controller {
             
 		}			
 
-		System.out.println(name+", "+price+", "+calorie+", "+category);
+		System.out.println(name+", "+price+", "+calorie+", "+category+","+filename);
 		Ingredient ing = new Ingredient(
 				name,
 				Integer.parseInt(price),
@@ -107,9 +107,10 @@ public class AdminAddIngController implements Controller {
 		String uri = (String) request.getSession().getAttribute("redirectURI");
 		String[] split = uri.split("/");
 		String redirectURI = "";
-		for (int i = 4; i < split.length; i++) {
+		for (int i = 3; i < split.length; i++) {
 			redirectURI += "/" + split[i];
 		}
+		System.out.println("redirectURI = "+redirectURI);
 		return "redirect:" + redirectURI;
 	}
 
