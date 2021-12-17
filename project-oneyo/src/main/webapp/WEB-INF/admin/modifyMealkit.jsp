@@ -28,6 +28,7 @@
 }
 .top {
 	margin-top: 50px;
+	margin-bottom : 50px;
 }
 .btn-color {
 	background-color: #F6F6F6;
