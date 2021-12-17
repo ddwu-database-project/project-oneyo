@@ -34,7 +34,8 @@ public class LoginController implements Controller {
             session.setAttribute("name", customer.getCustomerName()); 
             
             if (customer.getPrevilege() == 1) {
-            	return "redirect:/admin/home";
+            	session.setAttribute("admin", "admin"); 
+            	return "redirect:/";
             }
             
 		} catch (Exception e) {	
