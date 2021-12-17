@@ -83,7 +83,12 @@
 					<div class="row">
 						<div class="col-lg-5 mt-5">
 							<div class="card mb-3">
-								<img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
+								<c:if test="${mealkit.getFilename() eq null}">
+									<img class="card-img" src="<c:url value='/assets/img/${mealkit.getMkName()}.png'/>" alt="Card image cap" id="product-detail">
+								</c:if>
+								<c:if test="${mealkit.getFilename() ne null}">
+									<img class="card-img" src="<c:url value='/assets/img/${mealkit.getFilename()}'/>" alt="Card image cap" id="product-detail">
+								</c:if>
 							</div>
 						</div>
 						<!-- col end -->

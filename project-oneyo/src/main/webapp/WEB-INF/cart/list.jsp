@@ -171,7 +171,14 @@
 							<div style="width: 40px;">
 								<input onClick="selected(${status.index})" type="checkbox" name="select" value="${item.getCustomMealkitId()}">
 							</div>
-							<a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product"></a>
+							<a class="cart-item-thumb mx-auto mr-sm-4" href="#">
+								<c:if test="${item.getOriginalMealkit().getFilename() eq null}">
+									<img src="<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />" alt="Product">
+								</c:if>
+								<c:if test="${item.getOriginalMealkit().getFilename() ne null}">
+									<img src="<c:url value='/assets/img/${item.getOriginalMealkit().getFilename()}' />" alt="Product">
+								</c:if>
+							</a>
 							
 							<div class="media-body pt-3" style="text-align:left; padding-left: 15px">
 								<h3 class="product-card-title font-weight-semibold border-0 pb-0" style="font-size: 25px;">${item.getOriginalMealkit().getMkName()}</h3>
@@ -181,7 +188,6 @@
 								<div class="font-size-sm">
 									<span class="text-muted mr-2" style="color: black !important">영양정보: </span>${item.getTotalCalorie()}cal</div>
 								<div class="font-size-lg text-primary pt-2">주문옵션: 
-
 									${item.printCustomIng()}
 									<c:if test="${item.getIngredients().size() == 0}">
 										없음.

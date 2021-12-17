@@ -16,14 +16,15 @@ public class MealkitDAO {
 	}
 	
 	public int create(Mealkit mealkit) throws SQLException {
-		String sql = "INSERT INTO mealkit VALUES (mealkit_seq.nextval, ?, ?, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO mealkit VALUES (mealkit_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {
 				mealkit.getMkName(),
 				mealkit.getDefaultCal(),
 				mealkit.getDefaultPrice(),
 				mealkit.getCategory().getCategoryId(),
 				mealkit.getFull_intro(),
-				mealkit.getShort_intro()
+				mealkit.getShort_intro(),
+				mealkit.getFilename()
 		};
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -42,7 +43,7 @@ public class MealkitDAO {
 	}
 	
 	public int update(Mealkit mealkit) throws SQLException {
-		String sql = "UPDATE mealkit SET mkname=?, defaultcal=?, defaultprice=?, mkcategoryid=?, full_introduction=?, short_introduction=? "
+		String sql = "UPDATE mealkit SET mkname=?, defaultcal=?, defaultprice=?, mkcategoryid=?, full_introduction=?, short_introduction=?, filename=? "
 				+ "WHERE mkid=?";		
 		Object[] param = new Object[] {
 				mealkit.getMkName(),
@@ -51,6 +52,7 @@ public class MealkitDAO {
 				mealkit.getCategory().getCategoryId(),
 				mealkit.getFull_intro(),
 				mealkit.getShort_intro(),
+				mealkit.getFilename(),
 				mealkit.getMkId()
 		};
 		
@@ -114,7 +116,7 @@ public class MealkitDAO {
 		return null;
 	}
 	public List<Mealkit> findMealkitList() throws SQLException{
-		String sql = "SELECT mkId, mkname, defaultcal, defaultprice, full_introduction, short_introduction "
+		String sql = "SELECT mkId, mkname, defaultcal, defaultprice, full_introduction, short_introduction, filename "
 				+"FROM mealkit";
 		
 		jdbcUtil.setSql(sql);
@@ -128,7 +130,8 @@ public class MealkitDAO {
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"),
 					rs.getString("full_introduction"),
-					rs.getString("short_introduction"));
+					rs.getString("short_introduction"),
+					rs.getString("filename"));
 				mealkits.add(mealkit);				
 			}		
 			return mealkits;					
@@ -142,7 +145,7 @@ public class MealkitDAO {
 	}
 	
 	public Mealkit findMealkit(int mkId) throws SQLException{
-		String sql = "SELECT m.mkId, m.mkname, m.defaultcal, m.defaultprice, m.mkcategoryid, c.mkcategoryname, m.full_introduction, m.short_introduction "
+		String sql = "SELECT m.mkId, m.mkname, m.defaultcal, m.defaultprice, m.mkcategoryid, c.mkcategoryname, m.full_introduction, m.short_introduction, m.filename "
 				+"FROM mealkit m, mkcategory c "
 				+"WHERE mkId = ? and m.mkcategoryid = c.mkcategoryid";
 		
@@ -159,7 +162,8 @@ public class MealkitDAO {
 							rs.getInt("mkcategoryid"),
 							rs.getString("mkcategoryname")),
 					rs.getString("full_introduction"),
-					rs.getString("short_introduction")
+					rs.getString("short_introduction"),
+					rs.getString("filename")
 					);
 				return mealkit;
 			}
@@ -248,7 +252,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findTopMealkitList(int cnt) throws Exception {
-		String sql = "select m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.mkcategoryid, m.full_introduction, m.short_introduction "
+		String sql = "select m.mkid as mkId, m.mkname as mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.mkcategoryid, m.full_introduction, m.short_introduction, m.filename "
 				+ "from mealkit m join (select mkid, count(*) "
 				+ "from custommealkit "
 				+ "group by mkid "
@@ -265,7 +269,8 @@ public class MealkitDAO {
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"),
 					rs.getString("full_introduction"),
-					rs.getString("short_introduction")
+					rs.getString("short_introduction"),
+					rs.getString("filename")
 					);
 				mealkits.add(mealkit);				
 			}		
@@ -280,7 +285,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findNewMealkitList(int cnt) throws Exception {
-		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid, full_introduction, short_introduction from (select * from mealkit order by mkId desc) where rownum <= ?";
+		String sql = "select mkId, mkname, defaultcal, defaultprice, mkcategoryid, full_introduction, short_introduction, filename from (select * from mealkit order by mkId desc) where rownum <= ?";
 		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {cnt});
 		List<Mealkit> mealkits = new ArrayList<Mealkit>();
@@ -293,7 +298,8 @@ public class MealkitDAO {
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"),
 					rs.getString("full_introduction"),
-					rs.getString("short_introduction"));
+					rs.getString("short_introduction"),
+					rs.getString("filename"));
 				mealkits.add(mealkit);	
 				System.out.println(rs.getString("mkname"));
 			}		
@@ -308,7 +314,7 @@ public class MealkitDAO {
 	}
 	
 	public List<Mealkit> findTopReviewMealkitList(int cnt) throws Exception {
-		String sql = "select rslt.*, m.mkid as mkId, m.mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.full_introduction, m.short_introduction "
+		String sql = "select rslt.*, m.mkid as mkId, m.mkname, m.defaultcal as defaultcal, m.defaultprice as defaultprice, m.full_introduction, m.short_introduction, m.filename "
 				+ "from mealkit m join (select c.mkid, count(*) "
 				+ "from custommealkit c join review r on c.custommkid = r.custommkid "
 				+ "group by c.mkid "
@@ -326,7 +332,8 @@ public class MealkitDAO {
 					rs.getInt("defaultcal"),
 					rs.getInt("defaultprice"),
 					rs.getString("full_introduction"),
-					rs.getString("short_introduction"));
+					rs.getString("short_introduction"),
+					rs.getString("filename"));
 				mealkits.add(mealkit);	
 			}		
 			return mealkits;					
