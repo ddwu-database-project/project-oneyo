@@ -110,7 +110,6 @@ public class AdminAddMealkitController implements Controller {
 				filename);
 		mkDAO.create(mealkit);
 		
-		String filename = "";
 		int sizeLimit = 15*1024*1024;
 		
 		String realPath = request.getServletContext().getRealPath("upload");
