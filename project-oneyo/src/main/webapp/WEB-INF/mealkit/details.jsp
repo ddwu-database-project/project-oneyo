@@ -144,8 +144,12 @@
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0"  style="margin: 0 auto" >
-                            <img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getIngName()}.jpg'/>">
-                         
+                        	<c:if test="${mkIngs.getFilename() eq null}">
+                            	<img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getIngName()}.jpg'/>">
+                         	</c:if>
+                         	<c:if test="${mkIngs.getFilename() ne null}">
+                         		<img style="width:250px !important; height:250px !important" class="card-img rounded-0 img-fluid" src="<c:url value='/assets/img/ingredients/${mkIngs.getFilename()}'/>">
+                         	</c:if>
                         </div>
                         <div class="card-body" style="margin: 0 auto; text-align: center">
                             <a class="h3 text-decoration-none">${mkIngs.getIngName()}</a>

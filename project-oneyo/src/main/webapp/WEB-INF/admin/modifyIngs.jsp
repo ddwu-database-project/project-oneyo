@@ -53,10 +53,20 @@
 			<c:forEach var="ing" items="${ingredients}">
 				<tr>
 					<td><strong> ${ing.getCategory().name} </strong></td>
-					<td><img
-						style="width: 150px !important; height: 150px !important"
-						class="card-img rounded-0 img-fluid"
-						src="<c:url value='/assets/img/ingredients/${ing.ingName}.jpg'/>"></td>
+					<td>
+						<c:if test="${ing.getFilename() eq null}">
+							<img
+								style="width: 150px !important; height: 150px !important"
+								class="card-img rounded-0 img-fluid"
+								src="<c:url value='/assets/img/ingredients/${ing.ingName}.jpg'/>">
+						</c:if>
+						<c:if test="${ing.getFilename() ne null}">
+							<img
+								style="width: 150px !important; height: 150px !important"
+								class="card-img rounded-0 img-fluid"
+								src="<c:url value='/assets/img/ingredients/${ing.getFilename()}'/>">
+						</c:if>
+					</td>
 					<td>${ing.ingName}</td>
 					<td>
 						<form method="post" action="<c:url value="/admin/ing/remove"/>">

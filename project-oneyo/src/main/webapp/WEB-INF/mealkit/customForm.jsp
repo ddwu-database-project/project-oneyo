@@ -69,7 +69,12 @@
 					<div class="col-md-6 col-lg-3 pb-5">
 						<div class="h-100 py-5 services-icon-wap shadow" style="text-align: center">
 							<div class="h1 text-success text-center">
-								<img src="<c:url value='/assets/img/ingredients/${mkIng.getIngName()}.jpg' />" class="opacityImg" alt="재료" width="150px">
+								<c:if test="${mkIng.getFilename() eq null}">
+									<img src="<c:url value='/assets/img/ingredients/${mkIng.getIngName()}.jpg' />" class="opacityImg" alt="재료" width="150px">
+								</c:if>
+								<c:if test="${mkIng.getFilename() ne null}">
+									<img src="<c:url value='/assets/img/ingredients/${mkIng.getFilename()}' />" class="opacityImg" alt="재료" width="150px">
+								</c:if>
 							</div>
 							<h2 class="h5 text-center ingInfo">${mkIng.getIngName()}</h2>
 							<input type="hidden" name="mkIngPrice${mkIng.getIngId()}" value="${mkIng.getIngPrice()}"/>
