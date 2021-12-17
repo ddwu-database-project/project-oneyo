@@ -39,7 +39,6 @@
 	background-color: #F6F6F6;
 }
 </style>
-
 </head>
 <body>
 <%@include file="/WEB-INF/base/header.jsp" %>
@@ -49,7 +48,7 @@
 	<section id="container">
 		<table class="table table-hover mklist">
 			<c:forEach var="ing" items="${ingredients}">
-				<tr>
+				<tr id="ings">
 				<td><strong> ${ing.getCategory().name} </strong></td>
 				<td> 
 					<c:if test="${ing.getFilename() eq null}">

@@ -119,7 +119,7 @@
                             	<img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
                             </c:if>
                             <c:if test="${topMk.getFilename() ne null}">
-                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${topMk.getFilename()}' />">
+                            	<img src="<c:url value='/assets/img/${topMk.getFilename()}' />" class="card-img-top">
                             </c:if>
                         </a>
                         <div class="card-body">
@@ -150,7 +150,7 @@
                             	<img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
                             </c:if>
                             <c:if test="${topRvMk.getFilename() ne null}">
-                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${topRvMk.getFilename()}' />">
+                            	<img src="<c:url value='/assets/img/${topRvMk.getFilename()}' />" class="card-img-top">
                             </c:if>
                         </a>
                         <div class="card-body">
