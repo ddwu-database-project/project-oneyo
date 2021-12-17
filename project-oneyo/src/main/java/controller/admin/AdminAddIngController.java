@@ -29,7 +29,9 @@ public class AdminAddIngController implements Controller {
 				request.getParameter("name"),
 				Integer.parseInt(request.getParameter("price")),
 				Integer.parseInt(request.getParameter("calorie")),
-				new Category(Integer.parseInt(request.getParameter("category"))));	
+				new Category(Integer.parseInt(request.getParameter("category")))
+				);	
+		
 		ingDAO.create(ing);
 		String uri = (String) request.getSession().getAttribute("redirectURI");
 		String[] split = uri.split("/");

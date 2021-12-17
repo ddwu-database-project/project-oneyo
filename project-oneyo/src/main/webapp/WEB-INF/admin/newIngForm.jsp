@@ -46,11 +46,11 @@
 					</div>
 					<div class="mb-3">
 						<lable for="cal">칼로리</lable>
-						<input class="form-control" id="cal" type="text" name="name">
+						<input class="form-control" id="cal" type="text" name="calorie">
 					</div>
 					<div class="mb-3">
 						<lable for="price">가격</lable>
-						<input class="form-control" id="price" type="text" name="name">
+						<input class="form-control" id="price" type="text" name="price">
 					</div>
 
 					<select class="form-control" name="category">
