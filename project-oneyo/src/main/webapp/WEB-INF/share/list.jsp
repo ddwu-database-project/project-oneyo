@@ -51,6 +51,7 @@
 		<div class="row">
 			<c:forEach var="item" items="${customMk}">
 				<div class="col-12 col-md-4 p-5 mt-3 text_photo">
+					<c:if test="${item.getOriginalMealkit().getFilename() eq null}">
 					<a class="textOverImage"
 						style="background-image: url(<c:url value='/assets/img/${item.getOriginalMealkit().getMkName()}.png' />)"
 						data-title="${customerMap.get(item.getCustomerId())}님"
@@ -60,6 +61,18 @@
           	 			가격: ${item.getPrice()}
            				총 칼로리: ${item.getTotalCalorie()}">
 					</a>
+					</c:if>
+					<c:if test="${item.getOriginalMealkit().getFilename() ne null}">
+					<a class="textOverImage"
+						style="background-image: url(<c:url value='/assets/img/${item.getOriginalMealkit().getFilename()}' />)"
+						data-title="${customerMap.get(item.getCustomerId())}님"
+						data-text="
+						밀키트: ${item.getOriginalMealkit().getMkName()} 
+						재료: ${item.printCustomIng()}
+          	 			가격: ${item.getPrice()}
+           				총 칼로리: ${item.getTotalCalorie()}">
+					</a>
+					</c:if>
 					<form name="f${item.getCustomMealkitId()}" method="post"
 						action="<c:url value="/share/delete"/>">
 						<input type="hidden" name="customMkId"

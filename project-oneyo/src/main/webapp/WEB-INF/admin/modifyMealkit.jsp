@@ -41,11 +41,15 @@
 	<div class="container top">
 		<div class="input-form-backgroud row"> 
 			<div class="input-form col-md-12 mx-auto">
-				<form class="validation-form modform" method="post" action="<c:url value="/admin/mealkit/modify"/>">
+				<form class="validation-form modform" method="post" action="<c:url value="/admin/mealkit/modify"/>" enctype="multipart/form-data">
 					<input type="hidden" name="id" value="${mealkit.mkId}">
 					<div class="mb-3">
 						<lable for="name">밀키트명</lable>
 						<input class="form-control" id="name" type="text" name="name" value="${mealkit.mkName}">
+					</div>
+					<div class="mb-3">
+						<lable for="name">밀키트 이미지</lable>
+						<input class="form-control" id="file" type="file" name="file" value="${mealkit.filename}">
 					</div>
 					<div class="mb-3">
 						<lable for="cal">칼로리</lable>
