@@ -178,8 +178,8 @@ public class MealkitDAO {
 	}
 	
 	public List<Ingredient> findMealkitIng(int mkId) throws Exception{
-		String sql = "SELECT m.mkname, m.defaultcal, m.defaultprice, s.ingid, s.ingname, s.ingquantity, s.calorie, s.price, s.ingcategoryid "
-				+"FROM mealkit m JOIN (SELECT i.ingname, i.ingid, b.mkid, b.ingquantity, i.calorie, i.price, i.ingcategoryid "
+		String sql = "SELECT m.mkname, m.defaultcal, m.defaultprice, s.ingid, s.ingname, s.ingquantity, s.calorie, s.price, s.ingcategoryid, s.filename "
+				+"FROM mealkit m JOIN (SELECT i.ingname, i.ingid, b.mkid, b.ingquantity, i.calorie, i.price, i.ingcategoryid, i.filename "
 					+"FROM ingredient i JOIN baseingredient b "
 					+"ON i.ingid = b.ingid) s "
 				+"ON m.mkid = s.mkid "
@@ -195,7 +195,8 @@ public class MealkitDAO {
 					rs.getInt("price"),
 					rs.getInt("calorie"),
 					rs.getInt("ingquantity"),
-					new Category(rs.getInt("ingcategoryid")));
+					new Category(rs.getInt("ingcategoryid")),
+					rs.getString("filename"));
 				mealkitIng.add(ingredient);	
 			}		
 			return mealkitIng;					

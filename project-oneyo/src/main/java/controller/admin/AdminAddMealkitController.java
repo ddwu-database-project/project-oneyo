@@ -23,6 +23,7 @@ public class AdminAddMealkitController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String name = null;
+		String id = null;
     	String calorie = null;
     	String price = null;
     	String category = null;   
@@ -69,6 +70,7 @@ public class AdminAddMealkitController implements Controller {
                 	
                 	if(item.isFormField()) {             		
                 		if(item.getFieldName().equals("name")) name = value;
+                		else if(item.getFieldName().equals("id")) id = value;
                 		else if(item.getFieldName().equals("calorie")) calorie = value;
                 		else if(item.getFieldName().equals("price")) price = value;
                 		else if(item.getFieldName().equals("category"))category = value;
@@ -76,16 +78,16 @@ public class AdminAddMealkitController implements Controller {
                 		else if(item.getFieldName().equals("shortintro")) shortintro = value;
                 	}
                 	else {
-                		if(item.getFieldName().equals("file")) {
+                		if(item.getFieldName().equals("file")) {                           
                 			filename = item.getName();
                 			if(filename == null || filename.trim().length() == 0) continue;
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
                 			File file = new File(dir, filename);
-                			item.write(file);
+                			if (!file.exists()) item.write(file);
                 		}
                 	}
                 }
-                
+                               
 			}catch(SizeLimitExceededException e) {
 				e.printStackTrace();           
             }catch(FileUploadException e) {

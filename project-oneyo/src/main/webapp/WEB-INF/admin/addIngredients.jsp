@@ -32,7 +32,8 @@
 	text-align: center;
 }
 .bottom {
-	margin-bottom: 25px
+	margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 .top-btn-color {
 	background-color: #60B5BC;
