@@ -48,8 +48,12 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
-                            <img class="new_mealkit_img img-fluid" src="${pageContext.request.contextPath}/upload/1a.jpeg' />">
+                        	<c:if test="${newMealkits.get(0).getFilename() eq null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getMkName()}.png' />">
+                            </c:if>
+                            <c:if test="${newMealkits.get(0).getFilename() ne null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(0).getFilename()}' />">
+                            </c:if>
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -66,7 +70,12 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getMkName()}.png' />">
+                        	<c:if test="${newMealkits.get(1).getFilename() eq null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getMkName()}.png' />">
+                            </c:if>
+                            <c:if test="${newMealkits.get(1).getFilename() ne null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${newMealkits.get(1).getFilename()}' />">
+                            </c:if>
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -106,7 +115,12 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topMk.mkId}'/></c:url>">
-                            <img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	<c:if test="${topMk.getFilename() eq null}">
+                            	<img src="<c:url value='/assets/img/${topMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                            </c:if>
+                            <c:if test="${topMk.getFilename() ne null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${topMk.getFilename()}' />">
+                            </c:if>
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -132,7 +146,12 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="<c:url value='/mealkit/detail'><c:param name='mkId' value='${topRvMk.mkId}'/></c:url>">
-                            <img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                        	<c:if test="${topRvMk.getFilename() eq null}">
+                            	<img src="<c:url value='/assets/img/${topRvMk.getMkName()}.png' />" class="card-img-top" alt="...">
+                            </c:if>
+                            <c:if test="${topRvMk.getFilename() ne null}">
+                            	<img class="new_mealkit_img img-fluid" src="<c:url value='/assets/img/${topRvMk.getFilename()}' />">
+                            </c:if>
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
