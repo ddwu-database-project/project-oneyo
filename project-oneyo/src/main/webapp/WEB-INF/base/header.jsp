@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+<%@ page import="controller.customer.CustomerSessionUtils" %>
  	<!-- Start Top Nav -->
     <nav class="navbar navbar-expand-lg nav-bg-color navbar-light d-none d-lg-block top-nav" id="templatemo_nav_top">
         <div class="container">
             <div class="w-100">
                 <div class="sign">
-                	<% 
-                	String name = (String)request.getSession().getAttribute("name");
-                	int admin = (int)request.getSession().getAttribute("admin");
-                		if (admin == 1 && name != null) {
+                	<%
+                	if (!CustomerSessionUtils.hasLogined(request.getSession())) { %>
+            			<a class="sign-up text-light" href="<c:url value='/customer/register'/>">Sign Up &ensp;</a>
+            		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">Login</a> <% 
+            		} else {
+                		String name = (String)request.getSession().getAttribute("name");
+                		String admin = (String)request.getSession().getAttribute("admin");
+                		if (admin.equals("admin")) {
                 			out.print(name + "&ensp;관리자님, 환영합니다!&ensp;&ensp;&ensp;");%>
                 			<a style="color: white; text-decoration: none; padding-right: 10px;"
                 				href="<c:url value='/admin/mealkit/list'/>">상품 목록 관리</a>
@@ -17,13 +21,12 @@
                 			href="<c:url value='/admin/ing/list'/>">재료 목록 관리</a>
                 			<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">Logout</a> <% 
                 		}
-                		else if (name != null) { 
-	                		out.print("Hello, " +name + "&ensp;"); %>
-	                		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">Logout</a> <%
-	                	} else { %>
-	                		<a class="sign-up text-light" href="<c:url value='/customer/register'/>">Sign Up &ensp;</a>
-                    		<a class="sign-in text-light" href="<c:url value='/customer/login/form'/>">Login</a> <% 
-	                	} %>          
+                		else { 
+                			out.print("Hello, " +name + "&ensp;"); %>
+                    		<a class="sign-in text-light" href="<c:url value='/customer/logout'/>">Logout</a> <%
+	                	}
+                	}
+	                %>
                 </div>
             </div>
         </div>
