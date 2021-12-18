@@ -8,8 +8,8 @@
                 <div class="sign">
                 	<% 
                 	String name = (String)request.getSession().getAttribute("name");
-                	String admin = (String)request.getSession().getAttribute("admin");
-                		if (admin != null && name != null) {
+                	int admin = (int)request.getSession().getAttribute("admin");
+                		if (admin == 1 && name != null) {
                 			out.print(name + "&ensp;관리자님, 환영합니다!&ensp;&ensp;&ensp;");%>
                 			<a style="color: white; text-decoration: none; padding-right: 10px;"
                 				href="<c:url value='/admin/mealkit/list'/>">상품 목록 관리</a>
