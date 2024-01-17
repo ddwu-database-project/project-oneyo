@@ -19,7 +19,7 @@
 		<servlet-api.version>4.0.1</servlet-api.version>
 		<jsp.version>2.3.3</jsp.version>
 		<jstl.version>1.2</jstl.version>
-		<logback-classic.version>1.2.6</logback-classic.version>
+		<logback-classic.version>1.2.13</logback-classic.version>
 		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
 		<commons-fileupload.version>1.4</commons-fileupload.version>
 		<jackson-databind.version>2.13.4.2</jackson-databind.version>
